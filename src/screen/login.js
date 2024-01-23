@@ -1,10 +1,11 @@
-import {View,Text,ScrollView,TouchableOpacity,TextInput,Image,Alert,KeyboardAvoidingView,Platform, StatusBar } from "react-native";
+import {View, Text, ScrollView, TouchableOpacity, TextInput, Image, Alert, KeyboardAvoidingView, Platform, StatusBar } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { authentication } from "../../firebaseconfig";
+
 
 const Login = () => {
   const nav = useNavigation();
@@ -28,44 +29,42 @@ const Login = () => {
       });
   };
 
-
-  
   return (
 
 
-
       <SafeAreaView>
-
       <ScrollView>
 
-      <Text style={{ fontWeight: 'bold', fontSize: 28, color: '#062CD4', fontSize: 24, paddingTop: 71, paddingLeft: 165 }}> LOGIN
+      <Text style={{ fontWeight: 'bold', fontSize: 48, color: '#062CD4', paddingTop: 71, paddingLeft: 130 }}> LOGIN
       
       </Text>
 
-        <View style={{ paddingHorizontal: 20, marginTop: 25, }}>
+        <View style={{ paddingHorizontal: 20, marginTop: 15, }}>
          
           <Text
             style={{
               fontSize: 16,
               fontWeight: "400",
               color: "black",
-              marginTop: 71,
-              
+              marginTop: 30,
+              paddingLeft: 12
             }}
           >
             {" "}
             Please enter your login information below
           </Text>
+
           <Text
             style={{
               fontSize: 16,
               fontWeight: "400",
               color: "black",
+              paddingLeft: 12
               
             }}
           >
             {" "}
-            to access your account
+           to access your account
           </Text>
 
           <Text
@@ -74,6 +73,7 @@ const Login = () => {
               fontWeight: "500",
               color: "black",
               marginTop: 40,
+              paddingLeft: 12
             }}
           >
             Email
@@ -85,11 +85,16 @@ const Login = () => {
             }
             keyboardType="email-address"
             style={{
-              borderColor: "black",
-              borderBottomWidth: 0.9 ,
+              borderColor: "grey",
+              height: 48,
+              width: 339,
+              margin: 12,
+              borderWidth: 1,
               fontSize: 16,
               marginTop: 15,
-              borderRadius: 25
+              borderRadius: 8,
+              paddingHorizontal: 12,
+              paddingVertical: 12,
             }}
           />
 
@@ -97,8 +102,9 @@ const Login = () => {
             style={{
               fontSize: 16,
               fontWeight: "500",
-              color: "grey",
-              marginTop: 40,
+              color: "black",
+              marginTop: 10,
+              paddingLeft: 12
             }}
           >
             Password
@@ -106,8 +112,14 @@ const Login = () => {
 
           <View
             style={{
-              borderCOlor: "black",
-              borderBottomWidth: 0.9 ,
+              borderColor: "grey",
+              height: 59,
+              width: 339,
+              margin: 12,
+              borderWidth: 1,
+              borderRadius: 8,
+              paddingHorizontal: 12,
+              paddingVertical: 12,
               flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "center",
@@ -148,41 +160,47 @@ const Login = () => {
               color: "black",
               marginTop: 15,
               width: "95%",
-            }}
-          >
+              paddingLeft: 12,
+              color: '#062CD4',
+              fontWeight: 'bold',
+
+            }} >
+
             Forgot Password?
           </Text>
+
           <TouchableOpacity
             onPress={loginUser}
             style={{
               backgroundColor: '#062CD4',
               marginTop: 30,
               height: 70,
-              borderRadius: 50 ,
+              borderRadius: 8 ,
               alignItems: "center",
               justifyContent: "center",
-            }}
-          >
+              }} >
+
             <Text
               style={{
                 fontSize: 19,
                 color: 'white',
                 fontWeight: "500",
-              }}
-            >
+              }} >
               Log In
             </Text>
+
           </TouchableOpacity>
           <View
             style={{
-              flexDirection: "row",
+              flexDirection: "row" ,
               justifyContent: "center",
               alignItems: "center",
               marginTop: 20,
               gap: 5,
+              paddingTop: 24,
             }}
           >
-            <Text style={{ fontSize: 16 }}>Don't have an Account?</Text>
+            <Text style={{ fontSize: 16, color: "black" }} >Don't have an Account?</Text>
             <TouchableOpacity
               onPress={() => {
                 nav.navigate("register");

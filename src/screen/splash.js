@@ -7,7 +7,7 @@ const splash = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      nav.replace('Login');
+      nav.replace('login');
     }, 5000);
   }, []);
 
@@ -15,7 +15,7 @@ const splash = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.logoContainer}>
         <Image
-          source={require('../utils/MBraillelogo.png')}
+          source={require('../assets/MBraillelogo.png')}
           style={styles.logo}
           resizeMode="contain"
         />
