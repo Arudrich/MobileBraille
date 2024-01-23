@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { myColors } from '../utils/colors';
+import { colors } from '../utils/colors';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import * as DocumentPicker from 'expo-document-picker';
@@ -50,7 +50,7 @@ const main = () => {
       });
 
       if (!image.canceled) {
-        await uploadFile(image, 'image');
+        await uploadFile(image.assets[0], 'image');
       } else {
         console.log("User Cancelled the upload");
       }
@@ -81,7 +81,6 @@ const main = () => {
 
   const selectAudio = async () => {
     try {
-      // await DocumentPicker.requestMediaLibraryPermissionsAsync();
       const audio = await DocumentPicker.getDocumentAsync({
         type: 'audio/*',
       });
