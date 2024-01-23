@@ -12,7 +12,9 @@ const splash = () => {
   }, []);
 
   return (
+    
     <SafeAreaView style={styles.container}>
+      
       <View style={styles.logoContainer}>
         <Image
           source={require('../assets/MBraillelogo.png')}
@@ -39,8 +41,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 150, // Adjust the width as needed
-    height: 150, // Adjust the height as needed
+    width: 186, // Adjust the width as needed
+    height: 180, // Adjust the height as needed
   },
   title: {
     fontSize: 40,

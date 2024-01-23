@@ -6,6 +6,7 @@ import splash from "./src/screen/splash";
 import login from "./src/screen/login";
 import register from "./src/screen/register";
 import home from "./src/screen/home";
+import Routes from './navigation/Routes';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +23,7 @@ export default function App() {
       
     </Stack.Navigator>
   </NavigationContainer>
-   
+   // <Routes /> //Use this when trying out Routes
   );
 } ;
 
