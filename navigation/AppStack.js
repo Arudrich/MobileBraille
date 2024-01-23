@@ -5,7 +5,9 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { colors } from '../src/utils/colors';
+import { Ionicons } from '@expo/vector-icons';
 import home from '../src/screen/home';
+
 
 // needed kung may additional screen sa iisang bottom nav
 const Stack = createNativeStackNavigator();
@@ -53,7 +55,7 @@ const AppStack = () => {
             component={home}
             options={{
                 tabBarIcon:({color}) => (
-                    <Ionicons />
+                  <Ionicons name="home-outline" size={20} color={color}/>
                 )
             }}
         />

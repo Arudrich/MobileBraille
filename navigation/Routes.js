@@ -9,7 +9,7 @@ import AppStack from './AppStack';
 const Routes = () => {
   return (
     <NavigationContainer>
-      <Text>Routes</Text>
+      <AuthStack />
     </NavigationContainer>
   )
 }
