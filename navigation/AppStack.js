@@ -2,12 +2,13 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-import {createStackNavigator} from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { colors } from '../src/utils/colors';
+import home from '../src/screen/home';
 
 // needed kung may additional screen sa iisang bottom nav
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 //this is for botnav
 const BotTab = createBottomTabNavigator();
 
@@ -47,7 +48,15 @@ const AppStack = () => {
         headerShown: false,
         tabBarActiveTintColor: colors.primary,
       }}>
-
+        <BotTab.Screen 
+            name= "Home"
+            component={home}
+            options={{
+                tabBarIcon:({color}) => (
+                    <Ionicons />
+                )
+            }}
+        />
     </BotTab.Navigator>
   )
 }
