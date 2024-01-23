@@ -14,11 +14,11 @@ const splash = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.logoContainer}>
-        {/* <Image
-          source={require('LOGO NATIN DITO, WALA AKO FILE NG LOGO')} // Replace with the path to your app's logo
+        <Image
+          source={require('../utils/MBraillelogo.png')}
           style={styles.logo}
           resizeMode="contain"
-        /> */}
+        />
         <Text style={styles.title}>
           <Text style={styles.blackText}>M.</Text>
           <Text style={styles.blueText}>Braille</Text>
@@ -39,11 +39,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 100, // Adjust the width as needed
-    height: 100, // Adjust the height as needed
+    width: 150, // Adjust the width as needed
+    height: 150, // Adjust the height as needed
   },
   title: {
-    fontSize: 24,
+    fontSize: 40,
     fontWeight: 'bold',
     marginTop: 10,
   },
@@ -54,10 +54,10 @@ const styles = StyleSheet.create({
     color: '#062CD4',
   },
   subtitle: {
-    fontSize: 12,
+    fontSize: 15,
     textAlign: 'center',
     marginTop: 5,
-    color: '#B6B6B6', // Adjust the color as needed
+    color: '#B6B6B6',
   },
 });
 
