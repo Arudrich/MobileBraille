@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { Feather } from "@expo/vector-icons";
 import { responsiveHeight } from "react-native-responsive-dimensions";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { TouchableOpacity } from 'react-native-web';
+import { TouchableOpacity } from 'react-native';
 
 
 
@@ -73,13 +73,13 @@ const home = () => {
 
       
 
-      <View style={styles.button} >
+      <TouchableOpacity onPress={()=> console.log("Pressed")} >
+        <Text> See All</Text>
         
         
         
         
-        
-      </View>
+      </TouchableOpacity>
 
         
        
