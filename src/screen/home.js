@@ -1,87 +1,122 @@
-import { View, Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, Image, StyleSheet, TextInput } from 'react-native'
 import React from 'react'
-import { responsiveHeight } from "react-native-responsive-dimensions";
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { Feather } from "@expo/vector-icons";
+import { responsiveHeight } from "react-native-responsive-dimensions";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
 const home = () => {
   return (
+    <SafeAreaView style = {{ padding: 30, paddingLeft: 18, backgroundColor: 'white', flex: 1 }}>
 
 
-    <SafeAreaView>
 
-      <View style = {{ paddingTop: 80, padding: 30}}>
+      <View style = {styles.Profilecontainer} >
 
-        <View style={styles.profileAvatarWrapper}>
-                <Image
-                  alt=""
-                  source={{
-                    uri: 'http://tinyurl.com/bddv8vwp', // Di pa ko alam pano pag local yung lalagay yung link na code nagana e
-                  }}
-                  style={styles.profileAvatar}
-                />
+        <Image resizeMode= 'contain' style = {styles.profile} source = {{ uri: 'https://scontent.fmnl2-2.fna.fbcdn.net/v/t39.30808-6/364163840_1714504549014921_1986141625276929911_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeHu0Y1HFrflmfV_gSJeTTR7iq6zHupNJJaKrrMe6k0klnEPVshyU8NVVXw6xuQinpL3kdSNRK-aKdcgqysr44Rp&_nc_ohc=p4rXIGBl0JoAX8kcyUy&_nc_ht=scontent.fmnl2-2.fna&oh=00_AfD0WFLZ_P89XCha7iF3OVoX3s5KQQX_fordPaDhKISO-Q&oe=65B4B99A' }} 
+        />
+        <Text style = {styles.profileName}> Aldrich Macadangdang </Text>
 
-        </View>
+  
+ 
         
+      </View>
 
-        <Text style={{ paddingHorizontal: 10, paddingBottom: 8, paddingTop: 24, color:"gray",left: 25 }} >
-          Search for Braille Transcription History
-        </Text>
 
-        <View style = {styles.search} >
 
-          <Feather name="search" size={ 30 } color= "black" />
-          <TextInput style={{ flex: 1 }} placeholder="Search for recent " />
 
-        </View>
-      </View>          
+      <View style = {styles.searchContainer} >
+
+          <Feather name="search" size={ 22 } color= "blue" />
+          <TextInput placeholder = "Search recent transcription " />
+
+      <View style = {{ paddingLeft: 112 }}> 
+
+          <MaterialCommunityIcons name="filter" size={ 40 } color= "blue"  />
+
+
+      </View>
+ 
+      </View>
+
+
+     
+
+
+
+
+
+
+      <View style = { styles.recentContainer }>
+
       
 
 
 
 
+      </View>
 
 
-     
     </SafeAreaView>
 
+  );
+};
 
-
-
-  )
-}
 
 const styles = StyleSheet.create({
 
-  profileAvatar: {
-    width: 80,
-    height: 80,
+  // Profile Container *********************************************************************
+
+
+
+  Profilecontainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 25,
+    paddingLeft: 15,
+    paddingBottom: 30,
+    gap: 10 // gap of name to profile icon
+
+  },
+
+  profile: {
+    width: 100,
+    height: 100,
     borderRadius: 50,
+    borderWidth: 2 ,
+    borderColor: '#062CD4' 
   },
 
-  profileAvatarWrapper: {
-  position: 'relative',
+  profileName: {
+    fontSize: 24 ,
+    fontWeight: 'bold'
   },
 
-  search: {
-    paddingHorizontal: 18,
-    paddingVertical: 10,
-    paddingLeft: 17,
-    // backgroundColor: "#EBF0F5",
-    backgroundColor: "red",
+
+  // SEARCH CONTAINER *********************************************************************
+
+  searchContainer: {
+    width: 330,
+    height: 44,
+    paddingLeft: 12,
     height: responsiveHeight(6.5),
+    backgroundColor: "#EBF0F5",
     borderRadius: 8 ,
     flexDirection: "row",
     alignItems: "center",
-    gap: 9,
-  }
+    gap: 10, // gap ng icon
+
+  },
+
+
+  // RECENT CONTAINER *********************************************************************
 
 
 
 
 
-
-
- })
+});
 
 export default home
+
