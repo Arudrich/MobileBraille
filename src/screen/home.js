@@ -1,13 +1,16 @@
-import { View, Text, Image, StyleSheet, TextInput } from 'react-native'
+import { View, Text, Image, StyleSheet, TextInput, ImageBackground } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Feather } from "@expo/vector-icons";
 import { responsiveHeight } from "react-native-responsive-dimensions";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { TouchableOpacity } from 'react-native-web';
+
 
 
 const home = () => {
   return (
+
     <SafeAreaView style = {{ padding: 30, paddingLeft: 18, backgroundColor: 'white', flex: 1 }}>
 
 
@@ -41,23 +44,47 @@ const home = () => {
       </View>
 
 
-     
+    
+      <View style = { styles.recentContainer }>
 
-
-
-
-
+      <Image resizeMode= 'contain' style = {styles.recentHistory} source = {{ uri: 'https://scontent.fmnl2-2.fna.fbcdn.net/v/t39.30808-6/364163840_1714504549014921_1986141625276929911_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeHu0Y1HFrflmfV_gSJeTTR7iq6zHupNJJaKrrMe6k0klnEPVshyU8NVVXw6xuQinpL3kdSNRK-aKdcgqysr44Rp&_nc_ohc=p4rXIGBl0JoAX8kcyUy&_nc_ht=scontent.fmnl2-2.fna&oh=00_AfD0WFLZ_P89XCha7iF3OVoX3s5KQQX_fordPaDhKISO-Q&oe=65B4B99A' }} 
+        />
+        <Text style =  {styles.recentTitle}> Audio To Braille </Text> 
+        
+      </View>
 
       <View style = { styles.recentContainer }>
 
-      
+      <Image resizeMode= 'contain' style = {styles.recentHistory} source = {{ uri: 'https://scontent.fmnl2-2.fna.fbcdn.net/v/t39.30808-6/364163840_1714504549014921_1986141625276929911_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeHu0Y1HFrflmfV_gSJeTTR7iq6zHupNJJaKrrMe6k0klnEPVshyU8NVVXw6xuQinpL3kdSNRK-aKdcgqysr44Rp&_nc_ohc=p4rXIGBl0JoAX8kcyUy&_nc_ht=scontent.fmnl2-2.fna&oh=00_AfD0WFLZ_P89XCha7iF3OVoX3s5KQQX_fordPaDhKISO-Q&oe=65B4B99A' }} 
+        />
+        <Text style =  {styles.recentTitle}> Video MP4 To Braille </Text> 
+        
+      </View>
 
+      <View style = { styles.recentContainer }>
 
-
-
+      <Image resizeMode= 'contain' style = {styles.recentHistory} source = {{ uri: 'https://scontent.fmnl2-2.fna.fbcdn.net/v/t39.30808-6/364163840_1714504549014921_1986141625276929911_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeHu0Y1HFrflmfV_gSJeTTR7iq6zHupNJJaKrrMe6k0klnEPVshyU8NVVXw6xuQinpL3kdSNRK-aKdcgqysr44Rp&_nc_ohc=p4rXIGBl0JoAX8kcyUy&_nc_ht=scontent.fmnl2-2.fna&oh=00_AfD0WFLZ_P89XCha7iF3OVoX3s5KQQX_fordPaDhKISO-Q&oe=65B4B99A' }} 
+        />
+        <Text style =  {styles.recentTitle}> Text To Braille </Text> 
+        
+        
       </View>
 
 
+      
+
+      <View style={styles.button} >
+        
+        
+        
+        
+        
+      </View>
+
+        
+       
+
+    
     </SafeAreaView>
 
   );
@@ -112,6 +139,38 @@ const styles = StyleSheet.create({
 
   // RECENT CONTAINER *********************************************************************
 
+  recentContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 40,
+    paddingLeft: 15,
+    gap: 12,
+
+
+  },
+
+  recentHistory: {
+    
+    height: 100, 
+    width: 100,
+    borderRadius: 8,
+    borderWidth: 2 , 
+    borderColor: '#062CD4' ,
+  
+
+
+
+  },
+
+  recentTitle: {
+    fontSize: 15,
+    fontWeight: 'bold'
+
+  },
+
+  // ButtonMore *********************************************************************
+
+ 
 
 
 
