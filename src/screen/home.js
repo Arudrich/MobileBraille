@@ -10,7 +10,7 @@ const home = () => {
 
     <SafeAreaView>
 
-      <View style = {{ paddingTop: 80, left: 30 }}>
+      <View style = {{ paddingTop: 80, padding: 30}}>
 
         <View style={styles.profileAvatarWrapper}>
                 <Image
@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingVertical: 10,
     paddingLeft: 17,
-    backgroundColor: "#EBF0F5",
+    // backgroundColor: "#EBF0F5",
+    backgroundColor: "red",
     height: responsiveHeight(6.5),
     borderRadius: 8 ,
     flexDirection: "row",
