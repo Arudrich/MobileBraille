@@ -8,6 +8,7 @@ import { TouchableOpacity } from 'react-native';
 
 
 
+
 const home = () => {
   return (
 
@@ -71,15 +72,17 @@ const home = () => {
       </View>
 
 
-      
+      <View style = {[styles.seeMore]}>
 
-      <TouchableOpacity onPress={()=> console.log("Pressed")} >
-        <Text> See All</Text>
+      <TouchableOpacity onPress={()=> console.log("See more")} >
+        <Text style = {{fontSize: 16, fontWeight: 'bold', color: '#062CD4', alignContent: 'center', alignItems: 'center'}}> See More </Text>
         
         
         
         
       </TouchableOpacity>
+
+      </View>
 
         
        
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
     paddingTop: 25,
     paddingLeft: 15,
     paddingBottom: 30,
-    gap: 10 // gap of name to profile icon
+    gap: 3 // gap of name to profile icon
 
   },
 
@@ -142,9 +145,12 @@ const styles = StyleSheet.create({
   recentContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: 40,
+    alignContent: 'center',
+    paddingTop: 30,
+    bottom: -10, 
     paddingLeft: 15,
-    gap: 12,
+    gap: 15, // gap sa text 
+    borderRadius: 10
 
 
   },
@@ -156,6 +162,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 2 , 
     borderColor: '#062CD4' ,
+    gap: 10,
   
 
 
@@ -170,7 +177,22 @@ const styles = StyleSheet.create({
 
   // ButtonMore *********************************************************************
 
- 
+ seeMore: {
+    backgroundColor: 'white',
+    marginTop: 30,
+    height: 48,
+    borderRadius: 8 ,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 2,
+    borderColor: '#062CD4',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+
+
+
+
+ },
 
 
 
