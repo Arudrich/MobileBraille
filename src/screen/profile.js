@@ -5,7 +5,7 @@ const profile = () => {
   return (
 
 
-    <SafeAreaView>
+    <SafeAreaView  style = {{backgroundColor: 'white', flex: 1}} >
 
       
 

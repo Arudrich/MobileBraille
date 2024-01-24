@@ -32,7 +32,7 @@ const Login = () => {
   return (
 
 
-      <SafeAreaView>
+      <SafeAreaView style = {{ backgroundColor: 'white', flex: 1 }}>
       <ScrollView>
 
       <Text style={{ fontWeight: 'bold', fontSize: 48, color: '#062CD4', paddingTop: 71, paddingLeft: 130 }}> LOGIN
