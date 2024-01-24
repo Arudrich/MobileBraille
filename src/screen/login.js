@@ -1,13 +1,16 @@
 import {View, Text, ScrollView, TouchableOpacity, TextInput, Image, Alert, KeyboardAvoidingView, Platform, StatusBar } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { authentication } from "../../firebaseconfig";
+import { AuthContext } from "../../navigation/AuthProvider";
 
 
 const Login = () => {
+  const {login} = useContext(AuthContext);
+
   const nav = useNavigation();
 
   const [loginCredentials, setloginCredentials] = useState({
@@ -171,6 +174,7 @@ const Login = () => {
 
           <TouchableOpacity
             onPress={loginUser}
+            // onPress={() => login(email, password)} //Use this Pag Providers na gamit sa App.js
             style={{
               backgroundColor: '#062CD4',
               marginTop: 30,
