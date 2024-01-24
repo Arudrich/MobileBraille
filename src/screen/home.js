@@ -12,32 +12,29 @@ const home = () => {
 
       <View style = {{ paddingTop: 80, left: 30 }}>
 
-      <View style={styles.profileAvatarWrapper}>
-              <Image
-                alt=""
-                source={{
-                  uri: 'http://tinyurl.com/bddv8vwp', // Di pa ko alam pano pag local yung lalagay yung link na code nagana e
-                }}
-                style={styles.profileAvatar}
-              />
+        <View style={styles.profileAvatarWrapper}>
+                <Image
+                  alt=""
+                  source={{
+                    uri: 'http://tinyurl.com/bddv8vwp', // Di pa ko alam pano pag local yung lalagay yung link na code nagana e
+                  }}
+                  style={styles.profileAvatar}
+                />
 
-      </View>
-      </View>
+        </View>
+        
 
-      <Text style={{ paddingHorizontal: 10, paddingBottom: 8, paddingTop: 24, color:"gray",left: 25 }} >
-        Search for Braille Transcription History
-      </Text>
+        <Text style={{ paddingHorizontal: 10, paddingBottom: 8, paddingTop: 24, color:"gray",left: 25 }} >
+          Search for Braille Transcription History
+        </Text>
 
-      <View style = {styles.search} >
+        <View style = {styles.search} >
 
-        <Feather name="search" size={ 30 } color= "black" />
-        <TextInput style={{ flex: 1 }} placeholder="Search for recent " />
+          <Feather name="search" size={ 30 } color= "black" />
+          <TextInput style={{ flex: 1 }} placeholder="Search for recent " />
 
-
-
-
-      </View>
-
+        </View>
+      </View>          
       
 
 
