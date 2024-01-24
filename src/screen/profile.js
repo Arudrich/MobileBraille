@@ -3,9 +3,19 @@ import React from 'react'
 
 const profile = () => {
   return (
-    <View>
-      <Text>profile</Text>
-    </View>
+
+
+    <SafeAreaView>
+
+      
+
+
+     
+
+
+    </SafeAreaView>
+    
+
   )
 }
 
