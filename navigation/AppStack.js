@@ -15,7 +15,7 @@ const Stack = createNativeStackNavigator();
 const BotTab = createBottomTabNavigator();
 
 // add dito kung may screens within the tab <Stack ang gamitin dito>
-const ProfileStack = ({navigation}) => (
+const HomeStack = ({navigation}) => (
     <Stack.Navigator>
       <Stack.Screen
         name="Profile"

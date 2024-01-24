@@ -173,8 +173,8 @@ const Login = () => {
           </Text>
 
           <TouchableOpacity
-            onPress={loginUser}
-            // onPress={() => login(email, password)} //Use this Pag Providers na gamit sa App.js
+            // onPress={loginUser}
+            onPress={() => login(email, password)} //Use this Pag Providers na gamit sa App.js
             style={{
               backgroundColor: '#062CD4',
               marginTop: 30,
