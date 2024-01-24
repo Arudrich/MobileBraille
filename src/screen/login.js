@@ -86,7 +86,7 @@ const Login = () => {
             keyboardType="email-address"
             style={{
               borderColor: "grey",
-              height: 48,
+              height: 59,
               width: 339,
               margin: 12,
               borderWidth: 1,
