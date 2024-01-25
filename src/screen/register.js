@@ -12,7 +12,7 @@ import { AuthContext } from "../../navigation/AuthProvider";
 
 
 const register = () => {
-  // const {signup} = useContext(AuthContext);
+  const {signup} = useContext(AuthContext);
 
   const [isVisbile, setisVisbile] =
     useState(true); /* gamit for toggle ng eye yung sa password */
@@ -238,8 +238,8 @@ const register = () => {
             By continuing you agree to our <Text style = {{color: '#062CD4', fontWeight: 'bold'}}> Terms of Service  </Text> and <Text style = {{color: '#062CD4', fontWeight: 'bold' }}>Privacy Policy</Text>
           </Text>
           <TouchableOpacity
-            onPress={userAccountSignup}
-            // onPress={() => signup(email, password, name)}
+            // onPress={userAccountSignup}
+            onPress={() => signup(email, password, name)}
             style={{
               backgroundColor: '#062CD4',
               marginTop: 30,

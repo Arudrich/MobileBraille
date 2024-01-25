@@ -24,32 +24,30 @@ export const AuthProvider = ({children}) => {
             console.log(e);
           }
         },
-        signup: (email, password, name) => {
-          try {
-            const userCredential = createUserWithEmailAndPassword(authentication, email, password);
-            const userI = userCredential.user;
-
-            const userDocRef = doc(database, 'users', userI.uid);
-
-            setDoc(userDocRef, {
+        signup: async (email, password, name) => {
+          createUserWithEmailAndPassword(authentication, email, password) /* RN FIREBASE*/
+          .then(() => {
+            // nav.navigate('Login')
+            Alert.alert("User account succesfully created!");
+            setDoc( doc(database, "users", authentication.currentUser.uid ), {
               fullname: name,
               email: email,
-              id: userI.uid,
+              id: authentication.currentUser.uid, 
             });
-
-            Alert.alert("User account successfully created");
-          } catch (error) {
+          })
+          .catch((error) => {
             if (error.code === "auth/email-already-in-use") {
               console.log("That email address is already in use!");
               Alert.alert("That email address is already in use!");
-            } else if (error.code === "auth/invalid-email") {
+            }
+
+            if (error.code === "auth/invalid-email") {
               console.log("That email address is invalid!");
               Alert.alert("That email address is invalid!");
-            } else {
-              console.error(error);
-              Alert.alert("An error occurred while creating the user account.");
             }
-          }
+
+            console.error(error);
+          });
         }
          
       }}

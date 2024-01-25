@@ -17,7 +17,7 @@ const home = () => {
 
   const getUser = async () => {
     try {
-      const userDoc = await getDoc(doc(database, 'users', '067d52a4-97ec-4f02-8821-10d05986eefd'));
+      const userDoc = await getDoc(doc(database, 'users', user.uid));
       if (userDoc.exists()) {
         console.log('User Data', userDoc.data());
         setUserData(userDoc.data());
@@ -29,9 +29,9 @@ const home = () => {
     }
   };
 
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
 
