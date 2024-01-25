@@ -1,15 +1,19 @@
 import {View,Text,ScrollView,Image,TextInput,TouchableOpacity, Alert, KeyboardAvoidingView, Platform } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons"; /* link for expo vector icons lang to*/
 import { useNavigation } from "@react-navigation/native";
-import { authentication, database } from "./../../firebaseconfig";
+import { authentication, database } from "../../FirebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import uuid from 'react-native-uuid';
+import { AuthContext } from "../../navigation/AuthProvider";
+
 
 const register = () => {
+  // const {signup} = useContext(AuthContext);
+
   const [isVisbile, setisVisbile] =
     useState(true); /* gamit for toggle ng eye yung sa password */
   const nav = useNavigation(); /* for navigation */
@@ -22,13 +26,13 @@ const register = () => {
 
   const { email, password, name } = userCredentials;
 
-  const uid=uuid.v4()
+  // const uid=uuid.v4()
   const userAccountSignup = () => {
     createUserWithEmailAndPassword(authentication, email, password) /* RN FIREBASE*/
       .then(() => {
-        nav.navigate('Login')
+        // nav.navigate('Login')
         Alert.alert("User account succesfully created!");
-        setDoc( doc(database, "users", uid ), {
+        setDoc( doc(database, "users", authentication.currentUser.uid), {
           fullname: name,
           email: email,
           id: authentication.currentUser.uid, 
@@ -235,6 +239,7 @@ const register = () => {
           </Text>
           <TouchableOpacity
             onPress={userAccountSignup}
+            // onPress={() => signup(email, password, name)}
             style={{
               backgroundColor: '#062CD4',
               marginTop: 30,

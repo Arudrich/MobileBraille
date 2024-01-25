@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, {useContext, useState, useEffect} from 'react'
 import {NavigationContainer} from '@react-navigation/native';
 import { onAuthStateChanged } from 'firebase/auth';
-import { authentication } from '../firebaseconfig';
+import { authentication } from '../FirebaseConfig';
 
 import AuthStack from './AuthStack';
 import AppStack from './AppStack';

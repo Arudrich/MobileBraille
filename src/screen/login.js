@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { authentication } from "../../firebaseconfig";
+import { authentication } from "../../FirebaseConfig";
 import { AuthContext } from "../../navigation/AuthProvider";
 
 
