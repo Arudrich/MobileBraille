@@ -50,8 +50,11 @@ const AppStack = () => {
         headerShown: false,
         tabBarActiveTintColor: colors.primary,
       }}>
+
+
+        
         <BotTab.Screen 
-            name= "Home"
+            name= "home"
             component={home}
             options={{
                 tabBarIcon:({color}) => (
@@ -59,6 +62,9 @@ const AppStack = () => {
                 )
             }}
         />
+
+          
+
     </BotTab.Navigator>
   )
 }
