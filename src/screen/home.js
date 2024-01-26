@@ -10,6 +10,8 @@ import { DocumentSnapshot, collection, doc, getDoc } from 'firebase/firestore';
 import { database } from '../../FirebaseConfig';
 
 
+
+
 const home = () => {
   const {user} = useContext(AuthContext);
   // console.log(user.uid)

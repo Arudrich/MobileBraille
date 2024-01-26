@@ -8,6 +8,9 @@ import { authentication } from "../../FirebaseConfig";
 import { AuthContext } from "../../navigation/AuthProvider";
 
 
+
+
+
 const Login = () => {
   const {login} = useContext(AuthContext);
 

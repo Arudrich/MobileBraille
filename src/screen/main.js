@@ -97,9 +97,12 @@ const main = () => {
   };
 
   return (
+
     <View>
       <Text>main</Text>
     </View>
+
+    
   )
 }
 

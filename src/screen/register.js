@@ -11,6 +11,8 @@ import uuid from 'react-native-uuid';
 import { AuthContext } from "../../navigation/AuthProvider";
 
 
+
+
 const register = () => {
   const {signup} = useContext(AuthContext);
 
