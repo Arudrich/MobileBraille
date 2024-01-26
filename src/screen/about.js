@@ -10,10 +10,11 @@ import LottieView from 'lottie-react-native';
 
 const about = () => {
   return (
+    
 <SafeAreaView style = {{flex: 1}}>
 
 
-    <View style = {{ paddingTop: 40, paddingLeft: 150 }}>
+    <View style = {{ paddingTop: 40, paddingLeft: 150, }}>
 
       <Text style = {{ fontWeight: 'bold', fontSize: 20,  }}>DEVELOPERS</Text>
 
@@ -47,30 +48,29 @@ const about = () => {
     <Text style = {styles.name} >Rafael Gomez</Text>
     <Text style = {{fontSize: 15, fontStyle: 'italic', color: colors.secondary}}>Data Science</Text>
   </View>
+
 </ScrollView>
 
 
-<ScrollView>
+<ScrollView style = {{ }}>
 
   <View style = {styles.content}>
 
-    <Text style = {{ fontWeight: 'bold', fontSize: 20, }}> Mobile Braille </Text>
+    <Text style = {{ top: 15, fontWeight: 'bold', fontSize: 20, }}> Mobile Braille </Text>
 
     <LottieView style = {{ height: 290, alignItems: 'center', alignContent: 'center' }} source={require('../assets/lottie/about.json')} autoPlay loop />
 
     <Text style = {{ color: colors.secondary ,textAlign: 'justify', fontSize: 14, padding: 10, paddingTop: 10, backgroundColor: colors.primary , borderRadius: 8}}> Welcome to the MBraille app, where we empower users to convert multiple modes of input
           into Braille seamlessly. Our mission is to enhance accessibility for individuals
           with visual impairments by providing a user-friendly and efficient transcription tool. </Text>
-  
-        <Text style = {{ fontWeight: 'bold', fontSize: 20, paddingTop: 10 }}> Features</Text>
 
-       
   
-  </View>
+    </View>
 
-    
 
   </ScrollView>
+
+
 
 
 </SafeAreaView>
@@ -93,13 +93,14 @@ const styles = StyleSheet.create ({
   
   },
   name: {
-  color: 'white',
+    color: 'white',
     alignItems: 'center',
     justifyContent: 'center'
 
   },
   container: {
-    padding: 5,
+    padding: 1,
+    paddingTop: 12,
   },
   card: {
     flex: 1,
@@ -108,7 +109,7 @@ const styles = StyleSheet.create ({
     width: 190,
     height: 200,
     borderRadius: 8, 
-    margin: 6,
+    margin: 3
 
   },
   cardElevated: {
@@ -129,8 +130,7 @@ const styles = StyleSheet.create ({
   // content container
 
   content: {
-    paddingBottom: 50,
-    paddingTop: 5,
+    paddingTop: 1,
     alignContent: 'center',
     alignItems: 'center'
   }
