@@ -4,6 +4,10 @@ import { ScrollView } from 'react-native';
 import { colors } from '../utils/colors';
 import React from 'react'
 
+
+//Lottie icon
+import LottieView from 'lottie-react-native';
+
 const about = () => {
   return (
 <SafeAreaView style = {{flex: 1}}>
@@ -45,10 +49,28 @@ const about = () => {
   </View>
 </ScrollView>
 
+
+<ScrollView>
+
   <View style = {styles.content}>
 
+    <Text style = {{ fontWeight: 'bold', fontSize: 20, }}> Mobile Braille </Text>
 
+    <LottieView style = {{ height: 290, alignItems: 'center', alignContent: 'center' }} source={require('../assets/lottie/about.json')} autoPlay loop />
+
+    <Text style = {{ color: colors.secondary ,textAlign: 'justify', fontSize: 14, padding: 10, paddingTop: 10, backgroundColor: colors.primary , borderRadius: 8}}> Welcome to the MBraille app, where we empower users to convert multiple modes of input
+          into Braille seamlessly. Our mission is to enhance accessibility for individuals
+          with visual impairments by providing a user-friendly and efficient transcription tool. </Text>
+  
+        <Text style = {{ fontWeight: 'bold', fontSize: 20, paddingTop: 10 }}> Features</Text>
+
+       
+  
   </View>
+
+    
+
+  </ScrollView>
 
 
 </SafeAreaView>
@@ -68,7 +90,6 @@ const styles = StyleSheet.create ({
     paddingHorizontal: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 50,
   
   },
   name: {
@@ -78,7 +99,7 @@ const styles = StyleSheet.create ({
 
   },
   container: {
-    padding: 8,
+    padding: 5,
   },
   card: {
     flex: 1,
@@ -107,6 +128,12 @@ const styles = StyleSheet.create ({
 
   // content container
 
+  content: {
+    paddingBottom: 50,
+    paddingTop: 5,
+    alignContent: 'center',
+    alignItems: 'center'
+  }
 
 
 })

@@ -97,7 +97,7 @@ const home = () => {
       <View style = {[styles.seeMore]}>
 
       <TouchableOpacity onPress={()=> console.log("See more")} >
-        <Text style = {{fontSize: 16, fontWeight: 'bold', color: '#062CD4', alignContent: 'center', alignItems: 'center'}}> See More </Text>
+        <Text style = {{fontSize: 16, fontWeight: 'bold', color: 'white', alignContent: 'center', alignItems: 'center'}}> See More </Text>
         
         
         
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
   // ButtonMore *********************************************************************
 
  seeMore: {
-    backgroundColor: 'white',
+    backgroundColor: '#062CD4',
     marginTop: 30,
     height: 48,
     borderRadius: 8 ,
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#062CD4',
     paddingHorizontal: 24,
-    paddingVertical: 12,
+    paddingVertical: 11,
 
 
 
