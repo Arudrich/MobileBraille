@@ -11,7 +11,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
-    // const nav = useNavigation();
+    
   return (
     <AuthContext.Provider 
       value={{
@@ -27,7 +27,7 @@ export const AuthProvider = ({children}) => {
         signup: async (email, password, name) => {
           createUserWithEmailAndPassword(authentication, email, password) /* RN FIREBASE*/
           .then(() => {
-            // nav.navigate('Login')
+            
             Alert.alert("User account succesfully created!");
             setDoc( doc(database, "users", authentication.currentUser.uid ), {
               fullname: name,
@@ -48,7 +48,7 @@ export const AuthProvider = ({children}) => {
 
             console.error(error);
           });
-        }
+        },
          
       }}
     >

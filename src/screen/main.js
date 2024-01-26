@@ -4,6 +4,7 @@ import { colors } from '../utils/colors';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import * as DocumentPicker from 'expo-document-picker';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const main = () => {
   const uploadFile = async (file, fileType) => {
@@ -97,10 +98,11 @@ const main = () => {
   };
 
   return (
-
-    <View>
-      <Text>main</Text>
-    </View>
+    <SafeAreaView>
+      <View>
+        <Text>main</Text>
+      </View>
+    </SafeAreaView>
 
     
   )

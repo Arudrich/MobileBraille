@@ -12,8 +12,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 //screens for bot nav import
 import home from '../src/screen/home';
-import main from '../src/screen/home';
+import main from '../src/screen/main';
 import about from '../src/screen/about';
+import profile from '../src/screen/profile';
 
 
 // needed kung may additional screen sa iisang bottom nav
@@ -25,8 +26,15 @@ const BotTab = createBottomTabNavigator();
 const HomeStack = ({navigation}) => (
     <Stack.Navigator>
       <Stack.Screen
+          name="Home"
+          component={home}
+          options={{
+            headerShown: false,
+          }}
+        />
+      <Stack.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={profile}
         options={{
           headerShown: false,
         }}
@@ -58,12 +66,10 @@ const AppStack = () => {
         tabBarActiveTintColor: colors.primary,
         tabBarAllowFontScaling: 10,
       }}>
-
-
-        
+      
         <BotTab.Screen 
             name= "Home"
-            component={home}
+            component={HomeStack}
             options={{
                 tabBarIcon:({color}) => (
                   <Ionicons name="home-outline" size={30} color={color}/>
