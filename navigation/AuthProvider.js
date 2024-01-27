@@ -2,7 +2,7 @@
 
 import { Alert, StyleSheet, Text, View } from 'react-native'
 import React, {createContext, useState} from 'react'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { authentication, database } from '../FirebaseConfig';
 import { useNavigation } from "@react-navigation/native";
 import { setDoc, doc } from 'firebase/firestore';
@@ -49,6 +49,13 @@ export const AuthProvider = ({children}) => {
             console.error(error);
           });
         },
+        logout: async () =>{
+          try {
+            await signOut(authentication);
+          }catch (e) {
+            console.log(e);
+          }
+        }
          
       }}
     >

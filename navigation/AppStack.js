@@ -39,7 +39,7 @@ const HomeStack = ({navigation}) => (
           headerShown: false,
         }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="EditProfile"
         component={EditProfileScreen}
         options={{
@@ -52,7 +52,7 @@ const HomeStack = ({navigation}) => (
             elevation: 0,
           },
         }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 
