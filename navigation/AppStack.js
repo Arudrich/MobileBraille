@@ -36,7 +36,12 @@ const HomeStack = ({navigation}) => (
         name="Profile"
         component={profile}
         options={{
-          headerShown: false,
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: '#fff',
+            shadowColor: '#fff',
+            elevation: 0,
+          },
         }}
       />
       {/* <Stack.Screen

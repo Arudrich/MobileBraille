@@ -1,12 +1,12 @@
-import { View, Text } from 'react-native'
+import {SafeAreaView, View, Text } from 'react-native'
 import React from 'react'
 
-const profile = () => {
+const profile = ({navigation}) => {
   return (
 
 
     <SafeAreaView  style = {{backgroundColor: 'white', flex: 1}} >
-
+      <Text>Profile Page</Text>
       
 
 

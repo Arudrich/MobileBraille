@@ -12,7 +12,7 @@ import { database } from '../../FirebaseConfig';
 
 
 
-const home = () => {
+const home = ({navigation}) => {
   const {user} = useContext(AuthContext);
   // console.log(user.uid)
   const [userData, setUserData] = useState(null);
@@ -40,15 +40,16 @@ const home = () => {
     <SafeAreaView style = {{ padding: 30, paddingLeft: 18, backgroundColor: 'white', flex: 1 }}>
 
 
-
-      <View style = {styles.Profilecontainer} >
-
-        <Image resizeMode= 'contain' style = {styles.profile} source = {{ uri: '' }} 
-        />
-        <Text style = {styles.profileName}> {userData ? userData.fullname : "Loading..."} </Text>
-        
-      </View>
-
+      <TouchableOpacity onPress={() => 
+          navigation.navigate('Profile')}>
+        <View style = {styles.Profilecontainer} >
+          
+          <Image resizeMode= 'contain' style = {styles.profile} source = {{ uri: '' }} 
+          />
+          <Text style = {styles.profileName}> {userData ? userData.fullname : "Loading..."} </Text>
+          
+        </View>
+      </TouchableOpacity>
 
 
 
