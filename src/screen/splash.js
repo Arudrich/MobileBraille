@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, Image, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, Image, StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const splash = () => {
@@ -27,6 +27,14 @@ const splash = () => {
         </Text>
         <Text style={styles.subtitle}>Empowering Access. Transforming Documents.</Text>
       </View>
+
+
+      <View style = {{ paddingTop: 10 }}>
+
+        <ActivityIndicator/>
+
+      </View>
+
     </SafeAreaView>
   );
 };
@@ -61,7 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: 'center',
     marginTop: 5,
-    color: '#B6B6B6',
+    color: 'black',
   },
 });
 

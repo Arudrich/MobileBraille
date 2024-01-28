@@ -6,7 +6,7 @@ const profile = ({navigation}) => {
 
 
     <SafeAreaView  style = {{backgroundColor: 'white', flex: 1}} >
-      <Text>Profile Page</Text>
+      <Text>Profile rofile Page</Text>
       
 
 

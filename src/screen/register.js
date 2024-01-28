@@ -10,6 +10,14 @@ import { setDoc, doc } from "firebase/firestore";
 import uuid from 'react-native-uuid';
 import { AuthContext } from "../../navigation/AuthProvider";
 
+// Icons
+
+import { AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+
+
+
 
 
 
@@ -111,6 +119,26 @@ const register = () => {
           >
             Full Name
           </Text>
+
+          <View
+            style={{
+              borderColor: "grey",
+              height: 59,
+              width: 340,
+              margin: 12,
+              borderWidth: 1,
+              borderRadius: 8,
+              paddingHorizontal: 12,
+              paddingVertical: 12,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+
+          <AntDesign name="user" size={24} color="blue" />
+
+
           <TextInput
             maxLength={30}
             value= {name}
@@ -120,18 +148,13 @@ const register = () => {
             }
             keyboardType="name-phone-pad"
             style={{
-              borderColor: "grey",
-              height: 59,
-              width: 339,
-              margin: 12,
-              borderWidth: 1,
               fontSize: 16,
-              marginTop: 15,
-              borderRadius: 8,
-              paddingHorizontal: 12,
-              paddingVertical: 12,
+              marginTop: 1,
+              flex: 0.9,
             }}
           />
+
+          </View>
 
           <Text
             style={{
@@ -145,6 +168,26 @@ const register = () => {
           >
             Email
           </Text>
+
+
+          <View
+            style={{
+              borderColor: "grey",
+              height: 59,
+              width: 340,
+              margin: 12,
+              borderWidth: 1,
+              borderRadius: 8,
+              paddingHorizontal: 12,
+              paddingVertical: 12,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+
+          <MaterialIcons name="email" size={24} color= "blue" />
+
           <TextInput
             value={email}
             onChangeText={(value) => {
@@ -152,18 +195,13 @@ const register = () => {
             }}
             keyboardType="email-address"
             style={{
-              borderColor: "grey",
-              height: 59,
-              width: 339,
-              margin: 12,
-              borderWidth: 1,
-              fontSize: 16,
-              marginTop: 15,
-              borderRadius: 8,
-              paddingHorizontal: 12,
-              paddingVertical: 12,
+                fontSize: 16,
+                marginTop: 1,
+                flex: 0.9,
             }}
           />
+
+          </View>
 
           <Text
             style={{
@@ -181,8 +219,8 @@ const register = () => {
           <View
             style={{
               borderColor: "grey",
-              height: 59,
-              width: 339,
+              height: 60,
+              width: 340,
               margin: 12,
               borderWidth: 1,
               borderRadius: 8,
@@ -193,6 +231,12 @@ const register = () => {
               alignItems: "center",
             }}
           >
+
+
+            <FontAwesome5 name="key" size={24} color= "blue" />  
+
+
+
             <TextInput
               value={password}
               onChangeText={(value) => {
@@ -202,8 +246,8 @@ const register = () => {
               maxLength={20}
               keyboardType="ascii-capable"
               style={{
-                fontSize: 17,
-                marginTop: 15,
+                fontSize: 16,
+                marginTop: 1,
                 flex: 0.8,
           
                 
