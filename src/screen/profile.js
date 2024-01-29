@@ -2,7 +2,7 @@ import {SafeAreaView,View,Text,StyleSheet,Image, TextInput,
 } from "react-native";
 import { ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 
 //icons import
 
@@ -11,6 +11,7 @@ import FeatherIcon from "react-native-vector-icons/Feather";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from '@expo/vector-icons';
+import { AuthContext } from "../../navigation/AuthProvider";
 
 // sections
 
@@ -42,6 +43,7 @@ const SECTIONS = [
 
 
 const profile = ({ navigation }) => {
+  const {logout} = useContext(AuthContext);
   return (
 
 
@@ -221,7 +223,7 @@ const profile = ({ navigation }) => {
 
 
           <TouchableOpacity
-    
+            onPress={() => logout()}
             style={{
               flexDirection: "row" ,
               backgroundColor: '#062CD4',

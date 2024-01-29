@@ -25,7 +25,7 @@ export const AuthProvider = ({children}) => {
               console.log("That email address is invalid!");
               Alert.alert("Invalid email address.");
             }
-            
+
             if (error.code === "auth/invalid-credential") {
               console.log("That email address is already in use!");
               Alert.alert("The password you entered is incorrect.");
@@ -63,6 +63,7 @@ export const AuthProvider = ({children}) => {
           try {
             await signOut(authentication);
           }catch (e) {
+            Alert.alert(e.code);
             console.log(e);
           }
         }
