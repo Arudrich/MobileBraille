@@ -141,12 +141,11 @@ const profile = ({ navigation }) => {
             <AntDesign name="user" size={19} color="blue" style = {{paddingRight: 12,}}/>
             <Text
               style={[styles.rowSpacer, {
-              fontSize: 12,
+              fontSize: 13,
               // fontWeight: "500",
-              color: "red",
-              // marginTop: 15,
-              color: "black",
-              paddingRight: 215,
+              // color: "red",
+              color: "grey",
+              // paddingRight: 215,
               fontWeight: "normal"
               }]}
               > {userData ? userData.fullname : "Name"} 
