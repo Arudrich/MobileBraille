@@ -20,8 +20,18 @@ export const AuthProvider = ({children}) => {
         login: async (email, password) => {
           try {
             await signInWithEmailAndPassword(authentication, email, password);
-          } catch (e) {
-            console.log(e);
+          } catch (error) {
+            if (error.code === "auth/invalid-email") {
+              console.log("That email address is invalid!");
+              Alert.alert("Invalid email address.");
+            }
+            
+            if (error.code === "auth/invalid-credential") {
+              console.log("That email address is already in use!");
+              Alert.alert("The password you entered is incorrect.");
+            }
+
+            
           }
         },
         signup: async (email, password, name) => {
