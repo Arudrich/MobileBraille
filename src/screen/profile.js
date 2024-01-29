@@ -45,9 +45,19 @@ const SECTIONS = [
 
 
 const profile = ({ navigation }) => {
-  const {logout, user} = useContext(AuthContext);
-
+  const { user, logout } = useContext(AuthContext); 
   const [userData, setUserData] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [name, setName] = useState("Name"); // Initialize with a default value
+
+  const handleEditPress = () => {
+    setIsEditing(true);
+  };
+
+  const handleSave = () => {
+    // Perform save action to firebase
+    setIsEditing(false);
+  };
 
   const getUser = async () => {
     try {
@@ -66,6 +76,12 @@ const profile = ({ navigation }) => {
   useEffect(() => {
     getUser();
   }, []);
+
+  useEffect(() => {
+    if (userData) {
+      setName(userData.fullname || "Name"); // Update name when userData changes
+    }
+  }, [userData]);
 
   return (
 
@@ -138,22 +154,20 @@ const profile = ({ navigation }) => {
             >
 
 
-            <AntDesign name="user" size={19} color="blue" style = {{paddingRight: 12,}}/>
-            <Text
-              style={[styles.rowSpacer, {
-              fontSize: 13,
-              // fontWeight: "500",
-              // color: "red",
-              color: "grey",
-              // paddingRight: 215,
-              fontWeight: "normal"
-              }]}
-              > {userData ? userData.fullname : "Name"} 
-            </Text>
-
-
-            <TouchableOpacity>
-              <AntDesign name="edit" size={20} color="black" />
+            <AntDesign name="user" size={19} color="blue" style={{ paddingRight: 12 }} />
+            {isEditing ? (
+              <TextInput
+                style={styles.rowSpacer}
+                onChangeText={(text) => setName(text)}
+                value={name}
+              />
+            ) : (
+              <Text style={[styles.rowSpacer, { fontSize: 13, color: 'grey', fontWeight: 'normal' }]}>
+                {name}
+              </Text>
+            )}
+            <TouchableOpacity onPress={isEditing ? handleSave : handleEditPress}>
+              <AntDesign name={isEditing ? "save" : "edit"} size={20} color="black" />
             </TouchableOpacity>
 
 
