@@ -61,7 +61,7 @@ const profile = ({ navigation }) => {
               <Image
                 alt=""
                 source={{
-                  uri: "http://tinyurl.com/bddv8vwp", // Di pa ko alam pano pag local yung lalagay yung link na code nagana e
+                  uri: "", // PROFILE
                 }}
                 style={styles.profileAvatar}
               />
@@ -217,7 +217,7 @@ const profile = ({ navigation }) => {
         </View>
 
 
-        <View style = {{flex: 1, paddingBottom: 50, paddingHorizontal: 50,}}>
+        <View style = {{flex: 1, paddingBottom: 100, paddingHorizontal: 50,}}>
 
 
           <TouchableOpacity
@@ -282,6 +282,8 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     borderRadius: 50,
+    borderWidth: 2,
+    borderColor: '#062CD4'
   },
   profileAvatarWrapper: {
     position: "relative",
