@@ -58,7 +58,7 @@ const profile = ({ navigation }) => {
             onPress={() => {
               // ditoooo handle onPress
             }}
-          >
+            >
             <View style={styles.profileAvatarWrapper}>
               <Image
                 alt=""
@@ -119,7 +119,7 @@ const profile = ({ navigation }) => {
 
 
           <TouchableOpacity>
-          <AntDesign name="edit" size={20} color="black" />
+            <AntDesign name="edit" size={20} color="black" />
           </TouchableOpacity>
 
 
@@ -173,44 +173,44 @@ const profile = ({ navigation }) => {
 
  
 
-          {SECTIONS.map(({ header, items }) => (
+            {SECTIONS.map(({ header, items }) => (
 
-          <View style={styles.section} key={header}>
-            <Text style={styles.sectionHeader}>{header}</Text>
-            {items.map(({ label, icon, type, value, color }, index) => {
-              return (
-                <TouchableOpacity
-                  key={label}
-                  onPress={() => {
-                    // handle onPress
-                  }}>
-                  <View style={styles.row}>
-                    <View style={[styles.rowIcon, { backgroundColor: color }]}>
-                      <FeatherIcon color="white" name={icon} size={15} />
-                    </View>
+              <View style={styles.section} key={header}>
+                <Text style={styles.sectionHeader}>{header}</Text>
+                {items.map(({ label, icon, type, value, color }, index) => {
+                  return (
+                    <TouchableOpacity
+                      key={label}
+                      onPress={() => {
+                        // handle onPress
+                        }}>
+                      <View style={styles.row}>
+                        <View style={[styles.rowIcon, { backgroundColor: color }]}>
+                          <FeatherIcon color="white" name={icon} size={15} />
+                        </View>
 
-                    <Text style={styles.rowLabel}>{label}</Text>
+                        <Text style={styles.rowLabel}>{label}</Text>
 
-                    <View style={styles.rowSpacer} />
+                        <View style={styles.rowSpacer} />
 
-                    {type === 'boolean' && <Switch value={value} />}
+                        {type === 'boolean' && <Switch value={value} />}
 
-                    {type === 'link' && (
-                      <FeatherIcon
-                        color="#0c0c0c"
-                        name="chevron-right"
-                        size={22}
-                      />
-                    )}
+                        {type === 'link' && (
+                          <FeatherIcon
+                            color="#0c0c0c"
+                            name="chevron-right"
+                            size={22}
+                          />
+                        )}
 
-                  </View>
-                  
-                </TouchableOpacity>
+                      </View>
+                      
+                    </TouchableOpacity>
 
-              );
-            })}
-          </View>
-        ))}
+                  );
+                })}
+              </View>
+            ))}
 
 
         </View>
