@@ -2,7 +2,7 @@ import {SafeAreaView,View,Text,StyleSheet,Image, TextInput,
 } from "react-native";
 import { ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 //icons import
 
@@ -12,6 +12,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from '@expo/vector-icons';
 import { AuthContext } from "../../navigation/AuthProvider";
+import { database } from "../../FirebaseConfig";
+import { DocumentSnapshot, collection, doc, getDoc } from 'firebase/firestore';
 
 // sections
 
@@ -43,7 +45,28 @@ const SECTIONS = [
 
 
 const profile = ({ navigation }) => {
-  const {logout} = useContext(AuthContext);
+  const {logout, user} = useContext(AuthContext);
+
+  const [userData, setUserData] = useState(null);
+
+  const getUser = async () => {
+    try {
+      const userDoc = await getDoc(doc(database, 'users', user.uid));
+      if (userDoc.exists()) {
+        console.log('User Data', userDoc.data());
+        setUserData(userDoc.data());
+      } else {
+        console.log('User does not exist');
+      }
+    } catch (error) {
+      console.error('Error getting user', error);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
 
 
@@ -110,17 +133,29 @@ const profile = ({ navigation }) => {
               flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "center",
+              // borderWidth: 1
             }}
-          >
+            >
 
 
-            <AntDesign name="user" size={19} color="blue" /> 
+            <AntDesign name="user" size={19} color="blue" style = {{paddingRight: 12,}}/>
+            <Text
+              style={[styles.rowSpacer, {
+              fontSize: 12,
+              // fontWeight: "500",
+              color: "red",
+              // marginTop: 15,
+              color: "black",
+              paddingRight: 215,
+              fontWeight: "normal"
+              }]}
+              > {userData ? userData.fullname : "Name"} 
+            </Text>
 
 
-
-          <TouchableOpacity>
-            <AntDesign name="edit" size={20} color="black" />
-          </TouchableOpacity>
+            <TouchableOpacity>
+              <AntDesign name="edit" size={20} color="black" />
+            </TouchableOpacity>
 
 
           </View>
