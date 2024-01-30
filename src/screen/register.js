@@ -316,7 +316,7 @@ const register = () => {
               
             }}
           >
-            <Text style={{ fontSize: 16 }}>Already have an Account?</Text>
+            <Text style={{ fontSize: 16, paddingBottom: 20}}>Already have an Account?</Text>
             <TouchableOpacity
               onPress={() => {
                 nav.navigate("login");
@@ -327,6 +327,7 @@ const register = () => {
                   fontSize: 15,
                   color: '#062CD4',
                   fontWeight: "600",
+                  paddingBottom: 20
                 }}
               >
                 Sign In

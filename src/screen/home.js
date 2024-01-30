@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     borderColor: '#062CD4',
     paddingHorizontal: 24,
     paddingVertical: 11,
-
+    
 
 
 
