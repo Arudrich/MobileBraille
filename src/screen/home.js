@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, TextInput, ImageBackground } from 'react-native'
+import { View, Text, Image, StyleSheet, TextInput, ImageBackground, Modal } from 'react-native'
 import React, { useEffect, useContext, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Feather } from "@expo/vector-icons";
@@ -16,6 +16,10 @@ const home = ({navigation}) => {
   const {user} = useContext(AuthContext);
   // console.log(user.uid)
   const [userData, setUserData] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState(null);
+
+  
 
   const getUser = async () => {
     try {
@@ -34,6 +38,13 @@ const home = ({navigation}) => {
   useEffect(() => {
     getUser();
   }, []);
+  
+  // Function to handle applying the selected filter
+  const applyFilter = (filter) => {
+    setSelectedFilter(filter);
+    setModalVisible(false);
+    // Perform filtering logic here based on the selected filter
+  };
 
   return (
 
@@ -56,24 +67,19 @@ const home = ({navigation}) => {
 
 
 
-      <View style = {styles.searchContainer} >
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
 
-          <Feather name="search" size={ 22 } color= "blue" />
-          <TextInput placeholder = "Search recent transcription " />
+        <View style={styles.searchContainer}>
+          <Feather name="search" size={22} color="blue" />
+          <TextInput placeholder="Search recent transcription" style={{ marginLeft: 8, flex: 1 }} />
+        </View>
 
-      <View style = {{ paddingLeft: 112 }}> 
-
-
-        <TouchableOpacity>
-
-          <MaterialCommunityIcons name="filter" size={ 40 } color= "blue"  />
-
+        <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <MaterialCommunityIcons name="filter" size={40} color="blue" />
         </TouchableOpacity>
 
+      </View>
 
-      </View>
- 
-      </View>
 
 
     
@@ -107,15 +113,47 @@ const home = ({navigation}) => {
       <View style = {[styles.seeMore]}>
 
       <TouchableOpacity onPress={()=> console.log("See more")} >
+
+
         <Text style = {{fontSize: 16, fontWeight: 'bold', color: 'white', alignContent: 'center', alignItems: 'center'}}> See More </Text>
         
         
-        
-        
+                
       </TouchableOpacity>
 
       </View>
-
+      
+      {/* Filter Modal */}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(false);
+        }}
+      >
+        <TouchableOpacity
+          style={styles.modalBackdrop}
+          onPress={() => setModalVisible(false)}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <TouchableOpacity style={styles.modalButton} onPress={() => applyFilter('date')}>
+                <Text style={styles.modalButtonText}>Date</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.modalButton} onPress={() => applyFilter('imageToBraille')}>
+                <Text style={styles.modalButtonText}>Image to Braille</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.modalButton} onPress={() => applyFilter('docToBraille')}>
+                <Text style={styles.modalButtonText}>Doc to Braille</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.modalButton} onPress={() => applyFilter('audioToBraille')}>
+                <Text style={styles.modalButtonText}>Audio to Braille</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </TouchableOpacity>
+      </Modal>
         
        
 
@@ -159,17 +197,19 @@ const styles = StyleSheet.create({
   // SEARCH CONTAINER *********************************************************************
 
   searchContainer: {
-    width: 330,
-    height: 44,
-    paddingLeft: 12,
-    height: responsiveHeight(6.5),
-    backgroundColor: "#EBF0F5",
-    borderRadius: 8 ,
     flexDirection: "row",
     alignItems: "center",
-    gap: 10, // gap ng icon
-
+    backgroundColor: "#EBF0F5",
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
   },
+  filterIconContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  
+  
 
 
   // RECENT CONTAINER *********************************************************************
@@ -221,11 +261,44 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingVertical: 11,
     
-
-
-
  },
 
+ // Filter *****************************************************************
+
+ modalBackdrop: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+  },
+  modalContainer: {
+    width: '80%',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+  },
+  modalContent: {
+    marginTop: 10,
+  },
+  modalButton: {
+    backgroundColor: '#062CD4',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  modalButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+
+
+ 
+
+  
+  
 
 
 
