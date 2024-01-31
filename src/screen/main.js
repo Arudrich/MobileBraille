@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, LeftContent, TouchableOpacity, TextInput } from 'react-native'
+import { StyleSheet, Text, View, LeftContent, TouchableOpacity, TextInput, Image } from 'react-native'
 import React from 'react'
 import { colors } from '../utils/colors';
 import { useNavigation } from '@react-navigation/native';
@@ -16,9 +16,6 @@ import LottieView from 'lottie-react-native';
 
 import { responsiveHeight } from "react-native-responsive-dimensions";
 
-//react native paper
-
-import { Avatar, Button, Card } from 'react-native-paper';
 
 
 
@@ -120,198 +117,93 @@ const main = () => {
 
     <SafeAreaView style = {{ backgroundColor: 'white', flex: 1}}>
 
-      <View style = {{paddingTop: 25, padding: 50, paddingBottom: 10,}}>
-        <View style = {styles.searchContainer} >
+     
 
-          <Feather name="search" size={ 30 } color= "blue" />
-          <TextInput placeholder = "Search type of Transcription " />
+  
+        <View style  = {{alignContent: 'center', alignItems: 'center', padding: 25}} >
+
+          
+          <LottieView style = {{ height: 190, alignItems: 'center', }} source={require('../assets/lottie/main.json')} autoPlay loop />
+          <Text style = {{borderRadius: 8, padding: 8, backgroundColor: "#062CD4",color: 'white', paddingTop: 8, fontSize: 15, fontWeight: 'bold'}}> Mobile Braille Transcription</Text>
 
         </View>
 
-      </View>
 
+        <View style = {styles.container}>
 
-      <ScrollView>
+              <View style = {styles.box}>
+                <View style = {styles.inner}>
+                <Image style={{ height: 85, width: 100 , borderRadius: 100, }} source={require('../assets/maineIcons/text.png')} />
+                  <Text style = {styles.text}>TEXT TO BRAILLE</Text>
+                  <TouchableOpacity style = {{backgroundColor: '#062CD4', borderRadius: 8, padding: 12}}>
 
-      <View style  = {{alignItems: 'center', padding: 25}} >
+                    <Text style = {{color: 'white', fontWeight: 'bold'}}>TRANSCRIBE</Text>
+
+                  </TouchableOpacity>
+
+                </View>
+              </View>
+
+              <View style = {styles.box}>
+                <View style = {styles.inner}>
+                <Image style={{ height: 85, width: 100 , borderRadius: 8, }} source={require('../assets/maineIcons/audio.png')} />
+                  <Text style = {styles.text}>AUDIO TO BRAILLE</Text>
+                  <TouchableOpacity style = {{backgroundColor: '#062CD4', borderRadius: 8, padding: 12}}>
+
+                    <Text style = {{color: 'white', fontWeight: 'bold'}}>TRANSCRIBE</Text>
+
+                  </TouchableOpacity>
+
+                </View>
+              </View>
+
+              <View style = {styles.box}>
+                <View style = {styles.inner}>
+                <Image style={{ height: 85, width: 100 , borderRadius: 8, }} source={require('../assets/maineIcons/picture.png')} />
+                  <Text style = {styles.text}>PNG/JPG TO BRAILLE</Text>
+                  <TouchableOpacity style = {{backgroundColor: '#062CD4', borderRadius: 8, padding: 12}}>
+
+                    <Text style = {{color: 'white', fontWeight: 'bold'}}>TRANSCRIBE</Text>
+
+                  </TouchableOpacity>
+
+                </View>
+              </View>
+
+              <View style = {styles.box}>
+                <View style = {styles.inner}>
+                <Image style={{ height: 85, width: 100 , borderRadius: 8, }} source={require('../assets/maineIcons/video.png')} />
+                  <Text style = {styles.text}>VIDEO TO BRAILLE</Text>
+                  <TouchableOpacity style = {{backgroundColor: '#062CD4', borderRadius: 8, padding: 12}}>
+
+                    <Text style = {{color: 'white', fontWeight: 'bold'}}>TRANSCRIBE</Text>
+
+                  </TouchableOpacity>
+
+                </View>
+              </View>
+
+              <View style = {styles.box}>
+                <View style = {styles.inner}>
+                <Image style={{ height: 85, width: 100 , borderRadius: 100, }} source={require('../assets/maineIcons/text.png')} />
+                  <Text style = {styles.text}>? TO BRAILLE</Text>
+                  <TouchableOpacity style = {{backgroundColor: '#062CD4', borderRadius: 8, padding: 12}}>
+
+                    <Text style = {{color: 'white', fontWeight: 'bold'}}>TRANSCRIBE</Text>
+
+                  </TouchableOpacity>
+
+                </View>
+              </View>
+
+            
+        </View>
 
         
-        <LottieView style = {{ height: 170, alignItems: 'center', }} source={require('../assets/lottie/main.json')} autoPlay loop />
-        <Text style = {{paddingTop: 5, fontSize: 15, fontWeight: 'bold'}}>Welcome to Mobile Braille Transcription</Text>
 
-
-      </View>
-
-
-
-
-        <Card style = {styles.cardcontainer}>
-
-            <Card.Title style = {styles.cardTitle} title="Text to Braille" />
-              <Card.Content>
-                  <Text style = {{paddingBottom: 10}} variant="bodyMedium"> Description </Text>
-            </Card.Content>
-            <Card.Cover style ={{padding: 10}}  source={{ uri: 'http://tinyurl.com/3zkfjh7s' }} />
-            <Card.Actions>
-
-                <TouchableOpacity style = {{
-                  borderWidth: 1,
-                  borderColor: "white",
-                  backgroundColor: '#062CD4',
-                  height: 45,
-                  padding: 10,
-                  borderRadius: 8 ,
-                  alignItems: "center",
-                  justifyContent: "center"}}>
-
-
-                <Text
-                 style={{
-                fontSize: 19,
-                color: 'white',
-                fontWeight: "500",
-                  }} >
-                    Transcribe
-                </Text>
-                </TouchableOpacity>
-            </Card.Actions>
-        </Card>
-
-
-        <Card style = {styles.cardcontainer}>
-
-            <Card.Title style = {styles.cardTitle} title="Audio to Braille" />
-              <Card.Content>
-                  <Text style = {{paddingBottom: 10}} variant="bodyMedium"> Description </Text>
-            </Card.Content>
-            <Card.Cover style ={{padding: 10}}  source={{ uri: 'http://tinyurl.com/3zkfjh7s' }} />
-            <Card.Actions>
-
-                <TouchableOpacity style = {{
-                  borderWidth: 1,
-                  borderColor: "white",
-                  backgroundColor: '#062CD4',
-                  height: 45,
-                  padding: 10,
-                  borderRadius: 8 ,
-                  alignItems: "center",
-                  justifyContent: "center"}}>
-
-
-                <Text
-                 style={{
-                fontSize: 19,
-                color: 'white',
-                fontWeight: "500",
-                  }} >
-                    Transcribe
-                </Text>
-                </TouchableOpacity>
-            </Card.Actions>
-        </Card>
-
-
-        <Card style = {styles.cardcontainer}>
-
-            <Card.Title style = {styles.cardTitle} title="Image to Braille" />
-              <Card.Content>
-                  <Text style = {{paddingBottom: 10}} variant="bodyMedium"> Description </Text>
-            </Card.Content>
-            <Card.Cover style ={{padding: 10,}}  source={{ uri: 'http://tinyurl.com/3zkfjh7s' }} />
-            <Card.Actions>
-
-                <TouchableOpacity style = {{
-                  borderWidth: 1,
-                  borderColor: "white",
-                  backgroundColor: '#062CD4',
-                  height: 45,
-                  padding: 10,
-                  borderRadius: 8 ,
-                  alignItems: "center",
-                  justifyContent: "center"}}>
-
-
-                <Text
-                 style={{
-                fontSize: 19,
-                color: 'white',
-                fontWeight: "500",
-                  }} >
-                    Transcribe
-                </Text>
-                </TouchableOpacity>
-            </Card.Actions>
-        </Card>
-
-
-        <Card style = {styles.cardcontainer}>
-
-            <Card.Title style = {styles.cardTitle} title="Video to Braille" />
-              <Card.Content>
-                  <Text style = {{paddingBottom: 10}} variant="bodyMedium"> Description </Text>
-            </Card.Content>
-            <Card.Cover style ={{padding: 10,}}  source={{ uri: 'http://tinyurl.com/3zkfjh7s' }} />
-            <Card.Actions>
-
-                <TouchableOpacity style = {{
-                  borderWidth: 1,
-                  borderColor: "white",
-                  backgroundColor: '#062CD4',
-                  height: 45,
-                  padding: 10,
-                  borderRadius: 8 ,
-                  alignItems: "center",
-                  justifyContent: "center"}}>
-
-
-                <Text
-                 style={{
-                fontSize: 19,
-                color: 'white',
-                fontWeight: "500",
-                  }} >
-                    Transcribe
-                </Text>
-                </TouchableOpacity>
-            </Card.Actions>
-        </Card>
         
 
-        <Card style = {styles.cardcontainer}>
 
-            <Card.Title style = {styles.cardTitle} title="Files to Braille" />
-              <Card.Content>
-                  <Text style = {{paddingBottom: 10}} variant="bodyMedium"> Description </Text>
-            </Card.Content>
-            <Card.Cover style ={{padding: 10,}}  source={{ uri: 'http://tinyurl.com/3zkfjh7s' }} />
-            <Card.Actions>
-
-                <TouchableOpacity style = {{
-                  borderWidth: 1,
-                  borderColor: "white",
-                  backgroundColor: '#062CD4',
-                  height: 45,
-                  padding: 10,
-                  borderRadius: 8 ,
-                  alignItems: "center",
-                  justifyContent: "center"}}>
-
-
-                <Text
-                 style={{
-                fontSize: 19,
-                color: 'white',
-                fontWeight: "500",
-                  }} >
-                    Transcribe
-                </Text>
-                </TouchableOpacity>
-            </Card.Actions>
-        </Card>
-
-
-      </ScrollView>
-      
     </SafeAreaView>
 
     
@@ -323,31 +215,47 @@ export default main
 const styles = StyleSheet.create({
 
 
-cardcontainer: {
-  borderColor: '#062CD4',
+// card **************************************
+
+container: {
+  width: '100%',
+  height: '85%',
   padding: 1,
-  paddingTop: 25,
-  backgroundColor: "white",
-  borderRadius: 8
-},
-cardTitle: {
-  paddingTop: 15,
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+
 
 },
 
-//search container
+box: {
 
-searchContainer: {
-  height: 30,
-  paddingLeft: 15,
-  height: responsiveHeight(6.5),
-  backgroundColor: "#EBF0F5",
-  borderRadius: 8 ,
-  flexDirection: "row",
-  alignItems: "center",
-  gap: 10, // gap ng icon
+  width: '50%',
+  height: '25%',
+  padding: 3,
+  borderRadius: 8,
+
+
+  
+},
+
+inner: {
+  flex: 1,
+  backgroundColor: '#EBF0F5',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: 8,
+
 
 },
+text: {
+  color: "black",
+  fontWeight: 'bold',
+  paddingTop: 10
+}
+
+
+
+
 
 
 

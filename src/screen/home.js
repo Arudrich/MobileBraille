@@ -40,6 +40,8 @@ const home = ({navigation}) => {
     <SafeAreaView style = {{ padding: 30, paddingLeft: 18, backgroundColor: 'white', flex: 1 }}>
 
 
+
+ 
       <TouchableOpacity onPress={() => 
           navigation.navigate('Profile')}>
         <View style = {styles.Profilecontainer} >
@@ -53,6 +55,7 @@ const home = ({navigation}) => {
 
 
 
+
       <View style = {styles.searchContainer} >
 
           <Feather name="search" size={ 22 } color= "blue" />
@@ -60,7 +63,12 @@ const home = ({navigation}) => {
 
       <View style = {{ paddingLeft: 112 }}> 
 
+
+        <TouchableOpacity>
+
           <MaterialCommunityIcons name="filter" size={ 40 } color= "blue"  />
+
+        </TouchableOpacity>
 
 
       </View>
@@ -73,7 +81,7 @@ const home = ({navigation}) => {
 
       <Image resizeMode= 'contain' style = {styles.recentHistory} source = {{ uri: '' }} 
         />
-        <Text style =  {styles.recentTitle}> Audio To Braille </Text> 
+        <Text style =  {styles.recentTitle}> 127HEDG.jpg / Jpg To Braille </Text> 
         
       </View>
 
@@ -81,7 +89,8 @@ const home = ({navigation}) => {
 
       <Image resizeMode= 'contain' style = {styles.recentHistory} source = {{ uri: '' }} 
         />
-        <Text style =  {styles.recentTitle}> Video MP4 To Braille </Text> 
+        <Text style =  {styles.recentTitle}> Narnia.pdf / PDF to Braille </Text> 
+        
         
       </View>
 
@@ -89,7 +98,7 @@ const home = ({navigation}) => {
 
       <Image resizeMode= 'contain' style = {styles.recentHistory} source = {{ uri: '' }} 
         />
-        <Text style =  {styles.recentTitle}> Text To Braille </Text> 
+        <Text style =  {styles.recentTitle}> coverHEHE.mp3 / Audio To Braille </Text> 
         
         
       </View>
@@ -124,7 +133,6 @@ const styles = StyleSheet.create({
 
 
   Profilecontainer: {
-    flexDirection: 'row',
     alignItems: 'center',
     paddingTop: 25,
     paddingLeft: 15,
@@ -136,14 +144,15 @@ const styles = StyleSheet.create({
   profile: {
     width: 100,
     height: 100,
-    borderRadius: 50,
-    borderWidth: 2 ,
+    borderRadius: 8,
+    borderWidth: 3,
     borderColor: '#062CD4' 
   },
 
   profileName: {
     fontSize: 24 ,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    paddingTop: 12,
   },
 
 
@@ -194,7 +203,7 @@ const styles = StyleSheet.create({
 
   recentTitle: {
     fontSize: 15,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
 
   },
 

@@ -447,6 +447,7 @@ const styles = StyleSheet.create({
     flexBasis: 0,
   },
   // for Logout modal
+
   modalContainer: {
     flex: 1,
     justifyContent: "center",
@@ -456,12 +457,12 @@ const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: "white",
     padding: 20,
-    borderRadius: 10,
+    borderRadius: 8,
     alignItems: "center",
   },
   modalText: {
-    fontSize: 18,
-    marginBottom: 20,
+    fontSize: 17,
+    marginBottom: 25,
   },
   modalButtons: {
     flexDirection: "row",
@@ -471,16 +472,16 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginHorizontal: 10,
-    borderRadius: 5,
+    borderRadius: 8,
   },
   cancelButton: {
-    backgroundColor: "red",
+    backgroundColor: "#062CD4",
   },
   confirmButton: {
-    backgroundColor: "green",
+    backgroundColor: "#062CD4",
   },
   modalButtonText: {
-    fontSize: 16,
+    fontSize: 14,
     color: "white",
   },
 
