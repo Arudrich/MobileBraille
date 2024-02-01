@@ -48,11 +48,9 @@ const home = ({navigation}) => {
 
   return (
 
-    <SafeAreaView style = {{ padding: 30, paddingLeft: 18, backgroundColor: 'white', flex: 1 }}>
+    <SafeAreaView style = {{ padding: 40, paddingLeft: 18, backgroundColor: 'white', flex: 1 }}>
 
 
-
- 
       <TouchableOpacity onPress={() => 
           navigation.navigate('Profile')}>
         <View style = {styles.Profilecontainer} >
@@ -64,8 +62,7 @@ const home = ({navigation}) => {
         </View>
       </TouchableOpacity>
 
-
-
+   
 
       <View style={{ flexDirection: "row", alignItems: "center" }}>
 
@@ -75,7 +72,7 @@ const home = ({navigation}) => {
         </View>
 
         <TouchableOpacity onPress={() => setModalVisible(true)}>
-          <MaterialCommunityIcons name="filter" size={40} color="blue" />
+          <MaterialCommunityIcons name="filter" size={35} color="blue" />
         </TouchableOpacity>
 
       </View>
@@ -125,7 +122,7 @@ const home = ({navigation}) => {
       
       {/* Filter Modal */}
       <Modal
-        animationType="fade"
+        animationType= 'fade'
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
@@ -188,7 +185,7 @@ const styles = StyleSheet.create({
   },
 
   profileName: {
-    fontSize: 24 ,
+    fontSize: 23 ,
     fontWeight: 'bold',
     paddingTop: 12,
   },
@@ -201,8 +198,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#EBF0F5",
     borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 9,
   },
   filterIconContainer: {
     justifyContent: "center",
@@ -272,10 +269,10 @@ const styles = StyleSheet.create({
   backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
   },
   modalContainer: {
-    width: '80%',
+    width: '60%',
     backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 20,
+    borderRadius: 8,
+    padding: 40,
   },
   modalContent: {
     marginTop: 10,
@@ -283,15 +280,17 @@ const styles = StyleSheet.create({
   modalButton: {
     backgroundColor: '#062CD4',
     paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     borderRadius: 8,
-    marginBottom: 10,
+    marginBottom: 8,
   },
   modalButtonText: {
+    fontStyle: 'italic',
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 15,
     textAlign: 'center',
+    textTransform: 'capitalize'
   },
 
 

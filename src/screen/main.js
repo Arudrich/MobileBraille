@@ -122,77 +122,54 @@ const main = () => {
 
           
           <LottieView style = {{ height: 190, alignItems: 'center', }} source={require('../assets/lottie/main.json')} autoPlay loop />
-          <Text style = {{borderRadius: 8, padding: 8, backgroundColor: "#062CD4", color: 'white', paddingTop: 8, fontSize: 15, fontWeight: 'bold'}}> Mobile Braille Transcription</Text>
+          <Text style = {{ padding: 8, color: 'black', paddingTop: 8, fontSize: 20, fontWeight: 'bold'}}> MOBILE BRAILLE TRANSCRIPTION</Text>
 
         </View>
 
-
+        
         <View style = {styles.container}>
 
-              <View style = {styles.box}>
+
+              
+              <TouchableOpacity style = {styles.box}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 85, width: 100 , borderRadius: 35, backgroundColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
+                <Image style={{ height: 85, width: 85 , borderRadius: 35, backgroundColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
                   <Text style = {styles.text}>TEXT TO BRAILLE</Text>
-                  <TouchableOpacity style = {{backgroundColor: '#062CD4', borderRadius: 8, padding: 12}}>
-
-                    <Text style = {{color: 'white', fontWeight: 'bold'}}>TRANSCRIBE</Text>
-
-                  </TouchableOpacity>
-
                 </View>
-              </View>
+              </TouchableOpacity>
 
-              <View style = {styles.box}>
+
+              <TouchableOpacity style = {styles.box}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 85, width: 100 , borderRadius: 12, backgroundColor: 'white' }} source={require('../assets/maineIcons/audio.png')} />
+                <Image style={{ height: 85, width: 85 , borderRadius: 12, backgroundColor: 'white' }} source={require('../assets/maineIcons/audio.png')} />
                   <Text style = {styles.text}>AUDIO TO BRAILLE</Text>
-                  <TouchableOpacity style = {{backgroundColor: '#062CD4', borderRadius: 8, padding: 12}}>
-
-                    <Text style = {{color: 'white', fontWeight: 'bold'}}>TRANSCRIBE</Text>
-
-                  </TouchableOpacity>
-
                 </View>
-              </View>
+              </TouchableOpacity>
 
-              <View style = {styles.box}>
+
+              <TouchableOpacity style = {styles.box}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 85, width: 100 , borderRadius: 12, backgroundColor: 'white' }} source={require('../assets/maineIcons/picture.png')} />
+                <Image style={{ height: 85, width: 85 , borderRadius: 12, backgroundColor: 'white' }} source={require('../assets/maineIcons/picture.png')} />
                   <Text style = {styles.text}>PNG/JPG TO BRAILLE</Text>
-                  <TouchableOpacity style = {{backgroundColor: '#062CD4', borderRadius: 8, padding: 12}}>
-
-                    <Text style = {{color: 'white', fontWeight: 'bold'}}>TRANSCRIBE</Text>
-
-                  </TouchableOpacity>
-
                 </View>
-              </View>
+              </TouchableOpacity>
 
-              <View style = {styles.box}>
+
+              <TouchableOpacity style = {styles.box}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 85, width: 100 , borderRadius: 12, backgroundColor: 'white' }} source={require('../assets/maineIcons/video.png')} />
+                <Image style={{ height: 85, width: 85 , borderRadius: 12, backgroundColor: 'white' }} source={require('../assets/maineIcons/video.png')} />
                   <Text style = {styles.text}>VIDEO TO BRAILLE</Text>
-                  <TouchableOpacity style = {{backgroundColor: '#062CD4', borderRadius: 8, padding: 12}}>
-
-                    <Text style = {{color: 'white', fontWeight: 'bold'}}>TRANSCRIBE</Text>
-
-                  </TouchableOpacity>
 
                 </View>
-              </View>
+              </TouchableOpacity>
 
-              <View style = {styles.box}>
+
+              <TouchableOpacity style = {styles.box}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 85, width: 100 , borderRadius: 35,backgroundColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
-                  <Text style = {styles.text}>? TO BRAILLE</Text>
-                  <TouchableOpacity style = {{backgroundColor: '#062CD4', borderRadius: 8, padding: 12}}>
-
-                    <Text style = {{color: 'white', fontWeight: 'bold'}}>TRANSCRIBE</Text>
-
-                  </TouchableOpacity>
-
+                <Image style={{ height: 85, width: 85 , borderRadius: 35,backgroundColor: 'white' }} source={require('../assets/maineIcons/file.png')} />
+                  <Text style = {styles.text}>FILE TO BRAILLE</Text>
                 </View>
-              </View>
+              </TouchableOpacity>
 
             
         </View>

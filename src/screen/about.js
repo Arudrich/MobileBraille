@@ -25,26 +25,26 @@ const about = () => {
 
 
   <View style = {[styles.card, styles.cardElevated]}>
-    <Image style={{ height: 100, width: 100, borderRadius: 100 }} source={require('../assets/MACADANGDANG.jpg')} />
+    <Image style={{ height: 100, width: 100, borderRadius: 100 }} source={require('../assets/DEVELOPERS/MACADANGDANG.jpg')} />
     <Text style = {styles.name}>Aldrich D. Macadangdang</Text>
     <Text style = {{fontSize: 15, fontStyle: 'italic', color: colors.secondary}}>Railway Engineer</Text>
 
   </View>
 
   <View style = {[styles.card, styles.cardElevated]}>
-    <Image style={{ height: 100, width: 100, borderRadius: 100 }} source={require('../assets/MACADANGDANG.jpg')} />
+    <Image style={{ height: 100, width: 100, borderRadius: 100 }} source={require('../assets/DEVELOPERS/AGUINALDO.jpg')} />
     <Text style = {styles.name}>David Aguinaldo</Text>
     <Text style = {{fontSize: 15, fontStyle: 'italic', color: colors.secondary}}>Railway Engineer</Text>
   </View>
 
   <View style = {[styles.card, styles.cardElevated]}>
-    <Image style={{ height: 100, width: 100, borderRadius: 100 }} source={require('../assets/MACADANGDANG.jpg')} />
+    <Image style={{ height: 100, width: 100, borderRadius: 100 }} source={require('../assets/DEVELOPERS/PASCUA.jpg')} />
     <Text style = {styles.name}>Mark Pascua</Text>
     <Text style = {{fontSize: 15, fontStyle: 'italic', color: colors.secondary}}>System Administration</Text>
   </View>
 
   <View style = {[styles.card, styles.cardElevated]}>
-    <Image style={{ height: 100, width: 100, borderRadius: 100 }} source={require('../assets/MACADANGDANG.jpg')} />
+    <Image style={{ height: 100, width: 100, borderRadius: 100 }} source={require('../assets/DEVELOPERS/GOMEZ.jpg')} />
     <Text style = {styles.name} >Rafael Gomez</Text>
     <Text style = {{fontSize: 15, fontStyle: 'italic', color: colors.secondary}}>Data Science</Text>
   </View>

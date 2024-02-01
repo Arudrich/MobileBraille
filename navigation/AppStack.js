@@ -41,6 +41,7 @@ const HomeStack = ({navigation}) => (
             backgroundColor: '#fff',
             shadowColor: '#fff',
             elevation: 0,
+            
           },
         }}
       />
