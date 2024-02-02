@@ -42,7 +42,8 @@ const main = () => {
       // Assuming that the server returns JSON, you can parse the response
       const responseData = await response.json();
 
-      console.log("Response for ${fileType}:", responseData);
+      console.log(`Response for ${fileType}:`, responseData);
+      console.log("Transcription: ", )
 
       if (response.status === 200) {
         console.log("Success");
@@ -139,7 +140,7 @@ const main = () => {
               </TouchableOpacity>
 
 
-              <TouchableOpacity style = {styles.box}>
+              <TouchableOpacity style = {styles.box} onPress={selectAudio}>
                 <View style = {styles.inner}>
                 <Image style={{ height: 85, width: 85 , borderRadius: 12, backgroundColor: 'white' }} source={require('../assets/maineIcons/audio.png')} />
                   <Text style = {styles.text}>AUDIO TO BRAILLE</Text>
@@ -147,7 +148,7 @@ const main = () => {
               </TouchableOpacity>
 
 
-              <TouchableOpacity style = {styles.box}>
+              <TouchableOpacity style = {styles.box} onPress={selectImage}>
                 <View style = {styles.inner}>
                 <Image style={{ height: 85, width: 85 , borderRadius: 12, backgroundColor: 'white' }} source={require('../assets/maineIcons/picture.png')} />
                   <Text style = {styles.text}>PNG/JPG TO BRAILLE</Text>
@@ -155,7 +156,7 @@ const main = () => {
               </TouchableOpacity>
 
 
-              <TouchableOpacity style = {styles.box}>
+              <TouchableOpacity style = {styles.box} onPress={selectVid}>
                 <View style = {styles.inner}>
                 <Image style={{ height: 85, width: 85 , borderRadius: 12, backgroundColor: 'white' }} source={require('../assets/maineIcons/video.png')} />
                   <Text style = {styles.text}>VIDEO TO BRAILLE</Text>
