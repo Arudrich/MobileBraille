@@ -25,7 +25,10 @@ const FilterModal = ({ visible, onClose, filters, selectedFilters, onSelectFilte
                   selectedFilters.includes(filter) && styles.selectedChip,
                 ]}
                 onPress={() => handleChipPress(filter)}>
-                <Text style={styles.modalButtonText}>{filter}</Text>
+                <Text style={[
+                  styles.modalButtonText,
+                  selectedFilters.includes(filter) && styles.selectedChipText,
+                ]}>{filter}</Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -53,22 +56,30 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     marginTop: 10,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center"
   },
   modalButton: {
-    backgroundColor: '#ddd',
+    backgroundColor: '#fff',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 8,
+    borderRadius: 50,
     marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#d3d3d3'
   },
   modalButtonText: {
-    color: 'black',
+    color: 'grey',
     fontWeight: 'bold',
     fontSize: 16,
     textAlign: 'center',
   },
   selectedChip: {
     backgroundColor: '#062CD4', // Change this to your desired selected color
+  },
+  selectedChipText: {
+    color: 'white', // Change this to your desired selected text color
   },
   applyButton: {
     backgroundColor: '#062CD4',
