@@ -99,7 +99,7 @@ const Home = ({ navigation }) => {
         onSelectFilter={toggleFilter} // Pass function to toggle filter selection
         applyFilters={applyFilters} // Pass function to apply selected filters
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
