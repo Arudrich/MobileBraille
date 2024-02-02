@@ -27,10 +27,10 @@ const Routes = () => {
   
   return (
     <NavigationContainer>
-      {/* {user ? <AppStack /> : <AuthStack />}  */}
+      {user ? <AppStack /> : <AuthStack />} 
       {/* Logic na kung may user sa APP na siya rekta */}
       {/* <AuthStack /> */}
-      <AppStack />
+      {/* <AppStack /> */}
     </NavigationContainer>
   )
 }
