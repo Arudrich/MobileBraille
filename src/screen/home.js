@@ -48,20 +48,30 @@ const Home = ({ navigation }) => {
   };
 
   return (
-    <View style={{ padding: 30, paddingLeft: 18, backgroundColor: 'white', flex: 1 }}>
-      <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-        <View style={styles.Profilecontainer}>
-          <Image resizeMode='contain' style={styles.profile} source={{ uri: '' }} />
-          <Text style={styles.profileName}>{userData ? userData.fullname : "Loading..."}</Text>
+
+    <SafeAreaView style = {{ padding: 40, paddingLeft: 18, backgroundColor: 'white', flex: 1 }}>
+
+
+      <TouchableOpacity onPress={() => 
+          navigation.navigate('Profile')}>
+        <View style = {styles.Profilecontainer} >
+          
+          <Image resizeMode= 'contain' style = {styles.profile} source = {{ uri: '' }} 
+          />
+          <Text style = {styles.profileName}> {userData ? userData.fullname : "Loading..."} </Text>
+          
         </View>
       </TouchableOpacity>
+
+   
+
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <View style={styles.searchContainer}>
           <Feather name="search" size={22} color="blue" />
           <TextInput placeholder="Search recent transcription" style={{ marginLeft: 8, flex: 1 }} />
         </View>
         <TouchableOpacity onPress={() => setModalVisible(true)}>
-          <MaterialCommunityIcons name="filter" size={40} color="blue" />
+          <MaterialCommunityIcons name="filter" size={35} color="blue" />
         </TouchableOpacity>
       </View>
       {/* Recent items */}
@@ -110,7 +120,7 @@ const styles = StyleSheet.create({
     borderColor: '#062CD4'
   },
   profileName: {
-    fontSize: 24,
+    fontSize: 23 ,
     fontWeight: 'bold',
     paddingTop: 12,
   },
@@ -120,8 +130,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#EBF0F5",
     borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 9,
   },
   // RECENT CONTAINER
   recentContainer: {
