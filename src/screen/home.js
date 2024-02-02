@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
+import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
