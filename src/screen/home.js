@@ -54,7 +54,7 @@ const Home = ({ navigation }) => {
 
   return (
 
-    <ScrollView>
+    <ScrollView style={{ flex: 1, backgroundColor: "#FFF" }}>
 
 
       <View style={{
