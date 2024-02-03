@@ -91,12 +91,13 @@ const Home = ({ navigation }) => {
 
                    <View style={{width:"50%"}}>
                         <Text style={{
-                            fontSize:28,
+                            fontSize: 20,
                             color:"#FFF",
                             fontWeight:"bold"
 
 
-                        }}>Hello, {userData ? userData.fullname : "Loading..."} </Text>
+                        }}>HELLO,  </Text>
+                        <Text style = {{ fontSize: 17, color:"#FFF", fontWeight:"bold" }}>{userData ? userData.fullname : "Loading..."}</Text>
                    </View>
 
                    <View style={{width:"50%",alignItems:"flex-end", }}>
