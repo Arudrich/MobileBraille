@@ -58,7 +58,6 @@ const Home = ({ navigation }) => {
 
 
       <View style={{
-            backgroundColor:"#FFF",
             flex:1
         }}>
            <View style={{
