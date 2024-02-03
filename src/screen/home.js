@@ -96,7 +96,7 @@ const Home = ({ navigation }) => {
                             fontWeight:"bold"
 
 
-                        }}>Hello, User</Text>
+                        }}>Hello, {userData ? userData.fullname : "Loading..."} </Text>
                    </View>
 
                    <View style={{width:"50%",alignItems:"flex-end", }}>
