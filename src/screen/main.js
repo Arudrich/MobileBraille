@@ -149,7 +149,7 @@ const main = () => {
 
               <TouchableOpacity style = {styles.box} onPress={selectAudio}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 55, width: 55  ,  backgroundColor: 'white' }} source={require('../assets/maineIcons/audio.png')} />
+                <Image style={{ height: 55, width: 55  ,  }} source={require('../assets/maineIcons/audio.png')} />
                   <Text style = {styles.text}>AUDIO TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
@@ -157,7 +157,7 @@ const main = () => {
 
               <TouchableOpacity style = {styles.box} onPress={selectImage}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 55, width: 55 , backgroundColor: 'white' }} source={require('../assets/maineIcons/picture.png')} />
+                <Image style={{ height: 55, width: 55 , }} source={require('../assets/maineIcons/picture.png')} />
                   <Text style = {styles.text}>IMAGE TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
@@ -165,7 +165,7 @@ const main = () => {
 
               <TouchableOpacity style = {styles.box} onPress={selectVid}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 55, width: 55 , backgroundColor: 'white' }} source={require('../assets/maineIcons/video.png')} />
+                <Image style={{ height: 55, width: 55 ,  }} source={require('../assets/maineIcons/video.png')} />
                   <Text style = {styles.text}>VIDEO TO BRAILLE</Text>
 
                 </View>
@@ -174,10 +174,18 @@ const main = () => {
 
               <TouchableOpacity style = {styles.box}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 55, width: 55 , backgroundColor: 'white' }} source={require('../assets/maineIcons/file.png')} />
+                <Image style={{ height: 55, width: 55 ,  }} source={require('../assets/maineIcons/file.png')} />
                   <Text style = {styles.text}>FILE TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
+
+              <TouchableOpacity style = {styles.box}>
+                <View style = {styles.faq}>
+                <Image style={{ height: 55, width: 55 ,  }} source={require('../assets/maineIcons/faq.png')} />
+                  <Text style = {{color: "black", fontWeight: 'bold', paddingTop: 15,}}>F.A.Q</Text>
+                </View>
+              </TouchableOpacity>
+
 
 
 
@@ -255,9 +263,9 @@ container: {
 box: {
 
   width: '50%',
-  height: '50%',
-  padding: 10,
-  borderRadius: 50, 
+  height: '45%',
+  padding: 5,
+  borderRadius: 8, 
 },
 
 inner: {
@@ -265,10 +273,21 @@ inner: {
   backgroundColor: '#062CD4',
   alignItems: 'center',
   justifyContent: 'center',
-  borderRadius: 30,
+  borderRadius: 8,
 
 
 },
+
+faq: {
+  flex: 1,
+  backgroundColor: "#EBF0F5",
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: 8,
+
+},
+
+
 text: {
   color: "white",
   fontWeight: 'bold',

@@ -54,6 +54,8 @@ const Home = ({ navigation }) => {
 
   return (
 
+    <ScrollView>
+
 
       <View style={{
             backgroundColor:"#FFF",
@@ -330,7 +332,7 @@ const Home = ({ navigation }) => {
                    paddingHorizontal:20,
                    width:"100%",
                    alignItems:"center",
-                   top: -30
+                   top: 10
                }}>
                    <View style={{width:"50%",}}>
                         <Text style={{
@@ -394,6 +396,9 @@ const Home = ({ navigation }) => {
               </ScrollView>
                    
         </View>
+
+
+        </ScrollView>
         
 
 
@@ -408,7 +413,7 @@ const styles = StyleSheet.create({
   //favorites icon scrollview hori ************************************
 
   container: {
-   top: -16
+   top: 20
   },
   
  name: {
@@ -427,7 +432,7 @@ const styles = StyleSheet.create({
     width: 110,
     height: 120,
     borderRadius: 8, 
-    margin: 15
+    margin: 25
     
 
   },
