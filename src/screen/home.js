@@ -331,7 +331,7 @@ const Home = ({ navigation }) => {
               
                <View style={{
                    flexDirection:"row",
-                   paddingHorizontal:20,
+                   paddingHorizontal: 20,
                    width:"100%",
                    alignItems:"center",
                    top: 10
@@ -396,6 +396,7 @@ const Home = ({ navigation }) => {
             
 
               </ScrollView>
+
                    
         </View>
 
@@ -415,7 +416,7 @@ const styles = StyleSheet.create({
   //favorites icon scrollview hori ************************************
 
   container: {
-   top: 20
+   top: 15,
   },
   
  name: {
