@@ -104,7 +104,7 @@ const Home = ({ navigation }) => {
                         <Image
                             source={require('../assets/DEVELOPERS/MACADANGDANG.jpg')}
 
-                            style={{height:100,width:100,borderRadius: 50, borderWidth: 1, borderColor: 'white'}}
+                            style={{height:100 ,width:100, borderRadius: 50, borderWidth: 1, borderColor: 'white'}}
                         />
                         </TouchableOpacity>
                    </View>
@@ -120,6 +120,8 @@ const Home = ({ navigation }) => {
                    paddingVertical:8,
                    paddingHorizontal:20,
                    marginHorizontal:20,
+                   borderWidth: .2,
+                   borderColor: "black",
                    borderRadius: 8,
                    marginTop:25,
                    flexDirection:"row",
@@ -417,7 +419,7 @@ const styles = StyleSheet.create({
   },
   
  name: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: 'bold',
     paddingHorizontal: 8,
     alignItems: 'center',
@@ -440,14 +442,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#EBF0F5", // bg color of card hehe
     elevation: 4,
     shadowOffset: {
-    width: 1,
-    height: 1,
+    width: 10,
+    height: 10,
 
     },
 
     shadowColor: 'black',
     shadowOpacity: 10 ,
-    shadowRadius: 20,
+    shadowRadius: 50,
 
   },
 
