@@ -9,7 +9,7 @@ import { ScrollView } from 'react-native';
 
 // icons
 
-import LottieView from 'lottie-react-native';
+
 
 
 
@@ -116,25 +116,32 @@ const main = () => {
 
     <SafeAreaView style = {{ backgroundColor: 'white', flex: 1}}>
 
-     
-
-  
-        <View style  = {{alignContent: 'center', alignItems: 'center', padding: 25}} >
-
-          
-          <LottieView style = {{ height: 190, alignItems: 'center', }} source={require('../assets/lottie/main.json')} autoPlay loop />
-          <Text style = {{ padding: 8, color: 'black', paddingTop: 8, fontSize: 20, fontWeight: 'bold'}}> MOBILE BRAILLE TRANSCRIPTION</Text>
-
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('../assets/MBraillelogo.png')}
+            style={styles.logo}
+            resizeMode="contain"
+          />
+          <Text style={styles.title}>
+            <Text style={styles.blackText}>M.</Text>
+            <Text style={styles.blueText}>Braille</Text>
+          </Text>
+          <Text style={styles.subtitle}>Empowering Access. Transforming Documents.</Text>
         </View>
 
-        
+  
+
+
+
+
+
+
         <View style = {styles.container}>
 
-
-              
+  
               <TouchableOpacity style = {styles.box}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 85, width: 85 , borderRadius: 35, backgroundColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
+                <Image style={{ height: 55, width: 55 , backgroundColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
                   <Text style = {styles.text}>TEXT TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
@@ -142,7 +149,7 @@ const main = () => {
 
               <TouchableOpacity style = {styles.box} onPress={selectAudio}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 85, width: 85 , borderRadius: 12, backgroundColor: 'white' }} source={require('../assets/maineIcons/audio.png')} />
+                <Image style={{ height: 55, width: 55  ,  backgroundColor: 'white' }} source={require('../assets/maineIcons/audio.png')} />
                   <Text style = {styles.text}>AUDIO TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
@@ -150,15 +157,15 @@ const main = () => {
 
               <TouchableOpacity style = {styles.box} onPress={selectImage}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 85, width: 85 , borderRadius: 12, backgroundColor: 'white' }} source={require('../assets/maineIcons/picture.png')} />
-                  <Text style = {styles.text}>PNG/JPG TO BRAILLE</Text>
+                <Image style={{ height: 55, width: 55 , backgroundColor: 'white' }} source={require('../assets/maineIcons/picture.png')} />
+                  <Text style = {styles.text}>IMAGE TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
 
 
               <TouchableOpacity style = {styles.box} onPress={selectVid}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 85, width: 85 , borderRadius: 12, backgroundColor: 'white' }} source={require('../assets/maineIcons/video.png')} />
+                <Image style={{ height: 55, width: 55 , backgroundColor: 'white' }} source={require('../assets/maineIcons/video.png')} />
                   <Text style = {styles.text}>VIDEO TO BRAILLE</Text>
 
                 </View>
@@ -167,14 +174,28 @@ const main = () => {
 
               <TouchableOpacity style = {styles.box}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 85, width: 85 , borderRadius: 35,backgroundColor: 'white' }} source={require('../assets/maineIcons/file.png')} />
+                <Image style={{ height: 55, width: 55 , backgroundColor: 'white' }} source={require('../assets/maineIcons/file.png')} />
                   <Text style = {styles.text}>FILE TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
 
+
+
             
         </View>
 
+
+        {/*FAQ HEHEHEHEHEHEHEHE*/ }
+
+
+        <View>
+
+
+
+        </View>
+
+
+          
         
 
         
@@ -190,50 +211,69 @@ export default main
 
 const styles = StyleSheet.create({
 
+// LOGO ***********************
+
+logoContainer: {
+  alignItems: 'center',
+},
+logo: {
+  width: 110, // Adjust the width as needed
+  height: 180, // Adjust the height as needed
+},
+title: {
+  fontSize: 30,
+  fontWeight: 'bold',
+  marginTop: -35,
+},
+
+blackText: {
+  color: 'black',
+},
+blueText: {
+  color: '#062CD4',
+},
+subtitle: {
+  fontSize: 12,
+  textAlign: 'center',
+  marginTop: 5,
+  color: 'black',
+},
+
 
 // card **************************************
 
 container: {
-  width: '100%',
-  height: '85%',
-  padding: 1,
+  width: '60%',
+  height: '40%',
+  padding: 8,
   flexDirection: 'row',
   flexWrap: 'wrap',
-
+  alignSelf: 'center',
 
 },
 
 box: {
 
   width: '50%',
-  height: '25%',
-  padding: 3,
-  borderRadius: 8,
-
-
-  
+  height: '50%',
+  padding: 10,
+  borderRadius: 50, 
 },
 
 inner: {
   flex: 1,
-  backgroundColor: '#EBF0F5',
+  backgroundColor: '#062CD4',
   alignItems: 'center',
   justifyContent: 'center',
-  borderRadius: 8,
+  borderRadius: 30,
 
 
 },
 text: {
-  color: "black",
+  color: "white",
   fontWeight: 'bold',
-  paddingTop: 10
-}
+  paddingTop: 15,
 
-
-
-
-
-
-
+},
 
 })

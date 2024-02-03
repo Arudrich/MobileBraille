@@ -1,12 +1,16 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AuthContext } from '../../navigation/AuthProvider';
 import { getDoc, doc } from 'firebase/firestore';
 import { database } from '../../FirebaseConfig';
 import FilterModal from './FilterModal'; // Import FilterModal component
+
+//hehe
+
+
 
 const Home = ({ navigation }) => {
   const { user } = useContext(AuthContext);
@@ -50,122 +54,403 @@ const Home = ({ navigation }) => {
 
   return (
 
-    <SafeAreaView style = {{ padding: 40, paddingLeft: 18, backgroundColor: 'white', flex: 1 }}>
+
+      <View style={{
+            backgroundColor:"#FFF",
+            flex:1
+        }}>
+           <View style={{
+               backgroundColor: '#062CD4',
+               height:"28%",
+               borderBottomLeftRadius:20,
+               borderBottomRightRadius:20,
+               paddingHorizontal:20
+           }}>
+              <TouchableOpacity>
+               <Image
+                    source={require('../iconPNG/homeMenuBar.png')}
+                    style={{
+                        height:12,
+                        width: 20,
+                        marginTop:50
+                    }}
+               />
+               </TouchableOpacity>
+
+               <View style={{
+                   flexDirection:"row",
+                   alignItems:"center",
+                   marginTop:25,
+                   width:"100%"
+               }}>
+
+                {/* PROFILE---------------------------------------------------------- */}
+              
+
+                   <View style={{width:"50%"}}>
+                        <Text style={{
+                            fontSize:28,
+                            color:"#FFF",
+                            fontWeight:"bold"
 
 
-      <TouchableOpacity onPress={() => 
-          navigation.navigate('Profile')}>
-        <View style = {styles.Profilecontainer} >
+                        }}>Hello, User</Text>
+                   </View>
+
+                   <View style={{width:"50%",alignItems:"flex-end", }}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                        <Image
+                            source={require('../assets/DEVELOPERS/MACADANGDANG.jpg')}
+
+                            style={{height:100,width:100,borderRadius: 50, borderWidth: 1, borderColor: 'white'}}
+                        />
+                        </TouchableOpacity>
+                   </View>
+               </View>
+           </View>
+
+
+
+                {/* SEARCH --------------------------------------------------------- */}        
+
+               <View style={{
+                   backgroundColor: "#EBF0F5" ,
+                   paddingVertical:8,
+                   paddingHorizontal:20,
+                   marginHorizontal:20,
+                   borderRadius: 8,
+                   marginTop:25,
+                   flexDirection:"row",
+                   alignItems:"center"
+               }}>
+                   <TextInput
+                        placeholder="Search Transcription Here"
+                        placeholderTextColor= 'grey'
+                        style={{
+                            fontSize:12,
+                            width:260
+                        }}
+                   />
+                   <Image
+                    source={require('../iconPNG/search.png')}
+                    
+                    style={{ height:20, width:20, left: 50}}
+                   />
+               </View>
+
+              {/* HISTORY--------------------------------------------------------- */}   
+              
+
+               <View style={{
+                   flexDirection:"row",
+                   paddingTop: 15,
+                   paddingHorizontal:20,
+                   width:"100%",
+                   alignItems:"center"
+               }}>
+                   <View style={{width:"50%"}}>
+                        <Text style={{
+                            fontWeight: "bold",
+                            fontSize: 15,
+                            color: '#062CD4'
+                        }}> History </Text>
+                        <View style={{
+                            height:4,
+                            width:115,
+                            marginTop:-5
+                        }}>
+
+                        </View>
+                   </View>
+
+              {/* SEE MOREE--------------------------------------------------------- */}   
+
+
+
+                   <View style={{width:"50%", alignItems:"flex-end"}}>
+                        <TouchableOpacity>
+                        <View style={{
+                            backgroundColor: '#062CD4',
+                            paddingHorizontal:20,
+                            paddingVertical:5,
+                            borderRadius: 8
+                        }}>
+
+                            <Text style={{
+                                fontWeight:"bold",
+                                fontSize:13,
+                                color:"#FFF"
+                            }}>See More</Text>
+
+                        </View>
+                        </TouchableOpacity>
+                   </View>
+               </View>
+
+
+
+                {/* CARD VIEW --------------------------------------------------------- */}   
+
           
-          <Image resizeMode= 'contain' style = {styles.profile} source = {{ uri: '' }} 
-          />
-          <Text style = {styles.profileName}> {userData ? userData.fullname : "Loading..."} </Text>
-          
+                <ScrollView 
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    style={{height:200}}
+                >         
+                    <TouchableOpacity 
+                        style={{
+                            height:170,
+                            elevation:2,
+                            backgroundColor: "#EBF0F5",
+                            marginLeft:20,
+                            marginTop:20,
+                            borderRadius: 8 ,
+                            marginBottom:10,
+                            width: 190,
+                        }}
+                    >
+                        <Image
+                            source={require('../assets/maineIcons/audio.png')}
+                            style = {{ width: 100, height: 100, alignSelf: 'center', }}
+                        />
+                        <View style={{
+                            flexDirection:"row",
+                            paddingTop:10,
+                            paddingHorizontal:10
+                        }}>
+                            <Text style={{
+                                fontWeight:"bold"
+                            }}>Audio to Braille</Text>
+                            <Text style={{
+                                fontWeight:"bold",
+                                color:'#062CD4',
+                                paddingLeft:20,
+                                fontStyle: 'italic'
+                            }}>02/22/24</Text>
+                        </View>
+                        <Text style={{
+                            paddingHorizontal:10 ,
+                            color: '#062CD4' ,
+                            paddingTop:3
+                        }}>
+                            Lyrics.mp4
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                        style={{
+                            height:170,
+                            elevation:2,
+                            backgroundColor: "#EBF0F5",
+                            marginLeft:20,
+                            marginTop:20,
+                            borderRadius:15,
+                            marginBottom:10,
+                            width: 190
+                        }}
+                    >
+                        <Image
+                            source={require('../assets/maineIcons/picture.png')}
+                            style = {{ width: 100, height: 100, alignSelf: 'center'}}
+                        />
+                        <View style={{
+                            flexDirection:"row",
+                            paddingTop:10,
+                            paddingHorizontal:10
+                        }}>
+                            <Text style={{
+                                fontWeight:"bold"
+                            }}>Image to Braille</Text>
+                            <Text style={{
+                                fontWeight:"bold",
+                                color:'#062CD4',
+                                paddingLeft:20,
+                                fontStyle: 'italic'
+                            }}>02/21/24</Text>
+                        </View>
+                        <Text style={{
+                            paddingHorizontal:10 ,
+                            color: '#062CD4' ,
+                            paddingTop:3
+                        }}>
+                            CamScanner.jpg
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                        style={{
+                            height:170,
+                            elevation:2,
+                            backgroundColor: "#EBF0F5",
+                            marginLeft:20,
+                            marginTop:20,
+                            borderRadius:15,
+                            marginBottom:10,
+                            width: 190
+                        }}
+                    >
+                        <Image
+                            source={require('../assets/maineIcons/file.png')}
+                            style = {{ width: 100, height: 100, alignSelf: 'center'}}
+                        />
+                        <View style={{
+                            flexDirection:"row",
+                            paddingTop:10,
+                            paddingHorizontal:10
+                        }}>
+                            <Text style={{
+                                fontWeight:"bold"
+                            }}>PDF to Braille</Text>
+                            <Text style={{
+                                fontWeight:"bold",
+                                color:'#062CD4',
+                                paddingLeft:20,
+                                fontStyle: 'italic'
+                            }}>02/02/24</Text>
+                        </View>
+                        <Text style={{
+                            paddingHorizontal:10 ,
+                            color: '#062CD4' ,
+                            paddingTop:3
+                        }}>
+                            CALCULUS1.PDF
+                        </Text>
+                    </TouchableOpacity>
+
+                   
+
+                </ScrollView>   
+
+
+                 {/* FAVORITES --------------------------------------------------------- */}            
+
+              
+               <View style={{
+                   flexDirection:"row",
+                   paddingHorizontal:20,
+                   width:"100%",
+                   alignItems:"center",
+                   top: -30
+               }}>
+                   <View style={{width:"50%",}}>
+                        <Text style={{
+                            fontWeight:"bold",
+                            fontSize:17,
+                            color: '#062CD4'
+                        }}>Favorites Transcription </Text>
+                        <View style={{
+                            height:4,
+                            width:115,
+                        }}>
+
+                        </View>
+
+                   </View>
+
+                   <View style={{width:"50%", alignItems:"flex-end"}}>
+                        <TouchableOpacity>
+                        <View style={{
+                            backgroundColor: '#062CD4',
+                            paddingHorizontal:20,
+                            paddingVertical:5,
+                            borderRadius: 8
+                        }}>
+                            <Text style={{
+                                fontWeight:"bold",
+                                fontSize:13,
+                                color:"#FFF"
+                            }}>View Favorites</Text>
+                        </View>
+                      </TouchableOpacity>
+                   </View>
+               </View>
+
+                <ScrollView  showsHorizontalScrollIndicator={false} horizontal={true} style = { styles.container }>
+
+
+                <View style = {[styles.card, styles.cardElevated]}>
+                  <Image style={{ height: 100, width: 100, borderRadius: 8}} source={require('../assets/maineIcons/picture.png')} />
+                  <Text style = {styles.name}>Image to Braille</Text>
+                </View>
+
+                <View style = {[styles.card, styles.cardElevated]}>
+                  <Image style={{ height: 100, width: 100, borderRadius: 8}} source={require('../assets/maineIcons/text.png')} />
+                  <Text style = {styles.name}>Text to Braille</Text>
+                </View>
+
+                <View style = {[styles.card, styles.cardElevated]}>
+                  <Image style={{ height: 100, width: 100, borderRadius: 8}} source={require('../assets/maineIcons/file.png')} />
+                  <Text style = {styles.name}>Audio to Braille</Text>
+                </View>
+
+                <View style = {[styles.card, styles.cardElevated]}>
+                  <Image style={{ height: 100, width: 100, borderRadius: 8}} source={require('../assets/maineIcons/video.png')} />
+                  <Text style = {styles.name}>Video to Braille</Text>
+                </View>
+
+
+            
+
+              </ScrollView>
+                   
         </View>
-      </TouchableOpacity>
+        
+
+
 
    
-
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <View style={styles.searchContainer}>
-          <Feather name="search" size={22} color="blue" />
-          <TextInput placeholder="Search recent transcription" style={{ marginLeft: 8, flex: 1 }} />
-        </View>
-        <TouchableOpacity onPress={() => setModalVisible(true)}>
-          <MaterialCommunityIcons name="filter" size={35} color="blue" />
-        </TouchableOpacity>
-      </View>
-      {/* Recent items */}
-      <View style={styles.recentContainer}>
-        <Image resizeMode='contain' style={styles.recentHistory} source={{ uri: '' }} />
-        <Text style={styles.recentTitle}>127HEDG.jpg / Jpg To Braille</Text>
-      </View>
-      <View style={styles.recentContainer}>
-        <Image resizeMode='contain' style={styles.recentHistory} source={{ uri: '' }} />
-        <Text style={styles.recentTitle}>Narnia.pdf / PDF to Braille</Text>
-      </View>
-      <View style={styles.recentContainer}>
-        <Image resizeMode='contain' style={styles.recentHistory} source={{ uri: '' }} />
-        <Text style={styles.recentTitle}>coverHEHE.mp3 / Audio To Braille</Text>
-      </View>
-      <TouchableOpacity style={styles.seeMore} onPress={() => console.log("See more")}>
-        <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>See More</Text>
-      </TouchableOpacity>
-      {/* Filter Modal */}
-      <FilterModal
-        visible={modalVisible}
-        onClose={() => setModalVisible(false)}
-        filters={['Date', 'Image to Braille', 'Doc to Braille', 'Audio to Braille']} // Define your filter options
-        selectedFilters={selectedFilters} // Pass selected filters
-        onSelectFilter={toggleFilter} // Pass function to toggle filter selection
-        applyFilters={applyFilters} // Pass function to apply selected filters
-      />
-    </SafeAreaView>
-  );
+ );
 };
 
 const styles = StyleSheet.create({
-  // Profile Container
-  Profilecontainer: {
-    alignItems: 'center',
-    paddingTop: 25,
-    paddingLeft: 15,
-    paddingBottom: 30,
-    gap: 3 // gap of name to profile icon
+
+
+  //favorites icon scrollview hori ************************************
+
+  container: {
+   top: -16
   },
-  profile: {
-    width: 100,
-    height: 100,
-    borderRadius: 8,
-    borderWidth: 3,
-    borderColor: '#062CD4'
-  },
-  profileName: {
-    fontSize: 23 ,
+  
+ name: {
+    fontSize: 12,
     fontWeight: 'bold',
-    paddingTop: 12,
-  },
-  // SEARCH CONTAINER
-  searchContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#EBF0F5",
-    borderRadius: 8,
     paddingHorizontal: 8,
-    paddingVertical: 9,
-  },
-  // RECENT CONTAINER
-  recentContainer: {
-    flexDirection: 'row',
     alignItems: 'center',
-    alignContent: 'center',
-    paddingTop: 30,
-    paddingLeft: 15,
-    gap: 15, // gap sa text 
-    borderRadius: 10
+    justifyContent: 'center',
+  
   },
-  recentHistory: {
-    height: 100,
-    width: 100,
-    borderRadius: 8,
-    borderWidth: 2,
-    borderColor: '#062CD4',
-    gap: 10,
+
+  card: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 110,
+    height: 120,
+    borderRadius: 8, 
+    margin: 15
+    
+
   },
-  recentTitle: {
-    fontSize: 15,
-    fontWeight: 'bold',
+  cardElevated: {
+    backgroundColor: "#EBF0F5", // bg color of card hehe
+    elevation: 4,
+    shadowOffset: {
+    width: 1,
+    height: 1,
+
+    },
+
+    shadowColor: 'black',
+    shadowOpacity: 10 ,
+    shadowRadius: 20,
+
   },
-  // ButtonMore
-  seeMore: {
-    backgroundColor: '#062CD4',
-    marginTop: 30,
-    height: 48,
-    borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 24,
-  },
+
+  
+
+
+  
+  
 });
 
 export default Home;

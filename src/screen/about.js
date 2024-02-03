@@ -21,7 +21,7 @@ const about = () => {
     </View>
 
 
-<ScrollView horizontal={true} style = { styles.container }>
+<ScrollView showsHorizontalScrollIndicator={false} horizontal style = { styles.container }>
 
 
   <View style = {[styles.card, styles.cardElevated]}>
