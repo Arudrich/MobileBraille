@@ -241,10 +241,11 @@ blueText: {
   color: '#062CD4',
 },
 subtitle: {
-  fontSize: 12,
+  fontSize: 15,
   textAlign: 'center',
   marginTop: 5,
   color: 'black',
+  paddingBottom: 15
 },
 
 
@@ -253,11 +254,10 @@ subtitle: {
 container: {
   width: '60%',
   height: '40%',
-  padding: 8,
+  padding: 20,
   flexDirection: 'row',
   flexWrap: 'wrap',
   alignSelf: 'center',
-
 },
 
 box: {
@@ -266,6 +266,8 @@ box: {
   height: '45%',
   padding: 5,
   borderRadius: 8, 
+
+
 },
 
 inner: {
@@ -278,6 +280,8 @@ inner: {
 
 },
 
+// faq ******************************
+
 faq: {
   flex: 1,
   backgroundColor: "#EBF0F5",
@@ -286,6 +290,8 @@ faq: {
   borderRadius: 8,
 
 },
+
+// *******************************
 
 
 text: {
