@@ -100,7 +100,7 @@ const Home = ({ navigation }) => {
                         <Text style = {{ fontSize: 17, color:"#FFF", fontWeight:"bold" }}>{userData ? userData.fullname : "Loading..."}</Text>
                    </View>
 
-                   <View style={{width:"50%",alignItems:"flex-end", }}>
+                   <View style={{width:"50%",top: -15, alignItems:"flex-end", }}>
                         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
                         <Image
                             source={require('../assets/DEVELOPERS/MACADANGDANG.jpg')}
