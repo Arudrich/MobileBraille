@@ -1,141 +1,187 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
-import { SafeAreaView } from "react-native-safe-area-context";
-import { ScrollView } from 'react-native';
-import { colors } from '../utils/colors';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-
-
-//Lottie icon
-import LottieView from 'lottie-react-native';
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { ScrollView } from 'react-native'
 
 const about = () => {
   return (
-    
-<SafeAreaView style = {{flex: 1}}>
 
 
-    <View style = {{ paddingTop: 40, paddingLeft: 150, }}>
 
-      <Text style = {{ fontWeight: 'bold', fontSize: 20,  }}>DEVELOPERS</Text>
-
-    </View>
+    <SafeAreaView style = {{ backgroundColor: "white", flex: 1}}>
+      
 
 
-<ScrollView showsHorizontalScrollIndicator={false} horizontal style = { styles.container }>
+
+       <View style={styles.logoContainer}>
+        
+   
+          <Image
+            source={require('../assets/MBraillelogo.png')}
+            style={styles.logo}
+            resizeMode="contain"
+          />
+          <Text style={styles.title}>
+            <Text style={styles.blackText}>M.</Text>
+            <Text style={styles.blueText}>Braille</Text>
+          </Text>
+        </View>
 
 
-  <View style = {[styles.card, styles.cardElevated]}>
-    <Image style={{ height: 100, width: 100, borderRadius: 100 }} source={require('../assets/DEVELOPERS/MACADANGDANG.jpg')} />
-    <Text style = {styles.name}>Aldrich D. Macadangdang</Text>
-    <Text style = {{fontSize: 15, fontStyle: 'italic', color: colors.secondary}}>Railway Engineer</Text>
+        <View style = {styles.mbraille}>
 
-  </View>
+          <Text style ={{fontWeight: 'bold', padding: 15}}> What is Mobile Braille? </Text>
 
-  <View style = {[styles.card, styles.cardElevated]}>
-    <Image style={{ height: 100, width: 100, borderRadius: 100 }} source={require('../assets/DEVELOPERS/AGUINALDO.jpg')} />
-    <Text style = {styles.name}>David Aguinaldo</Text>
-    <Text style = {{fontSize: 15, fontStyle: 'italic', color: colors.secondary}}>Railway Engineer</Text>
-  </View>
-
-  <View style = {[styles.card, styles.cardElevated]}>
-    <Image style={{ height: 100, width: 100, borderRadius: 100 }} source={require('../assets/DEVELOPERS/PASCUA.jpg')} />
-    <Text style = {styles.name}>Mark Pascua</Text>
-    <Text style = {{fontSize: 15, fontStyle: 'italic', color: colors.secondary}}>System Administration</Text>
-  </View>
-
-  <View style = {[styles.card, styles.cardElevated]}>
-    <Image style={{ height: 100, width: 100, borderRadius: 100 }} source={require('../assets/DEVELOPERS/GOMEZ.jpg')} />
-    <Text style = {styles.name} >Rafael Gomez</Text>
-    <Text style = {{fontSize: 15, fontStyle: 'italic', color: colors.secondary}}>Data Science</Text>
-  </View>
-
-</ScrollView>
-
-
-<ScrollView style = {{ }}>
-
-  <View style = {styles.content}>
-
-    <Text style = {{ top: 15, fontWeight: 'bold', fontSize: 20, }}> Mobile Braille </Text>
-
-    <LottieView style = {{ height: 290, alignItems: 'center', alignContent: 'center' }} source={require('../assets/lottie/about.json')} autoPlay loop />
-
-    <Text style = {{ color: colors.secondary ,textAlign: 'justify', fontSize: 14, padding: 10, paddingTop: 10, backgroundColor: colors.primary , borderRadius: 8}}> Welcome to the MBraille app, where we empower users to convert multiple modes of input
+          <Text style = {{ color: 'white' ,textAlign: 'justify', fontSize: 14, padding: 12, paddingTop: 10, paddingHorizontal: 25, backgroundColor: '#062CD4' , borderRadius: 8}}> Welcome to the MBraille app, where we empower users to convert multiple modes of input
           into Braille seamlessly. Our mission is to enhance accessibility for individuals
           with visual impairments by providing a user-friendly and efficient transcription tool. </Text>
 
+          <Text style ={{fontWeight: 'bold', padding: 15}}> Mobile Braille Developers: </Text>
+
+        </View>
+
+         <View style = {styles.container}>
+
   
-    </View>
+              <View style = {styles.box}>
+                <View style = {styles.inner}>
+                <Image style={{ height: 55, width: 55 , borderRadius: 50  }} source={require('../assets/DEVELOPERS/GOMEZ.jpg')} />
+                  <Text style = {styles.text}>Rafael Gomez</Text>
+                  <Text style = {{ fontStyle: 'italic', color: 'white', fontSize: 12}}>Data Science</Text>
+                </View>
+              </View>
 
 
-  </ScrollView>
+              <View style = {styles.box}>
+                <View style = {styles.inner}>
+                <Image style={{ height: 55, width: 55, borderRadius: 50  }} source={require('../assets/DEVELOPERS/MACADANGDANG.jpg')} />
+                  <Text style = {styles.text}>Aldrich Macadangdang</Text>
+                  <Text style = {{ fontStyle: 'italic', color: 'white', fontSize: 12}}>Railway Engineering</Text>
+                </View>
+              </View>
+
+
+              <View style = {styles.box}>
+                <View style = {styles.inner}>
+                <Image style={{ height: 55, width: 55 , borderRadius: 50  }} source={require('../assets/DEVELOPERS/AGUINALDO.jpg')} />
+                <Text style = {styles.text}>David Aguinaldo</Text>
+                <Text style = {{ fontStyle: 'italic', color: 'white', fontSize: 12}}>Railway Engineering</Text>
+                  
+                </View>
+                </View>
+
+
+              <View style = {styles.box}>
+                <View style = {styles.inner}>
+                <Image style={{ height: 55, width: 55 , borderRadius: 50  }} source={require('../assets/DEVELOPERS/PASCUA.jpg')} />
+                  <Text style = {styles.text}>Mark Pascua</Text>
+                  <Text style = {{ fontStyle: 'italic', color: 'white', fontSize: 12}}>System Adminitration</Text>
+
+                </View>
+              </View>
+
+
+            
+        </View>
 
 
 
 
-</SafeAreaView>
+     
+
+
+      
+
+  
+
+    </SafeAreaView>
+    
+    
+
   )
 }
 
+const styles = StyleSheet.create({
 
-const styles = StyleSheet.create ({
-
-  headerContainer: {
-    alignItems: "center",
+  // LOGO ***********************
+  
+  logoContainer: {
+    alignItems: 'center',
+    paddingTop: 15,
+  },
+  logo: {
+    width: 180, // Adjust the width as needed
+    height: 180, // Adjust the height as needed
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginTop: 15
+  },
+  
+  blackText: {
+    color: 'black',
+  },
+  blueText: {
+    color: '#062CD4',
   },
 
-  headingText: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    paddingHorizontal: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
+  // mbraille ***********************
+
+
+  mbraille: {
+
+    paddingLeft: 8,
+    paddingRight: 8,
+
+
+
+  },
+
+
+  // card developers
+
+  container: {
+    width: '80%',
+    height: '40%',
+    padding: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignSelf: 'center',
+    paddingTop: 1,
+  },
+  
+  box: {
+  
+    width: '50%',
+    height: '50%',
+    padding: 5,
+    borderRadius: 8, 
+  
   
   },
-  name: {
-    color: 'white',
-    alignItems: 'center',
-    justifyContent: 'center'
-
-  },
-  container: {
-    padding: 1,
-    paddingTop: 12,
-  },
-  card: {
+  
+  inner: {
     flex: 1,
+    backgroundColor: '#062CD4',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 190,
-    height: 200,
-    borderRadius: 8, 
-    margin: 3
-
-  },
-  cardElevated: {
-    backgroundColor: colors.primary,
-    elevation: 4,
-    shadowOffset: {
-    width: 1,
-    height: 1,
-
-    },
-
-    shadowColor: 'black',
-    shadowOpacity: 10 ,
-    shadowRadius: 20,
-
+    borderRadius: 8,
+  
+  
   },
 
-  // content container
+  text: {
 
-  content: {
-    paddingTop: 1,
-    alignContent: 'center',
-    alignItems: 'center'
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 12,
+ 
+
   }
 
-
+  
+  
 })
 
 export default about
