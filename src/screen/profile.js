@@ -45,7 +45,8 @@ const SECTIONS = [
 
 
 const profile = ({ navigation }) => {
-  const { user, logout } = useContext(AuthContext); 
+  const { user, logout } = useContext(AuthContext);
+   const [image, setImage] = useState(null);
   const [userData, setUserData] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState("Name"); // Initialize with a default value
@@ -115,9 +116,13 @@ const profile = ({ navigation }) => {
               <Image
                 alt=""
                 source={{
-                  uri: "", // PROFILE
+                  uri: image ? image 
+                    : userData ? userData.userImg ||
+                      'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc'
+                    : 'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc', // PROFILE
                 }}
                 style={styles.profileAvatar}
+                resizeMode='contain'
               />
 
               <TouchableOpacity
