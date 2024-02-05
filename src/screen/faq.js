@@ -3,7 +3,7 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 
-const faq = () => {
+const faq = ({navigation}) => {
   return (
 
 

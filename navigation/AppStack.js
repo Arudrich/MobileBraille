@@ -15,6 +15,7 @@ import home from '../src/screen/home';
 import Main from '../src/screen/main';
 import about from '../src/screen/about';
 import profile from '../src/screen/profile';
+import faq from '../src/screen/faq'
 
 
 // needed kung may additional screen sa iisang bottom nav
@@ -62,6 +63,45 @@ const HomeStack = ({navigation}) => (
     </Stack.Navigator>
   );
 
+const MainStack =({navigation}) => (
+  <Stack.Navigator>
+      <Stack.Screen
+          name="main"
+          component={Main}
+          options={{
+            headerShown: false,
+          }}
+        />
+      <Stack.Screen
+        name="Faq"
+        component={faq}
+        options={{
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: '#fff',
+            shadowColor: '#fff',
+            elevation: 0,
+            
+          },
+        }}
+      />
+      {/* <Stack.Screen
+        name="EditProfile"
+        component={EditProfileScreen}
+        options={{
+          headerTitle: 'Edit Profile',
+          headerBackTitleVisible: false,
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#fff',
+            shadowColor: '#fff',
+            elevation: 0,
+          },
+        }}
+      /> */}
+    </Stack.Navigator>
+)
+
 const AppStack = () => {
 
 
@@ -85,7 +125,7 @@ const AppStack = () => {
 
          <BotTab.Screen 
             name= "Main"
-            component={Main}
+            component={MainStack}
             options={{
                 tabBarIcon:({color}) => (
                   <MaterialCommunityIcons name="transcribe" size={30} color= {color} />

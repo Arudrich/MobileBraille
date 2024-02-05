@@ -20,7 +20,7 @@ import { Alert } from 'react-native';
 
 //************************************************
 
-const Main = () => {
+const Main = ({navigation}) => {
   const uploadFile = async (file, fileType) => {
     const formData = new FormData();
     const apiEndpoint = `http://192.168.0.2:8000/transcribe/${fileType}`;
@@ -205,7 +205,7 @@ const Main = () => {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity style = {styles.box} onPress={() => navigation.navigate('Profile')}>
+              <TouchableOpacity style = {styles.box} onPress={() => navigation.navigate('Faq')}>
                 <View style = {styles.faq}>
                 <Image style={{ height: 55, width: 55 ,  }} source={require('../assets/maineIcons/faq.png')} />
                   <Text style = {{color: "black", fontWeight: 'bold', paddingTop: 15,}}>F.A.Q</Text>
