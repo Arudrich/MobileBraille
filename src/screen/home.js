@@ -363,7 +363,7 @@ const Home = ({ navigation }) => {
                                 fontWeight:"bold",
                                 fontSize:13,
                                 color:"#FFF"
-                            }}>View Favorites</Text>
+                            }}>View All</Text>
                         </View>
                       </TouchableOpacity>
                    </View>

@@ -116,7 +116,7 @@ const profile = ({ navigation }) => {
   const takeImageFromCamera = async () => {
     let result = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [1, 1],
       quality: 1,
     });
 
@@ -171,18 +171,18 @@ const profile = ({ navigation }) => {
                   setModalVisible(!modalVisible);
                 }}
               >
-                <View style={styles.modalContainer}>
-                  <View style={styles.modalContent}>
+                <View style={styles.modalContainerProfile}>
+                  <View style={styles.modalContentProfile}>
                     <TouchableOpacity style={styles.iconContainer} onPress={pickImageFromGallery}>
-                      <Feather name="folder" size={24} color="black" />
-                      <Text style={styles.iconText}>Choose from Gallery</Text>
+                      <Feather name="folder" size={24} color="grey" />
+                      <Text style={styles.iconText}>Gallery</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.iconContainer} onPress={takeImageFromCamera}>
-                      <Feather name="camera" size={24} color="black" />
-                      <Text style={styles.iconText}>Take a Photo</Text>
+                      <Feather name="camera" size={24} color="grey" />
+                      <Text style={styles.iconText}>Camera</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.iconContainer} onPress={() => setModalVisible(false)}>
-                      <Feather name="x" size={24} color="black" />
+                      <Feather name="x" size={24} color="grey" />
                       <Text style={styles.iconText}>Cancel</Text>
                     </TouchableOpacity>
                   </View>
@@ -543,25 +543,32 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "white",
   },
-  modalContainer: {
+  modalContainerProfile: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  modalContent: {
+  modalContentProfile: {
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
+    flexDirection: 'row',
+    gap: 10
   },
   iconContainer: {
-    flexDirection: 'row',
+    borderColor: 'grey',
+    borderWidth: 1,
+    borderRadius: 25,
+    padding: 10,
+    flexDirection: 'column',
     alignItems: 'center',
     marginVertical: 10,
-    justifyContent: 'center', // Center the content horizontally
+    // justifyContent: 'center', // Center the content horizontally
   },
   iconText: {
-    marginLeft: 10,
+    // marginLeft: 10,
+    color: 'grey'
   },
 
 });
