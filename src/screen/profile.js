@@ -1,14 +1,14 @@
-import {SafeAreaView,View,Text,StyleSheet,Image, TextInput,
+import {ScrollView, TextInput,
 } from "react-native";
-import { ScrollView, Modal } from "react-native";
-import { TouchableOpacity } from "react-native";
+import { SafeAreaView, View, Text, StyleSheet, Image, TouchableOpacity, Modal } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
 import * as ImagePicker from 'expo-image-picker';
+
 
 //icons import
 
 import FeatherIcon from "react-native-vector-icons/Feather";
-
+import { Feather } from '@expo/vector-icons'; // Import Feather icons
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from '@expo/vector-icons';
@@ -52,6 +52,7 @@ const profile = ({ navigation }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState("Name"); // Initialize with a default value
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleEditPress = () => {
     setIsEditing(true);
@@ -98,6 +99,33 @@ const profile = ({ navigation }) => {
     }
   }, [userData]);
 
+  const pickImageFromGallery = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1 , 1],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+      setModalVisible(false);
+    }
+  };
+
+  const takeImageFromCamera = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+      setModalVisible(false);
+    }
+  };
+
   return (
 
 
@@ -109,8 +137,8 @@ const profile = ({ navigation }) => {
 
         <View style={styles.profile}>
           <TouchableOpacity
-            onPress={() => {
-              // ditoooo handle onPress
+            onPress={() => { 
+              setModalVisible(true)// ditoooo handle onPress
             }}
             >
             <View style={styles.profileAvatarWrapper}>
@@ -135,6 +163,31 @@ const profile = ({ navigation }) => {
                   <FeatherIcon color="white" name="edit-3" size={15} />
                 </View>
               </TouchableOpacity>
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                  setModalVisible(!modalVisible);
+                }}
+              >
+                <View style={styles.modalContainer}>
+                  <View style={styles.modalContent}>
+                    <TouchableOpacity style={styles.iconContainer} onPress={pickImageFromGallery}>
+                      <Feather name="folder" size={24} color="black" />
+                      <Text style={styles.iconText}>Choose from Gallery</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.iconContainer} onPress={takeImageFromCamera}>
+                      <Feather name="camera" size={24} color="black" />
+                      <Text style={styles.iconText}>Take a Photo</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.iconContainer} onPress={() => setModalVisible(false)}>
+                      <Feather name="x" size={24} color="black" />
+                      <Text style={styles.iconText}>Cancel</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </Modal>
             </View>
           </TouchableOpacity>
         </View>
@@ -232,7 +285,7 @@ const profile = ({ navigation }) => {
           <AntDesign name="edit" size={20} color="black" />
           </TouchableOpacity>
 
-
+          
           </View>
 
 
@@ -489,6 +542,26 @@ const styles = StyleSheet.create({
   modalButtonText: {
     fontSize: 14,
     color: "white",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 10,
+    justifyContent: 'center', // Center the content horizontally
+  },
+  iconText: {
+    marginLeft: 10,
   },
 
 });
