@@ -9,6 +9,7 @@ import splash from '../src/screen/splash';
 import Login from '../src/screen/login';
 import register from '../src/screen/register';
 import home from '../src/screen/home';
+import faq from '../src/screen/faq';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,8 @@ const AuthStack = () => {
       <Stack.Screen name="login" component={ Login } />
       <Stack.Screen name="register" component={ register } />
       <Stack.Screen name="home" component={ home } /> 
+      <Stack.Screen name="faq" component={ faq } /> 
+
     </Stack.Navigator>
   )
 }

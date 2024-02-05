@@ -205,7 +205,7 @@ const Main = () => {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity style = {styles.box}>
+              <TouchableOpacity style = {styles.box} onPress={() => navigation.navigate('Profile')}>
                 <View style = {styles.faq}>
                 <Image style={{ height: 55, width: 55 ,  }} source={require('../assets/maineIcons/faq.png')} />
                   <Text style = {{color: "black", fontWeight: 'bold', paddingTop: 15,}}>F.A.Q</Text>
