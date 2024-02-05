@@ -16,7 +16,7 @@ const about = () => {
       <Image
       
           style={styles.background}
-          source={require ('../assets/background/aboutbg.jpg')} 
+          source={require ('../assets/background/aboutbg.png')} 
         />
 
       </View>
@@ -52,7 +52,7 @@ const about = () => {
                     showsHorizontalScrollIndicator={false}
                     style={{height:250}}
                 >         
-                    <TouchableOpacity 
+                    <View
                         style={{
                             height:100,
                             elevation:2,
@@ -79,10 +79,10 @@ const about = () => {
                                 
                             }}>Multiple Transcription</Text>          
                         </View>
-                    </TouchableOpacity>
+                    </View>
 
 
-                    <TouchableOpacity 
+                    <View
                         style={{
                             height:100,
                             elevation:2,
@@ -109,10 +109,10 @@ const about = () => {
                                 
                             }}>Easy to Use</Text>          
                         </View>
-                    </TouchableOpacity>
+                    </View>
 
 
-                    <TouchableOpacity 
+                    <View
                         style={{
                             height:100,
                             elevation:2,
@@ -139,7 +139,7 @@ const about = () => {
                                 
                             }}>Multiple Transcription</Text>          
                         </View>
-                    </TouchableOpacity>
+                    </View>
 
       </ScrollView>  
 

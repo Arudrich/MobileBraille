@@ -86,7 +86,7 @@ const faq = ({navigation}) => {
 
          <TouchableOpacity style = {{ borderRadius: 8, borderWidth: 1 , borderColor: '#062CD4', padding: 15, backgroundColor: '#062CD4' }}>
 
-            <Text style = {{ color: 'white', fontWeight: 'bold'}}> See More </Text>
+            <Text style = {{ color: 'white',fontWeight: 'bold'}}> See More </Text>
 
         </TouchableOpacity>
 
