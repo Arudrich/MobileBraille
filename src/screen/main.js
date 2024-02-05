@@ -28,7 +28,8 @@ const Main = () => {
     formData.append('file', {
       uri: file.uri,
       type: fileType === 'image' ? 'image/jpeg' : (fileType === 'video' ? 'video/mp4' : 'audio/mp3'),
-      name: file.name,
+      // name: file.name,
+      name: fileType === 'image' ? 'image.jpg' : (fileType === 'video' ? 'video.mp4' : 'audio.mp3'),
     });
 
     try {
@@ -43,8 +44,9 @@ const Main = () => {
       // Assuming that the server returns JSON, you can parse the response
       const responseData = await response.json();
 
-      console.log(`Response for ${fileType}:`, responseData);
-      console.log("Transcription: ", )
+      // console.log(`Response for ${fileType}:`, responseData);
+      console.log("Transcription: ", responseData.Transcription);
+      console.log("Braille: ", responseData.Braille)
 
       if (response.status === 200) {
         console.log("Success");
