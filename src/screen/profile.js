@@ -3,6 +3,7 @@ import {SafeAreaView,View,Text,StyleSheet,Image, TextInput,
 import { ScrollView, Modal } from "react-native";
 import { TouchableOpacity } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
+import * as ImagePicker from 'expo-image-picker';
 
 //icons import
 
@@ -46,7 +47,7 @@ const SECTIONS = [
 
 const profile = ({ navigation }) => {
   const { user, logout } = useContext(AuthContext);
-   const [image, setImage] = useState(null);
+  const [image, setImage] = useState(null);
   const [userData, setUserData] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState("Name"); // Initialize with a default value

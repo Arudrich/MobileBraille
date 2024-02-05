@@ -6,6 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import * as DocumentPicker from 'expo-document-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native';
+import { Alert } from 'react-native';
 
 // icons
 
@@ -19,7 +20,7 @@ import { ScrollView } from 'react-native';
 
 //************************************************
 
-const main = () => {
+const Main = () => {
   const uploadFile = async (file, fileType) => {
     const formData = new FormData();
     const apiEndpoint = `http://192.168.0.2:8000/transcribe/${fileType}`;
@@ -27,7 +28,7 @@ const main = () => {
     formData.append('file', {
       uri: file.uri,
       type: fileType === 'image' ? 'image/jpeg' : (fileType === 'video' ? 'video/mp4' : 'audio/mp3'),
-      name: fileType === 'image' ? 'image.jpg' : (fileType === 'video' ? 'video.mp4' : 'audio.mp3'),
+      name: file.name,
     });
 
     try {
@@ -110,6 +111,29 @@ const main = () => {
       console.error(error);
     }
   };
+  const selectDocument = async () => {
+    try {
+      const document = await DocumentPicker.getDocumentAsync();
+    
+      if (!document.canceled) {
+        const allowedTypes = ['pdf', 'doc', 'txt'];
+        // const fileName = document.assets[0].uri.substring(document.assets[0].uri.lastIndexOf('/') + 1);
+        const fileName = document.assets[0].name;
+        const fileExtension = fileName.split('.').pop().toLowerCase();
+        
+        if (allowedTypes.includes(fileExtension)) {
+          console.log('DocuINFO:', document);
+          // await uploadFile(audio, 'audio');
+        } else {
+          Alert.alert("Selected file format is not allowed");
+        }
+      } else {
+        console.log("User Cancelled the upload");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
 
@@ -172,7 +196,7 @@ const main = () => {
               </TouchableOpacity>
 
 
-              <TouchableOpacity style = {styles.box}>
+              <TouchableOpacity style = {styles.box} onPress={selectDocument}>
                 <View style = {styles.inner}>
                 <Image style={{ height: 55, width: 55 ,  }} source={require('../assets/maineIcons/file.png')} />
                   <Text style = {styles.text}>FILE TO BRAILLE</Text>
@@ -215,7 +239,7 @@ const main = () => {
   )
 }
 
-export default main
+export default Main
 
 const styles = StyleSheet.create({
 

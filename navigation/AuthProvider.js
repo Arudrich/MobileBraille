@@ -43,6 +43,7 @@ export const AuthProvider = ({children}) => {
               fullname: name,
               email: email,
               id: authentication.currentUser.uid, 
+              profile_picture: '',
             });
           })
           .catch((error) => {

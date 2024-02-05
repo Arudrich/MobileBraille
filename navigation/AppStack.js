@@ -12,7 +12,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 //screens for bot nav import
 import home from '../src/screen/home';
-import main from '../src/screen/main';
+import Main from '../src/screen/main';
 import about from '../src/screen/about';
 import profile from '../src/screen/profile';
 
@@ -85,7 +85,7 @@ const AppStack = () => {
 
          <BotTab.Screen 
             name= "Main"
-            component={main}
+            component={Main}
             options={{
                 tabBarIcon:({color}) => (
                   <MaterialCommunityIcons name="transcribe" size={30} color= {color} />
