@@ -140,7 +140,7 @@ const Main = ({navigation}) => {
   return (
 
 
-    <SafeAreaView style = {{ backgroundColor: 'white', flex: 1}}>
+    <View style = {{ backgroundColor: 'white', flex: 1}}>
 
         <View style={styles.logoContainer}>
           <Image
@@ -235,7 +235,7 @@ const Main = ({navigation}) => {
         
 
 
-    </SafeAreaView>
+    </View>
 
     
   )
@@ -249,10 +249,16 @@ const styles = StyleSheet.create({
 
 logoContainer: {
   alignItems: 'center',
+  backgroundColor: '#062CD4',
+  borderBottomLeftRadius: 22,
+  borderBottomRightRadius: 22,
+  
 },
 logo: {
   width: 110, // Adjust the width as needed
   height: 180, // Adjust the height as needed
+  tintColor: 'white'
+
 },
 title: {
   fontSize: 30,
@@ -261,16 +267,16 @@ title: {
 },
 
 blackText: {
-  color: 'black',
+  color: 'white',
 },
 blueText: {
-  color: '#062CD4',
+  color: 'white',
 },
 subtitle: {
   fontSize: 15,
   textAlign: 'center',
   marginTop: 5,
-  color: 'black',
+  color: 'white',
   paddingBottom: 15
 },
 
@@ -284,6 +290,7 @@ container: {
   flexDirection: 'row',
   flexWrap: 'wrap',
   alignSelf: 'center',
+  marginTop: 40
 },
 
 box: {

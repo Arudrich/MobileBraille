@@ -1,46 +1,163 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image,} from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ScrollView } from 'react-native'
+import { TouchableOpacity } from 'react-native'
+import { counterEvent } from 'react-native/Libraries/Performance/Systrace'
 
 const about = () => {
   return (
 
+    <ScrollView>
+
+      <View style = {styles.content}>
 
 
-    <SafeAreaView style = {{ backgroundColor: "white", flex: 1}}>
+      <Image
       
+          style={styles.background}
+          source={require ('../assets/background/aboutbg.jpg')} 
+        />
 
+      </View>
 
+      <View style = {styles.whoarewe}>
 
-       <View style={styles.logoContainer}>
-        
-   
-          <Image
-            source={require('../assets/MBraillelogo.png')}
-            style={styles.logo}
-            resizeMode="contain"
-          />
-          <Text style={styles.title}>
-            <Text style={styles.blackText}>M.</Text>
-            <Text style={styles.blueText}>Braille</Text>
-          </Text>
-        </View>
+        <Text style = {{ textAlign: 'justify', fontWeight: 'bold', fontSize: 20 }}><Text style = {{color: '#062CD4'}}>WHO</Text> ARE WE?</Text>
 
+        <Text style = {{textAlign: 'justify', fontSize: 12, paddingTop: 6, }}>Good day! we are a Computer Engineering Student from Technological Institute of the Philippines.</Text>
 
-        <View style = {styles.mbraille}>
+        <Text style = {{ paddingTop: 10, textAlign: 'justify', fontWeight: 'bold', fontSize: 20 }}><Text style = {{color: '#062CD4'}}>WHAT</Text> IS MOBILE BRAILLE?</Text>
 
-          <Text style ={{fontWeight: 'bold', padding: 15}}> What is Mobile Braille? </Text>
-
-          <Text style = {{ color: 'white' ,textAlign: 'justify', fontSize: 14, padding: 12, paddingTop: 10, paddingHorizontal: 25, backgroundColor: '#062CD4' , borderRadius: 8}}> Welcome to the MBraille app, where we empower users to convert multiple modes of input
+        <Text style = {{textAlign: 'justify', fontSize: 12, paddingTop: 6, }}>Mobile Braille is an mobile application where we empower users to convert multiple modes of input
           into Braille seamlessly. Our mission is to enhance accessibility for individuals
-          with visual impairments by providing a user-friendly and efficient transcription tool. </Text>
+          with visual impairments by providing a user-friendly and efficient transcription tool.</Text>
 
-          <Text style ={{fontWeight: 'bold', padding: 15}}> Mobile Braille Developers: </Text>
+        <Text style = {{ paddingTop: 10, textAlign: 'justify', fontWeight: 'bold', fontSize: 20 }}><Text style = {{color: '#062CD4'}}>VISION</Text> AND <Text style = {{color: '#062CD4'}}>MISSION</Text>  </Text>
 
-        </View>
+        <Text style = {{textAlign: 'justify', fontSize: 12, paddingTop: 6, }}>Maka GraduateMaka GraduateMaka GraduateMaka GraduateMaka GraduateMaka GraduateMaka Graduate</Text>
 
-         <View style = {styles.container}>
+      </View>
+
+      <View style = {styles.features}>
+
+        <Text style = {{ paddingTop: 1, textAlign: 'justify', fontWeight: 'bold', fontSize: 20,}}>MBRAILLE <Text style = {{color: '#062CD4'}}> FEATURES</Text></Text>
+      
+      </View>
+
+      {/*FEAAAAAATURESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS*************/}
+
+      <ScrollView 
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    style={{height:250}}
+                >         
+                    <TouchableOpacity 
+                        style={{
+                            height:100,
+                            elevation:2,
+                            backgroundColor: "#EBF0F5",
+                            marginLeft:20,
+                            marginTop:20,
+                            borderRadius: 8 ,
+                            marginBottom:10,
+                            width: 190,
+                        }}
+                    >
+                        <Image
+                            source={require('../assets/maineIcons/audio.png')}
+                            style = {{ width: 100, height: 100, alignSelf: 'center', }}
+                        />
+                        <View style={{
+                            flexDirection:"row",
+                            paddingTop:10,
+                            paddingHorizontal:10,
+                            alignSelf: 'center'
+                        }}>
+                            <Text style={{
+                                fontWeight:"bold",
+                                
+                            }}>Multiple Transcription</Text>          
+                        </View>
+                    </TouchableOpacity>
+
+
+                    <TouchableOpacity 
+                        style={{
+                            height:100,
+                            elevation:2,
+                            backgroundColor: "#EBF0F5",
+                            marginLeft:20,
+                            marginTop:20,
+                            borderRadius: 8 ,
+                            marginBottom:10,
+                            width: 190,
+                        }}
+                    >
+                        <Image
+                            source={require('../assets/maineIcons/audio.png')}
+                            style = {{ width: 100, height: 100, alignSelf: 'center', }}
+                        />
+                        <View style={{
+                            flexDirection:"row",
+                            paddingTop:10,
+                            paddingHorizontal:10,
+                            alignSelf: 'center'
+                        }}>
+                            <Text style={{
+                                fontWeight:"bold",
+                                
+                            }}>Easy to Use</Text>          
+                        </View>
+                    </TouchableOpacity>
+
+
+                    <TouchableOpacity 
+                        style={{
+                            height:100,
+                            elevation:2,
+                            backgroundColor: "#EBF0F5",
+                            marginLeft:20,
+                            marginTop:20,
+                            borderRadius: 8 ,
+                            marginBottom:10,
+                            width: 190,
+                        }}
+                    >
+                        <Image
+                            source={require('../assets/maineIcons/audio.png')}
+                            style = {{ width: 100, height: 100, alignSelf: 'center', }}
+                        />
+                        <View style={{
+                            flexDirection:"row",
+                            paddingTop:10,
+                            paddingHorizontal:10,
+                            alignSelf: 'center'
+                        }}>
+                            <Text style={{
+                                fontWeight:"bold",
+                                
+                            }}>Multiple Transcription</Text>          
+                        </View>
+                    </TouchableOpacity>
+
+      </ScrollView>  
+
+
+      <View style = {{paddingTop: 5,}}>
+
+      <Text style = {{textAlign: 'justify', fontWeight: 'bold', fontSize: 20, alignSelf: 'center' }}>THE <Text style = {{color: '#062CD4'}}>DEVELOPERS</Text></Text>
+
+
+      </View>
+
+
+    
+
+
+
+       <View style = {styles.developers}>
+
 
   
               <View style = {styles.box}>
@@ -87,101 +204,97 @@ const about = () => {
 
 
 
-     
 
 
-      
+ 
 
-  
 
-    </SafeAreaView>
-    
+
+      </ScrollView>
     
 
+
+
+
+   
   )
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ 
 
-  // LOGO ***********************
+content: {
+  alignItems: 'center',
+  flex: 1,
+  alignContent: 'center',
+},
+
+background: {
+
+  height: 250,
+  width: 411,
+  borderBottomLeftRadius: 22,
+  borderBottomRightRadius: 22,
+},
+
+whoarewe: {
+  padding: 19,
+
+
+},
+
+features: {
   
-  logoContainer: {
-    alignItems: 'center',
-    paddingTop: 15,
-  },
-  logo: {
-    width: 180, // Adjust the width as needed
-    height: 180, // Adjust the height as needed
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginTop: 15
-  },
-  
-  blackText: {
-    color: 'black',
-  },
-  blueText: {
-    color: '#062CD4',
-  },
-
-  // mbraille ***********************
+  alignSelf: 'center'
 
 
-  mbraille: {
+},
 
-    paddingLeft: 8,
-    paddingRight: 8,
+// developers
+
+developers: {
+  width: '100%',
+  height: '30%',
+  padding: 20,
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  alignSelf: 'center',
+  paddingTop: 35
+},
+
+box: {
+
+  width: '50%',
+  height: '50%',
+  padding: 5,
+  borderRadius: 8, 
+
+
+},
+
+inner: {
+  flex: 1,
+  backgroundColor: '#062CD4',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: 8,
+
+
+},
+
+text: {
+
+  color: 'white',
+  fontWeight: 'bold',
+  fontSize: 12,
+
+
+}
 
 
 
-  },
 
 
-  // card developers
 
-  container: {
-    width: '80%',
-    height: '40%',
-    padding: 20,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignSelf: 'center',
-    paddingTop: 1,
-  },
-  
-  box: {
-  
-    width: '50%',
-    height: '50%',
-    padding: 5,
-    borderRadius: 8, 
-  
-  
-  },
-  
-  inner: {
-    flex: 1,
-    backgroundColor: '#062CD4',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 8,
-  
-  
-  },
-
-  text: {
-
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 12,
- 
-
-  }
-
-  
-  
 })
 
 export default about
