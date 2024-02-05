@@ -76,7 +76,7 @@ const MainStack =({navigation}) => (
         name="Faq"
         component={faq}
         options={{
-          headerShown: true,
+          headerShown: false,
           headerStyle: {
             backgroundColor: '#fff',
             shadowColor: '#fff',

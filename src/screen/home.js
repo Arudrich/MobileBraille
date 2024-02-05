@@ -128,7 +128,7 @@ const Home = ({ navigation }) => {
                    alignItems:"center"
                }}>
                    <TextInput
-                        placeholder="Search Transcription Here"
+                        placeholder="Search Here"
                         placeholderTextColor= 'grey'
                         style={{
                             fontSize:12,
