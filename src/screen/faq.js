@@ -6,6 +6,7 @@ import { TouchableOpacity } from 'react-native';
 // lottie 
 
 import LottieView from 'lottie-react-native';
+import { ScrollView } from 'react-native';
 
 
 const faq = ({navigation}) => {
@@ -13,94 +14,91 @@ const faq = ({navigation}) => {
 
   return (
 
-
-
-
     <SafeAreaView style = {{backgroundColor: 'white', flex: 1 }}>
+      <ScrollView>
+      <LottieView style = {{ alignSelf: 'center', height: 160, alignItems: 'center', alignContent: 'center' }} source={require('../assets/lottie/faq.json')} autoPlay loop />
 
-    <LottieView style = {{ alignSelf: 'center', height: 160, alignItems: 'center', alignContent: 'center' }} source={require('../assets/lottie/faq.json')} autoPlay loop />
+      <View style = {styles.header}>
 
-    <View style = {styles.header}>
+          <Text style = {{ textAlignVertical: 'center', letterSpacing: 2, textAlign: 'justify', fontSize: 25,}}>We're trying to help you with anything and everything on Mobile Braille</Text>
 
-        <Text style = {{ textAlignVertical: 'center', letterSpacing: 2, textAlign: 'justify', fontSize: 25,}}>We're trying to help you with anything and everything on Mobile Braille</Text>
+          <Text style = {{paddingTop: 5, fontWeight: '500',color: '#818589', textAlign: 'justify', fontSize: 14, }}>We're trying to help you with anything and everything on Mobile Braille, we are here to help you. We have got
+          you covered share your concern or check our frequently asked question listed below. </Text>
 
-        <Text style = {{paddingTop: 5, fontWeight: '500',color: '#818589', textAlign: 'justify', fontSize: 14, }}>We're trying to help you with anything and everything on Mobile Braille, we are here to help you. We have got
-        you covered share your concern or check our frequently asked question listed below. </Text>
+      </View>
 
-    </View>
+      <View style = {styles.search}>
 
-    <View style = {styles.search}>
-
-    <View style={{
-                   backgroundColor: "#EBF0F5" ,
-                   paddingVertical: 10,
-                   paddingHorizontal:20,
-                   marginHorizontal:20,
-                   borderRadius: 8,
-                   flexDirection: "row",
-                   alignItems: "center"
-               }}>
-                   <TextInput
-                        placeholder="Search Frequently Asked Question"
-                        placeholderTextColor= 'grey'
-                        style={{
-                            fontSize:12,
-                            width:260
-                        }}
-                   />
-                   <Image
-                    source={require('../iconPNG/search.png')}
-                    
-                    style={{ height:20, width:20, left: 20}}
-                   />
-               </View>
-
-
-    </View>
+      <View style={{
+                    backgroundColor: "#EBF0F5" ,
+                    paddingVertical: 10,
+                    paddingHorizontal:20,
+                    marginHorizontal:20,
+                    borderRadius: 8,
+                    flexDirection: "row",
+                    alignItems: "center"
+                }}>
+                    <TextInput
+                          placeholder="Search Frequently Asked Question"
+                          placeholderTextColor= 'grey'
+                          style={{
+                              fontSize:12,
+                              width:260
+                          }}
+                    />
+                    <Image
+                      source={require('../iconPNG/search.png')}
+                      
+                      style={{ height:20, width:20, left: 20}}
+                    />
+                </View>
 
 
-    <View style = {styles.faqContainer}>
-
-        <Text style = {{fontWeight: 'bold'}}>Frequently Asked Question: </Text>
+      </View>
 
 
-        
-        <TouchableOpacity style = {{ borderRadius: 8, borderWidth: 1, borderColor: '#062CD4', padding: 15 }}>
+      <View style = {styles.faqContainer}>
 
-            <Text> What is Mobile Braille? </Text>
-
-        </TouchableOpacity>
-
-        <TouchableOpacity style = {{ borderRadius: 8, borderWidth: 1 , borderColor: '#062CD4', padding: 15 }}>
-
-            <Text> What services does Mobile Braille Offer? </Text>
-
-        </TouchableOpacity>
-
-         <TouchableOpacity style = {{ borderRadius: 8, borderWidth: 1 , borderColor: '#062CD4', padding: 15 }}>
-
-            <Text> What services does Mobile Braille Offer? </Text>
-
-        </TouchableOpacity>
+          <Text style = {{fontWeight: 'bold'}}>Frequently Asked Question: </Text>
 
 
-         <TouchableOpacity style = {{ borderRadius: 8, borderWidth: 1 , borderColor: '#062CD4', padding: 15, backgroundColor: '#062CD4' }}>
+          
+          <TouchableOpacity style = {{ borderRadius: 8, borderWidth: 1, borderColor: '#062CD4', padding: 15 }}>
 
-            <Text style = {{ color: 'white',fontWeight: 'bold'}}> See More </Text>
+              <Text> What is Mobile Braille? </Text>
 
-        </TouchableOpacity>
+          </TouchableOpacity>
+
+          <TouchableOpacity style = {{ borderRadius: 8, borderWidth: 1 , borderColor: '#062CD4', padding: 15 }}>
+
+              <Text> What services does Mobile Braille Offer? </Text>
+
+          </TouchableOpacity>
+
+          <TouchableOpacity style = {{ borderRadius: 8, borderWidth: 1 , borderColor: '#062CD4', padding: 15 }}>
+
+              <Text> What services does Mobile Braille Offer? </Text>
+
+          </TouchableOpacity>
 
 
+          <TouchableOpacity style = {{ borderRadius: 8, borderWidth: 1 , borderColor: '#062CD4', padding: 15, backgroundColor: '#062CD4' }}>
 
+              <Text style = {{ color: 'white',fontWeight: 'bold'}}> See More </Text>
 
-
-    </View>
+          </TouchableOpacity>
 
 
 
 
 
+      </View>
 
+
+
+
+
+      </ScrollView>                       
     </SafeAreaView>
     
   )
