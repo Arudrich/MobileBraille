@@ -8,7 +8,7 @@ import { counterEvent } from 'react-native/Libraries/Performance/Systrace'
 const about = () => {
   return (
 
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false} >
 
       <View style = {styles.content}>
 

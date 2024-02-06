@@ -143,6 +143,7 @@ const Main = ({navigation}) => {
     <View style = {{ backgroundColor: 'white', flex: 1}}>
 
         <View style={styles.logoContainer}>
+          
           <Image
             source={require('../assets/MBraillelogo.png')}
             style={styles.logo}
@@ -157,17 +158,13 @@ const Main = ({navigation}) => {
 
   
 
-
-
-
-
-
         <View style = {styles.container}>
+     
 
   
               <TouchableOpacity style = {styles.box}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 55, width: 55 , backgroundColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
+                <Image style={{ height: 35, width: 35 , backgroundColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
                   <Text style = {styles.text}>TEXT TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
@@ -175,7 +172,7 @@ const Main = ({navigation}) => {
 
               <TouchableOpacity style = {styles.box} onPress={selectAudio}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 55, width: 55  ,  }} source={require('../assets/maineIcons/audio.png')} />
+                <Image style={{ height: 35, width: 35 ,  }} source={require('../assets/maineIcons/audio.png')} />
                   <Text style = {styles.text}>AUDIO TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
@@ -183,7 +180,7 @@ const Main = ({navigation}) => {
 
               <TouchableOpacity style = {styles.box} onPress={selectImage}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 55, width: 55 , }} source={require('../assets/maineIcons/picture.png')} />
+                <Image style={{ height: 35, width: 35 , }} source={require('../assets/maineIcons/picture.png')} />
                   <Text style = {styles.text}>IMAGE TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
@@ -191,7 +188,7 @@ const Main = ({navigation}) => {
 
               <TouchableOpacity style = {styles.box} onPress={selectVid}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 55, width: 55 ,  }} source={require('../assets/maineIcons/video.png')} />
+                <Image style={{ height: 35, width: 35 ,  }} source={require('../assets/maineIcons/video.png')} />
                   <Text style = {styles.text}>VIDEO TO BRAILLE</Text>
 
                 </View>
@@ -200,14 +197,14 @@ const Main = ({navigation}) => {
 
               <TouchableOpacity style = {styles.box} onPress={selectDocument}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 55, width: 55 ,  }} source={require('../assets/maineIcons/file.png')} />
+                <Image style={{ height: 35, width: 35 ,  }} source={require('../assets/maineIcons/file.png')} />
                   <Text style = {styles.text}>FILE TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
 
               <TouchableOpacity style = {styles.box} onPress={() => navigation.navigate('Faq')}>
                 <View style = {styles.faq}>
-                <Image style={{ height: 55, width: 55 ,  }} source={require('../assets/maineIcons/faq.png')} />
+                <Image style={{ height: 35, width: 35 ,  }} source={require('../assets/maineIcons/faq.png')} />
                   <Text style = {{color: "black", fontWeight: 'bold', paddingTop: 15,}}>F.A.Q</Text>
                 </View>
               </TouchableOpacity>
@@ -290,7 +287,8 @@ container: {
   flexDirection: 'row',
   flexWrap: 'wrap',
   alignSelf: 'center',
-  marginTop: 40
+  marginTop: 40,
+
 },
 
 box: {

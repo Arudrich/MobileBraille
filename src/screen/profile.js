@@ -505,6 +505,7 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     flexBasis: 0,
   },
+  
   // for Logout modal
 
   modalContainer: {
