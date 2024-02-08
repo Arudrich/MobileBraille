@@ -111,6 +111,7 @@ const AppStack = () => {
         headerShown: false,
         tabBarActiveTintColor: colors.primary,
         tabBarAllowFontScaling: 10,
+      
       }}>
       
         <BotTab.Screen 

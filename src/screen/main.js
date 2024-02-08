@@ -157,8 +157,12 @@ const Main = ({navigation}) => {
         </View>
 
   
+      <View style = {{ backgroundColor: "#EBF0F5",  flex: 1}}>
 
+    
+     
         <View style = {styles.container}>
+          
      
 
   
@@ -205,7 +209,7 @@ const Main = ({navigation}) => {
               <TouchableOpacity style = {styles.box} onPress={() => navigation.navigate('Faq')}>
                 <View style = {styles.faq}>
                 <Image style={{ height: 35, width: 35 ,  }} source={require('../assets/maineIcons/faq.png')} />
-                  <Text style = {{color: "black", fontWeight: 'bold', paddingTop: 15,}}>F.A.Q</Text>
+                  <Text style = {{color: "white", fontWeight: 'bold', paddingTop: 15,}}>F.A.Q</Text>
                 </View>
               </TouchableOpacity>
 
@@ -214,6 +218,7 @@ const Main = ({navigation}) => {
 
             
         </View>
+      </View>
 
 
         {/*FAQ HEHEHEHEHEHEHEHE*/ }
@@ -282,7 +287,7 @@ subtitle: {
 
 container: {
   width: '60%',
-  height: '40%',
+  height: '50%',
   padding: 20,
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -315,7 +320,7 @@ inner: {
 
 faq: {
   flex: 1,
-  backgroundColor: "#EBF0F5",
+  backgroundColor: "#002D62",
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: 8,
@@ -328,7 +333,8 @@ faq: {
 text: {
   color: "white",
   fontWeight: 'bold',
-  paddingTop: 15,
+  paddingTop: 5,
+
 
 },
 

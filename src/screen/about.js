@@ -226,6 +226,7 @@ content: {
   alignItems: 'center',
   flex: 1,
   alignContent: 'center',
+
 },
 
 background: {
@@ -234,6 +235,7 @@ background: {
   width: 411,
   borderBottomLeftRadius: 22,
   borderBottomRightRadius: 22,
+
 },
 
 whoarewe: {
