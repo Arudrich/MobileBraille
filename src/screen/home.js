@@ -1,12 +1,13 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AuthContext } from '../../navigation/AuthProvider';
 import { getDoc, doc } from 'firebase/firestore';
 import { database } from '../../FirebaseConfig';
 import FilterModal from './FilterModal'; // Import FilterModal component
+import HistoryCard from '../assets/Cards/HistoryCard';
 
 //hehe
 
@@ -51,6 +52,32 @@ const Home = ({ navigation }) => {
       setSelectedFilters([...selectedFilters, filter]); // Select filter
     }
   };
+
+  const data = [
+    { 
+      id: '1', 
+      transcriptionType: 'audio',
+      title: 'Audio to Braille', 
+      date: '02/22/24', 
+      fileName: 'Lyrics.mp4' 
+    },
+    { 
+      id: '2', 
+      transcriptionType: 'image',
+      title: 'Image to Braille', 
+      date: '02/21/24', 
+      fileName: 'CamScanner.jpg' 
+    },
+    { 
+      id: '3', 
+      transcriptionType: 'document', // Changed from 'pdf' to 'document'
+      title: 'Document to Braille', // Updated title
+      date: '02/02/24', 
+      fileName: 'CALCULUS1.PDF' // Keeping the filename as an example
+    },
+    // Add more data objects as needed
+  ];
+
 
   return (
 
@@ -196,134 +223,14 @@ const Home = ({ navigation }) => {
                 {/* CARD VIEW --------------------------------------------------------- */}   
 
           
-                <ScrollView 
+                <FlatList
+                    data={data}
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    style={{height:200}}
-                >         
-                    <TouchableOpacity 
-                        style={{
-                            height:170,
-                            elevation:2,
-                            backgroundColor: "#EBF0F5",
-                            marginLeft:20,
-                            marginTop:20,
-                            borderRadius: 8 ,
-                            marginBottom:10,
-                            width: 190,
-                        }}
-                    >
-                        <Image
-                            source={require('../assets/maineIcons/audio.png')}
-                            style = {{ width: 100, height: 100, alignSelf: 'center', }}
-                        />
-                        <View style={{
-                            flexDirection:"row",
-                            paddingTop:10,
-                            paddingHorizontal:10
-                        }}>
-                            <Text style={{
-                                fontWeight:"bold"
-                            }}>Audio to Braille</Text>
-                            <Text style={{
-                                fontWeight:"bold",
-                                color:'#062CD4',
-                                paddingLeft:20,
-                                fontStyle: 'italic'
-                            }}>02/22/24</Text>
-                        </View>
-                        <Text style={{
-                            paddingHorizontal:10 ,
-                            color: '#062CD4' ,
-                            paddingTop:3
-                        }}>
-                            Lyrics.mp4
-                        </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity 
-                        style={{
-                            height:170,
-                            elevation:2,
-                            backgroundColor: "#EBF0F5",
-                            marginLeft:20,
-                            marginTop:20,
-                            borderRadius:15,
-                            marginBottom:10,
-                            width: 190
-                        }}
-                    >
-                        <Image
-                            source={require('../assets/maineIcons/picture.png')}
-                            style = {{ width: 100, height: 100, alignSelf: 'center'}}
-                        />
-                        <View style={{
-                            flexDirection:"row",
-                            paddingTop:10,
-                            paddingHorizontal:10
-                        }}>
-                            <Text style={{
-                                fontWeight:"bold"
-                            }}>Image to Braille</Text>
-                            <Text style={{
-                                fontWeight:"bold",
-                                color:'#062CD4',
-                                paddingLeft:20,
-                                fontStyle: 'italic'
-                            }}>02/21/24</Text>
-                        </View>
-                        <Text style={{
-                            paddingHorizontal:10 ,
-                            color: '#062CD4' ,
-                            paddingTop:3
-                        }}>
-                            CamScanner.jpg
-                        </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity 
-                        style={{
-                            height:170,
-                            elevation:2,
-                            backgroundColor: "#EBF0F5",
-                            marginLeft:20,
-                            marginTop:20,
-                            borderRadius:15,
-                            marginBottom:10,
-                            width: 190
-                        }}
-                    >
-                        <Image
-                            source={require('../assets/maineIcons/file.png')}
-                            style = {{ width: 100, height: 100, alignSelf: 'center'}}
-                        />
-                        <View style={{
-                            flexDirection:"row",
-                            paddingTop:10,
-                            paddingHorizontal:10
-                        }}>
-                            <Text style={{
-                                fontWeight:"bold"
-                            }}>PDF to Braille</Text>
-                            <Text style={{
-                                fontWeight:"bold",
-                                color:'#062CD4',
-                                paddingLeft:20,
-                                fontStyle: 'italic'
-                            }}>02/02/24</Text>
-                        </View>
-                        <Text style={{
-                            paddingHorizontal:10 ,
-                            color: '#062CD4' ,
-                            paddingTop:3
-                        }}>
-                            CALCULUS1.PDF
-                        </Text>
-                    </TouchableOpacity>
-
-                   
-
-                </ScrollView>   
+                    style={{ height: 200 }}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }) => <HistoryCard item={item} />} // Using HistoryCard component
+                />
 
 
                  {/* FAVORITES --------------------------------------------------------- */}            
