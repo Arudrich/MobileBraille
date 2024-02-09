@@ -44,6 +44,8 @@ const SECTIONS = [
   },
 ];
 
+//profile
+
 
 const profile = ({ navigation }) => {
   const { user, logout } = useContext(AuthContext);

@@ -227,6 +227,7 @@ content: {
   flex: 1,
   alignContent: 'center',
 
+
 },
 
 background: {

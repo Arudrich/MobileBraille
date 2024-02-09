@@ -157,7 +157,7 @@ const Main = ({navigation}) => {
         </View>
 
   
-      <View style = {{ backgroundColor: "#EBF0F5",  flex: 1}}>
+      <View style = {{ backgroundColor: "white",  flex: 1}}>
 
     
      
