@@ -17,7 +17,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { getFirestore, collection, addDoc, Timestamp } from 'firebase/firestore';
-import { database } from '../../FirebaseConfig';
+import { database, storage } from '../../FirebaseConfig';
 
 import { AuthContext } from '../../navigation/AuthProvider';
 
@@ -31,16 +31,17 @@ const AddPostScreen = () => {
 
   const takePhotoFromCamera = async() => {
     let result = await ImagePicker.launchCameraAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         // aspect: [4, 3],
         quality: 1,
       });
   
-      console.log(result);
+      console.log(result.assets[0]);
   
       if (!result.canceled) {
         setImage(result.assets[0].uri);
+      } else {
+        console.log("User Cancelled the upload");
       }
   };
 
@@ -52,10 +53,12 @@ const AddPostScreen = () => {
         quality: 1,
       });
   
-      console.log(result);
+      console.log(result.assets[0]);
   
       if (!result.canceled) {
         setImage(result.assets[0].uri);
+      } else {
+        console.log("User Cancelled the upload");
       }
   };
 
@@ -67,7 +70,7 @@ const AddPostScreen = () => {
     // const db = getFirestore();
     addDoc(collection(database, 'posts'), {
       userId: user.uid,
-      post: post,
+      title: post,
       postImg: imageUrl,
       postTime: Timestamp.fromDate(new Date()),
     })
@@ -96,7 +99,7 @@ const AddPostScreen = () => {
     setUploading(true);
     setTransferred(0);
 
-    const storageRef = ref(getStorage(), `photos/${filename}`);
+    const storageRef = ref(storage, `photos/${filename}`);
     const task = uploadBytesResumable(storageRef, uploadUri);
 
     // Set transferred state
@@ -128,7 +131,7 @@ const AddPostScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.inputWrapper}>
-        {image != null ? <Image source={{ uri: image }} style={styles.addImage} /> : null}
+        {image != null ? <Image source={{ uri: image }} style={styles.addImage} resizeMode='contain' /> : null}
 
         <TextInput
           style={styles.inputField}
@@ -196,6 +199,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 250,
     marginBottom: 15,
+    // resizeMode:'contain', 
   },
   statusWrapper: {
     justifyContent: 'center',

@@ -1,16 +1,18 @@
+
 // Dito yung mga bottom tab nav
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { colors } from '../src/utils/colors';
 
-//icons for botnav
+// Icons for botnav
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-//screens for bot nav import
+// Screens for bot nav import
 import home from '../src/screen/home';
 import Main from '../src/screen/main';
 import about from '../src/screen/about';
@@ -18,153 +20,117 @@ import profile from '../src/screen/profile';
 import faq from '../src/screen/faq';
 import AddPostScreen from '../src/screen/AddPostScreen';
 
-
-// needed kung may additional screen sa iisang bottom nav
 const Stack = createNativeStackNavigator();
-//this is for botnav
 const BotTab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
-// add dito kung may screens within the tab <Stack ang gamitin dito>
-const HomeStack = ({navigation}) => (
-    <Stack.Navigator>
-      <Stack.Screen
-          name="Home"
-          component={home}
-          options={{
-            headerShown: false,
-          }}
-        />
-      <Stack.Screen
-        name="Profile"
-        component={profile}
-        options={{
-          headerShown: true,
-          headerStyle: {
-            backgroundColor: '#fff',
-            shadowColor: '#fff',
-            elevation: 0,
-            
-          },
-        }}
-      />
-      {/* <Stack.Screen
-        name="EditProfile"
-        component={EditProfileScreen}
-        options={{
-          headerTitle: 'Edit Profile',
-          headerBackTitleVisible: false,
-          headerTitleAlign: 'center',
-          headerStyle: {
-            backgroundColor: '#fff',
-            shadowColor: '#fff',
-            elevation: 0,
-          },
-        }}
-      /> */}
-    </Stack.Navigator>
-  );
-
-const MainStack =({navigation}) => (
+const HomeStack = ({ navigation }) => (
   <Stack.Navigator>
-      <Stack.Screen
-          name="main"
-          component={Main}
-          options={{
-            headerShown: false,
-          }}
-        />
-      <Stack.Screen
-        name="Faq"
-        component={faq}
-        options={{
-          headerShown: false,
-          headerStyle: {
-            backgroundColor: '#fff',
-            shadowColor: '#fff',
-            elevation: 0,
-            
-          },
-        }}
-      />
-      <Stack.Screen
-        name="AddPost"
-        component={AddPostScreen}
-        options={{
-          headerShown: true,
-          headerStyle: {
-            backgroundColor: '#fff',
-            shadowColor: '#fff',
-            elevation: 0,
-            
-          },
-        }}
-      />
+    <Stack.Screen
+      name="Home"
+      component={HomeDrawerStack}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="Profile"
+      component={profile}
+      options={{
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: '#fff',
+          shadowColor: '#fff',
+          elevation: 0,
+        },
+      }}
+    />
+  </Stack.Navigator>
+);
 
-      {/* <Stack.Screen
-        name="EditProfile"
-        component={EditProfileScreen}
-        options={{
-          headerTitle: 'Edit Profile',
-          headerBackTitleVisible: false,
-          headerTitleAlign: 'center',
-          headerStyle: {
-            backgroundColor: '#fff',
-            shadowColor: '#fff',
-            elevation: 0,
-          },
-        }}
-      /> */}
-    </Stack.Navigator>
-)
+const HomeDrawerStack = () => (
+  <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+    <Drawer.Screen name="Home" component={home} />
+    {/* Add other screens you want in the drawer navigator */}
+  </Drawer.Navigator>
+);
+
+const MainStack = ({ navigation }) => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="main"
+      component={Main}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Stack.Screen
+      name="Faq"
+      component={faq}
+      options={{
+        headerShown: false,
+        headerStyle: {
+          backgroundColor: '#fff',
+          shadowColor: '#fff',
+          elevation: 0,
+        },
+      }}
+    />
+    <Stack.Screen
+      name="AddPost"
+      component={AddPostScreen}
+      options={{
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: '#fff',
+          shadowColor: '#fff',
+          elevation: 0,
+        },
+      }}
+    />
+  </Stack.Navigator>
+);
 
 const AppStack = () => {
-
-
   return (
-    <BotTab.Navigator 
-        screenOptions={{
+    <BotTab.Navigator
+      screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.primary,
         tabBarAllowFontScaling: 10,
-      
-      }}>
-      
-        <BotTab.Screen 
-            name= "Home"
-            component={HomeStack}
-            options={{
-                tabBarIcon:({color}) => (
-                  <Ionicons name="home-outline" size={30} color={color}/>
-                )
-            }}
-        />
-
-         <BotTab.Screen 
-            name= "Main"
-            component={MainStack}
-            options={{
-                tabBarIcon:({color}) => (
-                  <MaterialCommunityIcons name="transcribe" size={30} color= {color} />
-                )
-            }}
-        />
-
-        <BotTab.Screen 
-            name= "About"
-            component={about}
-            options={{
-                tabBarIcon:({color}) => (
-                  <Ionicons name="people-circle-sharp" size={30} color= {color} />
-                )
-            }}
-        />
-
-          
-
+      }}
+    >
+      <BotTab.Screen
+        name="Home"
+        component={HomeStack}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="home-outline" size={30} color={color} />
+          ),
+        }}
+      />
+      <BotTab.Screen
+        name="Main"
+        component={MainStack}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="transcribe" size={30} color={color} />
+          ),
+        }}
+      />
+      <BotTab.Screen
+        name="About"
+        component={about}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="people-circle-sharp" size={30} color={color} />
+          ),
+        }}
+      />
     </BotTab.Navigator>
-  )
+  );
 }
 
-export default AppStack
+export default AppStack;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

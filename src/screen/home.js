@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
+import { DrawerActions } from '@react-navigation/native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { Feather } from "@expo/vector-icons";
@@ -94,16 +95,18 @@ const Home = ({ navigation }) => {
                borderBottomRightRadius:20,
                paddingHorizontal:20
            }}>
-              <TouchableOpacity>
-               <Image
-                    source={require('../iconPNG/homeMenuBar.png')}
-                    style={{
-                        height:12,
-                        width: 20,
-                        marginTop:50
-                    }}
-               />
-               </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+              >
+                <Image
+                  source={require('../iconPNG/homeMenuBar.png')}
+                  style={{
+                    height: 12,
+                    width: 20,
+                    marginTop: 50
+                  }}
+                />
+              </TouchableOpacity>
 
                <View style={{
                    flexDirection:"row",
