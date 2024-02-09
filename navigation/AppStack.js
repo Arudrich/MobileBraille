@@ -31,8 +31,11 @@ const HomeStack = ({ navigation }) => (
       component={HomeDrawerStack}
       options={{
         headerShown: false,
+
       }}
     />
+
+ 
     <Stack.Screen
       name="Profile"
       component={profile}
@@ -51,6 +54,9 @@ const HomeStack = ({ navigation }) => (
 const HomeDrawerStack = () => (
   <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
     <Drawer.Screen name="Home" component={home} />
+
+
+
     {/* Add other screens you want in the drawer navigator */}
   </Drawer.Navigator>
 );
