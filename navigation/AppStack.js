@@ -15,7 +15,8 @@ import home from '../src/screen/home';
 import Main from '../src/screen/main';
 import about from '../src/screen/about';
 import profile from '../src/screen/profile';
-import faq from '../src/screen/faq'
+import faq from '../src/screen/faq';
+import AddPostScreen from '../src/screen/AddPostScreen';
 
 
 // needed kung may additional screen sa iisang bottom nav
@@ -85,6 +86,20 @@ const MainStack =({navigation}) => (
           },
         }}
       />
+      <Stack.Screen
+        name="AddPost"
+        component={AddPostScreen}
+        options={{
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: '#fff',
+            shadowColor: '#fff',
+            elevation: 0,
+            
+          },
+        }}
+      />
+
       {/* <Stack.Screen
         name="EditProfile"
         component={EditProfileScreen}

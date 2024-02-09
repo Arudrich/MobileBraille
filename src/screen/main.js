@@ -182,7 +182,7 @@ const Main = ({navigation}) => {
               </TouchableOpacity>
 
 
-              <TouchableOpacity style = {styles.box} onPress={selectImage}>
+              <TouchableOpacity style = {styles.box} onPress={() => navigation.navigate('AddPost')}>
                 <View style = {styles.inner}>
                 <Image style={{ height: 35, width: 35 , }} source={require('../assets/maineIcons/picture.png')} />
                   <Text style = {styles.text}>IMAGE TO BRAILLE</Text>
