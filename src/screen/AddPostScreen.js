@@ -153,7 +153,7 @@ const AddPostScreen = () => {
         )}
       </View>
       <ActionButton 
-        buttonColor="#2e64e5"
+        buttonColor= '#062CD4'
         useNativeDriver={true}>
         <ActionButton.Item
           buttonColor="#9b59b6"
@@ -163,7 +163,7 @@ const AddPostScreen = () => {
         </ActionButton.Item>
         <ActionButton.Item
           buttonColor="#3498db"
-          title="Choose Photo"
+          title="Select Photo"
           onPress={choosePhotoFromLibrary}>
           <Icon name="md-images-outline" style={styles.actionButtonIcon} />
         </ActionButton.Item>
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    backgroundColor: '#2e64e515',
+    backgroundColor: 'white',
   },
   inputField: {
     justifyContent: 'center',
@@ -208,14 +208,14 @@ const styles = StyleSheet.create({
   submitBtn: {
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: '#2e64e515',
-    borderRadius: 5,
+    backgroundColor: '#062CD4',
+    borderRadius: 8,
     padding: 10,
   },
   submitBtnText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#2e64e5',
+    color: 'white',
   },
   actionButtonIcon: {
     fontSize: 20,

@@ -35,7 +35,10 @@ const about = () => {
 
         <Text style = {{ paddingTop: 10, textAlign: 'justify', fontWeight: 'bold', fontSize: 20 }}><Text style = {{color: '#062CD4'}}>VISION</Text> AND <Text style = {{color: '#062CD4'}}>MISSION</Text>  </Text>
 
-        <Text style = {{textAlign: 'justify', fontSize: 12, paddingTop: 6, }}>Maka GraduateMaka GraduateMaka GraduateMaka GraduateMaka GraduateMaka GraduateMaka Graduate</Text>
+        <Text style = {{textAlign: 'justify', fontSize: 12, paddingTop: 6, }}>We envision a better life for Filipinos by empowering our students with the best globally competitive technological education in engineering, computing, and allied disciplines.</Text>
+
+        <Text style = {{textAlign: 'justify', fontSize: 12, paddingTop: 6, }}>Through digitalization and innovation in academic design and delivery, T.I.P. students, faculty, staff, and industry partners work together. </Text>
+        
 
       </View>
 
@@ -60,22 +63,31 @@ const about = () => {
                             marginLeft:20,
                             marginTop:20,
                             borderRadius: 8 ,
-                            marginBottom:10,
-                            width: 190,
+                            marginBottom: 10,
+                            width: 150,
+                            alignContent: 'center',
+                            alignItems: 'center',
+                            alignSelf: 'center',
+                            paddingTop: 10,
+                            
                         }}
                     >
                         <Image
-                            source={require('../assets/maineIcons/audio.png')}
-                            style = {{ width: 100, height: 100, alignSelf: 'center', }}
+                            source={require('../assets/maineIcons/multiple.png')}
+                            style = {{ width: 50, height: 50, alignSelf: 'center', }}
                         />
                         <View style={{
                             flexDirection:"row",
-                            paddingTop:10,
+                            paddingTop:15,
                             paddingHorizontal:10,
-                            alignSelf: 'center'
+                            alignSelf: 'center',
+
                         }}>
                             <Text style={{
                                 fontWeight:"bold",
+                                fontSize: 12,
+                        
+                            
                                 
                             }}>Multiple Transcription</Text>          
                         </View>
@@ -91,12 +103,16 @@ const about = () => {
                             marginTop:20,
                             borderRadius: 8 ,
                             marginBottom:10,
-                            width: 190,
+                            width: 150,
+                            alignContent: 'center',
+                            alignItems: 'center',
+                            alignSelf: 'center',
+                            paddingTop: 10,
                         }}
                     >
                         <Image
-                            source={require('../assets/maineIcons/audio.png')}
-                            style = {{ width: 100, height: 100, alignSelf: 'center', }}
+                            source={require('../assets/maineIcons/easytouse.png')}
+                            style = {{ width: 50, height: 50, alignSelf: 'center', }}
                         />
                         <View style={{
                             flexDirection:"row",
@@ -106,6 +122,8 @@ const about = () => {
                         }}>
                             <Text style={{
                                 fontWeight:"bold",
+                                fontSize: 12,
+                                paddingTop: 4
                                 
                             }}>Easy to Use</Text>          
                         </View>
@@ -121,12 +139,16 @@ const about = () => {
                             marginTop:20,
                             borderRadius: 8 ,
                             marginBottom:10,
-                            width: 190,
+                            width: 150,
+                            alignContent: 'center',
+                            alignItems: 'center',
+                            alignSelf: 'center',
+                            paddingTop: 10,
                         }}
                     >
                         <Image
-                            source={require('../assets/maineIcons/audio.png')}
-                            style = {{ width: 100, height: 100, alignSelf: 'center', }}
+                            source={require('../assets/maineIcons/accurate.png')}
+                            style = {{ width: 50, height: 50, alignSelf: 'center',  }}
                         />
                         <View style={{
                             flexDirection:"row",
@@ -136,8 +158,10 @@ const about = () => {
                         }}>
                             <Text style={{
                                 fontWeight:"bold",
+                                fontSize: 12,
+                                paddingTop: 4
                                 
-                            }}>Multiple Transcription</Text>          
+                            }}>Accurate</Text>          
                         </View>
                     </View>
 
@@ -226,6 +250,7 @@ content: {
   alignItems: 'center',
   flex: 1,
   alignContent: 'center',
+
 
 },
 
