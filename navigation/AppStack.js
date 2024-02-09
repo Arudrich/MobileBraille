@@ -97,7 +97,8 @@ const AppStack = () => {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.primary,
-        tabBarAllowFontScaling: 10,
+        tabBarAllowFontScaling: 10 ,
+        
       }}
     >
       <BotTab.Screen
@@ -105,7 +106,7 @@ const AppStack = () => {
         component={HomeStack}
         options={{
           tabBarIcon: ({ color }) => (
-            <Ionicons name="home-outline" size={30} color={color} />
+            <Ionicons name="home-outline" size={25} color={color} />
           ),
         }}
       />
@@ -114,7 +115,7 @@ const AppStack = () => {
         component={MainStack}
         options={{
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="transcribe" size={30} color={color} />
+            <MaterialCommunityIcons name="transcribe" size={25} color={color} />
           ),
         }}
       />
@@ -123,7 +124,7 @@ const AppStack = () => {
         component={about}
         options={{
           tabBarIcon: ({ color }) => (
-            <Ionicons name="people-circle-sharp" size={30} color={color} />
+            <Ionicons name="people-circle-sharp" size={25} color={color} />
           ),
         }}
       />
@@ -132,5 +133,7 @@ const AppStack = () => {
 }
 
 export default AppStack;
+
+
 
 const styles = StyleSheet.create({});

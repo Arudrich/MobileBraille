@@ -41,6 +41,7 @@ const Home = ({ navigation }) => {
   // Function to handle applying the selected filter
   const applyFilters = () => {
     setModalVisible(false);
+    
     // Perform filtering logic here based on the selected filters
     console.log('Selected filters:', selectedFilters);
   };

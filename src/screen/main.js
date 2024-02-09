@@ -202,7 +202,7 @@ const Main = ({navigation}) => {
               <TouchableOpacity style = {styles.box} onPress={selectDocument}>
                 <View style = {styles.inner}>
                 <Image style={{ height: 35, width: 35 ,  }} source={require('../assets/maineIcons/file.png')} />
-                  <Text style = {styles.text}>FILE TO BRAILLE</Text>
+                  <Text style = {styles.text}>DOCUMENT TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
 
