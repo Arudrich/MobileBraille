@@ -21,6 +21,10 @@ import { Alert } from 'react-native';
 //************************************************
 
 const Main = ({navigation}) => {
+  const navigateToAddPost = (fileType) => {
+    navigation.navigate('AddPost', { fileType });
+  };
+  
   const uploadFile = async (file, fileType) => {
     const formData = new FormData();
     const apiEndpoint = `http://192.168.0.2:8000/transcribe/${fileType}`;
@@ -174,7 +178,7 @@ const Main = ({navigation}) => {
               </TouchableOpacity>
 
 
-              <TouchableOpacity style = {styles.box} onPress={selectAudio}>
+              <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('audio')}>
                 <View style = {styles.inner}>
                 <Image style={{ height: 35, width: 35 ,  }} source={require('../assets/maineIcons/audio.png')} />
                   <Text style = {styles.text}>AUDIO TO BRAILLE</Text>
@@ -182,7 +186,7 @@ const Main = ({navigation}) => {
               </TouchableOpacity>
 
 
-              <TouchableOpacity style = {styles.box} onPress={() => navigation.navigate('AddPost')}>
+              <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('image')}>
                 <View style = {styles.inner}>
                 <Image style={{ height: 35, width: 35 , }} source={require('../assets/maineIcons/picture.png')} />
                   <Text style = {styles.text}>IMAGE TO BRAILLE</Text>
@@ -190,7 +194,7 @@ const Main = ({navigation}) => {
               </TouchableOpacity>
 
 
-              <TouchableOpacity style = {styles.box} onPress={selectVid}>
+              <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('video')}>
                 <View style = {styles.inner}>
                 <Image style={{ height: 35, width: 35 ,  }} source={require('../assets/maineIcons/video.png')} />
                   <Text style = {styles.text}>VIDEO TO BRAILLE</Text>
@@ -199,7 +203,7 @@ const Main = ({navigation}) => {
               </TouchableOpacity>
 
 
-              <TouchableOpacity style = {styles.box} onPress={selectDocument}>
+              <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('document')}>
                 <View style = {styles.inner}>
                 <Image style={{ height: 35, width: 35 ,  }} source={require('../assets/maineIcons/file.png')} />
                   <Text style = {styles.text}>DOCUMENT TO BRAILLE</Text>

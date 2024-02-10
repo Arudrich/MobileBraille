@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   View,
   Text,
@@ -20,9 +20,18 @@ import { getFirestore, collection, addDoc, Timestamp } from 'firebase/firestore'
 import { database, storage } from '../../FirebaseConfig';
 
 import { AuthContext } from '../../navigation/AuthProvider';
+import * as DocumentPicker from 'expo-document-picker';
 
-const AddPostScreen = () => {
+const AddPostScreen = ({ route }) => {
   const { user, logout } = useContext(AuthContext);
+
+  const [fileType, setFileType] = useState(null);
+
+  useEffect(() => {
+    if (route.params && route.params.fileType) {
+      setFileType(route.params.fileType);
+    }
+  }, [route.params]);
 
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -60,6 +69,118 @@ const AddPostScreen = () => {
       } else {
         console.log("User Cancelled the upload");
       }
+  };
+  const selectFile = async () => {
+    if (fileType === 'audio') {
+      await selectAudio();
+    } else if (fileType === 'video') {
+      await selectVideo();
+    } else if (fileType === 'document') {
+      await selectDocument();
+    }
+  };
+
+  const selectVideo = async () => {
+    // Implement logic from selectVid in Main component
+    try {
+      await ImagePicker.getMediaLibraryPermissionsAsync();
+      const video = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+      });
+
+      if (!video.canceled) {
+        console.log('Selected video:', video.assets[0]);
+        // Handle the selected video
+      } else {
+        console.log("User Cancelled the upload");
+      }
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const selectAudio = async () => {
+    // Implement logic from selectAudio in Main component
+    try {
+      const audio = await DocumentPicker.getDocumentAsync({
+        type: 'audio/*',
+      });
+  
+      if (!audio.canceled) {
+        console.log('Selected audio:', audio.assets[0]);
+        // Handle the selected audio
+      } else {
+        console.log("User Cancelled the upload");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const selectDocument = async () => {
+    // Implement logic from selectDocument in Main component
+    try {
+      const document = await DocumentPicker.getDocumentAsync();
+    
+      if (!document.canceled) {
+        const allowedTypes = ['pdf', 'doc', 'txt'];
+        const fileName = document.assets[0].name;
+        const fileExtension = fileName.split('.').pop().toLowerCase();
+        
+        if (allowedTypes.includes(fileExtension)) {
+          console.log('Selected document:', document);
+          // Handle the selected document
+        } else {
+          console.log("Selected file format is not allowed");
+        }
+      } else {
+        console.log("User Cancelled the upload");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  
+  const renderActionButtons = () => {
+    if (fileType === 'audio') {
+      return (
+        <ActionButton buttonColor="#3498db" useNativeDriver={true}>
+          <ActionButton.Item buttonColor="#9b59b6" title="Select Audio" onPress={selectFile}>
+            <Icon name="md-mic-outline" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+        </ActionButton>
+      );
+    } else if (fileType === 'video') {
+      return (
+        <ActionButton buttonColor="#3498db" useNativeDriver={true}>
+          <ActionButton.Item buttonColor="#9b59b6" title="Select Video" onPress={selectFile}>
+            <Icon name="md-videocam-outline" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+        </ActionButton>
+      );
+    } else if (fileType === 'document') {
+      return (
+        <ActionButton buttonColor="#3498db" useNativeDriver={true}>
+          <ActionButton.Item buttonColor="#9b59b6" title="Select Document" onPress={selectFile}>
+            <Icon name="md-document-outline" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+        </ActionButton>
+      );
+    } else {
+      // Default action button when no file type is selected
+      return (
+        <ActionButton buttonColor="#3498db" useNativeDriver={true}>
+          <ActionButton.Item buttonColor="#9b59b6" title="Take Photo" onPress={takePhotoFromCamera}>
+            <Icon name="md-camera-outline" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor="#3498db" title="Select Photo" onPress={choosePhotoFromLibrary}>
+            <Icon name="md-images-outline" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+        </ActionButton>
+      );
+    }
   };
 
   const submitPost = async () => {
@@ -152,22 +273,7 @@ const AddPostScreen = () => {
           </TouchableOpacity>
         )}
       </View>
-      <ActionButton 
-        buttonColor= '#062CD4'
-        useNativeDriver={true}>
-        <ActionButton.Item
-          buttonColor="#9b59b6"
-          title="Take Photo"
-          onPress={takePhotoFromCamera}>
-          <Icon name="camera-outline" style={styles.actionButtonIcon} />
-        </ActionButton.Item>
-        <ActionButton.Item
-          buttonColor="#3498db"
-          title="Select Photo"
-          onPress={choosePhotoFromLibrary}>
-          <Icon name="md-images-outline" style={styles.actionButtonIcon} />
-        </ActionButton.Item>
-      </ActionButton>
+      {renderActionButtons()}
     </View>
   );
 };
