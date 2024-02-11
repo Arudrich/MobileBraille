@@ -8,7 +8,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AuthContext } from '../../navigation/AuthProvider';
 import { getDoc, doc } from 'firebase/firestore';
 import { database } from '../../FirebaseConfig';
-import FilterModal from './FilterModal'; // Import FilterModal component
+import FilterModal from './FilterModal';
 import HistoryCard from '../assets/Cards/HistoryCard';
 
 //hehe
@@ -287,7 +287,7 @@ const Home = ({ navigation }) => {
                    </View>
 
                    <View style={{width:"50%", alignItems:"flex-end"}}>
-                        <TouchableOpacity>
+                      <TouchableOpacity onPress={() => navigation.navigate('Main')}>
                         <View style={{
                             backgroundColor: '#062CD4',
                             paddingHorizontal:20,
