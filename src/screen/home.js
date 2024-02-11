@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
+import { RefreshControl } from 'react-native';
 import { DrawerActions } from '@react-navigation/native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView, FlatList } from 'react-native';
@@ -19,6 +20,8 @@ const Home = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
 
   const getUser = async () => {
     try {
@@ -37,6 +40,19 @@ const Home = ({ navigation }) => {
   useEffect(() => {
     getUser();
   }, []);
+
+  const onRefresh = async () => {
+    setRefreshing(true); // Set refreshing state to true
+    try {
+      await getUser(); // Refresh user data or perform any other refresh action
+    } catch (error) {
+      console.error('Error refreshing data:', error);
+      // Handle error
+    } finally {
+      setRefreshing(false); // Set refreshing state back to false after refreshing
+    }
+  };
+  
 
   // Function to handle applying the selected filter
   const applyFilters = () => {
@@ -83,7 +99,15 @@ const Home = ({ navigation }) => {
 
   return (
 
-    <ScrollView style={{ flex: 1, backgroundColor: "#FFF" }}>
+    <ScrollView 
+      style={{ flex: 1, backgroundColor: "#FFF" }}
+      refreshControl={
+      <RefreshControl
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+        colors={['#062CD4']} // Customize the color of the refresh indicator
+      />
+    }>
 
 
       <View style={{

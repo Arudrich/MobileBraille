@@ -168,6 +168,18 @@ const AddPostScreen = ({ route }) => {
           </ActionButton.Item>
         </ActionButton>
       );
+    } else if (fileType === 'image') {
+      return (
+        <ActionButton buttonColor="#3498db" useNativeDriver={true}>
+          <ActionButton.Item buttonColor="#9b59b6" title="Take Photo" onPress={takePhotoFromCamera}>
+            <Icon name="md-camera-outline" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor="#3498db" title="Select Photo" onPress={choosePhotoFromLibrary}>
+            <Icon name="md-images-outline" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+        </ActionButton>
+      );
+
     } else {
       // Default action button when no file type is selected
       return (
@@ -210,8 +222,9 @@ const AddPostScreen = ({ route }) => {
       return null;
     }
     const uploadUri = image;
+    console.log('Upload URI:', uploadUri); // Add this line to check uploadUri
     let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
-
+    console.log('Filename:', filename);
     // Add timestamp to File Name
     const extension = filename.split('.').pop();
     const name = filename.split('.').slice(0, -1).join('.');
@@ -220,8 +233,13 @@ const AddPostScreen = ({ route }) => {
     setUploading(true);
     setTransferred(0);
 
+    const metadata = {
+      contentType: 'image/jpeg', // Set the correct content type here
+      // Other metadata properties can be set here if needed
+    };
+
     const storageRef = ref(storage, `photos/${filename}`);
-    const task = uploadBytesResumable(storageRef, uploadUri);
+    const task = uploadBytesResumable(storageRef, uploadUri, metadata);
 
     // Set transferred state
     task.on('state_changed', (taskSnapshot) => {
