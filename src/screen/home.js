@@ -157,7 +157,11 @@ const Home = ({ navigation }) => {
                    <View style={{width:"50%",top: -15, alignItems:"flex-end", }}>
                         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
                         <Image
-                            source={require('../assets/DEVELOPERS/MACADANGDANG.jpg')}
+                            source={{
+                              uri: userData ? userData.userImg ||
+                                  'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc'
+                                : 'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc',
+                            }}
 
                             style={{height:100 ,width:100, borderRadius: 50, borderWidth: 1, borderColor: 'white'}}
                         />

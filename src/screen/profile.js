@@ -7,12 +7,11 @@ import { Feather } from '@expo/vector-icons';
 import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from '@expo/vector-icons';
 import { AuthContext } from "../../navigation/AuthProvider";
-import { database } from "../../FirebaseConfig";
+import { database, storage, authentication } from "../../FirebaseConfig";
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { ActivityIndicator } from 'react-native';
-import { authentication } from "../../FirebaseConfig";
 import { reauthenticateWithCredential, updatePassword, EmailAuthProvider } from 'firebase/auth';
-
 
 const SECTIONS = [
   {
@@ -48,6 +47,8 @@ const Profile = ({ navigation }) => {
   const [name, setName] = useState("Name");
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  
   //for password changing
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -175,6 +176,7 @@ const Profile = ({ navigation }) => {
     if (!result.cancelled) {
       setImage(result.assets[0].uri);
       setModalVisible(false);
+      updateUserImg();
     }
   };
 
@@ -188,8 +190,54 @@ const Profile = ({ navigation }) => {
     if (!result.cancelled) {
       setImage(result.assets[0].uri);
       setModalVisible(false);
+      updateUserImg();
     }
   };
+
+  const uploadImage = async (uri) => {
+    setUploading(true);
+    let filename = uri.substring(uri.lastIndexOf('/') + 1);
+    const response = await fetch(uri);
+    const blob = await response.blob();
+    const storageRef = ref(storage, `profileImages/${filename}`);
+    
+    const task = uploadBytesResumable(storageRef, blob);
+  
+    // Set transferred state
+    task.on('state_changed', (taskSnapshot) => {
+      console.log(
+        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
+      );
+  
+      // setTransferred(
+      //   Math.round((taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100),
+      // );
+    });
+    
+    try { 
+      const url = await getDownloadURL(storageRef);
+      // Update user data with image URL
+      return url;
+     } catch (e){
+      console.log(e);
+      return null
+    }
+    
+  };
+
+  const updateUserImg = async () => {
+    const fileUrl = await uploadImage(image)
+    await updateDoc(doc(database, 'users', user.uid), { userImg: fileUrl })
+        .then(() => {
+          console.log('Profile Picture Added!');
+          Alert.alert('Picture Uploaded!', 'Your profile picture has been changed Successfully!');
+          // setPost(null);
+        })
+        .catch((error) => {
+          console.log('Something went wrong with added post to firestore.', error);
+        });
+      setUploading(false);
+  }
 
   return (
     <SafeAreaView style={{ backgroundColor: "#EBF0F5", flex: 1 }}>
