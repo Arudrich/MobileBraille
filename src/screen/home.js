@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
+import { RefreshControl } from 'react-native';
 import { DrawerActions } from '@react-navigation/native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView, FlatList } from 'react-native';
@@ -7,7 +8,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AuthContext } from '../../navigation/AuthProvider';
 import { getDoc, doc } from 'firebase/firestore';
 import { database } from '../../FirebaseConfig';
-import FilterModal from './FilterModal'; // Import FilterModal component
+import FilterModal from './FilterModal';
 import HistoryCard from '../assets/Cards/HistoryCard';
 
 //hehe
@@ -19,6 +20,8 @@ const Home = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
 
   const getUser = async () => {
     try {
@@ -37,6 +40,19 @@ const Home = ({ navigation }) => {
   useEffect(() => {
     getUser();
   }, []);
+
+  const onRefresh = async () => {
+    setRefreshing(true); // Set refreshing state to true
+    try {
+      await getUser(); // Refresh user data or perform any other refresh action
+    } catch (error) {
+      console.error('Error refreshing data:', error);
+      // Handle error
+    } finally {
+      setRefreshing(false); // Set refreshing state back to false after refreshing
+    }
+  };
+  
 
   // Function to handle applying the selected filter
   const applyFilters = () => {
@@ -83,7 +99,15 @@ const Home = ({ navigation }) => {
 
   return (
 
-    <ScrollView style={{ flex: 1, backgroundColor: "#FFF" }}>
+    <ScrollView 
+      style={{ flex: 1, backgroundColor: "#FFF" }}
+      refreshControl={
+      <RefreshControl
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+        colors={['#062CD4']} // Customize the color of the refresh indicator
+      />
+    }>
 
 
       <View style={{
@@ -133,10 +157,16 @@ const Home = ({ navigation }) => {
                    <View style={{width:"50%",top: -15, alignItems:"flex-end", }}>
                         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
                         <Image
-                            source={require('../assets/DEVELOPERS/MACADANGDANG.jpg')}
+                            source={{
+                              uri: userData ? userData.userImg ||
+                                  'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc'
+                                : 'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc',
+                            }}
 
                             style={{height:100 ,width:100, borderRadius: 50, borderWidth: 1, borderColor: 'white'}}
-                        />
+                            resizeMode='contain' 
+
+                        />  
                         </TouchableOpacity>
                    </View>
                </View>
@@ -263,7 +293,7 @@ const Home = ({ navigation }) => {
                    </View>
 
                    <View style={{width:"50%", alignItems:"flex-end"}}>
-                        <TouchableOpacity>
+                      <TouchableOpacity onPress={() => navigation.navigate('Main')}>
                         <View style={{
                             backgroundColor: '#062CD4',
                             paddingHorizontal:20,

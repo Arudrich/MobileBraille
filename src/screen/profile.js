@@ -1,22 +1,17 @@
-import {ScrollView, TextInput,
-} from "react-native";
+import { ScrollView, TextInput, Switch, Alert } from "react-native";
 import { SafeAreaView, View, Text, StyleSheet, Image, TouchableOpacity, Modal } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
 import * as ImagePicker from 'expo-image-picker';
-
-
-//icons import
-
 import FeatherIcon from "react-native-vector-icons/Feather";
-import { Feather } from '@expo/vector-icons'; // Import Feather icons
-import { MaterialIcons } from "@expo/vector-icons";
+import { Feather } from '@expo/vector-icons';
 import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from '@expo/vector-icons';
 import { AuthContext } from "../../navigation/AuthProvider";
-import { database } from "../../FirebaseConfig";
-import { DocumentSnapshot, collection, doc, getDoc } from 'firebase/firestore';
-
-// sections
+import { database, storage, authentication } from "../../FirebaseConfig";
+import { getDoc, doc, updateDoc } from 'firebase/firestore';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { ActivityIndicator } from 'react-native';
+import { reauthenticateWithCredential, updatePassword, EmailAuthProvider } from 'firebase/auth';
 
 const SECTIONS = [
   {
@@ -26,7 +21,6 @@ const SECTIONS = [
       { icon: 'globe', color: '#062CD4' , label: 'Language', type: 'link' },
     ],
   },
-
   {
     header: 'Help',
     icon: 'help-circle',
@@ -44,25 +38,41 @@ const SECTIONS = [
   },
 ];
 
-//profile
-
-
-const profile = ({ navigation }) => {
+const Profile = ({ navigation }) => {
   const { user, logout } = useContext(AuthContext);
   const [image, setImage] = useState(null);
   const [userData, setUserData] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState("Name"); // Initialize with a default value
+  const [isSaving, setIsSaving] = useState(false);
+  const [name, setName] = useState("Name");
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  
+  //for password changing
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
 
   const handleEditPress = () => {
     setIsEditing(true);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     // Perform save action to firebase
-    setIsEditing(false);
+    setIsSaving(true); // Set isSaving to true before saving
+    try {
+      await updateDoc(doc(database, 'users', user.uid), {
+        fullname: name // Assuming 'fullname' is the field in Firestore where you store the user's display name
+      });
+      console.log('User data updated successfully');
+      setIsEditing(false); // Update the editing state
+    } catch (error) {
+      console.error('Error updating user data:', error);
+      // Handle error
+    } finally {
+      setIsSaving(false); // Set isSaving back to false after saving
+    }
   };
 
   const handleLogout = () => {
@@ -81,7 +91,6 @@ const profile = ({ navigation }) => {
     try {
       const userDoc = await getDoc(doc(database, 'users', user.uid));
       if (userDoc.exists()) {
-        console.log('User Data', userDoc.data());
         setUserData(userDoc.data());
       } else {
         console.log('User does not exist');
@@ -97,9 +106,64 @@ const profile = ({ navigation }) => {
 
   useEffect(() => {
     if (userData) {
-      setName(userData.fullname || "Name"); // Update name when userData changes
+      setName(userData.fullname || "Name");
     }
   }, [userData]);
+
+  const handleChangePassword = async () => {
+    setIsChangingPassword(true); // Set loading state to true
+    try {
+      // Perform password change using Firebase Authentication
+      const user = authentication.currentUser;
+      const credential = EmailAuthProvider.credential(user.email, currentPassword);
+      await reauthenticateWithCredential(user, credential);
+      await updatePassword(user, newPassword);
+
+      Alert.alert('Password changed successfully');
+      console.log('Password changed successfully');
+      setCurrentPassword(''); // Clear current password input
+      setNewPassword(''); // Clear new password input
+    } catch (error) {
+      console.error('Error changing password:', error.message);
+      // Handle error
+    } finally {
+      setIsChangingPassword(false); // Set loading state back to false
+    }
+  };
+
+  // UI components for password change
+  const passwordChangeUI = (
+    <View style={styles.changeInfo}>
+      <Text style={styles.infoHeader}>Change Password</Text>
+      <View style={styles.inputWrapper}>
+        <FontAwesome5 name="key" size={18} color="blue" style={styles.iconStyle} />
+        <TextInput
+          style={styles.input}
+          placeholder="Current Password"
+          secureTextEntry
+          value={currentPassword}
+          onChangeText={(text) => setCurrentPassword(text)}
+        />
+      </View>
+      <View style={styles.inputWrapper}>
+        <FontAwesome5 name="key" size={18} color="blue" style={styles.iconStyle} />
+        <TextInput
+          style={styles.input}
+          placeholder="New Password"
+          secureTextEntry
+          value={newPassword}
+          onChangeText={(text) => setNewPassword(text)}
+        />
+      </View>
+      <TouchableOpacity onPress={handleChangePassword}>
+        {isChangingPassword ? (
+          <ActivityIndicator color="black" size="small" />
+        ) : (
+          <AntDesign name="edit" size={20} color="black" />
+        )}
+      </TouchableOpacity>
+    </View>
+  );
 
   const pickImageFromGallery = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -109,9 +173,10 @@ const profile = ({ navigation }) => {
       quality: 1,
     });
 
-    if (!result.canceled) {
+    if (!result.cancelled) {
       setImage(result.assets[0].uri);
       setModalVisible(false);
+      updateUserImg();
     }
   };
 
@@ -122,45 +187,78 @@ const profile = ({ navigation }) => {
       quality: 1,
     });
 
-    if (!result.canceled) {
+    if (!result.cancelled) {
       setImage(result.assets[0].uri);
       setModalVisible(false);
+      updateUserImg();
     }
   };
 
+  const uploadImage = async (uri) => {
+    setUploading(true);
+    let filename = uri.substring(uri.lastIndexOf('/') + 1);
+    const response = await fetch(uri);
+    const blob = await response.blob();
+    const storageRef = ref(storage, `profileImages/${filename}`);
+    
+    const task = uploadBytesResumable(storageRef, blob);
+  
+    // Set transferred state
+    task.on('state_changed', (taskSnapshot) => {
+      console.log(
+        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
+      );
+  
+      // setTransferred(
+      //   Math.round((taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100),
+      // );
+    });
+    
+    try { 
+      const url = await getDownloadURL(storageRef);
+      // Update user data with image URL
+      return url;
+     } catch (e){
+      console.log(e);
+      return null
+    }
+    
+  };
+
+  const updateUserImg = async () => {
+    const fileUrl = await uploadImage(image)
+    await updateDoc(doc(database, 'users', user.uid), { userImg: fileUrl })
+        .then(() => {
+          console.log('Profile Picture Added!');
+          Alert.alert('Picture Uploaded!', 'Your profile picture has been changed Successfully!');
+          // setPost(null);
+        })
+        .catch((error) => {
+          console.log('Something went wrong with added post to firestore.', error);
+        });
+      setUploading(false);
+  }
+
   return (
-
-
     <SafeAreaView style={{ backgroundColor: "#EBF0F5", flex: 1 }}>
       <ScrollView style={styles.container}>
-
-        <Text style = {{fontSize: 20, fontWeight: "bold", alignSelf: "center"}}>EDIT PROFILE</Text>
-
-
+        <Text style={{ fontSize: 20, fontWeight: "bold", alignSelf: "center" }}>EDIT PROFILE</Text>
+        
+        {/* Profile Picture */}
         <View style={styles.profile}>
-          <TouchableOpacity
-            onPress={() => { 
-              setModalVisible(true)// ditoooo handle onPress
-            }}
-            >
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
             <View style={styles.profileAvatarWrapper}>
               <Image
-                alt=""
                 source={{
                   uri: image ? image 
                     : userData ? userData.userImg ||
                       'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc'
-                    : 'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc', // PROFILE
+                    : 'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc',
                 }}
                 style={styles.profileAvatar}
                 resizeMode='contain'
               />
-
-              <TouchableOpacity
-                onPress={() => {
-                  // handle onPress
-                }}
-              >
+              <TouchableOpacity onPress={() => setModalVisible(true)}>
                 <View style={styles.profileAction}>
                   <FeatherIcon color="white" name="edit-3" size={15} />
                 </View>
@@ -169,10 +267,7 @@ const profile = ({ navigation }) => {
                 animationType="slide"
                 transparent={true}
                 visible={modalVisible}
-                onRequestClose={() => {
-                  setModalVisible(!modalVisible);
-                }}
-              >
+                onRequestClose={() => setModalVisible(!modalVisible)}>
                 <View style={styles.modalContainerProfile}>
                   <View style={styles.modalContentProfile}>
                     <TouchableOpacity style={styles.iconContainer} onPress={pickImageFromGallery}>
@@ -194,234 +289,116 @@ const profile = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-
+        {/* Change Display Name */}
         <View style={styles.changeInfo}>
-
-        <Text
-            style={{
-              fontSize: 12,
-              fontWeight: "500",
-              color: "grey",
-              marginTop: 15,
-              color: "black",
-              paddingRight: 215,
-              fontWeight: "bold"
-            }}
-          >
-            Change Display Name
-          </Text>
-
-          <View
-            style={{
-              borderColor: "grey",
-              height: 45,
-              width: 350,
-              margin: 2,
-              borderRadius: 8,
-              paddingHorizontal: 12,
-              paddingVertical: 12,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              // borderWidth: 1
-            }}
-            >
-
-
-            <AntDesign name="user" size={19} color="blue" style={{ paddingRight: 12 }} />
+          <Text style={styles.infoHeader}>Change Display Name</Text>
+          <View style={styles.inputWrapper}>
+            <AntDesign name="user" size={19} color="blue" style={styles.iconStyle} />
             {isEditing ? (
               <TextInput
-                style={styles.rowSpacer}
+                style={styles.input}
                 onChangeText={(text) => setName(text)}
                 value={name}
               />
             ) : (
-              <Text style={[styles.rowSpacer, { fontSize: 13, color: 'grey', fontWeight: 'normal' }]}>
-                {name}
-              </Text>
+              <Text style={styles.inputText}>{name}</Text>
             )}
             <TouchableOpacity onPress={isEditing ? handleSave : handleEditPress}>
+            {isSaving ? (
+              <ActivityIndicator color="black" size="small" />
+            ) : (
               <AntDesign name={isEditing ? "save" : "edit"} size={20} color="black" />
-            </TouchableOpacity>
-
-
-          </View>
-
-
-
-          <Text
-            style={{
-              fontSize: 12,
-              fontWeight: "500",
-              color: "grey",
-              marginTop: 18,
-              color: "black",
-              paddingRight: 240,
-              fontWeight: "bold"
-            }}
-          >
-            Change Password
-          </Text>
-
-          <View
-            style={{
-              borderColor: "grey",
-              height: 45,
-              width: 350,
-              margin: 12,
-              borderWidth: 0,
-              backgroundColor: 'white',
-              borderRadius: 8,
-              paddingHorizontal: 12,
-              paddingVertical: 12,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-
-
-            <FontAwesome5 name="key" size={18} color= "blue" />  
-
-          <TouchableOpacity>
-          <AntDesign name="edit" size={20} color="black" />
+            )}
           </TouchableOpacity>
-
-          
           </View>
-
-
-          <View style = {{ flex: 1}} >
-
- 
-
-            {SECTIONS.map(({ header, items }) => (
-
-              <View style={styles.section} key={header}>
-                <Text style={styles.sectionHeader}>{header}</Text>
-                {items.map(({ label, icon, type, value, color }, index) => {
-                  return (
-                    <TouchableOpacity
-                      key={label}
-                      onPress={() => {
-                        // handle onPress
-                        }}>
-                      <View style={styles.row}>
-                        <View style={[styles.rowIcon, { backgroundColor: color }]}>
-                          <FeatherIcon color="white" name={icon} size={15} />
-                        </View>
-
-                        <Text style={styles.rowLabel}>{label}</Text>
-
-                        <View style={styles.rowSpacer} />
-
-                        {type === 'boolean' && <Switch value={value} />}
-
-                        {type === 'link' && (
-                          <FeatherIcon
-                            color="#0c0c0c"
-                            name="chevron-right"
-                            size={22}
-                          />
-                        )}
-
-                      </View>
-                      
-                    </TouchableOpacity>
-
-                  );
-                })}
-              </View>
-            ))}
-
-
         </View>
 
-  
+        {/* Change Password */}
+        {passwordChangeUI}
+
+        {/* Other Sections */}
+        <View style={{ flex: 1 }}>
+          {SECTIONS.map(({ header, items }) => (
+            <View style={styles.section} key={header}>
+              <Text style={styles.sectionHeader}>{header}</Text>
+              {items.map(({ label, icon, type, value, color }, index) => (
+                <TouchableOpacity key={label} onPress={() => { /* handle onPress */ }}>
+                  <View style={styles.row}>
+                    <View style={[styles.rowIcon, { backgroundColor: color }]}>
+                      <FeatherIcon color="white" name={icon} size={15} />
+                    </View>
+                    <Text style={styles.rowLabel}>{label}</Text>
+                    <View style={styles.rowSpacer} />
+                    {type === 'boolean' && <Switch value={value} />}
+                    {type === 'link' && <FeatherIcon color="#0c0c0c" name="chevron-right" size={22} />}
+                  </View>
+                </TouchableOpacity>
+              ))}
+            </View>
+          ))}
         </View>
 
-
-        <View style = {{flex: 1, paddingBottom: 100, paddingHorizontal: 50,}}>
-
-
+        {/* Logout Button */}
+        <View style={{ flex: 1, paddingBottom: 100, paddingHorizontal: 50 }}>
           <TouchableOpacity
             onPress={handleLogout}
             style={{
-              flexDirection: "row" ,
+              flexDirection: "row",
               backgroundColor: '#062CD4',
               marginTop: 15,
               height: 50,
-              borderRadius: 8 ,
+              borderRadius: 8,
               alignItems: "center",
               justifyContent: "center",
-              }} >
-
+            }}>
             <Text
               style={{
                 fontSize: 19,
                 color: 'white',
                 fontWeight: "500",
-              }} >
-
+              }}>
               Log Out
-
             </Text>
-
           </TouchableOpacity>
           <Modal
-          animationType="fade"
-          transparent={true}
-          visible={showLogoutModal}
-          onRequestClose={() => setShowLogoutModal(false)}
-          >
+            animationType="fade"
+            transparent={true}
+            visible={showLogoutModal}
+            onRequestClose={() => setShowLogoutModal(false)}>
             <View style={styles.modalContainer}>
               <View style={styles.modalContent}>
                 <Text style={styles.modalText}>Are you sure you want to log out?</Text>
                 <View style={styles.modalButtons}>
                   <TouchableOpacity
                     style={[styles.modalButton, styles.cancelButton]}
-                    onPress={cancelLogout}
-                  >
+                    onPress={cancelLogout}>
                     <Text style={styles.modalButtonText}>Cancel</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={[styles.modalButton, styles.confirmButton]}
-                    onPress={confirmLogout}
-                  >
+                    onPress={confirmLogout}>
                     <Text style={styles.modalButtonText}>Confirm</Text>
                   </TouchableOpacity>
                 </View>
               </View>
             </View>
           </Modal>
-
-
         </View>
-
-        
-
-
-        
-
       </ScrollView>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  // PROFILE CONTAINER
-
   container: {
     paddingVertical: 25,
     backgroundColor: 'white'
-
   },
   profile: {
     padding: 30,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-
   },
   profileAvatar: {
     width: 150,
@@ -444,25 +421,53 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: "#062CD4",
   },
-
-  // CHANGE INFO
-
   changeInfo: {
     flex: 1,
     alignItems: "center"
-
-
   },
-
-  // SECTION
-
+  infoHeader: {
+    fontSize: 12,
+    fontWeight: "500",
+    color: "grey",
+    marginTop: 15,
+    color: "black",
+    paddingRight: 215,
+    fontWeight: "bold"
+  },
+  inputWrapper: {
+    borderColor: "grey",
+    height: 45,
+    width: 350,
+    margin: 2,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 12,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  input: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+    fontSize: 13,
+    color: 'grey',
+    fontWeight: 'normal'
+  },
+  inputText: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+    fontSize: 13,
+    color: 'grey',
+    fontWeight: 'normal'
+  },
+  iconStyle: {
+    paddingRight: 12
+  },
   section: {
     paddingHorizontal: 24,
-
   },
-
   sectionHeader: {
-
     paddingVertical: 12,
     fontSize: 12,
     fontWeight: '600',
@@ -470,9 +475,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 5, 
   },
-
   row: {
-
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -482,9 +485,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     paddingLeft: 12,
     paddingRight: 12,
-    
   },
-
   rowIcon: {
     width: 50,
     height: 32,
@@ -507,9 +508,7 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     flexBasis: 0,
   },
-  
   // for Logout modal
-
   modalContainer: {
     flex: 1,
     justifyContent: "center",
@@ -567,13 +566,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     marginVertical: 10,
-    // justifyContent: 'center', // Center the content horizontally
   },
   iconText: {
-    // marginLeft: 10,
     color: 'grey'
   },
-
 });
 
-export default profile;
+export default Profile;

@@ -34,6 +34,7 @@ const AddPostScreen = ({ route }) => {
   }, [route.params]);
 
   const [image, setImage] = useState(null);
+  const [fileName, setFilename] = useState(null)
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
   const [post, setPost] = useState(null);
@@ -86,10 +87,13 @@ const AddPostScreen = ({ route }) => {
       await ImagePicker.getMediaLibraryPermissionsAsync();
       const video = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+        allowsEditing: true,
       });
 
       if (!video.canceled) {
         console.log('Selected video:', video.assets[0]);
+        setImage(video.assets[0].uri)
+        setFilename(video.assets[0].fileName)
         // Handle the selected video
       } else {
         console.log("User Cancelled the upload");
@@ -110,6 +114,9 @@ const AddPostScreen = ({ route }) => {
       if (!audio.canceled) {
         console.log('Selected audio:', audio.assets[0]);
         // Handle the selected audio
+        setImage(audio.assets[0].uri);
+        // Set the filename here
+        setFilename(audio.assets[0].name);
       } else {
         console.log("User Cancelled the upload");
       }
@@ -131,6 +138,8 @@ const AddPostScreen = ({ route }) => {
         if (allowedTypes.includes(fileExtension)) {
           console.log('Selected document:', document);
           // Handle the selected document
+          setFilename(fileName);
+          setImage(document.assets[0].uri)
         } else {
           console.log("Selected file format is not allowed");
         }
@@ -168,6 +177,18 @@ const AddPostScreen = ({ route }) => {
           </ActionButton.Item>
         </ActionButton>
       );
+    } else if (fileType === 'image') {
+      return (
+        <ActionButton buttonColor="#3498db" useNativeDriver={true}>
+          <ActionButton.Item buttonColor="#9b59b6" title="Take Photo" onPress={takePhotoFromCamera}>
+            <Icon name="md-camera-outline" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor="#3498db" title="Select Photo" onPress={choosePhotoFromLibrary}>
+            <Icon name="md-images-outline" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+        </ActionButton>
+      );
+
     } else {
       // Default action button when no file type is selected
       return (
@@ -184,16 +205,18 @@ const AddPostScreen = ({ route }) => {
   };
 
   const submitPost = async () => {
-    const imageUrl = await uploadImage();
-    console.log('Image Url: ', imageUrl);
+    const fileUrl = await uploadFile(image, fileType);
+    console.log('File Url: ', fileUrl);
     console.log('Post: ', post);
 
     // const db = getFirestore();
     addDoc(collection(database, 'posts'), {
       userId: user.uid,
       title: post,
-      postImg: imageUrl,
+      postUrl: fileUrl,
       postTime: Timestamp.fromDate(new Date()),
+      transcriptionType: fileType,
+      
     })
       .then(() => {
         console.log('Post Added!');
@@ -210,8 +233,9 @@ const AddPostScreen = ({ route }) => {
       return null;
     }
     const uploadUri = image;
+    console.log('Upload URI:', uploadUri); // Add this line to check uploadUri
     let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
-
+    console.log('Filename:', filename);
     // Add timestamp to File Name
     const extension = filename.split('.').pop();
     const name = filename.split('.').slice(0, -1).join('.');
@@ -220,8 +244,10 @@ const AddPostScreen = ({ route }) => {
     setUploading(true);
     setTransferred(0);
 
+    const response = await fetch(uploadUri);
+    const blob = await response.blob();
     const storageRef = ref(storage, `photos/${filename}`);
-    const task = uploadBytesResumable(storageRef, uploadUri);
+    const task = uploadBytesResumable(storageRef, blob);
 
     // Set transferred state
     task.on('state_changed', (taskSnapshot) => {
@@ -248,11 +274,82 @@ const AddPostScreen = ({ route }) => {
       return null;
     }
   };
+  const uploadFile = async (fileUri, fileType) => {
+    if (fileUri == null) {
+      return null;
+    }
+  
+    const uploadUri = fileUri;
+    console.log('Upload URI:', uploadUri); // Add this line to check uploadUri
+    let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
+    console.log('Filename:', filename);
+    // Add timestamp to File Name
+    const extension = filename.split('.').pop();
+    const name = filename.split('.').slice(0, -1).join('.');
+    filename = name + Date.now() + '.' + extension;
+  
+    setUploading(true);
+    setTransferred(0);
+  
+    const response = await fetch(uploadUri);
+    const blob = await response.blob();
+  
+    let storageRef;
+    switch (fileType) {
+      case 'image':
+        storageRef = ref(storage, `photos/${filename}`);
+        break;
+      case 'audio':
+        storageRef = ref(storage, `audios/${filename}`);
+        break;
+      case 'video':
+        storageRef = ref(storage, `videos/${filename}`);
+        break;
+      case 'document':
+        storageRef = ref(storage, `documents/${filename}`);
+        break;
+      default:
+        console.log('Unsupported file type');
+        return null;
+    }
+  
+    const task = uploadBytesResumable(storageRef, blob);
+  
+    // Set transferred state
+    task.on('state_changed', (taskSnapshot) => {
+      console.log(
+        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
+      );
+  
+      setTransferred(
+        Math.round((taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100),
+      );
+    });
+  
+    try {
+      await task;
+  
+      const url = await getDownloadURL(storageRef);
+  
+      setUploading(false);
+      setImage(null);
+  
+      return url;
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  };
+  
 
   return (
     <View style={styles.container}>
       <View style={styles.inputWrapper}>
-        {image != null ? <Image source={{ uri: image }} style={styles.addImage} resizeMode='contain' /> : null}
+      {fileType === 'image' && image != null ? (
+        <Image source={{ uri: image }} style={styles.addImage} resizeMode='contain' />
+      ) : (
+        <Text style={styles.fileName}>{image != null ? fileName : null}</Text>
+      )}
 
         <TextInput
           style={styles.inputField}
@@ -327,5 +424,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     height: 22,
     color: 'white',
+  },
+  fileName: {
+    fontSize: 18,
+    marginBottom: 10,
+    textAlign: 'center',
   },
 });
