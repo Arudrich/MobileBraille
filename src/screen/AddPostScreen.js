@@ -9,7 +9,10 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 // import ImagePicker from 'react-native-image-crop-picker';
@@ -22,7 +25,49 @@ import { database, storage } from '../../FirebaseConfig';
 import { AuthContext } from '../../navigation/AuthProvider';
 import * as DocumentPicker from 'expo-document-picker';
 
+
+// Add your transcribeFile function here
+const transcribeFile = async (file, fileType, fileName) => {
+
+  console.log(file);  
+
+  const formData = new FormData();
+  const apiEndpoint = `http://54.79.240.156:8000/transcribe/${fileType}`;
+
+  formData.append('file', {
+    uri: file,
+    type: fileType === 'image' ? 'image/jpeg' : (fileType === 'video' ? 'video/mp4' : 'audio/mp3'),
+    name: fileType === 'image' ? 'image.jpg' : (fileType === 'video' ? 'video.mp4' : 'audio.mp3'),
+    // name: fileName,
+  });
+
+  try {
+    const response = await fetch(apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      body: formData,
+    });
+
+    // Assuming that the server returns JSON, you can parse the response
+    const responseData = await response.json();
+
+    // console.log(`Response for ${fileType}:`, responseData);
+    console.log("Transcription: ", responseData.Transcription);
+    console.log("Braille: ", responseData.Braille)
+
+    
+    return responseData;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 const AddPostScreen = ({ route }) => {
+  const navigation = useNavigation();
+
   const { user, logout } = useContext(AuthContext);
 
   const [fileType, setFileType] = useState(null);
@@ -36,6 +81,7 @@ const AddPostScreen = ({ route }) => {
   const [image, setImage] = useState(null);
   const [fileName, setFilename] = useState(null)
   const [uploading, setUploading] = useState(false);
+  const [transcribing, setTranscribing] = useState(false);
   const [transferred, setTransferred] = useState(0);
   const [post, setPost] = useState(null);
 
@@ -209,6 +255,11 @@ const AddPostScreen = ({ route }) => {
     console.log('File Url: ', fileUrl);
     console.log('Post: ', post);
 
+    // transcribeFile function goes here
+    setTranscribing(true);
+    const transcriptionData = await transcribeFile(image, fileType, fileName);
+    setTranscribing(false);
+
     // const db = getFirestore();
     addDoc(collection(database, 'posts'), {
       userId: user.uid,
@@ -216,13 +267,24 @@ const AddPostScreen = ({ route }) => {
       postUrl: fileUrl,
       postTime: Timestamp.fromDate(new Date()),
       transcriptionType: fileType,
-      
+      Transcription: transcriptionData ? transcriptionData.Transcription : '',
+      Braille: transcriptionData ? transcriptionData.Braille : '',
     })
-      .then(() => {
-        console.log('Post Added!');
-        Alert.alert('Post published!', 'Your post has been published Successfully!');
-        setPost(null);
-      })
+    .then(() => {
+      console.log('Post Added!');
+      Alert.alert('Post published!', 'Your post has been published Successfully!', [
+        {
+          text: 'OK',
+          onPress: () => navigation.navigate('SubmittedPost', {
+            title: post,
+            imageUrl: fileUrl,
+            transcription: transcriptionData ? transcriptionData.Transcription : '',
+            braille: transcriptionData ? transcriptionData.Braille : '',
+          }),
+        },
+      ]);
+      setPost(null);
+    })
       .catch((error) => {
         console.log('Something went wrong with added post to firestore.', error);
       });
@@ -287,6 +349,7 @@ const AddPostScreen = ({ route }) => {
     const extension = filename.split('.').pop();
     const name = filename.split('.').slice(0, -1).join('.');
     filename = name + Date.now() + '.' + extension;
+    setFilename(filename);
   
     setUploading(true);
     setTransferred(0);
@@ -318,7 +381,7 @@ const AddPostScreen = ({ route }) => {
     // Set transferred state
     task.on('state_changed', (taskSnapshot) => {
       console.log(
-        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
+        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}  bytes`,
       );
   
       setTransferred(
@@ -344,6 +407,7 @@ const AddPostScreen = ({ route }) => {
 
   return (
     <View style={styles.container}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.inputWrapper}>
       {fileType === 'image' && image != null ? (
         <Image source={{ uri: image }} style={styles.addImage} resizeMode='contain' />
@@ -353,23 +417,25 @@ const AddPostScreen = ({ route }) => {
 
         <TextInput
           style={styles.inputField}
-          placeholder="What's on your mind?"
+          placeholder="Input Transcription title here"
           multiline
           numberOfLines={4}
           value={post}
           onChangeText={(content) => setPost(content)}
         />
-        {uploading ? (
+        
+        {uploading || transcribing ? (
           <View style={styles.statusWrapper}>
-            <Text>{transferred} % Completed!</Text>
+            <Text>{transcribing ? "Transcribing file..." : `${transferred} % Completed!`}</Text>
             <ActivityIndicator size="large" color="#0000ff" />
           </View>
         ) : (
           <TouchableOpacity style={styles.submitBtn} onPress={submitPost}>
-            <Text style={styles.submitBtnText}>Post</Text>
+            <Text style={styles.submitBtnText}>Transcribe</Text>
           </TouchableOpacity>
         )}
       </View>
+      </TouchableWithoutFeedback>
       {renderActionButtons()}
     </View>
   );

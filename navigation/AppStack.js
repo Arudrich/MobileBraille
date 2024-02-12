@@ -19,6 +19,7 @@ import about from '../src/screen/about';
 import profile from '../src/screen/profile';
 import faq from '../src/screen/faq';
 import AddPostScreen from '../src/screen/AddPostScreen';
+import SubmittedPostScreen from '../src/screen/SubmittedPostScreen';
 
 const Stack = createNativeStackNavigator();
 const BotTab = createBottomTabNavigator();
@@ -94,6 +95,18 @@ const MainStack = ({ navigation }) => (
     <Stack.Screen
       name="AddPost"
       component={AddPostScreen}
+      options={{
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: '#fff',
+          shadowColor: '#fff',
+          elevation: 0,
+        },
+      }}
+    />
+    <Stack.Screen
+      name="SubmittedPost"
+      component={SubmittedPostScreen}
       options={{
         headerShown: true,
         headerStyle: {
