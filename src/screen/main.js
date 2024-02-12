@@ -312,7 +312,7 @@ box: {
 
 inner: {
   flex: 1,
-  backgroundColor: '#062CD4',
+  backgroundColor: "#2e50e2",
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: 8,
@@ -324,7 +324,7 @@ inner: {
 
 faq: {
   flex: 1,
-  backgroundColor: "#002D62",
+  backgroundColor: "#2e50e2" ,
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: 8,
