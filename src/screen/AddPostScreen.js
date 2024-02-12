@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 // import ImagePicker from 'react-native-image-crop-picker';
@@ -65,6 +66,8 @@ const transcribeFile = async (file, fileType, fileName) => {
 };
 
 const AddPostScreen = ({ route }) => {
+  const navigation = useNavigation();
+
   const { user, logout } = useContext(AuthContext);
 
   const [fileType, setFileType] = useState(null);
@@ -267,11 +270,21 @@ const AddPostScreen = ({ route }) => {
       Transcription: transcriptionData ? transcriptionData.Transcription : '',
       Braille: transcriptionData ? transcriptionData.Braille : '',
     })
-      .then(() => {
-        console.log('Post Added!');
-        Alert.alert('Post published!', 'Your post has been published Successfully!');
-        setPost(null);
-      })
+    .then(() => {
+      console.log('Post Added!');
+      Alert.alert('Post published!', 'Your post has been published Successfully!', [
+        {
+          text: 'OK',
+          onPress: () => navigation.navigate('SubmittedPost', {
+            title: post,
+            imageUrl: fileUrl,
+            transcription: transcriptionData ? transcriptionData.Transcription : '',
+            braille: transcriptionData ? transcriptionData.Braille : '',
+          }),
+        },
+      ]);
+      setPost(null);
+    })
       .catch((error) => {
         console.log('Something went wrong with added post to firestore.', error);
       });
@@ -368,7 +381,7 @@ const AddPostScreen = ({ route }) => {
     // Set transferred state
     task.on('state_changed', (taskSnapshot) => {
       console.log(
-        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes} bytes`,
+        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}  bytes`,
       );
   
       setTransferred(
