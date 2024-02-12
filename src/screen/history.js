@@ -15,7 +15,7 @@ const history = () => {
                         style={{
                             height:170,
                             elevation:2,
-                            backgroundColor: "#EBF0F5",
+                            backgroundColor: "white",
                             marginLeft:20,
                             marginTop:20,
                             borderRadius: 8 ,
@@ -30,7 +30,8 @@ const history = () => {
                         <View style={{
                             flexDirection:"row",
                             paddingTop:10,
-                            paddingHorizontal:10
+                            paddingHorizontal:10,
+
                         }}>
                             <Text style={{
                                 fontWeight:"bold"

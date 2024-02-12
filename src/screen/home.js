@@ -314,22 +314,22 @@ const Home = ({ navigation }) => {
 
 
                 <View style = {[styles.card, styles.cardElevated]}>
-                  <Image style={{ height: 100, width: 100, borderRadius: 8}} source={require('../assets/maineIcons/picture.png')} />
+                  <Image style={{ height: 100, width: 100, borderRadius: 8, tintColor: 'white'}} source={require('../assets/maineIcons/picture.png')} />
                   <Text style = {styles.name}>Image to Braille</Text>
                 </View>
 
                 <View style = {[styles.card, styles.cardElevated]}>
-                  <Image style={{ height: 100, width: 100, borderRadius: 8}} source={require('../assets/maineIcons/text.png')} />
+                  <Image style={{ height: 100, width: 100, borderRadius: 8, tintColor: 'white'}} source={require('../assets/maineIcons/text.png')} />
                   <Text style = {styles.name}>Text to Braille</Text>
                 </View>
 
                 <View style = {[styles.card, styles.cardElevated]}>
-                  <Image style={{ height: 100, width: 100, borderRadius: 8}} source={require('../assets/maineIcons/file.png')} />
+                  <Image style={{ height: 100, width: 100, borderRadius: 8, tintColor: 'white'}} source={require('../assets/maineIcons/file.png')} />
                   <Text style = {styles.name}>Audio to Braille</Text>
                 </View>
 
                 <View style = {[styles.card, styles.cardElevated]}>
-                  <Image style={{ height: 100, width: 100, borderRadius: 8}} source={require('../assets/maineIcons/video.png')} />
+                  <Image style={{ height: 100, width: 100, borderRadius: 8, tintColor: 'white'}} source={require('../assets/maineIcons/video.png')} />
                   <Text style = {styles.name}>Video to Braille</Text>
                 </View>
 
@@ -363,9 +363,10 @@ const styles = StyleSheet.create({
  name: {
     fontSize: 11,
     fontWeight: 'bold',
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
     alignItems: 'center',
     justifyContent: 'center',
+    color: 'white'
   
   },
 
@@ -373,15 +374,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    width: 110,
-    height: 120,
+    width: 120,
+    height: 130,
     borderRadius: 8, 
     margin: 25
     
 
   },
   cardElevated: {
-    backgroundColor: "#EBF0F5", // bg color of card hehe
+    backgroundColor:  "#2e50e2", // bg color of card hehe
     elevation: 4,
     shadowOffset: {
     width: 10,

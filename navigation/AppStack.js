@@ -53,7 +53,16 @@ const HomeStack = ({ navigation }) => (
 
 const HomeDrawerStack = () => (
   <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
-    <Drawer.Screen name="Home" component={home} />
+    
+    <Drawer.Screen name="Profile" component={profile} options={{headerShown: true}} />
+
+    <Drawer.Screen name="Home" component={home}  />
+
+    <Drawer.Screen name="F.A.Q" component={faq} options={{headerShown: true}} />
+
+    <Drawer.Screen name="About" component={about} options={{headerShown: true }} />
+
+    
 
 
 

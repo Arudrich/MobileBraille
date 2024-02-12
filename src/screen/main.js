@@ -173,7 +173,7 @@ const Main = ({navigation}) => {
   
               <TouchableOpacity style = {styles.box}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 35, width: 35 , backgroundColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
+                <Image style={{ height: 35, width: 35 , tintColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
                   <Text style = {styles.text}>TEXT TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
@@ -181,7 +181,7 @@ const Main = ({navigation}) => {
 
               <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('audio')}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 35, width: 35 ,  }} source={require('../assets/maineIcons/audio.png')} />
+                <Image style={{ height: 35, width: 35 ,tintColor: 'white'   }} source={require('../assets/maineIcons/audio.png')} />
                   <Text style = {styles.text}>AUDIO TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
@@ -189,7 +189,7 @@ const Main = ({navigation}) => {
 
               <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('image')}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 35, width: 35 , }} source={require('../assets/maineIcons/picture.png')} />
+                <Image style={{ height: 35, width: 35 , tintColor: 'white' }} source={require('../assets/maineIcons/picture.png')} />
                   <Text style = {styles.text}>IMAGE TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
@@ -197,7 +197,7 @@ const Main = ({navigation}) => {
 
               <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('video')}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 35, width: 35 ,  }} source={require('../assets/maineIcons/video.png')} />
+                <Image style={{ height: 35, width: 35 , tintColor: 'white'   }} source={require('../assets/maineIcons/video.png')} />
                   <Text style = {styles.text}>VIDEO TO BRAILLE</Text>
 
                 </View>
@@ -206,14 +206,14 @@ const Main = ({navigation}) => {
 
               <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('document')}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 35, width: 35 ,  }} source={require('../assets/maineIcons/file.png')} />
+                <Image style={{ height: 35, width: 35 , tintColor: 'white'   }} source={require('../assets/maineIcons/file.png')} />
                   <Text style = {styles.text}>DOCUMENT TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
 
               <TouchableOpacity style = {styles.box} onPress={() => navigation.navigate('Faq')}>
                 <View style = {styles.faq}>
-                <Image style={{ height: 35, width: 35 ,  }} source={require('../assets/maineIcons/faq.png')} />
+                <Image style={{ height: 35, width: 35 , tintColor: 'white'  }} source={require('../assets/maineIcons/faq.png')} />
                   <Text style = {{color: "white", fontWeight: 'bold', paddingTop: 15,}}>F.A.Q</Text>
                 </View>
               </TouchableOpacity>
