@@ -85,11 +85,11 @@ const about = () => {
                         }}>
                             <Text style={{
                                 fontWeight:"bold",
-                                fontSize: 12,
+                                fontSize: 11,
                         
                             
                                 
-                            }}>Multiple Transcription</Text>          
+                            }}>Multimodel Transcription</Text>          
                         </View>
                     </View>
 

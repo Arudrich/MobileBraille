@@ -163,7 +163,7 @@ const Home = ({ navigation }) => {
                                 : 'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc',
                             }}
 
-                            style={{height:100 ,width:100, borderRadius: 50, borderWidth: 1, borderColor: 'white'}}
+                            style={{height:100 ,width:100, borderRadius: 50, borderWidth: 3, borderColor: 'white'}}
                             resizeMode='contain' 
 
                         />  
