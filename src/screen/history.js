@@ -25,7 +25,7 @@ const history = () => {
                     >
                         <Image
                             source={require('../assets/maineIcons/audio.png')}
-                            style = {{ width: 100, height: 100, alignSelf: 'center', }}
+                            style = {{ width: 50, height: 50, alignSelf: 'center', }}
                         />
                         <View style={{
                             flexDirection:"row",

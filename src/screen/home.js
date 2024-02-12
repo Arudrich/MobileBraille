@@ -181,8 +181,6 @@ const Home = ({ navigation }) => {
                    paddingVertical:8,
                    paddingHorizontal:20,
                    marginHorizontal:20,
-                   borderWidth: .2,
-                   borderColor: "black",
                    borderRadius: 8,
                    marginTop:25,
                    flexDirection:"row",
