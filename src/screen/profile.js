@@ -79,6 +79,8 @@ const Profile = ({ navigation }) => {
     getUser();
   }, []);
 
+  console.log(userData)
+
   useEffect(() => {
     if (userData) {
       setName(userData.fullname || "Name");
@@ -148,7 +150,7 @@ const Profile = ({ navigation }) => {
       quality: 1,
     });
 
-    if (!result.cancelled) {
+    if (!result.canceled) {
       setImage(result.assets[0].uri);
       setModalVisible(false);
       updateUserImg();
@@ -188,9 +190,20 @@ const Profile = ({ navigation }) => {
       //   Math.round((taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100),
       // );
     });
+
+    // Await the completion of the upload task
+    try {
+      await task;
+      console.log("Upload successful");
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      setUploading(false); // Reset uploading state
+      return null;
+    }
     
     try { 
       const url = await getDownloadURL(storageRef);
+      console.log(url)
       // Update user data with image URL
       return url;
      } catch (e){
