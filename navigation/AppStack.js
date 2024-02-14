@@ -14,7 +14,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Screens for bot nav import
 import home from '../src/screen/home';
-import main from '../src/screen/main';
+import Main from '../src/screen/main';
 import about from '../src/screen/about';
 import profile from '../src/screen/profile';
 import faq from '../src/screen/faq';
@@ -86,7 +86,7 @@ const HomeDrawerStack = ({}) => (
 
     <Drawer.Screen name="Home" component={home} options={{drawerIcon:homedrawerIcon}}  />
 
-    <Drawer.Screen name="Main" component={main} options={{drawerIcon:maindrawerIcon}}  />
+    <Drawer.Screen name="Main" component={Main} options={{drawerIcon:maindrawerIcon}}  />
     
     <Drawer.Screen name="Profile" component={profile} options={{headerShown: true, drawerIcon:profiledrawerIcon}} />
 
@@ -152,7 +152,7 @@ const MainStack = ({ navigation }) => (
           elevation: 0,
         },
       }}
-    />mainedit
+    />
   </Stack.Navigator>
 );
 
