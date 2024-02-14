@@ -203,7 +203,7 @@ const Profile = ({ navigation }) => {
     
     try { 
       const url = await getDownloadURL(storageRef);
-      console.log(url)
+      // console.log(url)
       // Update user data with image URL
       return url;
      } catch (e){
