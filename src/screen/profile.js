@@ -240,6 +240,7 @@ const Profile = ({ navigation }) => {
   }
 
   return (
+    
     <SafeAreaView style={{ backgroundColor: "#EBF0F5", flex: 1 }}>
       <ScrollView style={styles.container}>
         <Text style={{ fontSize: 20, fontWeight: "bold", alignSelf: "center" }}>EDIT PROFILE</Text>

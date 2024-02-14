@@ -88,9 +88,9 @@ const HomeDrawerStack = ({}) => (
 
     <Drawer.Screen name="About" component={about} options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
 
-    <Drawer.Screen name="Settings" component={about} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
+    <Drawer.Screen name="Settings" component={profile} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
 
-    <Drawer.Screen name="Logout" component={about} options={{headerShown: true, drawerIcon:logoutdrawerIcon}}  />
+    <Drawer.Screen name="Logout" component={profile} options={{headerShown: true, drawerIcon:logoutdrawerIcon}}  />
 
     
 
@@ -99,7 +99,7 @@ const HomeDrawerStack = ({}) => (
     {/* Add other screens you want in the drawer navigator */}
 
   </Drawer.Navigator>
-  
+
 );
 
 const MainStack = ({ navigation }) => (
@@ -146,7 +146,7 @@ const MainStack = ({ navigation }) => (
           elevation: 0,
         },
       }}
-    />
+    />mainedit
   </Stack.Navigator>
 );
 
@@ -165,7 +165,7 @@ const AppStack = () => {
         component={HomeStack}
         options={{
           tabBarIcon: ({ color }) => (
-            <Ionicons name="home-outline" size={25} color={color} />
+            <AntDesign name="home" size={30} color={color}/>
           ),
         }}
       />
@@ -174,7 +174,7 @@ const AppStack = () => {
         component={MainStack}
         options={{
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="transcribe" size={25} color={color} />
+            <MaterialCommunityIcons name="transcribe" size={30} color={color} />
           ),
         }}
       />
@@ -183,7 +183,7 @@ const AppStack = () => {
         component={about}
         options={{
           tabBarIcon: ({ color }) => (
-            <Ionicons name="people-circle-sharp" size={25} color={color} />
+            <Ionicons name="people-outline" size={30} color={color} />
           ),
         }}
       />
