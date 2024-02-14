@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+import { Video } from 'expo-av';
 import { useNavigation } from '@react-navigation/native';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -32,7 +33,7 @@ const transcribeFile = async (file, fileType, fileName) => {
   console.log(file);  
 
   const formData = new FormData();
-  const apiEndpoint = `http://54.79.240.156:8000/transcribe/${fileType}`;
+  const apiEndpoint = `http://34.142.200.21:8000/transcribe/${fileType}`;
 
   formData.append('file', {
     uri: file,
@@ -139,7 +140,9 @@ const AddPostScreen = ({ route }) => {
       if (!video.canceled) {
         console.log('Selected video:', video.assets[0]);
         setImage(video.assets[0].uri)
-        setFilename(video.assets[0].fileName)
+        const videoUri = video.assets[0].uri;
+        const fileName = videoUri.substring(videoUri.lastIndexOf('/') + 1);
+        setFilename(fileName);
         // Handle the selected video
       } else {
         console.log("User Cancelled the upload");
@@ -251,43 +254,57 @@ const AddPostScreen = ({ route }) => {
   };
 
   const submitPost = async () => {
-    const fileUrl = await uploadFile(image, fileType);
-    console.log('File Url: ', fileUrl);
-    console.log('Post: ', post);
-
-    // transcribeFile function goes here
-    setTranscribing(true);
-    const transcriptionData = await transcribeFile(image, fileType, fileName);
-    setTranscribing(false);
-
-    // const db = getFirestore();
-    addDoc(collection(database, 'posts'), {
-      userId: user.uid,
-      title: post,
-      postUrl: fileUrl,
-      postTime: Timestamp.fromDate(new Date()),
-      transcriptionType: fileType,
-      Transcription: transcriptionData ? transcriptionData.Transcription : '',
-      Braille: transcriptionData ? transcriptionData.Braille : '',
-    })
-    .then(() => {
-      console.log('Post Added!');
-      Alert.alert('Post published!', 'Your post has been published Successfully!', [
+    try {
+      if (!image || !post || !fileType) {
+        Alert.alert('Missing Information', 'Please select a file, enter a title, and try again.');
+        return;
+      }
+  
+      const fileUrl = await uploadFile(image, fileType);
+  
+      if (!fileUrl) {
+        Alert.alert('Upload Failed', 'Something went wrong while uploading the file. Please try again.');
+        return;
+      }
+  
+      setTranscribing(true);
+      const transcriptionData = await transcribeFile(fileUrl, fileType, fileName);
+      setTranscribing(false);
+  
+      if (!transcriptionData) {
+        Alert.alert('Transcription Failed', 'Something went wrong while transcribing the file. Please try again.');
+        return;
+      }
+  
+      await addDoc(collection(database, 'posts'), {
+        userId: user.uid,
+        title: post,
+        postUrl: fileUrl,
+        postTime: Timestamp.fromDate(new Date()),
+        transcriptionType: fileType,
+        Transcription: transcriptionData.Transcription || '',
+        Braille: transcriptionData.Braille || '',
+      });
+  
+      Alert.alert('Post published!', 'Your post has been published successfully!', [
         {
           text: 'OK',
-          onPress: () => navigation.navigate('SubmittedPost', {
-            title: post,
-            imageUrl: fileUrl,
-            transcription: transcriptionData ? transcriptionData.Transcription : '',
-            braille: transcriptionData ? transcriptionData.Braille : '',
-          }),
+          onPress: () =>
+            navigation.navigate('SubmittedPost', {
+              title: post,
+              imageUrl: fileUrl,
+              transcription: transcriptionData.Transcription || '',
+              braille: transcriptionData.Braille || '',
+              transcriptionType: fileType,
+            }),
         },
       ]);
-      setPost(null);
-    })
-      .catch((error) => {
-        console.log('Something went wrong with added post to firestore.', error);
-      });
+  
+      setPost('');
+    } catch (error) {
+      console.error('Error submitting post:', error);
+      Alert.alert('Submission Error', 'An error occurred while submitting your post. Please try again later.');
+    }
   };
 
   const uploadImage = async () => {
@@ -409,6 +426,14 @@ const AddPostScreen = ({ route }) => {
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.inputWrapper}>
+      {fileType === 'video' && image != null ? (
+            <Video
+              source={{ uri: image }}
+              style={styles.video}
+              useNativeControls
+              resizeMode="contain"
+            />
+          ) : null}
       {fileType === 'image' && image != null ? (
         <Image source={{ uri: image }} style={styles.addImage} resizeMode='contain' />
       ) : (
@@ -495,5 +520,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
     textAlign: 'center',
+  },
+  video: {
+    width: '100%',
+    height: 250,
+    marginBottom: 15,
   },
 });
