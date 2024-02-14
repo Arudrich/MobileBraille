@@ -197,7 +197,7 @@ const Home = ({ navigation }) => {
                    <Image
                     source={require('../iconPNG/search.png')}
                     
-                    style={{ height:20, width:20, left: 50}}
+                    style={{ height:20, width:20, left: 50, tintColor: '#062CD4'}}
                    />
                </View>
 
