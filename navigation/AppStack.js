@@ -21,9 +21,30 @@ import faq from '../src/screen/faq';
 import AddPostScreen from '../src/screen/AddPostScreen';
 import SubmittedPostScreen from '../src/screen/SubmittedPostScreen';
 
+
+// icons for drawer hihi
+
+import { AntDesign } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons'; 
+import { SimpleLineIcons } from '@expo/vector-icons';
+
+
+
+
+
 const Stack = createNativeStackNavigator();
 const BotTab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
+
+// for drawer design -Aru
+
+const homedrawerIcon = ({ focused, color, size }) => <AntDesign name="home" size={30} color="black" />
+const profiledrawerIcon = ({ focused, color, size }) => <Feather name="user" size={30} color="black" />
+const faqdrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="comment-question-outline" size={30} color="black" />
+const aboutdrawerIcon = ({ focused, color, size }) => <Ionicons name="people-outline" size={30} color="black" />
+const settingdrawerIcon = ({ focused, color, size }) => <Feather name="settings" size={24} color="black" />
+const logoutdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="logout" size={24} color="black" />
+
 
 const HomeStack = ({ navigation }) => (
   <Stack.Navigator>
@@ -52,23 +73,33 @@ const HomeStack = ({ navigation }) => (
   </Stack.Navigator>
 );
 
-const HomeDrawerStack = () => (
+// nav drawer
+
+const HomeDrawerStack = ({}) => (
+
+
   <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+
+    <Drawer.Screen name="Home" component={home} options={{drawerIcon:homedrawerIcon}}  />
     
-    <Drawer.Screen name="Profile" component={profile} options={{headerShown: true}} />
+    <Drawer.Screen name="Profile" component={profile} options={{headerShown: true, drawerIcon:profiledrawerIcon}} />
 
-    <Drawer.Screen name="Home" component={home}  />
+    <Drawer.Screen name="F.A.Q" component={faq} options={{headerShown: true, drawerIcon:faqdrawerIcon }} />
 
-    <Drawer.Screen name="F.A.Q" component={faq} options={{headerShown: true}} />
+    <Drawer.Screen name="About" component={about} options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
 
-    <Drawer.Screen name="About" component={about} options={{headerShown: true }} />
+    <Drawer.Screen name="Settings" component={about} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
+
+    <Drawer.Screen name="Logout" component={about} options={{headerShown: true, drawerIcon:logoutdrawerIcon}}  />
 
     
 
 
 
     {/* Add other screens you want in the drawer navigator */}
+
   </Drawer.Navigator>
+  
 );
 
 const MainStack = ({ navigation }) => (
@@ -157,6 +188,15 @@ const AppStack = () => {
         }}
       />
     </BotTab.Navigator>
+
+
+
+
+
+
+
+
+
   );
 }
 
