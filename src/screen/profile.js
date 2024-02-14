@@ -79,7 +79,7 @@ const Profile = ({ navigation }) => {
     getUser();
   }, []);
 
-  console.log(userData)
+  // console.log(userData)
 
   useEffect(() => {
     if (userData) {
@@ -134,7 +134,7 @@ const Profile = ({ navigation }) => {
       </View>
       <TouchableOpacity onPress={handleChangePassword}>
         {isChangingPassword ? (
-          <ActivityIndicator color="black" size="small" />
+          <ActivityIndicator color="Blue" size="small" />
         ) : (
           <AntDesign name="edit" size={20} color="black" />
         )}
