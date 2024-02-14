@@ -14,10 +14,11 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Screens for bot nav import
 import home from '../src/screen/home';
-import Main from '../src/screen/main';
+import main from '../src/screen/main';
 import about from '../src/screen/about';
 import profile from '../src/screen/profile';
 import faq from '../src/screen/faq';
+import setting from '../src/screen/setting';
 import AddPostScreen from '../src/screen/AddPostScreen';
 import SubmittedPostScreen from '../src/screen/SubmittedPostScreen';
 
@@ -39,11 +40,14 @@ const Drawer = createDrawerNavigator();
 // for drawer design -Aru
 
 const homedrawerIcon = ({ focused, color, size }) => <AntDesign name="home" size={30} color="black" />
+const maindrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="transcribe" size={30} color="black" />
 const profiledrawerIcon = ({ focused, color, size }) => <Feather name="user" size={30} color="black" />
 const faqdrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="comment-question-outline" size={30} color="black" />
 const aboutdrawerIcon = ({ focused, color, size }) => <Ionicons name="people-outline" size={30} color="black" />
 const settingdrawerIcon = ({ focused, color, size }) => <Feather name="settings" size={24} color="black" />
 const logoutdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="logout" size={24} color="black" />
+
+
 
 
 const HomeStack = ({ navigation }) => (
@@ -81,6 +85,8 @@ const HomeDrawerStack = ({}) => (
   <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
 
     <Drawer.Screen name="Home" component={home} options={{drawerIcon:homedrawerIcon}}  />
+
+    <Drawer.Screen name="Main" component={main} options={{drawerIcon:maindrawerIcon}}  />
     
     <Drawer.Screen name="Profile" component={profile} options={{headerShown: true, drawerIcon:profiledrawerIcon}} />
 
@@ -88,7 +94,7 @@ const HomeDrawerStack = ({}) => (
 
     <Drawer.Screen name="About" component={about} options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
 
-    <Drawer.Screen name="Settings" component={profile} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
+    <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
 
     <Drawer.Screen name="Logout" component={profile} options={{headerShown: true, drawerIcon:logoutdrawerIcon}}  />
 

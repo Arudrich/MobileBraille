@@ -235,12 +235,7 @@ const about = () => {
 
 
       </ScrollView>
-    
-
-
-
-
-   
+  
   )
 }
 

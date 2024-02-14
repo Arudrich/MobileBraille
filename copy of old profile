@@ -131,21 +131,191 @@ const Profile = ({ navigation }) => {
     }
   };
 
+  // UI components for password change
+  const passwordChangeUI = (
+    <View style={styles.changeInfo}>
+      <Text style={styles.infoHeader}>Change Password</Text>
+      <View style={styles.inputWrapper}>
+        <FontAwesome5 name="key" size={18} color="blue" style={styles.iconStyle} />
+        <TextInput
+          style={styles.input}
+          placeholder="Current Password"
+          secureTextEntry
+          value={currentPassword}
+          onChangeText={(text) => setCurrentPassword(text)}
+        />
+      </View>
+      <View style={styles.inputWrapper}>
+        <FontAwesome5 name="key" size={18} color="blue" style={styles.iconStyle} />
+        <TextInput
+          style={styles.input}
+          placeholder="New Password"
+          secureTextEntry
+          value={newPassword}
+          onChangeText={(text) => setNewPassword(text)}
+        />
+      </View>
+      <TouchableOpacity onPress={handleChangePassword}>
+        {isChangingPassword ? (
+          <ActivityIndicator color="black" size="small" />
+        ) : (
+          <AntDesign name="edit" size={20} color="black" />
+        )}
+      </TouchableOpacity>
+    </View>
+  );
+
+  const pickImageFromGallery = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1 , 1],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      setImage(result.assets[0].uri);
+      setModalVisible(false);
+      updateUserImg();
+    }
+  };
+
+  const takeImageFromCamera = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      setImage(result.assets[0].uri);
+      setModalVisible(false);
+      updateUserImg();
+    }
+  };
+
+  const uploadImage = async (uri) => {
+    setUploading(true);
+    let filename = uri.substring(uri.lastIndexOf('/') + 1);
+    const response = await fetch(uri);
+    const blob = await response.blob();
+    const storageRef = ref(storage, `profileImages/${filename}`);
+    
+    const task = uploadBytesResumable(storageRef, blob);
+  
+    // Set transferred state
+    task.on('state_changed', (taskSnapshot) => {
+      console.log(
+        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
+      );
+  
+      // setTransferred(
+      //   Math.round((taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100),
+      // );
+    });
+    
+    try { 
+      const url = await getDownloadURL(storageRef);
+      // Update user data with image URL
+      return url;
+     } catch (e){
+      console.log(e);
+      return null
+    }
+    
+  };
+
+  const updateUserImg = async () => {
+    const fileUrl = await uploadImage(image)
+    await updateDoc(doc(database, 'users', user.uid), { userImg: fileUrl })
+        .then(() => {
+          console.log('Profile Picture Added!');
+          Alert.alert('Picture Uploaded!', 'Your profile picture has been changed Successfully!');
+          // setPost(null);
+        })
+        .catch((error) => {
+          console.log('Something went wrong with added post to firestore.', error);
+        });
+      setUploading(false);
+  }
 
   return (
     
-    <SafeAreaView style={{ backgroundColor: "white", flex: 1 }}>
+    <SafeAreaView style={{ backgroundColor: "#EBF0F5", flex: 1 }}>
       <ScrollView style={styles.container}>
+        <Text style={{ fontSize: 20, fontWeight: "bold", alignSelf: "center" }}>EDIT PROFILE</Text>
+        
+        {/* Profile Picture */}
+        <View style={styles.profile}>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <View style={styles.profileAvatarWrapper}>
+              <Image
+                source={{
+                  uri: image ? image 
+                    : userData ? userData.userImg ||
+                      'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc'
+                    : 'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc',
+                }}
+                style={styles.profileAvatar}
+                resizeMode='contain'
+              />
+              <TouchableOpacity onPress={() => setModalVisible(true)}>
+                <View style={styles.profileAction}>
+                  <FeatherIcon color="white" name="edit-3" size={15} />
+                </View>
+              </TouchableOpacity>
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => setModalVisible(!modalVisible)}>
+                <View style={styles.modalContainerProfile}>
+                  <View style={styles.modalContentProfile}>
+                    <TouchableOpacity style={styles.iconContainer} onPress={pickImageFromGallery}>
+                      <Feather name="folder" size={24} color="grey" />
+                      <Text style={styles.iconText}>Gallery</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.iconContainer} onPress={takeImageFromCamera}>
+                      <Feather name="camera" size={24} color="grey" />
+                      <Text style={styles.iconText}>Camera</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.iconContainer} onPress={() => setModalVisible(false)}>
+                      <Feather name="x" size={24} color="grey" />
+                      <Text style={styles.iconText}>Cancel</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </Modal>
+            </View>
+          </TouchableOpacity>
+        </View>
 
-      <View style={styles.logoContainer}>
-          
-          <Image
-            source={require('../assets/MBraillelogo.png')}
-            style={styles.logo}
-            resizeMode="contain"
-          />
-      </View>
+        {/* Change Display Name */}
+        <View style={styles.changeInfo}>
+          <Text style={styles.infoHeader}>Change Display Name</Text>
+          <View style={styles.inputWrapper}>
+            <AntDesign name="user" size={19} color="blue" style={styles.iconStyle} />
+            {isEditing ? (
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => setName(text)}
+                value={name}
+              />
+            ) : (
+              <Text style={styles.inputText}>{name}</Text>
+            )}
+            <TouchableOpacity onPress={isEditing ? handleSave : handleEditPress}>
+            {isSaving ? (
+              <ActivityIndicator color="black" size="small" />
+            ) : (
+              <AntDesign name={isEditing ? "save" : "edit"} size={20} color="black" />
+            )}
+          </TouchableOpacity>
+          </View>
+        </View>
 
+        {/* Change Password */}
+        {passwordChangeUI}
 
         {/* Other Sections */}
         <View style={{ flex: 1 }}>
@@ -221,25 +391,82 @@ const Profile = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-
-
-// logo
-logoContainer: {
-  alignItems: 'center',
-  borderBottomLeftRadius: 22,
-  borderBottomRightRadius: 22,
-  
-},
-logo: {
-  width: 110, // Adjust the width as needed
-  height: 180, // Adjust the height as needed
-  tintColor: '#062CD4',
-
-},
-
-// section
+  container: {
+    paddingVertical: 25,
+    backgroundColor: 'white'
+  },
+  profile: {
+    padding: 30,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  profileAvatar: {
+    width: 150,
+    height: 150,
+    borderRadius: 50,
+    borderWidth: 2,
+    borderColor: '#062CD4'
+  },
+  profileAvatarWrapper: {
+    position: "relative",
+  },
+  profileAction: {
+    position: "absolute",
+    right: -4,
+    bottom: -10,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 28,
+    height: 28,
+    borderRadius: 8,
+    backgroundColor: "#062CD4",
+  },
+  changeInfo: {
+    flex: 1,
+    alignItems: "center"
+  },
+  infoHeader: {
+    fontSize: 12,
+    fontWeight: "500",
+    color: "grey",
+    marginTop: 15,
+    color: "black",
+    paddingRight: 215,
+    fontWeight: "bold"
+  },
+  inputWrapper: {
+    borderColor: "grey",
+    height: 45,
+    width: 350,
+    margin: 2,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 12,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  input: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+    fontSize: 13,
+    color: 'grey',
+    fontWeight: 'normal'
+  },
+  inputText: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+    fontSize: 13,
+    color: 'grey',
+    fontWeight: 'normal'
+  },
+  iconStyle: {
+    paddingRight: 12
+  },
   section: {
-    paddingHorizontal: 8,
+    paddingHorizontal: 24,
   },
   sectionHeader: {
     paddingVertical: 12,
@@ -282,9 +509,6 @@ logo: {
     flexShrink: 1,
     flexBasis: 0,
   },
-
-  // logout
-
   // for Logout modal
   modalContainer: {
     flex: 1,
@@ -347,8 +571,6 @@ logo: {
   iconText: {
     color: 'grey'
   },
-
-
 });
 
 export default Profile;

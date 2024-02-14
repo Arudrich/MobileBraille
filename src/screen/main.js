@@ -9,16 +9,6 @@ import { ScrollView } from 'react-native';
 import { Alert } from 'react-native';
 
 
-// icons
-
-
-
-
-
-
-
-
-
 //************************************************
 
 const Main = ({navigation}) => {

@@ -13,31 +13,6 @@ import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { ActivityIndicator } from 'react-native';
 import { reauthenticateWithCredential, updatePassword, EmailAuthProvider } from 'firebase/auth';
 
-const SECTIONS = [
-  {
-    header: 'Preferences',
-    icon: 'settings',
-    items: [
-      { icon: 'globe', color: '#062CD4' , label: 'Language', type: 'link' },
-    ],
-  },
-  {
-    header: 'Help',
-    icon: 'help-circle',
-    items: [
-      { icon: 'flag', color: '#062CD4', label: 'Report Bug', type: 'link' },
-      { icon: 'mail', color: '#062CD4' , label: 'Contact Us', type: 'link' },
-    ],
-  },
-  {
-    header: 'Other Actions',
-    icon: 'align-center',
-    items: [
-      { icon: 'save', color: '#062CD4', label: 'Saved', type: 'link' },
-    ],
-  },
-];
-
 const Profile = ({ navigation }) => {
   const { user, logout } = useContext(AuthContext);
   const [image, setImage] = useState(null);
@@ -240,7 +215,7 @@ const Profile = ({ navigation }) => {
   }
 
   return (
-    
+
     <SafeAreaView style={{ backgroundColor: "#EBF0F5", flex: 1 }}>
       <ScrollView style={styles.container}>
         <Text style={{ fontSize: 20, fontWeight: "bold", alignSelf: "center" }}>EDIT PROFILE</Text>
@@ -317,27 +292,8 @@ const Profile = ({ navigation }) => {
         {/* Change Password */}
         {passwordChangeUI}
 
-        {/* Other Sections */}
-        <View style={{ flex: 1 }}>
-          {SECTIONS.map(({ header, items }) => (
-            <View style={styles.section} key={header}>
-              <Text style={styles.sectionHeader}>{header}</Text>
-              {items.map(({ label, icon, type, value, color }, index) => (
-                <TouchableOpacity key={label} onPress={() => { /* handle onPress */ }}>
-                  <View style={styles.row}>
-                    <View style={[styles.rowIcon, { backgroundColor: color }]}>
-                      <FeatherIcon color="white" name={icon} size={15} />
-                    </View>
-                    <Text style={styles.rowLabel}>{label}</Text>
-                    <View style={styles.rowSpacer} />
-                    {type === 'boolean' && <Switch value={value} />}
-                    {type === 'link' && <FeatherIcon color="#0c0c0c" name="chevron-right" size={22} />}
-                  </View>
-                </TouchableOpacity>
-              ))}
-            </View>
-          ))}
-        </View>
+        
+      
 
         {/* Logout Button */}
         <View style={{ flex: 1, paddingBottom: 100, paddingHorizontal: 50 }}>
