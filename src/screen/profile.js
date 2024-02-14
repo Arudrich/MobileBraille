@@ -165,7 +165,7 @@ const Profile = ({ navigation }) => {
     if (!result.cancelled) {
       setImage(result.assets[0].uri);
       setModalVisible(false);
-      updateUserImg(result.assets[0].uri);
+      updateUserImg();
     }
   };
 
