@@ -152,8 +152,9 @@ const Profile = ({ navigation }) => {
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
+      console.log(result.assets[0].uri)
       setModalVisible(false);
-      updateUserImg();
+      // updateUserImg();
     }
   };
 
@@ -166,10 +167,18 @@ const Profile = ({ navigation }) => {
 
     if (!result.cancelled) {
       setImage(result.assets[0].uri);
+      console.log(result.assets[0].uri)
       setModalVisible(false);
-      updateUserImg();
+      // updateUserImg();
     }
   };
+
+  // Call updateUserImg() when image changes
+  useEffect(() => {
+    if (image) {
+      updateUserImg();
+    }
+  }, [image]);
 
   const uploadImage = async (uri) => {
     setUploading(true);
@@ -214,7 +223,12 @@ const Profile = ({ navigation }) => {
   };
 
   const updateUserImg = async () => {
-    const fileUrl = await uploadImage(image)
+    if (!image) {
+      console.error("Image URI is null or undefined");
+      return;
+    }
+
+    const fileUrl = await uploadImage(image);
     await updateDoc(doc(database, 'users', user.uid), { userImg: fileUrl })
         .then(() => {
           console.log('Profile Picture Added!');
