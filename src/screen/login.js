@@ -159,7 +159,8 @@ const styles = ScaledSheet.create({
     fontWeight: 'bold', 
     fontSize: '48@s', 
     color: '#003153',
-    paddingTop: '100@s'
+    paddingTop: '100@s',
+    alignSelf: "center"
   },
   buttonStyle:{
      marginTop: '15@s',
