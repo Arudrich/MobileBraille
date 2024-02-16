@@ -163,6 +163,7 @@ const styles = ScaledSheet.create({
     paddingTop: '100@s',
     alignSelf: "center"
   },
+
   buttonStyle:{
      marginTop: '15@s',
       height: '50@s', 
@@ -170,7 +171,9 @@ const styles = ScaledSheet.create({
       backgroundColor: '#003153',
       justifyContent: 'center',
       alignItems: 'center',
-  }
+  },
+
+  
 
 });
 
