@@ -14,7 +14,7 @@ import { ScaledSheet } from 'react-native-size-matters';
 
 //************************************************
 
-const Main = ({navigation}) => {
+const main = ({navigation}) => {
   const navigateToAddPost = (fileType) => {
     navigation.navigate('AddPost', { fileType });
   };
@@ -241,7 +241,7 @@ const Main = ({navigation}) => {
   )
 }
 
-export default Main
+export default main
 
 const styles = ScaledSheet.create({
 

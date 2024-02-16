@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Text, Image, StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const splash = () => {
+const Splash = () => {
   const nav = useNavigation();
 
   useEffect(() => {
@@ -73,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default splash;
+export default Splash;

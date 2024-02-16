@@ -9,7 +9,7 @@ import LottieView from 'lottie-react-native';
 import { ScrollView } from 'react-native';
 
 
-const faq = ({navigation}) => {
+const Faq = ({navigation}) => {
 
 
   return (
@@ -138,4 +138,4 @@ faqContainer: {
 })
   
 
-export default faq
+export default Faq
