@@ -9,8 +9,11 @@ import { AuthContext } from "../../navigation/AuthProvider";
 // icons
 
 // import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
+
 //mats -david
 import { TextInput as PaperTextInput, Button } from 'react-native-paper';
+
+
 
 
 
