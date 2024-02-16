@@ -68,14 +68,14 @@ const Register = () => {
 
         <ScrollView style = {{ backgroundColor: 'white', flex: 1 }}>
         <View style={{ paddingHorizontal: 20, marginTop: 15 }}>
-        <Text style={{ textAlign: 'left',fontWeight: 'bold', fontSize: 28, color: '#062CD4', paddingTop: 100 }}> Register here </Text>
+        <Text style={styles.subscreenHeading}> Register here </Text>
         <Text style={styles.leftscreenTexts}> enter your data to complete your </Text>
         <Text style={styles.leftscreenTexts}> account registration.</Text>
 
         <Text style={styles.placeholderLabel}>Full Name</Text>
         <View>
         <View style={styles.iconContainer}>
-         <AntDesign name="user" size={25} color="blue" />
+         <AntDesign name="user" size={25} color='#003153'/>
          </View>
           <PaperTextInput
             label="       Please enter full name"
@@ -86,14 +86,14 @@ const Register = () => {
             keyboardType="name-phone-pad"
             mode="outlined"
             style={styles.textInput}
-            left={<AntDesign name="user" size={25} color="blue" />}
+            left={<AntDesign name="user" />}
           />
           </View>
         
           <Text style={styles.placeholderLabel}>Email</Text>
           <View>
           <View style={styles.iconContainer}>
-        <MaterialIcons name="email" size={25} color="blue" />
+        <MaterialIcons name="email" size={25} color='#003153'/>
          </View>
           <PaperTextInput
             label="       Please enter your email"
@@ -104,14 +104,14 @@ const Register = () => {
             keyboardType="email-address"
             mode="outlined"
             style={styles.textInput}
-            left={ <MaterialIcons name="email" size={25} color="blue" />}
+            left={ <MaterialIcons name="email" />}
           />
           </View>
 
           <Text style={styles.placeholderLabel}>Password</Text>
           <View>
             <View style={styles.iconContainer}>
-              <FontAwesome5 name="key" size={25} color="blue" />
+              <FontAwesome5 name="key" size={25} color='#003153' />
             </View>
   
             <PaperTextInput
@@ -125,89 +125,43 @@ const Register = () => {
               keyboardType="ascii-capable"
               mode="outlined"
               style={styles.textInput}
-              left={<FontAwesome5 name="key" size={25} color="blue" />}
-              right={
-                <Ionicons
-                  onPress={() => {
-                    setIsVisible(!isVisible);
-                  }}
-                  name={isVisible ? 'eye-off-outline' : 'eye-outline'}
-                  size={24}
-                  color="black"
-                />
-              }
+              left={<FontAwesome5 name="key" />}
+              // right={
+              //   <Ionicons
+              //     onPress={() => {
+              //       setIsVisible(!isVisible);
+              //     }}
+              //     name={isVisible ? 'eye-off-outline' : 'eye-outline'}
+              //     size={24}
+              //     color="black"
+              //   />
+              // }
             />
           </View>
-  
 
-          <Text
-            numberOfLines={2}
-            /* no of lines lang kahit ano mangyare tayo paden */ style={{
-              fontSize: 14,
-              fontWeight: "400",
-              color: "black",
-              marginTop: 15,
-              letterSpacing: 0.6,
-              lineHeight: 25,
-              width: "95%",
-              opacity: 0.7,
-            }}
-          >
-            By continuing you agree to our <Text style = {{color: '#062CD4', fontWeight: 'bold'}}> Terms of Service  </Text> and <Text style = {{color: '#062CD4', fontWeight: 'bold' }}>Privacy Policy</Text>
-          </Text>
-          <TouchableOpacity
-            // onPress={userAccountSignup}
+         <View>
+            <Text numberOfLines={2}
+            style={styles.subtext}>By continuing, you agree to our<Text style={styles.textClickable}> Terms of Service<Text style={styles.subtext}> and<Text style={styles.textClickable}> Privacy Policy</Text>
+            </Text></Text></Text>
+         </View>
+         
+           <Button
+            mode="contained"
             onPress={() => signup(email, password, name)}
-            style={{
-              backgroundColor: '#062CD4',
-              marginTop: 30,
-              height: 70,
-              borderRadius: 8 ,
-              alignItems: "center",
-              justifyContent: "center",
-              color: 'white'
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 19,
-                color: 'white',
-                fontWeight: "500",
-              }}
+            style={styles.buttonStyle}
             >
-              Sign Up
-            </Text>
-          </TouchableOpacity>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: 20,
-              gap: 5,
-              
-            }}
-          >
-            <Text style={{ fontSize: 16, paddingBottom: 20}}>Already have an Account?</Text>
-            <TouchableOpacity
-              onPress={() => {
-                nav.navigate("login");
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 15,
-                  color: '#062CD4',
-                  fontWeight: "600",
-                  paddingBottom: 20
-                }}
-              >
-                Sign In
-              </Text>
+              Sign up
+          </Button>
 
-              
-            </TouchableOpacity>
+          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 5, gap: 5 }}>
+          <Text style={styles.screenTexts}>Already have an account? </Text>
+          <TouchableOpacity onPress={() => {
+                nav.navigate("login");
+              }}>
+          <Text style={styles.textClickable}>Sign in</Text>
+          </TouchableOpacity>
           </View>
+          
         </View>
 
         </ScrollView>
@@ -217,11 +171,26 @@ const Register = () => {
 
 // mga design to call ko nalang -david -------------------------
 const styles = ScaledSheet.create({
+  screenTexts:{
+    textAlign: 'center',
+    fontSize: '15@s', 
+    color: '#003153', 
+  },
+  subtext:{
+    fontSize: '15@s',
+    fontWeight: "400",
+    color: "black",
+    marginTop: 15,
+    letterSpacing: 0.1,
+    lineHeight: 25,
+    width: "95%",
+    opacity: 0.7,
+  },
   iconContainer: {
     position: 'absolute',
-    top: 23, // Adjust as needed
-    left: 20, // Adjust as needed
-    zIndex: 1,
+    top: '20@s', // Adjust as needed
+    left: '20@s', // Adjust as needed
+    zIndex: '1@s',
   },
   righticonContainer: {
     position: 'center',
@@ -231,66 +200,43 @@ const styles = ScaledSheet.create({
   },
   leftscreenTexts:{
     textAlign: 'left',
-    fontSize: 16, 
+    fontSize: '16@s', 
     color: 'black' 
   },
   placeholderLabel: {
-    fontSize: 16,
+    fontSize: '16@s',
     fontWeight: "500",
-    color: 'black',
-    marginTop: 10,
-    paddingLeft: 15,
+    color: '#003153',
+    marginTop: '10@s',
+    paddingLeft: '15@s',
   },
-  lineContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-  orText: {
-    marginHorizontal: 10,
-    fontSize: 16,
-  },
-  line: {
-    flex: 1,
-    height: 1,
-    backgroundColor: 'black',
-  },
-
   textInput: {
-    marginTop: 5,
+    marginTop: '5@s',
     backgroundColor: 'white',
     width: '305@s',
-    margin: 10,
+    margin: '10@s',
   },
-
   textClickable:{
-    fontSize: 15, 
-    color: '#062CD4', 
+    fontSize: '15@s', 
+    color: '#003153', 
     fontWeight: 'bold' 
   },
-  
-  screenHeading:{
-    fontWeight: 'bold', 
-    fontSize: 48, 
-    color: '#062CD4',
-    paddingTop: 100
-  },
-
   subscreenHeading:{
+    textAlign:'left',
     fontWeight: 'bold',
-    fontSize: 28, 
-    color: '#062CD4', 
-    paddingTop: 70 
+    fontSize: '28@s', 
+    color: '#003153', 
+    paddingTop: '100@s' 
   },
 
   buttonStyle:{
-     marginTop: 15,
-      height: 50, 
-      borderRadius: 100,
-      backgroundColor: '#062CD4',
-      justifyContent: 'center',
-      alignItems: 'center',
-  }
+    marginTop: '15@s',
+     height: '50@s', 
+     borderRadius: 30 ,
+     backgroundColor: '#003153',
+     justifyContent: 'center',
+     alignItems: 'center',
+ }
 
 });
 export default Register;
