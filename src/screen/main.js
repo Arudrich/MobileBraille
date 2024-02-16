@@ -137,203 +137,221 @@ const main = ({navigation}) => {
 
   return (
 
+    <View style = {styles.mainContainer}>
 
-    <View style = {{ backgroundColor: 'white', flex: 1}}>
+       {/********************** HEADER  ***************************/ }
 
-        <View style={styles.logoContainer}>
+    <View style = {styles.headerContainer}>
+    <View style={styles.logoContainer}>
           
           <Image
             source={require('../assets/MBraillelogo.png')}
             style={styles.logo}
             resizeMode="contain"
           />
-          <Text style={styles.title}>
-            <Text style={styles.blackText}>M.</Text>
-            <Text style={styles.blueText}>Braille</Text>
-          </Text>
-          <Text style={styles.subtitle}>Empowering Access. Transforming Documents.</Text>
-        </View>
-
-  
-      <View style = {{ backgroundColor: "white",  flex: 1}}>
-
-    
-     
-        <View style = {styles.container}>
-          
-     
-
-  
-              <TouchableOpacity style = {styles.box}>
-                <View style = {styles.inner}>
-                <Image style={{ height: 35 , width: 35 , tintColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
-                  <Text style = {styles.text}>TEXT TO BRAILLE</Text>
-                </View>
-              </TouchableOpacity>
-
-
-              <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('audio')}>
-                <View style = {styles.inner}>
-                <Image style={{ height: 35, width: 35 ,tintColor: 'white'   }} source={require('../assets/maineIcons/audio.png')} />
-                  <Text style = {styles.text}>AUDIO TO BRAILLE</Text>
-                </View>
-              </TouchableOpacity>
-
-
-              <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('image')}>
-                <View style = {styles.inner}>
-                <Image style={{ height: 35, width: 35 , tintColor: 'white' }} source={require('../assets/maineIcons/picture.png')} />
-                  <Text style = {styles.text}>IMAGE TO BRAILLE</Text>
-                </View>
-              </TouchableOpacity>
-
-
-              <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('video')}>
-                <View style = {styles.inner}>
-                <Image style={{ height: 35, width: 35 , tintColor: 'white'   }} source={require('../assets/maineIcons/video.png')} />
-                  <Text style = {styles.text}>VIDEO TO BRAILLE</Text>
-
-                </View>
-              </TouchableOpacity>
-
-
-              <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('document')}>
-                <View style = {styles.inner}>
-                <Image style={{ height: 35, width: 35 , tintColor: 'white'}} source={require('../assets/maineIcons/file.png')} />
-                  <Text style = {styles.text}>DOCUMENT TO BRAILLE</Text>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity style = {styles.box} onPress={() => navigation.navigate('Faq')}>
-                <View style = {styles.faq}>
-                <Image style={{ height: 35, width: 35 , tintColor: 'white'  }} source={require('../assets/maineIcons/faq.png')} />
-                  <Text style = {{color: "white", fontWeight: 'bold',}}>F.A.Q</Text>
-                </View>
-              </TouchableOpacity>
-
-
-
-
-            
-        </View>
       </View>
+    </View>
 
 
-        {/*FAQ HEHEHEHEHEHEHEHE*/ }
+         {/********************** BODY ***************************/ }
 
 
-        <View>
+    <View style = {styles.bodyContainer}>
 
+      <Text style = {styles.bodyHeader}>Choose Type of Transciption</Text>
 
-
-        </View>
-
-
-          
-        
-
-        
+      <Text style = {styles.bodySubHeader}>YOU WANT TO WORK ON</Text>
 
 
     </View>
 
-    
+         {/********************** MAIN ***************************/ }
+
+
+         <View style = {styles.container}>
+          
+     
+
+  
+          <TouchableOpacity style = {styles.box}>
+            <View style = {styles.inner}>
+            <Image style={{ height: 25 , width: 25 , tintColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
+              <Text style = {styles.text}>TEXT TO BRAILLE</Text>
+              <Text style = {styles.subText}>Text Input</Text>
+            </View>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('audio')}>
+            <View style = {styles.inner}>
+            <Image style={{ height: 25, width: 25 ,tintColor: 'white'   }} source={require('../assets/maineIcons/audio.png')} />
+              <Text style = {styles.text}>AUDIO TO BRAILLE</Text>
+              <Text style = {styles.subText}>MP3 File</Text>
+            </View>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('image')}>
+            <View style = {styles.inner}>
+            <Image style={{ height: 25, width: 25 , tintColor: 'white' }} source={require('../assets/maineIcons/picture.png')} />
+              <Text style = {styles.text}>IMAGE TO BRAILLE</Text>
+              <Text style = {styles.subText}>PNG / JPG File</Text>
+            </View>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('video')}>
+            <View style = {styles.inner}>
+            <Image style={{ height: 25, width: 25 , tintColor: 'white'   }} source={require('../assets/maineIcons/video.png')} />
+              <Text style = {styles.text}>VIDEO TO BRAILLE</Text>
+              <Text style = {styles.subText}>MP4 File</Text>
+
+            </View>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('document')}>
+            <View style = {styles.inner}>
+            <Image style={{ height: 25, width: 25 , tintColor: 'white'}} source={require('../assets/maineIcons/file.png')} />
+              <Text style = {styles.text}>DOCUMENT TO BRAILLE</Text>
+              <Text style = {styles.subText}>Docs / PDF File</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity style = {styles.box} onPress={() => navigation.navigate('Faq')}>
+            <View style = {styles.inner}>
+            <Image style={{ height: 25, width: 25 , tintColor: 'white'  }} source={require('../assets/maineIcons/faq.png')} />
+              <Text style = {styles.text}>F.A.Q</Text>
+              <Text style = {styles.subText}>Frequently Ask Question</Text>
+            </View>
+          </TouchableOpacity>
+
+        
+    </View>
+    </View>
+
   )
 }
 
-export default main
-
 const styles = ScaledSheet.create({
 
-// LOGO ***********************
+  // MAIN*****************************************
 
-logoContainer: {
-  alignItems: 'center',
-  backgroundColor: '#062CD4',
-  borderBottomLeftRadius: 22,
-  borderBottomRightRadius: 22,
+
+  mainContainer: {
+    flex: 1,
+  },
+
+  //Logo *******************************************
+
+  logo: {
+    width: 110, // Adjust the width as needed
+    height: 180, // Adjust the height as needed
+    tintColor: 'white'
   
-},
-logo: {
-  width: 110, // Adjust the width as needed
-  height: 180, // Adjust the height as needed
-  tintColor: 'white'
+  },
 
-},
-title: {
-  fontSize: 30,
-  fontWeight: 'bold',
-  marginTop: -35,
-},
-
-blackText: {
-  color: 'white',
-},
-blueText: {
-  color: 'white',
-},
-subtitle: {
-  fontSize: 15,
-  textAlign: 'center',
-  marginTop: 5,
-  color: 'white',
-  paddingBottom: 15
-},
+  // HEADER*****************************************
 
 
-// card **************************************
+  headerContainer: {
+    backgroundColor: '#003153',
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8, 
+    height: '25%',
+    padding: '12@s',
+    alignItems: 'center'
+ 
+  },
 
-container: {
-  width: '60%',
-  height: '50%',
-  padding: '20@s',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  alignSelf: 'center',
-  marginTop: 40,
+  headerText: {
+    color: 'white',
+    fontSize: '30@s',
+    fontWeight: '300', 
+    paddingTop: '70@s',
 
-},
+  },
+  subHeaderText: {
+    color: 'white',
+    fontSize: '15@s',
+    paddingBottom: '15@s',
+  },
 
-box: {
+  // BODY CONTAINER *****************************************
 
-  width: '50%',
-  height: '40%',
-  padding: 5,
-  borderRadius: 8, 
+    bodyContainer: {
+      padding: '12@s',
+   
+    },
 
+    bodyHeader: {
+      color: '#003153',
+      fontSize: '25@s',
+      fontWeight: 'bold'
+    },
 
-},
-
-inner: {
-  flex: 1,
-  backgroundColor: "#2e50e2",
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: 8,
-
-
-},
-
-// faq ******************************
-
-faq: {
-  flex: 1,
-  backgroundColor: "#2e50e2" ,
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: 8,
-
-},
-
-// *******************************
+    bodySubHeader: {
+      color: '#003153',
+      fontSize: '15@s',
+      fontWeight: 'bold'
 
 
-text: {
-  color: "white",
-  fontWeight: 'bold',
-  paddingTop: 5,
+    },
+
+    // CARD CONTAINER *******************************************
+
+    container: {
+      width: '90%',
+      height: '40%',
+      padding: '12@s',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      alignSelf: 'center',
+      marginTop: "5@s",
+    
+    },
+    
+    box: {
+    
+      width: '50%',
+      height: '40%',
+      padding: '4@s',
+      borderRadius: 8, 
+    
+    
+    },
+    
+    inner: {
+      flex: 1,
+      backgroundColor: '#003153',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 8,
+    
+    
+    },
+
+    text: {
+      color: "white",
+      fontWeight: 'bold',
+      paddingTop: '5@s',
+    
+    
+    },
+
+    subText: {
+      color: "white",
+      fontSize: '10@s',
+      fontStyle: 'italic'
+
+    }
 
 
-},
+
+
+
+
 
 })
+
+export default main
