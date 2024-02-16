@@ -13,7 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Screens for bot nav import
-import home from '../src/screen/home';
+import Home from '../src/screen/home';
 import Main from '../src/screen/main';
 import About from '../src/screen/about';
 import Profile from '../src/screen/profile';
@@ -84,7 +84,7 @@ const HomeDrawerStack = ({}) => (
 
   <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
 
-    <Drawer.Screen name="Home" component={home} options={{drawerIcon:homedrawerIcon}}  />
+    <Drawer.Screen name="Home" component={Home} options={{drawerIcon:homedrawerIcon}}  />
 
     <Drawer.Screen name="Main" component={MainStack} options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
     
