@@ -50,31 +50,31 @@ const Login = () => {
            Please enter your login information below to access your account
            </Text>
            <Text style={styles.emailLabel}>Email</Text>
-<PaperTextInput
-  label="Please enter your email"
-  value={email}
-  onChangeText={(value) => setloginCredentials({ ...loginCredentials, email: value })}
-  mode="outlined"
-  style={styles.textInput}
-/>
+          <PaperTextInput
+            label="Please enter your email"
+            value={email}
+            onChangeText={(value) => setloginCredentials({ ...loginCredentials, email: value })}
+            mode="outlined"
+            style={styles.textInput}
+          />
 
-<Text style={[styles.emailLabel, { marginTop: 10 }]}>Password</Text>
-<PaperTextInput
-  label="Enter your password"
-  value={password}
-  onChangeText={(value) => setloginCredentials({ ...loginCredentials, password: value })}
-  secureTextEntry={isVisible}
-  mode="outlined"
-  style={styles.textInput}
-  
-  // right={
-  //   <PaperTextInput.Icon
-  //     name={isVisible ? 'eye-off-outline' : 'eye-outline'}
-  //     onPress={() => setisVisible(!isVisible)}
-  //     color="black"
-  //   />
-  // }
-/>
+          <Text style={[styles.emailLabel, { marginTop: 10 }]}>Password</Text>
+          <PaperTextInput
+            label="Enter your password"
+            value={password}
+            onChangeText={(value) => setloginCredentials({ ...loginCredentials, password: value })}
+            secureTextEntry={isVisible}
+            mode="outlined"
+            style={styles.textInput}
+            
+            // right={
+            //   <PaperTextInput.Icon
+            //     name={isVisible ? 'eye-off-outline' : 'eye-outline'}
+            //     onPress={() => setisVisible(!isVisible)}
+            //     color="black"
+            //   />
+            // }
+          />
           <TouchableOpacity
            onPress={() => {
             // Handle forgot password
@@ -86,12 +86,12 @@ const Login = () => {
            </TouchableOpacity>
 
            <Button
-          mode="contained"
-          onPress={() => login(email, password)}
-          style={{ marginTop: 15, height: 50, borderRadius: 100, backgroundColor: '#062CD4', justifyContent: 'center', alignItems: 'center' }}
-        >
-          Log In
-        </Button>
+            mode="contained"
+            onPress={() => login(email, password)}
+            style={{ marginTop: 15, height: 50, borderRadius: 100, backgroundColor: '#062CD4', justifyContent: 'center', alignItems: 'center' }}
+            >
+              Log In
+          </Button>
 
         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 20, gap: 5 }}>
           <Text style={{ fontSize: 16, color: 'black' }}>Don't have an account yet?</Text>
