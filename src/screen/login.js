@@ -13,6 +13,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { ScaledSheet } from 'react-native-size-matters';
 
 
+
 const Login = () => {
   const {login} = useContext(AuthContext);
   const nav = useNavigation();
@@ -59,7 +60,7 @@ const Login = () => {
           <Text style={[styles.placeholderLabel, { marginTop: 10 }]}>Password</Text>
           <View>
           <View style={styles.iconContainer}>
-          <FontAwesome5 name="key" size={25} color="blue" />
+          <FontAwesome5 name="key" size={25} color= "blue" />
           </View>
           <PaperTextInput
             label="       Enter your password"
@@ -110,30 +111,30 @@ const Login = () => {
 const styles = ScaledSheet.create({
   iconContainer: {
     position: 'absolute',
-    top: 23, // Adjust as needed
-    left: 20, // Adjust as needed
-    zIndex: 1,
+    top: '20@s', // Adjust as needed
+    left: '20@s', // Adjust as needed
+    zIndex: '1@s',
   },
   screenTexts:{
     textAlign: 'center',
-    fontSize: 16, 
-    color: 'black' 
+    fontSize: '16@s', 
+    color: '#003153', 
   },
   placeholderLabel: {
-    fontSize: 16,
+    fontSize: '16@s',
     fontWeight: "500",
-    color: 'black',
-    marginTop: 40,
-    paddingLeft: 15,
+    color: '#003153',
+    marginTop: '40@s',
+    paddingLeft: '15@s',
   },
   lineContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 10,
+    marginVertical: '10@s',
   },
   orText: {
-    marginHorizontal: 10,
-    fontSize: 16,
+    marginHorizontal: "10@s",
+    fontSize: '16@s',
   },
   line: {
     flex: 1,
@@ -142,29 +143,29 @@ const styles = ScaledSheet.create({
   },
 
   textInput: {
-    marginTop: 5,
+    marginTop: '5@s',
     backgroundColor: 'white',
     width: '305@s',
-    margin: 10,
+    margin: '10@s',
   },
 
   textClickable:{
-    fontSize: 15, 
+    fontSize: '15@s', 
     color: '#062CD4', 
     fontWeight: 'bold' 
   },
   
   screenHeading:{
     fontWeight: 'bold', 
-    fontSize: 48, 
+    fontSize: '48@s', 
     color: '#062CD4',
-    paddingTop: 100
+    paddingTop: '100@s'
   },
   buttonStyle:{
-     marginTop: 15,
-      height: 50, 
-      borderRadius: 100,
-      backgroundColor: '#062CD4',
+     marginTop: '15@s',
+      height: '50@s', 
+      borderRadius: 8 ,
+      backgroundColor: '#003153',
       justifyContent: 'center',
       alignItems: 'center',
   }
