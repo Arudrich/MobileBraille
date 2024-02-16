@@ -1,6 +1,11 @@
 import React from 'react';
 import { TouchableOpacity, Image, Text, View } from 'react-native';
 
+const formatDate = (timestamp) => {
+  const date = new Date(timestamp.seconds * 1000); // Convert seconds to milliseconds
+  return date.toLocaleDateString(); // Format date as desired
+};
+
 const HistoryCard = ({ item }) => {
   // Function to select the icon based on transcription type
   const selectIcon = (transcriptionType) => {
@@ -37,9 +42,9 @@ const HistoryCard = ({ item }) => {
       />
       <View style={{ flexDirection: "row", paddingTop: 10, paddingHorizontal: 10 }}>
         <Text style={{ fontWeight: "bold" }}>{item.title}</Text>
-        <Text style={{ fontWeight: "bold", color: '#062CD4', paddingLeft: 20, fontStyle: 'italic' }}>{item.date}</Text>
+        <Text style={{ fontWeight: "bold", color: '#062CD4', paddingLeft: 20, fontStyle: 'italic' }}>{formatDate(item.postTime)}</Text>
       </View>
-      <Text style={{ paddingHorizontal: 10, color: '#062CD4', paddingTop: 3 }}>{item.fileName}</Text>
+      {/* <Text style={{ paddingHorizontal: 10, color: '#062CD4', paddingTop: 3 }}>{item.fileName}</Text> //comment ko muna wala pang logic to eh*/} 
     </TouchableOpacity>
   );
 };
