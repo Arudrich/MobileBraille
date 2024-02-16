@@ -13,6 +13,9 @@ import { AuthContext } from "../../navigation/AuthProvider";
 //mats -david
 import { TextInput as PaperTextInput, Button } from 'react-native-paper';
 
+// dimension fix
+import { ScaledSheet } from 'react-native-size-matters';
+
 
 
 
@@ -170,7 +173,7 @@ const styles = StyleSheet.create({
   textInput: {
     marginTop: 5,
     backgroundColor: 'white',
-    width: 340,
+    width: '305@s',
     margin: 10,
   },
 });

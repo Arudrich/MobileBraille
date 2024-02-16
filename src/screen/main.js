@@ -8,6 +8,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native';
 import { Alert } from 'react-native';
 
+// dimension fix
+import { ScaledSheet } from 'react-native-size-matters';
+
 
 //************************************************
 
@@ -163,7 +166,7 @@ const Main = ({navigation}) => {
   
               <TouchableOpacity style = {styles.box}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 35, width: 35 , tintColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
+                <Image style={{ height: 35 , width: 35 , tintColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
                   <Text style = {styles.text}>TEXT TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
@@ -196,7 +199,7 @@ const Main = ({navigation}) => {
 
               <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('document')}>
                 <View style = {styles.inner}>
-                <Image style={{ height: 35, width: 35 , tintColor: 'white'   }} source={require('../assets/maineIcons/file.png')} />
+                <Image style={{ height: 35, width: 35 , tintColor: 'white'}} source={require('../assets/maineIcons/file.png')} />
                   <Text style = {styles.text}>DOCUMENT TO BRAILLE</Text>
                 </View>
               </TouchableOpacity>
@@ -204,7 +207,7 @@ const Main = ({navigation}) => {
               <TouchableOpacity style = {styles.box} onPress={() => navigation.navigate('Faq')}>
                 <View style = {styles.faq}>
                 <Image style={{ height: 35, width: 35 , tintColor: 'white'  }} source={require('../assets/maineIcons/faq.png')} />
-                  <Text style = {{color: "white", fontWeight: 'bold', paddingTop: 15,}}>F.A.Q</Text>
+                  <Text style = {{color: "white", fontWeight: 'bold',}}>F.A.Q</Text>
                 </View>
               </TouchableOpacity>
 
@@ -240,7 +243,7 @@ const Main = ({navigation}) => {
 
 export default Main
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
 
 // LOGO ***********************
 
@@ -283,7 +286,7 @@ subtitle: {
 container: {
   width: '60%',
   height: '50%',
-  padding: 20,
+  padding: '20@s',
   flexDirection: 'row',
   flexWrap: 'wrap',
   alignSelf: 'center',
@@ -294,7 +297,7 @@ container: {
 box: {
 
   width: '50%',
-  height: '45%',
+  height: '40%',
   padding: 5,
   borderRadius: 8, 
 

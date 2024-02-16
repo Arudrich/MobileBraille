@@ -11,7 +11,10 @@ import { database } from '../../FirebaseConfig';
 import FilterModal from './FilterModal';
 import HistoryCard from '../assets/Cards/HistoryCard';
 
-//hehe
+//fix dimensions
+import { ScaledSheet } from 'react-native-size-matters';
+
+
 
 
 
@@ -115,7 +118,7 @@ const Home = ({ navigation }) => {
         }}>
            <View style={{
                backgroundColor: '#062CD4',
-               height:"28%",
+               height:"28%@s",
                borderBottomLeftRadius:20,
                borderBottomRightRadius:20,
                paddingHorizontal:20
@@ -178,9 +181,9 @@ const Home = ({ navigation }) => {
 
                <View style={{
                    backgroundColor: "#EBF0F5" ,
-                   paddingVertical:8,
-                   paddingHorizontal:20,
-                   marginHorizontal:20,
+                   paddingVertical: 10,
+                   paddingHorizontal:10,
+                   marginHorizontal: 20,
                    borderRadius: 8,
                    marginTop:25,
                    flexDirection:"row",
@@ -191,13 +194,13 @@ const Home = ({ navigation }) => {
                         placeholderTextColor= 'grey'
                         style={{
                             fontSize:12,
-                            width:260
+                            width: 230
                         }}
                    />
                    <Image
                     source={require('../iconPNG/search.png')}
                     
-                    style={{ height:20, width:20, left: 50, tintColor: '#062CD4'}}
+                    style={{ height: 20, width:20, left: 50, tintColor: '#062CD4'}}
                    />
                </View>
 
@@ -256,10 +259,10 @@ const Home = ({ navigation }) => {
 
           
                 <FlatList
-                    data={data}
+                    data= {data}
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    style={{ height: 200 }}
+                    style={{ height: 195}}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) => <HistoryCard item={item} />} // Using HistoryCard component
                 />
@@ -308,26 +311,29 @@ const Home = ({ navigation }) => {
                    </View>
                </View>
 
+
+               {/*favoriteeeeeeeee cardddddddddddddddddddddddddddddddssssss hori*/}
+
                 <ScrollView  showsHorizontalScrollIndicator={false} horizontal={true} style = { styles.container }>
 
 
                 <View style = {[styles.card, styles.cardElevated]}>
-                  <Image style={{ height: 100, width: 100, borderRadius: 8, tintColor: 'white'}} source={require('../assets/maineIcons/picture.png')} />
+                  <Image style={{ height: 50, width: 50, borderRadius: 8, tintColor: 'white'}} source={require('../assets/maineIcons/picture.png')} />
                   <Text style = {styles.name}>Image to Braille</Text>
                 </View>
 
                 <View style = {[styles.card, styles.cardElevated]}>
-                  <Image style={{ height: 100, width: 100, borderRadius: 8, tintColor: 'white'}} source={require('../assets/maineIcons/text.png')} />
+                  <Image style={{ height: 50, width: 50, borderRadius: 8, tintColor: 'white'}} source={require('../assets/maineIcons/text.png')} />
                   <Text style = {styles.name}>Text to Braille</Text>
                 </View>
 
                 <View style = {[styles.card, styles.cardElevated]}>
-                  <Image style={{ height: 100, width: 100, borderRadius: 8, tintColor: 'white'}} source={require('../assets/maineIcons/file.png')} />
+                  <Image style={{ height: 50, width: 50, borderRadius: 8, tintColor: 'white'}} source={require('../assets/maineIcons/file.png')} />
                   <Text style = {styles.name}>Audio to Braille</Text>
                 </View>
 
                 <View style = {[styles.card, styles.cardElevated]}>
-                  <Image style={{ height: 100, width: 100, borderRadius: 8, tintColor: 'white'}} source={require('../assets/maineIcons/video.png')} />
+                  <Image style={{ height: 50, width: 50, borderRadius: 8, tintColor: 'white'}} source={require('../assets/maineIcons/video.png')} />
                   <Text style = {styles.name}>Video to Braille</Text>
                 </View>
 
@@ -349,7 +355,7 @@ const Home = ({ navigation }) => {
  );
 };
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
 
 
   //favorites icon scrollview hori ************************************
@@ -359,9 +365,9 @@ const styles = StyleSheet.create({
   },
   
  name: {
-    fontSize: 11,
-    fontWeight: 'bold',
-    paddingHorizontal: 10,
+    fontSize: "11@s",
+    fontWeight: 'bold', 
+    paddingHorizontal: "10@s",
     alignItems: 'center',
     justifyContent: 'center',
     color: 'white'
@@ -372,10 +378,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    width: 120,
-    height: 130,
+    width: '70@s',
+    height: '90@s',
     borderRadius: 8, 
-    margin: 25
+    margin: "15@s"
     
 
   },
