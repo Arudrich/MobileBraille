@@ -35,7 +35,7 @@ const Login = () => {
   return (
       <ScrollView style = {{backgroundColor: 'white', flex: 1}}>
         <View style={{ paddingHorizontal: 20, marginTop: 15, }}>
-        <Text style={{ textAlign: 'center',fontWeight: 'bold', fontSize: 45, color: '#062CD4', paddingTop: 100 }}> Hey there! </Text>
+        <Text style={styles.screenHeading}> Hey there! </Text>
           {/* <Text style={{justifyContent: 'center', fontSize: 16, fontWeight: '400', color: 'black', marginTop: 5, marginLeft: 15}}> */}
           <Text style={styles.screenTexts}>
             Welcome, please enter your credentials.
@@ -45,7 +45,7 @@ const Login = () => {
 
           <View>
           <View style={styles.iconContainer}>
-          <MaterialIcons name="email" size={25} color="blue" />
+          <MaterialIcons name="email" size={25} color='#003153' />
           </View>
           <PaperTextInput //7 spaces para sakto lang -david 
             label="       Please enter your email"
@@ -53,14 +53,14 @@ const Login = () => {
             onChangeText={(value) => setloginCredentials({ ...loginCredentials, email: value })}
             mode="outlined"
             style={styles.textInput}
-            left={ <MaterialIcons name="email" size={25} color="blue" />}
+            left={ <MaterialIcons name="email"/>}
           />
           </View>
 
           <Text style={[styles.placeholderLabel, { marginTop: 10 }]}>Password</Text>
           <View>
           <View style={styles.iconContainer}>
-          <FontAwesome5 name="key" size={25} color= "blue" />
+          <FontAwesome5 name="key" size={25} color= '#003153' />
           </View>
           <PaperTextInput
             label="       Enter your password"
@@ -69,7 +69,7 @@ const Login = () => {
             secureTextEntry={isVisible}
             mode="outlined"
             style={styles.textInput}
-            left={<FontAwesome5 name="key" size={25} color="blue"/>}
+            left={<FontAwesome5 name="key"/>}
           />
           </View>
           
@@ -124,7 +124,7 @@ const styles = ScaledSheet.create({
     fontSize: '16@s',
     fontWeight: "500",
     color: '#003153',
-    marginTop: '40@s',
+    marginTop: '20@s',
     paddingLeft: '15@s',
   },
   lineContainer: {
@@ -151,20 +151,20 @@ const styles = ScaledSheet.create({
 
   textClickable:{
     fontSize: '15@s', 
-    color: '#062CD4', 
+    color: '#003153', 
     fontWeight: 'bold' 
   },
   
   screenHeading:{
     fontWeight: 'bold', 
     fontSize: '48@s', 
-    color: '#062CD4',
+    color: '#003153',
     paddingTop: '100@s'
   },
   buttonStyle:{
      marginTop: '15@s',
       height: '50@s', 
-      borderRadius: 8 ,
+      borderRadius: 30 ,
       backgroundColor: '#003153',
       justifyContent: 'center',
       alignItems: 'center',
