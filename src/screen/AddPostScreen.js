@@ -165,7 +165,7 @@ const AddPostScreen = ({ route }) => {
         // Handle the selected audio
         setImage(audio.assets[0].uri);
         // Set the filename here
-        setFilename(audio.assets[0].name);
+        // setFilename(audio.assets[0].name);
       } else {
         console.log("User Cancelled the upload");
       }
@@ -254,58 +254,93 @@ const AddPostScreen = ({ route }) => {
   };
 
   const submitPost = async () => {
-    try {
-      if (!image || !post || !fileType) {
-        Alert.alert('Missing Information', 'Please select a file, enter a title, and try again.');
-        return;
-      }
-  
-      const fileUrl = await uploadFile(image, fileType);
-  
-      if (!fileUrl) {
-        Alert.alert('Upload Failed', 'Something went wrong while uploading the file. Please try again.');
-        return;
-      }
-  
-      setTranscribing(true);
-      const transcriptionData = await transcribeFile(fileUrl, fileType, fileName);
-      setTranscribing(false);
-  
-      if (!transcriptionData) {
-        Alert.alert('Transcription Failed', 'Something went wrong while transcribing the file. Please try again.');
-        return;
-      }
-  
-      await addDoc(collection(database, 'posts'), {
-        userId: user.uid,
-        title: post,
-        postUrl: fileUrl,
-        postTime: Timestamp.fromDate(new Date()),
-        transcriptionType: fileType,
-        Transcription: transcriptionData.Transcription || '',
-        Braille: transcriptionData.Braille || '',
-      });
-  
-      Alert.alert('Post published!', 'Your post has been published successfully!', [
+    const fileUrl = await uploadFile(image, fileType);
+
+    
+    console.log('File Url: ', fileUrl);
+    console.log('Post: ', post);
+
+    // transcribeFile function goes here
+    setTranscribing(true);
+    const transcriptionData = await transcribeFile(image, fileType, fileName);
+    setTranscribing(false);
+
+    // const db = getFirestore();
+    addDoc(collection(database, 'posts'), {
+      userId: user.uid,
+      title: post,
+      postUrl: fileUrl,
+      postTime: Timestamp.fromDate(new Date()),
+      transcriptionType: fileType,
+      Transcription: transcriptionData ? transcriptionData.Transcription : '',
+      Braille: transcriptionData ? transcriptionData.Braille : '',
+    })
+    .then(() => {
+      console.log('Post Added!');
+      Alert.alert('Post published!', 'Your post has been published Successfully!', [
         {
           text: 'OK',
-          onPress: () =>
-            navigation.navigate('SubmittedPost', {
-              title: post,
-              imageUrl: fileUrl,
-              transcription: transcriptionData.Transcription || '',
-              braille: transcriptionData.Braille || '',
-              transcriptionType: fileType,
-            }),
+          onPress: () => navigation.navigate('SubmittedPost', {
+            title: post,
+            imageUrl: fileUrl,
+            transcription: transcriptionData ? transcriptionData.Transcription : '',
+            braille: transcriptionData ? transcriptionData.Braille : '',
+            transcriptionType: fileType,
+          }),
         },
       ]);
-  
-      setPost('');
-    } catch (error) {
-      console.error('Error submitting post:', error);
-      Alert.alert('Submission Error', 'An error occurred while submitting your post. Please try again later.');
-    }
+      setPost(null);
+      setImage(null);
+    })
+      .catch((error) => {
+        console.log('Something went wrong with added post to firestore.', error);
+      });
   };
+
+  // const submitPost = async () => {
+  //   try {
+  //     const fileUrl = await uploadFile(image, fileType);
+  //     if (!fileUrl) {
+  //       throw new Error("Failed to upload file. File URL is null.");
+  //     }
+  //     console.log('File Url: ', fileUrl);
+  //     console.log('Post: ', post);
+  
+  //     setTranscribing(true);
+  //     const transcriptionData = await transcribeFile(image, fileType, fileName);
+  //     setTranscribing(false);
+  
+  //     await addDoc(collection(database, 'posts'), {
+  //       userId: user.uid,
+  //       title: post,
+  //       postUrl: fileUrl,
+  //       postTime: Timestamp.fromDate(new Date()),
+  //       transcriptionType: fileType,
+  //       Transcription: transcriptionData ? transcriptionData.Transcription : '',
+  //       Braille: transcriptionData ? transcriptionData.Braille : '',
+  //     });
+  
+  //     console.log('Post Added!');
+  //     Alert.alert('Post published!', 'Your post has been published Successfully!', [
+  //       {
+  //         text: 'OK',
+  //         onPress: () => navigation.navigate('SubmittedPost', {
+  //           title: post,
+  //           imageUrl: fileUrl,
+  //           transcription: transcriptionData ? transcriptionData.Transcription : '',
+  //           braille: transcriptionData ? transcriptionData.Braille : '',
+  //           transcriptionType: fileType,
+  //         }),
+  //       },
+  //     ]);
+  //   } catch (error) {
+  //     console.log('Error submitting post:', error);
+  //     // Handle error, e.g., show an alert to the user
+  //     Alert.alert('Error', 'Failed to publish post. Please try again later.');
+  //   }
+  // };
+  
+
 
   const uploadImage = async () => {
     if (image == null) {
@@ -354,6 +389,7 @@ const AddPostScreen = ({ route }) => {
     }
   };
   const uploadFile = async (fileUri, fileType) => {
+    
     if (fileUri == null) {
       return null;
     }
@@ -413,6 +449,7 @@ const AddPostScreen = ({ route }) => {
   
       setUploading(false);
       setImage(null);
+      setPost(null);
   
       return url;
     } catch (e) {
