@@ -393,7 +393,7 @@ cardShowcase: {
   historyVertical: {
 
     paddingTop: '12@s',
-    marginBottom: '50@s'
+    marginBottom: '5@s'
 
  
   },
