@@ -25,7 +25,7 @@ import { ScaledSheet } from 'react-native-size-matters';
 const Register = () => {
   const {signup} = useContext(AuthContext);
 
-  const [isVisbile, setisVisbile] =
+  const [isVisible, setisVisible] =
     useState(true); /* gamit for toggle ng eye yung sa password */
   const nav = useNavigation(); /* for navigation */
 
@@ -92,7 +92,7 @@ const Register = () => {
         
           <Text style={styles.placeholderLabel}>Email</Text>
           <View>
-        <View style={styles.iconContainer}>
+          <View style={styles.iconContainer}>
         <MaterialIcons name="email" size={25} color="blue" />
          </View>
           <PaperTextInput
@@ -109,36 +109,35 @@ const Register = () => {
           </View>
 
           <Text style={styles.placeholderLabel}>Password</Text>
-            <View>
+          <View>
             <View style={styles.iconContainer}>
-            <FontAwesome5 name="key" size={25} color="blue" />
+              <FontAwesome5 name="key" size={25} color="blue" />
             </View>
+  
             <PaperTextInput
-            label="       Please create a password"
-            value={password}
-            onChangeText={(value) => {
-              setuserCredentials({ ...userCredentials, password: value });
-            }}
-            secureTextEntry={isVisbile}
-            maxLength={20}
-            keyboardType="ascii-capable"
-            mode="outlined"
-            style={styles.textInput}
-            left={<FontAwesome5 name="key" size={25} color="blue" />}
-            right={<View style={styles.righticonContainer}>
-            <Ionicons
-              onPress={() => {
-                setisVisbile(!isVisbile);
+              label="       Please create a password"
+              value={password}
+              onChangeText={(value) => {
+                setuserCredentials({ ...userCredentials, password: value });
               }}
-              name={isVisbile ? "eye-off-outline" : "eye-outline"}
-              size={24}
-              color="black"
+              secureTextEntry={isVisible}
+              maxLength={20}
+              keyboardType="ascii-capable"
+              mode="outlined"
+              style={styles.textInput}
+              left={<FontAwesome5 name="key" size={25} color="blue" />}
+              right={
+                <Ionicons
+                  onPress={() => {
+                    setIsVisible(!isVisible);
+                  }}
+                  name={isVisible ? 'eye-off-outline' : 'eye-outline'}
+                  size={24}
+                  color="black"
+                />
+              }
             />
-          </View>}
-            
-          />
-
-            </View>
+          </View>
   
 
           <Text
@@ -225,10 +224,10 @@ const styles = ScaledSheet.create({
     zIndex: 1,
   },
   righticonContainer: {
-    position: 'right',
+    position: 'center',
     top: 23, // Adjust as needed
-    rightpadding: 20, // Adjust as needed
-    zIndex: 1,
+    right: 20, // Adjust as needed
+
   },
   leftscreenTexts:{
     textAlign: 'left',
