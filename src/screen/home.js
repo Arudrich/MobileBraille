@@ -82,9 +82,6 @@ const home = ({ navigation }) => {
 
 
   return (
-    <SafeAreaView style = {{ backgroundColor: 'white', flex: 1}}>
-
-      {/***************** HEADER ************************/}
 
       <View style = {styles.headerContainer}>
         <TouchableOpacity
@@ -140,29 +137,127 @@ const home = ({ navigation }) => {
                    </View>
                </View>
 
+
+            {/***************** carddddddddddddddddd ************************/}
+
+
                <View style = {styles.cardShowcase}>
 
               <Card>
-                <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+                <Card.Cover source={ require('../assets/background/aboutbg.png')}/>
                </Card>
 
            </View>
 
            {/***************** favorites ************************/}
 
-           <View style = {styles.favoritesContainer}>
+           <View style = {styles.mostlyUsedContainer}>
 
-            <Text style = {styles.favoritesHeader}>Favorites</Text>
+            <Text style = {styles.mostlyUsedHeader}>Mostly Used Transcription</Text>
+
+            {/***************** SCROLLVIEW HORIZONTAL CARD FOR FAVORITES ************************/}
+
+            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} >
 
 
+                <View style = {[styles.card, styles.cardElevated]}>
+                  <Image style= {styles.cardfavorites} source={require('../assets/maineIcons/picture.png')} />
+                  <Text style = {styles.name}>Image to Braille</Text>
+                </View>
 
+                <View style = {[styles.card, styles.cardElevated]}>
+                  <Image style= {styles.cardfavorites} source={require('../assets/maineIcons/text.png')} />
+                  <Text style = {styles.name}>Text to Braille</Text>
+                </View>
 
+                <View style = {[styles.card, styles.cardElevated]}>
+                  <Image style= {styles.cardfavorites} source={require('../assets/maineIcons/file.png')} />
+                  <Text style = {styles.name}>File to Braille</Text>
+                </View>
+
+                <View style = {[styles.card, styles.cardElevated]}>
+                  <Image style={styles.cardfavorites} source={require('../assets/maineIcons/video.png')} />
+                  <Text style = {styles.name}>Video to Braille</Text>
+                </View>
+
+                <View style = {[styles.card, styles.cardElevated]}>
+                  <Image style={styles.cardfavorites} source={require('../assets/maineIcons/video.png')} />
+                  <Text style = {styles.name}>Video to Braille</Text>
+                </View>
+   
+            </ScrollView>
            </View>
 
 
+           {/********************** LATEST TRANSCRIPTION ***************************/ }
+
+
+            <View style = {styles.containerforHeader}>
+
+              <Text style = {styles.latestHeader}>Latest Transcription</Text>
+              <TouchableOpacity style = {{ backgroundColor: '#003153', borderRadius: 8,}}><Text style = {styles.latestSubheader}>See More</Text></TouchableOpacity>
+
+            </View>
+             
+
+
+            <View style = {styles.latestContainer}>
+                <View style = {styles.historyVertical}>
+
+            {/********************** cards latest transcription ***************************/ }
+
+            <ScrollView>              
+                  <TouchableOpacity style = {styles.historyColorButon}>
+
+
+                    <Image style={styles.historyPics} source={require('../assets/maineIcons/picture.png')} ></Image>   
+                    <Text style = {styles.historyTextTitle}>Audio to Braille</Text>
+
+                    <Text style = {styles.historydateTitle}> 01 / 11 / 2024 </Text>
+                    
+
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style = {styles.historyColorButon}>
+
+
+                    <Image style={styles.historyPics} source={require('../assets/maineIcons/audio.png')} ></Image>   
+                    <Text style = {styles.historyTextTitle}>Hatdog to Braille</Text>
+
+                    <Text style = {styles.historydateTitle}> 01 / 11 / 2024 </Text>
+                    
+
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style = {styles.historyColorButon}>
+
+
+                    <Image style={styles.historyPics} source={require('../assets/maineIcons/video.png')} ></Image>   
+                    <Text style = {styles.historyTextTitle}>Video to Braille</Text>
+
+                    <Text style = {styles.historydateTitle}> 01 / 11 / 2024 </Text>
+                    
+
+                  </TouchableOpacity>
+
+                  
+
+
+                  </ScrollView>       
+                </View>
+
+
+
+
+              
+
+            </View>
+            
+
+           
 
            </View>
-    </SafeAreaView>
+
   )
 }
 
@@ -175,26 +270,153 @@ const styles = ScaledSheet.create({
 
 headerContainer: {
   height:"30%",
-  padding: '12@s'
+  padding: '12@s',
 
 },
-   /***************** CARD ************************/
+   /***************** CARD SHOWCASE ************************/
 cardShowcase: {
-  padding: '12@s',
+  padding: '10@s',
   shadowColor: '#003153',
   shadowOffset: 100,
   
 },
-   /***************** FAVORITES ************************/
+   /***************** moslty Useeed Transciption ************************/
 
-  favoritesContainer: {
+  mostlyUsedContainer: {
+    paddingTop: '8@s',
     
   },
 
-  favoritesHeader: {
-    fontWeight: '500',
-    fontSize: 50
+  mostlyUsedHeader: {
+    fontWeight: 'bold',
+    fontSize: '17@s'
+
   },
+
+  /***************** FAVORITES cardddddddddddddddddd ************************/
+
+  name: {
+    fontSize: "10@s",
+    fontWeight: 'bold', 
+    paddingHorizontal: "10@s",
+    color: 'white'
+  
+  },
+
+  cardfavorites: {
+    height: '20@s',
+    width: '20@s',
+    borderRadius: 8,
+    tintColor: 'white'
+
+  },
+
+  card: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '50@s',
+    height: '70@s',
+    borderRadius: 8, 
+    margin: "8@s",
+    gap: '3@s',
+    
+
+  },
+
+  cardElevated: {
+    backgroundColor:  '#003153', // bg color of card hehe
+    elevation: 5,
+    shadowOffset: {
+    width: '10@s',
+    height: '10@s',
+
+    },
+
+    shadowColor: 'black',
+    shadowOpacity: 10 ,
+    shadowRadius: 50,
+
+  },
+
+  /***************** LATEST TRANSCRIPTION cardddddddddddddddddd ************************/
+
+  containerforHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: '12@s',
+    
+
+  },
+
+  latestContainer: {
+
+    paddingTop: '8@s',
+    
+  },
+
+  latestHeader: {
+    fontWeight: 'bold',
+    fontSize: '17@s',
+    top: '4@s',
+  
+  },
+
+  latestSubheader:{
+    color: 'white',
+    fontSize: '15@s',
+    padding: '5@s',
+
+    
+
+
+  },
+  
+
+  /****************** History card vertical **********************/
+
+  historyVertical: {
+
+    paddingTop: '12@s',
+    marginBottom: '50@s'
+
+ 
+  },
+
+  historyColorButon: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    backgroundColor: "#EBF0F5",
+    borderRadius: 8,
+    padding: '10@s',
+    margin: '5@s',
+    
+  },
+
+  historyTextTitle: {
+    fontSize: '12@s',
+    fontWeight: 'bold',
+    paddingLeft: '30@s',
+    paddingTop: '5@s',
+    
+  
+  },
+
+  historydateTitle: {
+    fontSize: '12@s',
+    fontStyle: 'italic',
+    paddingTop: '4@s',
+    marginLeft: 'auto'
+
+  },
+
+  historyPics: {
+    height: '30@s',
+    width: '30@s',
+    tintColor: '#003153', 
+
+  }
+
 
 
 })
