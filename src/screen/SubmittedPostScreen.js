@@ -16,6 +16,8 @@ const SubmittedPostScreen = ({ route }) => {
         {transcriptionType === 'audio' && <Audio source={{ uri: imageUrl }} />}
         <Text>Transcription: {transcription}</Text>
         <Text>Braille: {braille}</Text>
+
+        {/* BUTTONS FOR DOWNLOAD NG BRF AND DOC */}
       </View>
     </ScrollView>
   );
