@@ -13,6 +13,9 @@ import { AuthContext } from "../../navigation/AuthProvider";
 //mats -david
 import { TextInput as PaperTextInput, Button } from 'react-native-paper';
 
+// dimension fix
+import { ScaledSheet } from 'react-native-size-matters';
+
 
 
 
@@ -157,7 +160,7 @@ const Login = () => {
   );
 };
 
-//label design -david
+// label design -david -------------------------
 const styles = StyleSheet.create({
   emailLabel: {
     fontSize: 16,
@@ -170,7 +173,7 @@ const styles = StyleSheet.create({
   textInput: {
     marginTop: 5,
     backgroundColor: 'white',
-    width: 340,
+    width: '305@s',
     margin: 10,
   },
 });
