@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Image, Text, View } from 'react-native';
+import { ScaledSheet } from 'react-native-size-matters';
 
 const formatDate = (timestamp) => {
   const date = new Date(timestamp.seconds * 1000); // Convert seconds to milliseconds
@@ -24,29 +25,72 @@ const HistoryCard = ({ item }) => {
   const icon = selectIcon(item.transcriptionType);
 
   return (
-    <TouchableOpacity 
-      style={{
-        height: 170,
-        elevation: 2,
-        backgroundColor: "#EBF0F5",
-        marginLeft: 20,
-        marginTop: 20,
-        borderRadius: 8,
-        marginBottom: 10,
-        width: 190,
-      }}
-    >
-      <Image
-        source={icon}
-        style={{ width: 100, height: 100, alignSelf: 'center' }}
-      />
-      <View style={{ flexDirection: "row", paddingTop: 10, paddingHorizontal: 10 }}>
-        <Text style={{ fontWeight: "bold" }}>{item.title}</Text>
-        <Text style={{ fontWeight: "bold", color: '#062CD4', paddingLeft: 20, fontStyle: 'italic' }}>{formatDate(item.postTime)}</Text>
-      </View>
-      {/* <Text style={{ paddingHorizontal: 10, color: '#062CD4', paddingTop: 3 }}>{item.fileName}</Text> //comment ko muna wala pang logic to eh*/} 
+    // <TouchableOpacity 
+    //   style={{
+    //     height: 170,
+    //     elevation: 2,
+    //     backgroundColor: "#EBF0F5",
+    //     marginLeft: 20,
+    //     marginTop: 20,
+    //     borderRadius: 8,
+    //     marginBottom: 10,
+    //     width: 190,
+    //   }}
+    // >
+    //   <Image
+    //     source={icon}
+    //     style={{ width: 100, height: 100, alignSelf: 'center' }}
+    //   />
+    //   <View style={{ flexDirection: "row", paddingTop: 10, paddingHorizontal: 10 }}>
+    //     <Text style={{ fontWeight: "bold" }}>{item.title}</Text>
+    //     <Text style={{ fontWeight: "bold", color: '#062CD4', paddingLeft: 20, fontStyle: 'italic' }}>{formatDate(item.postTime)}</Text>
+    //   </View>
+    //   {/* <Text style={{ paddingHorizontal: 10, color: '#062CD4', paddingTop: 3 }}>{item.fileName}</Text> //comment ko muna wala pang logic to eh*/} 
+    // </TouchableOpacity>
+    <TouchableOpacity style = {styles.historyColorButon}>
+
+      <Image style={styles.historyPics} source={icon} ></Image>   
+      <Text style = {styles.historyTextTitle}>{item.title}</Text>
+
+      <Text style = {styles.historydateTitle}>{formatDate(item.postTime)}</Text>
+      
+
     </TouchableOpacity>
   );
 };
+
+const styles = ScaledSheet.create({
+  historyColorButon: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    backgroundColor: "#EBF0F5",
+    borderRadius: 8,
+    padding: '10@s',
+    margin: '5@s',
+    
+  },
+
+  historyTextTitle: {
+    fontSize: '12@s',
+    fontWeight: 'bold',
+    paddingLeft: '30@s',
+    paddingTop: '5@s',
+    
+  
+  },
+  historyPics: {
+    height: '30@s',
+    width: '30@s',
+    tintColor: '#003153', 
+
+  },
+  historydateTitle: {
+    fontSize: '12@s',
+    fontStyle: 'italic',
+    paddingTop: '4@s',
+    marginLeft: 'auto'
+
+  },
+})
 
 export default HistoryCard;
