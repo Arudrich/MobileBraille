@@ -17,6 +17,8 @@ const HistoryCard = ({ item }) => {
         return require('../maineIcons/picture.png');
       case 'document': // Changed from 'pdf' to 'document'
         return require('../maineIcons/file.png'); // Using the file icon for documents
+      case 'video':
+        return require('../maineIcons/video.png')
       default:
         return null;
     }
