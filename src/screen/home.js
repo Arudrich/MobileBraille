@@ -222,7 +222,7 @@ const home = ({ navigation }) => {
             {/********************** cards latest transcription ***************************/ }
 
             <ScrollView>              
-                  <TouchableOpacity style = {styles.historyColorButon}>
+                  {/* <TouchableOpacity style = {styles.historyColorButon}>
 
 
                     <Image style={styles.historyPics} source={require('../assets/maineIcons/picture.png')} ></Image>   
@@ -253,8 +253,16 @@ const home = ({ navigation }) => {
                     <Text style = {styles.historydateTitle}> 01 / 11 / 2024 </Text>
                     
 
-                  </TouchableOpacity>
-
+                  </TouchableOpacity> */}
+                  
+                  <FlatList
+                    data={historyData.slice(0, 5)} // Slice the array to display only the first 5 items
+                    vertical
+                    showsVerticalScrollIndicator={false}
+                    // style={{ height: 195}}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }) => <HistoryCard item={item} />} // Using HistoryCard component
+                  />
                   
 
 
