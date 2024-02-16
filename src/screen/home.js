@@ -221,7 +221,7 @@ const home = ({ navigation }) => {
 
             {/********************** cards latest transcription ***************************/ }
 
-            <ScrollView>              
+            {/* <ScrollView>               */}
                   {/* <TouchableOpacity style = {styles.historyColorButon}>
 
 
@@ -257,16 +257,15 @@ const home = ({ navigation }) => {
                   
                   <FlatList
                     data={historyData.slice(0, 5)} // Slice the array to display only the first 5 items
-                    vertical
                     showsVerticalScrollIndicator={false}
-                    // style={{ height: 195}}
+                    // style={{ flex: 1}}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) => <HistoryCard item={item} />} // Using HistoryCard component
                   />
                   
 
 
-                  </ScrollView>       
+                  {/* </ScrollView>        */}
                 </View>
 
 
@@ -294,7 +293,9 @@ const styles = ScaledSheet.create({
 headerContainer: {
   height:"30%",
   padding: '12@s',
-
+  flex: 1,
+  // borderColor: 'red',
+  // borderWidth: 1,
 },
    /***************** CARD SHOWCASE ************************/
 cardShowcase: {
@@ -373,9 +374,10 @@ cardShowcase: {
   },
 
   latestContainer: {
-
+    flex: 1,
     paddingTop: '8@s',
-    
+    // borderColor: 'red',
+    // borderWidth: 1,
   },
 
   latestHeader: {
@@ -399,9 +401,11 @@ cardShowcase: {
   /****************** History card vertical **********************/
 
   historyVertical: {
-
+    overflow: 'scroll',
     paddingTop: '12@s',
-    marginBottom: '5@s'
+    marginBottom: '5@s',
+    // borderColor: 'red',
+    // borderWidth: 1,
 
  
   },
