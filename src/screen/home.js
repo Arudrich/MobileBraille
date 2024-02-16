@@ -7,11 +7,12 @@ import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AuthContext } from '../../navigation/AuthProvider';
 import { getDoc, doc } from 'firebase/firestore';
+import { getDocs, collection, query, orderBy } from 'firebase/firestore';
 import { database } from '../../FirebaseConfig';
 import FilterModal from './FilterModal';
 import HistoryCard from '../assets/Cards/HistoryCard';
 
-//fix dimensions
+//fix dimensions in app
 import { ScaledSheet } from 'react-native-size-matters';
 
 
@@ -25,6 +26,18 @@ const Home = ({ navigation }) => {
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
+  const [historyData, setHistoryData] = useState([]);
+
+  const fetchHistoryData = async () => {
+    try {
+      const q = query(collection(database, 'posts'), orderBy('postTime', 'desc'));
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+      setHistoryData(data);
+    } catch (error) {
+      console.error('Error fetching history data:', error);
+    }
+  };
 
   const getUser = async () => {
     try {
@@ -42,12 +55,14 @@ const Home = ({ navigation }) => {
 
   useEffect(() => {
     getUser();
+    fetchHistoryData();
   }, []);
 
   const onRefresh = async () => {
     setRefreshing(true); // Set refreshing state to true
     try {
       await getUser(); // Refresh user data or perform any other refresh action
+      await fetchHistoryData();
     } catch (error) {
       console.error('Error refreshing data:', error);
       // Handle error
@@ -79,21 +94,21 @@ const Home = ({ navigation }) => {
       id: '1', 
       transcriptionType: 'audio',
       title: 'Audio to Braille', 
-      date: '02/22/24', 
+      postTime: '02/22/24', 
       fileName: 'Lyrics.mp4' 
     },
     { 
       id: '2', 
       transcriptionType: 'image',
       title: 'Image to Braille', 
-      date: '02/21/24', 
+      postTime: '02/21/24', 
       fileName: 'CamScanner.jpg' 
     },
     { 
       id: '3', 
       transcriptionType: 'document', // Changed from 'pdf' to 'document'
       title: 'Document to Braille', // Updated title
-      date: '02/02/24', 
+      postTime: '02/02/24', 
       fileName: 'CALCULUS1.PDF' // Keeping the filename as an example
     },
     // Add more data objects as needed
@@ -259,7 +274,7 @@ const Home = ({ navigation }) => {
 
           
                 <FlatList
-                    data= {data}
+                    data= {historyData.slice(0, 5)} // slice means na hanggang 0-5 lang sa array ng data
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     style={{ height: 195}}

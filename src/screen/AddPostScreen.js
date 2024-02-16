@@ -269,6 +269,7 @@ const AddPostScreen = ({ route }) => {
     addDoc(collection(database, 'posts'), {
       userId: user.uid,
       title: post,
+      fileName: fileName,
       postUrl: fileUrl,
       postTime: Timestamp.fromDate(new Date()),
       transcriptionType: fileType,
@@ -291,6 +292,7 @@ const AddPostScreen = ({ route }) => {
       ]);
       setPost(null);
       setImage(null);
+      setFilename(null);
     })
       .catch((error) => {
         console.log('Something went wrong with added post to firestore.', error);
