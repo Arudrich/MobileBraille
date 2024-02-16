@@ -161,7 +161,7 @@ const Login = () => {
 };
 
 // label design -david -------------------------
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   emailLabel: {
     fontSize: 16,
     fontWeight: "500",
