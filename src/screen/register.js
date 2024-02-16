@@ -21,7 +21,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 
 
-const register = () => {
+const Register = () => {
   const {signup} = useContext(AuthContext);
 
   const [isVisbile, setisVisbile] =
@@ -346,4 +346,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default Register;
