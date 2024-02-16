@@ -69,16 +69,8 @@ const Register = () => {
 
         <SafeAreaView style = {{ backgroundColor: 'white', flex: 1 }}>
         <ScrollView>
-
-
         <Text style={{ fontWeight: 'bold', fontSize: 28, color: '#062CD4', paddingTop: 71, paddingLeft: 15 }}> Register here
-      
         </Text>
-
-        
-
-       
-
         <View style={{ paddingHorizontal: 20, marginTop: 10 }}>
          
           <Text
@@ -341,9 +333,29 @@ const Register = () => {
         </ScrollView>
 
         </SafeAreaView>
-
-
   );
 };
 
+const styles = ScaledSheet.create({
+  emailLabel: {
+    fontSize: 16,
+    fontWeight: "500",
+    color: 'black',
+    marginTop: 40,
+    paddingLeft: 15,
+  },
+
+  textInput: {
+    marginTop: 5,
+    backgroundColor: 'white',
+    width: '305@s',
+    margin: 10,
+  },
+
+  textClickable:{
+    fontSize: 15, 
+    color: '#062CD4', 
+    fontWeight: 'bold' 
+  }
+});
 export default Register;

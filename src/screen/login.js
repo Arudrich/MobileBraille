@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Image, Alert, KeyboardAvoidingView, Platform, StatusBar } from "react-native";
+import {View, Text, ScrollView, TouchableOpacity, Alert} from "react-native";
 import React, { useContext, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -10,11 +10,6 @@ import { TextInput as PaperTextInput, Button } from 'react-native-paper';
 
 // dimension fix
 import { ScaledSheet } from 'react-native-size-matters';
-
-
-
-
-
 
 
 const Login = () => {
@@ -38,14 +33,13 @@ const Login = () => {
         Alert.alert(err.message);
       });
   };
-
   return (
-
       <ScrollView style = {{backgroundColor: 'white', flex: 1}}>
-      <Text style={{ textAlign: 'center',fontWeight: 'bold', fontSize: 48, color: '#062CD4', paddingTop: 100 }}> LOGIN </Text>
         <View style={{ paddingHorizontal: 20, marginTop: 15, }}>
-          <Text style={{justifyContent: 'center', fontSize: 16, fontWeight: '400', color: 'black', marginTop: 5, marginLeft: 15}}>
-           Please enter your login information below to access your account
+        <Text style={{ textAlign: 'center',fontWeight: 'bold', fontSize: 45, color: '#062CD4', paddingTop: 100 }}> Hey there! </Text>
+          {/* <Text style={{justifyContent: 'center', fontSize: 16, fontWeight: '400', color: 'black', marginTop: 5, marginLeft: 15}}> */}
+          <Text style={styles.screenTexts}>
+            Welcome, please enter your credentials.
            </Text>
            <Text style={styles.emailLabel}>Email</Text>
           <PaperTextInput
@@ -64,99 +58,47 @@ const Login = () => {
             secureTextEntry={isVisible}
             mode="outlined"
             style={styles.textInput}
-            
-            // right={
-            //   <PaperTextInput.Icon
-            //     name={isVisible ? 'eye-off-outline' : 'eye-outline'}
-            //     onPress={() => setisVisible(!isVisible)}
-            //     color="black"
-            //   />
-            // }
           />
           <TouchableOpacity
            onPress={() => {
-            // Handle forgot password
              }}
            >
-            <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black', marginTop: 15, width: '95%', paddingLeft: 12, color: '#062CD4', fontWeight: 'bold' }}>
+            <Text style={styles.textClickable}>
             Forgot Password?
-          </Text>
+          </Text> 
            </TouchableOpacity>
-
            <Button
             mode="contained"
             onPress={() => login(email, password)}
-            style={{ marginTop: 15, height: 50, borderRadius: 100, backgroundColor: '#062CD4', justifyContent: 'center', alignItems: 'center' }}
+            style={styles.buttonStyle}
             >
               Log In
           </Button>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 20, gap: 5 }}>
-          <Text style={{ fontSize: 16, color: 'black' }}>Don't have an account yet?</Text>
+          <View style={styles.lineContainer}>
+            <View style={styles.line} />
+           <Text style={styles.orText}>or</Text>
+           <View style={styles.line} />
+           </View>
+
+        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 5, gap: 5 }}>
+          <Text style={styles.screenTexts}>Don't have an account yet?</Text>
           <TouchableOpacity onPress={() => nav.navigate('register')}>
-          <Text style={{ fontSize: 15, color: '#062CD4', fontWeight: 'bold' }}>Register here</Text>
+          <Text style={styles.textClickable}>Register here</Text>
           </TouchableOpacity>
           </View>
-          {/* <TouchableOpacity
-            // onPress={loginUser}
-            onPress={() => login(email, password)} //Use this Pag Providers na gamit sa App.js
-            style={{
-              flexDirection: "row" ,
-              backgroundColor: '#062CD4',
-              marginTop: 30,
-              height: 70,
-              borderRadius: 8 ,
-              alignItems: "center",
-              justifyContent: "center",
-              }} > */}
-
-            {/* <Text
-              style={{
-                fontSize: 19,
-                color: 'white',
-                fontWeight: "500",
-              }} >
-              Log In
-            </Text>
-
-          </TouchableOpacity> */}
-          {/* <View
-            style={{
-              flexDirection: "row" ,
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: 20,
-              gap: 5,
-              paddingTop: 24,
-            }}
-          > */}
-            {/* <Text style={{ fontSize: 16, color: "black" }} >Don't have an Account?</Text>
-            <TouchableOpacity
-              onPress={() => {
-                nav.navigate("register");
-              }}
-            > */}
-              {/* <Text
-                style={{
-                  fontSize: 15,
-                  color: '#062CD4',
-                  fontWeight: "600",
-                }}
-              >
-                Sign Up
-              </Text>
-            </TouchableOpacity> */}
-      
         </View>
-        {/* </View> */}
       </ScrollView>
-      // </SafeAreaView>
-
   );
 };
 
-// label design -david -------------------------
+// mga design to call ko nalang -david -------------------------
 const styles = ScaledSheet.create({
+  screenTexts:{
+    textAlign: 'center',
+    fontSize: 16, 
+    color: 'black' 
+  },
   emailLabel: {
     fontSize: 16,
     fontWeight: "500",
@@ -165,12 +107,49 @@ const styles = ScaledSheet.create({
     paddingLeft: 15,
   },
 
+  lineContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  orText: {
+    marginHorizontal: 10,
+    fontSize: 16,
+  },
+  line: {
+    flex: 1,
+    height: 1,
+    backgroundColor: 'black',
+  },
+
   textInput: {
     marginTop: 5,
     backgroundColor: 'white',
     width: '305@s',
     margin: 10,
   },
+
+  textClickable:{
+    fontSize: 15, 
+    color: '#062CD4', 
+    fontWeight: 'bold' 
+  },
+  
+  screenHeading:{
+    fontWeight: 'bold', 
+    fontSize: 48, 
+    color: '#062CD4',
+    paddingTop: 100
+  },
+  buttonStyle:{
+     marginTop: 15,
+      height: 50, 
+      borderRadius: 100,
+      backgroundColor: '#062CD4',
+      justifyContent: 'center',
+      alignItems: 'center',
+  }
+
 });
 
 export default Login;
