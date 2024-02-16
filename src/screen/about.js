@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native'
 import { TouchableOpacity } from 'react-native'
 import { counterEvent } from 'react-native/Libraries/Performance/Systrace'
 
-const about = () => {
+const About = () => {
   return (
 
     <ScrollView showsVerticalScrollIndicator={false} >
@@ -319,4 +319,4 @@ text: {
 
 })
 
-export default about
+export default About

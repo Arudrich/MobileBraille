@@ -13,11 +13,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Screens for bot nav import
-import home from '../src/screen/home';
+import Home from '../src/screen/home';
 import Main from '../src/screen/main';
-import about from '../src/screen/about';
-import profile from '../src/screen/profile';
-import faq from '../src/screen/faq';
+import About from '../src/screen/about';
+import Profile from '../src/screen/profile';
+import Faq from '../src/screen/faq';
 import setting from '../src/screen/setting';
 import AddPostScreen from '../src/screen/AddPostScreen';
 import SubmittedPostScreen from '../src/screen/SubmittedPostScreen';
@@ -64,7 +64,7 @@ const HomeStack = ({ navigation }) => (
  
     <Stack.Screen
       name="Profile"
-      component={profile}
+      component={Profile}
       options={{
         headerShown: true,
         headerStyle: {
@@ -84,19 +84,19 @@ const HomeDrawerStack = ({}) => (
 
   <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
 
-    <Drawer.Screen name="Home" component={home} options={{drawerIcon:homedrawerIcon}}  />
+    <Drawer.Screen name="Home" component={Home} options={{drawerIcon:homedrawerIcon}}  />
 
-    <Drawer.Screen name="Main" component={Main} options={{drawerIcon:maindrawerIcon}}  />
+    <Drawer.Screen name="Main" component={MainStack} options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
     
-    <Drawer.Screen name="Profile" component={profile} options={{headerShown: true, drawerIcon:profiledrawerIcon}} />
+    <Drawer.Screen name="Profile" component={Profile} options={{headerShown: true, drawerIcon:profiledrawerIcon}} />
 
-    <Drawer.Screen name="F.A.Q" component={faq} options={{headerShown: true, drawerIcon:faqdrawerIcon }} />
+    <Drawer.Screen name="F.A.Q" component={Faq} options={{headerShown: true, drawerIcon:faqdrawerIcon }} />
 
-    <Drawer.Screen name="About" component={about} options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
+    <Drawer.Screen name="About" component={About} options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
 
     <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
 
-    <Drawer.Screen name="Logout" component={profile} options={{headerShown: true, drawerIcon:logoutdrawerIcon}}  />
+    <Drawer.Screen name="Logout" component={Profile} options={{headerShown: true, drawerIcon:logoutdrawerIcon}}  />
 
     
 
@@ -119,7 +119,7 @@ const MainStack = ({ navigation }) => (
     />
     <Stack.Screen
       name="Faq"
-      component={faq}
+      component={Faq}
       options={{
         headerShown: false,
         headerStyle: {
@@ -186,7 +186,7 @@ const AppStack = () => {
       />
       <BotTab.Screen
         name="About"
-        component={about}
+        component={About}
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons name="people-outline" size={30} color={color} />
