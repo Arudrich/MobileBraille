@@ -387,7 +387,7 @@ cardShowcase: {
 
   latestSubheader:{
     color: 'white',
-    fontSize: '15@s',
+    fontSize: '12@s',
     padding: '5@s',
 
     
