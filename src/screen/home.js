@@ -7,6 +7,7 @@ import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AuthContext } from '../../navigation/AuthProvider';
 import { getDoc, doc } from 'firebase/firestore';
+import { getDocs, collection, query, orderBy } from 'firebase/firestore';
 import { database } from '../../FirebaseConfig';
 import FilterModal from './FilterModal';
 import HistoryCard from '../assets/Cards/HistoryCard';
@@ -27,6 +28,18 @@ const home = ({ navigation }) => {
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
+  const [historyData, setHistoryData] = useState([]);
+
+  const fetchHistoryData = async () => {
+    try {
+      const q = query(collection(database, 'posts'), orderBy('postTime', 'desc'));
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+      setHistoryData(data);
+    } catch (error) {
+      console.error('Error fetching history data:', error);
+    }
+  };
 
   const getUser = async () => {
     try {
@@ -44,12 +57,14 @@ const home = ({ navigation }) => {
 
   useEffect(() => {
     getUser();
+    fetchHistoryData();
   }, []);
 
   const onRefresh = async () => {
     setRefreshing(true); // Set refreshing state to true
     try {
       await getUser(); // Refresh user data or perform any other refresh action
+      await fetchHistoryData();
     } catch (error) {
       console.error('Error refreshing data:', error);
       // Handle error
