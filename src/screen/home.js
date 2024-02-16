@@ -361,15 +361,13 @@ const styles = ScaledSheet.create({
   //favorites icon scrollview hori ************************************
 
   container: {
-   top: 15,
+   top: '15@s',
   },
   
  name: {
-    fontSize: "11@s",
+    fontSize: "10@s",
     fontWeight: 'bold', 
     paddingHorizontal: "10@s",
-    alignItems: 'center',
-    justifyContent: 'center',
     color: 'white'
   
   },
@@ -378,10 +376,11 @@ const styles = ScaledSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    width: '70@s',
-    height: '90@s',
+    width: '73@s',
+    height: '80@s',
     borderRadius: 8, 
-    margin: "15@s"
+    margin: "14@s",
+    gap: 3,
     
 
   },

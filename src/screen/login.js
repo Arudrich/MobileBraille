@@ -160,7 +160,7 @@ const Login = () => {
   );
 };
 
-//label design -david
+// label design -david -------------------------
 const styles = StyleSheet.create({
   emailLabel: {
     fontSize: 16,
