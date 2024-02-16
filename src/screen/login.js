@@ -7,7 +7,8 @@ import { AuthContext } from "../../navigation/AuthProvider";
 
 //mats -david
 import { TextInput as PaperTextInput, Button } from 'react-native-paper';
-
+import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 // dimension fix
 import { ScaledSheet } from 'react-native-size-matters';
 
@@ -19,11 +20,8 @@ const Login = () => {
     email: "",
     password: "",
   });
-  
   const [isVisible, setisVisible] = useState(true);
-
   const { email, password } = loginCredentials;
-
   const loginUser = () => {
     signInWithEmailAndPassword(authentication, email, password)
       .then((value) => {
@@ -41,24 +39,40 @@ const Login = () => {
           <Text style={styles.screenTexts}>
             Welcome, please enter your credentials.
            </Text>
-           <Text style={styles.emailLabel}>Email</Text>
-          <PaperTextInput
-            label="Please enter your email"
+
+          <Text style={styles.placeholderLabel}>Email</Text>
+
+          <View>
+          <View style={styles.iconContainer}>
+          <MaterialIcons name="email" size={25} color="blue" />
+          </View>
+          <PaperTextInput //7 spaces para sakto lang -david 
+            label="       Please enter your email"
             value={email}
             onChangeText={(value) => setloginCredentials({ ...loginCredentials, email: value })}
             mode="outlined"
             style={styles.textInput}
+            left={ <MaterialIcons name="email" size={25} color="blue" />}
           />
+          </View>
 
-          <Text style={[styles.emailLabel, { marginTop: 10 }]}>Password</Text>
+          <Text style={[styles.placeholderLabel, { marginTop: 10 }]}>Password</Text>
+          <View>
+          <View style={styles.iconContainer}>
+          <FontAwesome5 name="key" size={25} color="blue" />
+          </View>
           <PaperTextInput
-            label="Enter your password"
+            label="       Enter your password"
             value={password}
             onChangeText={(value) => setloginCredentials({ ...loginCredentials, password: value })}
             secureTextEntry={isVisible}
             mode="outlined"
             style={styles.textInput}
+            left={<FontAwesome5 name="key" size={25} color="blue"/>}
           />
+          </View>
+          
+
           <TouchableOpacity
            onPress={() => {
              }}
@@ -94,19 +108,24 @@ const Login = () => {
 
 // mga design to call ko nalang -david -------------------------
 const styles = ScaledSheet.create({
+  iconContainer: {
+    position: 'absolute',
+    top: 23, // Adjust as needed
+    left: 20, // Adjust as needed
+    zIndex: 1,
+  },
   screenTexts:{
     textAlign: 'center',
     fontSize: 16, 
     color: 'black' 
   },
-  emailLabel: {
+  placeholderLabel: {
     fontSize: 16,
     fontWeight: "500",
     color: 'black',
     marginTop: 40,
     paddingLeft: 15,
   },
-
   lineContainer: {
     flexDirection: 'row',
     alignItems: 'center',

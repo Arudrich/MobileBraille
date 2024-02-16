@@ -9,7 +9,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import uuid from 'react-native-uuid';
 import { AuthContext } from "../../navigation/AuthProvider";
-
+import { TextInput as PaperTextInput, Button} from 'react-native-paper';
 // Icons
 
 import { AntDesign } from '@expo/vector-icons';
@@ -20,7 +20,8 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 
 
-
+// dimension fix
+import { ScaledSheet } from 'react-native-size-matters';
 const Register = () => {
   const {signup} = useContext(AuthContext);
 
@@ -63,202 +64,82 @@ const Register = () => {
       });
   };
 
-
-
   return (
 
-        <SafeAreaView style = {{ backgroundColor: 'white', flex: 1 }}>
-        <ScrollView>
-        <Text style={{ fontWeight: 'bold', fontSize: 28, color: '#062CD4', paddingTop: 71, paddingLeft: 15 }}> Register here
-        </Text>
-        <View style={{ paddingHorizontal: 20, marginTop: 10 }}>
-         
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "400",
-              color: "black",
-              marginTop: 10,
-            }}
-          >
-            {" "}
+        <ScrollView style = {{ backgroundColor: 'white', flex: 1 }}>
+        <View style={{ paddingHorizontal: 20, marginTop: 15 }}>
+        <Text style={{ textAlign: 'left',fontWeight: 'bold', fontSize: 28, color: '#062CD4', paddingTop: 100 }}> Register here </Text>
+        <Text style={styles.leftscreenTexts}> enter your data to complete your </Text>
+        <Text style={styles.leftscreenTexts}> account registration.</Text>
 
-            Please enter your data to complete your
-
-          </Text>
-
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "400",
-              color: "black",
-            }}
-          >
-            {" "}
-
-            account registration process
-
-          </Text>
-
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "500",
-              color: "black",
-              marginTop: 40,
-              paddingLeft: 12
-            }}
-          >
-            Full Name
-          </Text>
-
-          <View
-            style={{
-              borderColor: "grey",
-              height: 59,
-              width: 340,
-              margin: 12,
-              borderWidth: 1,
-              borderRadius: 8,
-              paddingHorizontal: 12,
-              paddingVertical: 12,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-
-          <AntDesign name="user" size={24} color="blue" />
-
-
-          <TextInput
-            maxLength={30}
-            value= {name}
+        <Text style={styles.placeholderLabel}>Full Name</Text>
+        <View>
+        <View style={styles.iconContainer}>
+         <AntDesign name="user" size={25} color="blue" />
+         </View>
+          <PaperTextInput
+            label="       Please enter full name"
+            value={name}
             onChangeText={(value) => 
-            setuserCredentials({...userCredentials, name: value})
-
-            }
+              setuserCredentials({...userCredentials, name: value})
+              }
             keyboardType="name-phone-pad"
-            style={{
-              fontSize: 16,
-              marginTop: 1,
-              flex: 0.9,
-            }}
+            mode="outlined"
+            style={styles.textInput}
+            left={<AntDesign name="user" size={25} color="blue" />}
           />
-
           </View>
-
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "500",
-              color: "grey",
-              marginTop: 18,
-              color: "black",
-              paddingLeft: 12
-            }}
-          >
-            Email
-          </Text>
-
-
-          <View
-            style={{
-              borderColor: "grey",
-              height: 59,
-              width: 340,
-              margin: 12,
-              borderWidth: 1,
-              borderRadius: 8,
-              paddingHorizontal: 12,
-              paddingVertical: 12,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-
-          <MaterialIcons name="email" size={24} color= "blue" />
-
-          <TextInput
+        
+          <Text style={styles.placeholderLabel}>Email</Text>
+          <View>
+        <View style={styles.iconContainer}>
+        <MaterialIcons name="email" size={25} color="blue" />
+         </View>
+          <PaperTextInput
+            label="       Please enter your email"
             value={email}
             onChangeText={(value) => {
               setuserCredentials({ ...userCredentials, email: value });
             }}
             keyboardType="email-address"
-            style={{
-                fontSize: 16,
-                marginTop: 1,
-                flex: 0.9,
-            }}
+            mode="outlined"
+            style={styles.textInput}
+            left={ <MaterialIcons name="email" size={25} color="blue" />}
           />
-
           </View>
 
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "500",
-              color: "grey",
-              marginTop: 18,
-              color: "black",
-              paddingLeft: 12
+          <Text style={styles.placeholderLabel}>Password</Text>
+            <View>
+            <View style={styles.iconContainer}>
+            <FontAwesome5 name="key" size={25} color="blue" />
+            </View>
+            <PaperTextInput
+            label="       Please create a password"
+            value={password}
+            onChangeText={(value) => {
+              setuserCredentials({ ...userCredentials, password: value });
             }}
-          >
-            Password
-          </Text>
-
-          <View
-            style={{
-              borderColor: "grey",
-              height: 60,
-              width: 340,
-              margin: 12,
-              borderWidth: 1,
-              borderRadius: 8,
-              paddingHorizontal: 12,
-              paddingVertical: 12,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-
-
-            <FontAwesome5 name="key" size={24} color= "blue" />  
-
-
-
-            <TextInput
-              value={password}
-              onChangeText={(value) => {
-                setuserCredentials({ ...userCredentials, password: value });
-              }}
-              secureTextEntry={isVisbile}
-              maxLength={20}
-              keyboardType="ascii-capable"
-              style={{
-                fontSize: 16,
-                marginTop: 1,
-                flex: 0.8,
-          
-                
-            }} />
-
-
+            secureTextEntry={isVisbile}
+            maxLength={20}
+            keyboardType="ascii-capable"
+            mode="outlined"
+            style={styles.textInput}
+            left={<FontAwesome5 name="key" size={25} color="blue" />}
+            right={<View style={styles.righticonContainer}>
             <Ionicons
               onPress={() => {
                 setisVisbile(!isVisbile);
               }}
-              name={
-                isVisbile == true
-                  ? "eye-off-outline"
-                  : "eye-outline" /* JS if else chuchu */
-              }
+              name={isVisbile ? "eye-off-outline" : "eye-outline"}
               size={24}
               color="black"
             />
-          </View>
+          </View>}
+            
+          />
+
+            </View>
+  
 
           <Text
             numberOfLines={2}
@@ -332,17 +213,48 @@ const Register = () => {
 
         </ScrollView>
 
-        </SafeAreaView>
   );
 };
 
+// mga design to call ko nalang -david -------------------------
 const styles = ScaledSheet.create({
-  emailLabel: {
+  iconContainer: {
+    position: 'absolute',
+    top: 23, // Adjust as needed
+    left: 20, // Adjust as needed
+    zIndex: 1,
+  },
+  righticonContainer: {
+    position: 'right',
+    top: 23, // Adjust as needed
+    rightpadding: 20, // Adjust as needed
+    zIndex: 1,
+  },
+  leftscreenTexts:{
+    textAlign: 'left',
+    fontSize: 16, 
+    color: 'black' 
+  },
+  placeholderLabel: {
     fontSize: 16,
     fontWeight: "500",
     color: 'black',
-    marginTop: 40,
+    marginTop: 10,
     paddingLeft: 15,
+  },
+  lineContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  orText: {
+    marginHorizontal: 10,
+    fontSize: 16,
+  },
+  line: {
+    flex: 1,
+    height: 1,
+    backgroundColor: 'black',
   },
 
   textInput: {
@@ -356,6 +268,30 @@ const styles = ScaledSheet.create({
     fontSize: 15, 
     color: '#062CD4', 
     fontWeight: 'bold' 
+  },
+  
+  screenHeading:{
+    fontWeight: 'bold', 
+    fontSize: 48, 
+    color: '#062CD4',
+    paddingTop: 100
+  },
+
+  subscreenHeading:{
+    fontWeight: 'bold',
+    fontSize: 28, 
+    color: '#062CD4', 
+    paddingTop: 70 
+  },
+
+  buttonStyle:{
+     marginTop: 15,
+      height: 50, 
+      borderRadius: 100,
+      backgroundColor: '#062CD4',
+      justifyContent: 'center',
+      alignItems: 'center',
   }
+
 });
 export default Register;
