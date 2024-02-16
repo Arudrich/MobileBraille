@@ -156,6 +156,7 @@ const styles = ScaledSheet.create({
   },
   
   screenHeading:{
+    textAlign:'center',
     fontWeight: 'bold', 
     fontSize: '48@s', 
     color: '#003153',
