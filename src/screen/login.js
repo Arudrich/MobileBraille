@@ -1,14 +1,9 @@
 import {View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Image, Alert, KeyboardAvoidingView, Platform, StatusBar } from "react-native";
 import React, { useContext, useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { authentication } from "../../FirebaseConfig";
 import { AuthContext } from "../../navigation/AuthProvider";
-// icons
-
-// import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 
 //mats -david
 import { TextInput as PaperTextInput, Button } from 'react-native-paper';
@@ -45,7 +40,7 @@ const Login = () => {
   };
 
   return (
-      // <SafeAreaView style = {{ backgroundColor: 'white', flex: 1 }}>
+
       <ScrollView style = {{backgroundColor: 'white', flex: 1}}>
       <Text style={{ textAlign: 'center',fontWeight: 'bold', fontSize: 48, color: '#062CD4', paddingTop: 100 }}> LOGIN </Text>
         <View style={{ paddingHorizontal: 20, marginTop: 15, }}>
@@ -161,7 +156,7 @@ const Login = () => {
 };
 
 // label design -david -------------------------
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   emailLabel: {
     fontSize: 16,
     fontWeight: "500",
