@@ -67,9 +67,9 @@ const Register = () => {
   return (
 
         <ScrollView style = {{ backgroundColor: 'white', flex: 1 }}>
-        <View style={{ paddingHorizontal: 20, marginTop: 15 }}>
-        <Text style={styles.subscreenHeading}> Register here </Text>
-        <Text style={styles.leftscreenTexts}> enter your data to complete your </Text>
+        <View style={styles.mainContainer}>
+        <Text style={styles.subscreenHeading}> Register Here </Text>
+        <Text style={styles.leftscreenTexts}> Enter your data to complete your </Text>
         <Text style={styles.leftscreenTexts}> account registration.</Text>
 
         <Text style={styles.placeholderLabel}>Full Name</Text>
@@ -167,6 +167,14 @@ const Register = () => {
 
 // mga design to call ko nalang -david -------------------------
 const styles = ScaledSheet.create({
+
+  // Main Container ************************
+
+  mainContainer: {
+    padding: 20,
+  },
+
+
   screenTexts:{
     textAlign: 'center',
     fontSize: '15@s', 
@@ -195,8 +203,7 @@ const styles = ScaledSheet.create({
 
   },
   leftscreenTexts:{
-    textAlign: 'left',
-    fontSize: '16@s', 
+    fontSize: '15@s', 
     color: 'black' 
   },
   placeholderLabel: {
