@@ -171,6 +171,7 @@ const styles = ScaledSheet.create({
 
   search: {
     backgroundColor: "#EBF0F5",
+    height: '52@s',
     borderRadius: 8,
   },
 
