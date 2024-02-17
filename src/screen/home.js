@@ -210,7 +210,11 @@ const home = ({ navigation }) => {
             <View style = {styles.containerforHeader}>
 
               <Text style = {styles.latestHeader}>Latest Transcription</Text>
-              <TouchableOpacity style = {{ backgroundColor: '#003153', borderRadius: 8,}}><Text style = {styles.latestSubheader}>See More</Text></TouchableOpacity>
+              <TouchableOpacity 
+                onPress={() => navigation.navigate('History')}
+                style = {{ backgroundColor: '#003153', borderRadius: 8,}}>
+                <Text style = {styles.latestSubheader}>See More</Text>
+              </TouchableOpacity>
 
             </View>
              

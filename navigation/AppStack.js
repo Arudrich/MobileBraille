@@ -28,6 +28,7 @@ import SubmittedPostScreen from '../src/screen/SubmittedPostScreen';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons'; 
 import { SimpleLineIcons } from '@expo/vector-icons';
+import historyScreen from '../src/screen/historyScreen';
 
 
 
@@ -72,6 +73,14 @@ const HomeStack = ({ navigation }) => (
           shadowColor: '#fff',
           elevation: 0,
         },
+      }}
+    />
+
+    <Stack.Screen 
+      name= "History"
+      component={historyScreen}
+      options={{
+        headerShown: true,
       }}
     />
   </Stack.Navigator>
