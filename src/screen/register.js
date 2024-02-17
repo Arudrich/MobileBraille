@@ -113,7 +113,6 @@ const Register = () => {
             <View style={styles.iconContainer}>
               <FontAwesome5 name="key" size={25} color='#003153' />
             </View>
-  
             <PaperTextInput
               label="       Please create a password"
               value={password}
@@ -126,16 +125,13 @@ const Register = () => {
               mode="outlined"
               style={styles.textInput}
               left={<FontAwesome5 name="key" />}
-              // right={
-              //   <Ionicons
-              //     onPress={() => {
-              //       setIsVisible(!isVisible);
-              //     }}
-              //     name={isVisible ? 'eye-off-outline' : 'eye-outline'}
-              //     size={24}
-              //     color="black"
-              //   />
-              // }
+              right={
+                <PaperTextInput.Icon
+                  icon={isVisible ? 'eye' : 'eye-off'}
+                  onPress={() => setisVisible(!isVisible)}
+                  color="black"
+                />
+              }
             />
           </View>
 

@@ -23,6 +23,7 @@ const Login = () => {
   });
   const [isVisible, setisVisible] = useState(true);
   const { email, password } = loginCredentials;
+
   const loginUser = () => {
     signInWithEmailAndPassword(authentication, email, password)
       .then((value) => {
@@ -42,7 +43,6 @@ const Login = () => {
            </Text>
 
           <Text style={styles.placeholderLabel}>Email</Text>
-
           <View>
           <View style={styles.iconContainer}>
           <MaterialIcons name="email" size={25} color='#003153' />
@@ -57,6 +57,7 @@ const Login = () => {
           />
           </View>
 
+          
           <Text style={[styles.placeholderLabel, { marginTop: 10 }]}>Password</Text>
           <View>
           <View style={styles.iconContainer}>
@@ -70,9 +71,16 @@ const Login = () => {
             mode="outlined"
             style={styles.textInput}
             left={<FontAwesome5 name="key"/>}
+            right={
+              <PaperTextInput.Icon
+                icon={isVisible ? 'eye' : 'eye-off'}
+                onPress={() => setisVisible(!isVisible)}
+                color="black"
+              />
+            }
           />
           </View>
-          
+        
 
           <TouchableOpacity
            onPress={() => {
@@ -114,6 +122,9 @@ const styles = ScaledSheet.create({
     top: '20@s', // Adjust as needed
     left: '20@s', // Adjust as needed
     zIndex: '1@s',
+  },
+  righticonContainer: {
+    marginRight: '10@s',
   },
   screenTexts:{
     textAlign: 'center',
