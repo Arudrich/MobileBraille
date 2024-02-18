@@ -35,9 +35,8 @@ const Login = () => {
   };
   return (
       <ScrollView style = {{backgroundColor: 'white', flex: 1}}>
-        <View style={{ paddingHorizontal: 20, marginTop: 15, }}>
+        <View style={{ paddingHorizontal: 20 }}>
         <Text style={styles.screenHeading}> Hey there! </Text>
-          {/* <Text style={{justifyContent: 'center', fontSize: 16, fontWeight: '400', color: 'black', marginTop: 5, marginLeft: 15}}> */}
           <Text style={styles.screenTexts}>
             Welcome, please enter your credentials.
            </Text>
@@ -86,17 +85,18 @@ const Login = () => {
            onPress={() => {
              }}
            >
-            <Text style={styles.textClickable}>
+            <Text style={styles.textForgot}>
             Forgot Password?
           </Text> 
+
            </TouchableOpacity>
-           <Button
-            mode="contained"
-            onPress={() => login(email, password)}
-            style={styles.buttonStyle}
-            >
-              Log In
-          </Button>
+
+           <TouchableOpacity
+      onPress={() => login(email, password)}
+      style={styles.buttonContainer}
+    >
+      <Text style={styles.buttonText}>Log In</Text>
+    </TouchableOpacity>
 
           <View style={styles.lineContainer}>
             <View style={styles.line} />
@@ -128,14 +128,14 @@ const styles = ScaledSheet.create({
   },
   screenTexts:{
     textAlign: 'center',
-    fontSize: '16@s', 
+    fontSize: '14@s', 
     color: '#003153', 
   },
   placeholderLabel: {
-    fontSize: '16@s',
-    fontWeight: "500",
+    fontSize: '14@s',
+    fontWeight: '500',
     color: '#003153',
-    marginTop: '20@s',
+    marginTop: '15@s',
     paddingLeft: '15@s',
   },
   lineContainer: {
@@ -160,28 +160,41 @@ const styles = ScaledSheet.create({
     margin: '10@s',
   },
 
-  textClickable:{
-    fontSize: '15@s', 
+  textForgot:{
+    fontSize: '14@s', 
     color: '#003153', 
-    fontWeight: 'bold' 
+    fontWeight: '500', 
+    textAlign: 'right'
+  },
+
+  textClickable:{
+    fontSize: '14@s', 
+    color: '#003153', 
+    fontWeight: '500' 
   },
   
   screenHeading:{
     textAlign:'center',
     fontWeight: 'bold', 
-    fontSize: '48@s', 
+    fontSize: '40@s', 
     color: '#003153',
     paddingTop: '100@s',
     alignSelf: "center"
   },
-
-  buttonStyle:{
-     marginTop: '15@s',
-      height: '50@s', 
-      borderRadius: 30 ,
-      backgroundColor: '#003153',
-      justifyContent: 'center',
-      alignItems: 'center',
+  buttonContainer: {
+    backgroundColor: '#003153',
+    borderRadius: '30@s',
+    height: '50@s',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '15@s',
+    width: '320@s', // Set an appropriate width
+  },
+  buttonText:{
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+     
   },
 
   

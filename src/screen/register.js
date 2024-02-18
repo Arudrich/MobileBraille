@@ -141,13 +141,20 @@ const Register = () => {
             </Text></Text></Text>
          </View>
          
-           <Button
+
+         <TouchableOpacity
+         onPress={() => signup(email, password, name)}
+        style={styles.buttonContainer}
+    >
+      <Text style={styles.buttonText}>Sign up</Text>
+      </TouchableOpacity>
+           {/* <Button
             mode="contained"
             onPress={() => signup(email, password, name)}
             style={styles.buttonStyle}
             >
               Sign up
-          </Button>
+          </Button> */}
 
           <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 5, gap: 5 }}>
           <Text style={styles.screenTexts}>Already have an account? </Text>
@@ -174,14 +181,13 @@ const styles = ScaledSheet.create({
     padding: 20,
   },
 
-
   screenTexts:{
     textAlign: 'center',
-    fontSize: '15@s', 
+    fontSize: '14@s', 
     color: '#003153', 
   },
   subtext:{
-    fontSize: '15@s',
+    fontSize: '14@s',
     fontWeight: "400",
     color: "black",
     marginTop: 15,
@@ -203,14 +209,14 @@ const styles = ScaledSheet.create({
 
   },
   leftscreenTexts:{
-    fontSize: '15@s', 
+    fontSize: '14@s', 
     color: 'black' 
   },
   placeholderLabel: {
-    fontSize: '16@s',
-    fontWeight: "500",
+    fontSize: '14@s',
+    fontWeight: '500',
     color: '#003153',
-    marginTop: '10@s',
+    marginTop: '15@s',
     paddingLeft: '15@s',
   },
   textInput: {
@@ -220,9 +226,9 @@ const styles = ScaledSheet.create({
     margin: '10@s',
   },
   textClickable:{
-    fontSize: '15@s', 
+    fontSize: '14@s', 
     color: '#003153', 
-    fontWeight: 'bold' 
+    fontWeight: '500' 
   },
   subscreenHeading:{
     textAlign:'left',
@@ -232,14 +238,21 @@ const styles = ScaledSheet.create({
     paddingTop: '80@s' 
   },
 
-  buttonStyle:{
+  buttonContainer: {
+    backgroundColor: '#003153',
+    borderRadius: '30@s',
+    height: '50@s',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: '15@s',
-     height: '50@s', 
-     borderRadius: 30 ,
-     backgroundColor: '#003153',
-     justifyContent: 'center',
-     alignItems: 'center',
- }
+    width: '320@s', // Set an appropriate width
+  },
+  buttonText:{
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+     
+  },
 
 });
 export default Register;
