@@ -51,6 +51,7 @@ const Login = () => {
             value={email}
             onChangeText={(value) => setloginCredentials({ ...loginCredentials, email: value })}
             mode="outlined"
+            activeOutlineColor="#003153"
             style={styles.textInput}
             left={ <MaterialIcons name="email"/>}
           />
@@ -68,6 +69,7 @@ const Login = () => {
             onChangeText={(value) => setloginCredentials({ ...loginCredentials, password: value })}
             secureTextEntry={isVisible}
             mode="outlined"
+            activeOutlineColor="#003153"
             style={styles.textInput}
             left={<FontAwesome5 name="key"/>}
             right={

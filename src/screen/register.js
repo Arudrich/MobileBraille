@@ -85,6 +85,7 @@ const Register = () => {
               }
             keyboardType="name-phone-pad"
             mode="outlined"
+            activeOutlineColor="#003153"
             style={styles.textInput}
             left={<AntDesign name="user" />}
           />
@@ -103,6 +104,7 @@ const Register = () => {
             }}
             keyboardType="email-address"
             mode="outlined"
+            activeOutlineColor="#003153"
             style={styles.textInput}
             left={ <MaterialIcons name="email" />}
           />
@@ -123,6 +125,7 @@ const Register = () => {
               maxLength={20}
               keyboardType="ascii-capable"
               mode="outlined"
+              activeOutlineColor="#003153"
               style={styles.textInput}
               left={<FontAwesome5 name="key" />}
               right={
