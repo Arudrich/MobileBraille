@@ -86,12 +86,7 @@ const about = () => {
 
 
            <View style = {styles.quickContact}>
-
-
-           <Text style = {styles.quickContactHeader}>QUICK CONTACT</Text>
-
-      
-
+           <Text style = {styles.quickContactHeader}>Contact us</Text>
            </View>
 
 
@@ -238,7 +233,7 @@ mobileBraille: {
 // QUICK CONTACT
 
 quickContact: {
-  paddingTop: '5@s',
+  paddingTop: '0@s',
   alignContent: 'center',
   alignItems:'center',
 
@@ -282,8 +277,21 @@ MultilineText: {
 
 },
 
-
-
+//line 
+lineContainer: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  marginVertical: '10@s',
+},
+orContactUsText: {
+  marginHorizontal: "10@s",
+  fontSize: '12@s',
+},
+line: {
+  flex: 1,
+  height: 1,
+  backgroundColor: 'black',
+},
 
 
 

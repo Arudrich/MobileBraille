@@ -155,7 +155,7 @@ const Profile = ({ navigation }) => {
               {items.map(({ label, icon, type, value, color }, index) => (
                 <TouchableOpacity key={label} onPress={() => { /* handle onPress */ }}>
                   <View style={styles.row}>
-                    <View style={[styles.rowIcon, { backgroundColor: color }]}>
+                    <View style={[styles.rowIcon, { backgroundColor: '#003153' }]}>
                       <FeatherIcon color="white" name={icon} size={15} />
                     </View>
                     <Text style={styles.rowLabel}>{label}</Text>
@@ -175,18 +175,18 @@ const Profile = ({ navigation }) => {
             onPress={handleLogout}
             style={{
               flexDirection: "row",
-              backgroundColor: '#062CD4',
+              backgroundColor: '#003153',
               marginTop: 15,
               height: 50,
-              borderRadius: 8,
+              borderRadius: 30,
               alignItems: "center",
               justifyContent: "center",
             }}>
             <Text
               style={{
-                fontSize: 19,
+                fontSize: 16,
                 color: 'white',
-                fontWeight: "500",
+                fontWeight: "bold",
               }}>
               Log Out
             </Text>
@@ -233,8 +233,7 @@ logoContainer: {
 logo: {
   width: 110, // Adjust the width as needed
   height: 180, // Adjust the height as needed
-  tintColor: '#062CD4',
-
+  tintColor: '#003153',
 },
 
 // section
@@ -242,12 +241,10 @@ logo: {
     paddingHorizontal: 8,
   },
   sectionHeader: {
-    paddingVertical: 12,
+    // paddingVertical: 5,
     fontSize: 12,
-    fontWeight: '600',
-    color: '#000000',
-    textTransform: 'uppercase',
-    letterSpacing: 5, 
+    fontWeight: '500',
+    color: 'black',
   },
   row: {
     flexDirection: 'row',
@@ -255,10 +252,10 @@ logo: {
     justifyContent: 'flex-start',
     height: 50,
     backgroundColor: 'white',
-    borderRadius: 8,
-    marginBottom: 12,
-    paddingLeft: 12,
-    paddingRight: 12,
+    borderRadius: 5,
+    marginBottom: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   rowIcon: {
     width: 50,
@@ -271,9 +268,8 @@ logo: {
   },
   rowLabel: {
     fontSize: 15,
-    fontWeight: '400',
+    fontWeight: '500',
     color: 'black',
-    fontWeight: "bold",
     paddingHorizontal: 190,
     paddingLeft: .5
   },
@@ -313,10 +309,10 @@ logo: {
     borderRadius: 8,
   },
   cancelButton: {
-    backgroundColor: "#062CD4",
+    backgroundColor: "#003153",
   },
   confirmButton: {
-    backgroundColor: "#062CD4",
+    backgroundColor: "#003153",
   },
   modalButtonText: {
     fontSize: 14,

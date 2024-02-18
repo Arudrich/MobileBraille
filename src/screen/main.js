@@ -158,9 +158,9 @@ const main = ({navigation}) => {
 
     <View style = {styles.bodyContainer}>
 
-      <Text style = {styles.bodyHeader}>Choose Type of Transciption</Text>
+      <Text style = {styles.bodyHeader}>Choose Input</Text>
 
-      <Text style = {styles.bodySubHeader}>YOU WANT TO WORK ON</Text>
+      <Text style = {styles.bodySubHeader}>Choose, transcribe and convert.</Text>
 
 
     </View>
@@ -286,13 +286,13 @@ const styles = ScaledSheet.create({
 
     bodyHeader: {
       color: '#003153',
-      fontSize: '25@s',
+      fontSize: '20@s',
       fontWeight: 'bold'
     },
 
     bodySubHeader: {
       color: '#003153',
-      fontSize: '15@s',
+      fontSize: '12@s',
       fontWeight: 'bold'
 
 

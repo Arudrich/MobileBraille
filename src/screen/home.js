@@ -177,27 +177,27 @@ const home = ({ navigation }) => {
 
                 <View style = {[styles.card, styles.cardElevated]}>
                   <Image style= {styles.cardfavorites} source={require('../assets/maineIcons/picture.png')} />
-                  <Text style = {styles.name}>Image to Braille</Text>
+                  <Text style = {styles.name}>Image</Text>
                 </View>
 
                 <View style = {[styles.card, styles.cardElevated]}>
                   <Image style= {styles.cardfavorites} source={require('../assets/maineIcons/text.png')} />
-                  <Text style = {styles.name}>Text to Braille</Text>
+                  <Text style = {styles.name}>Text</Text>
                 </View>
 
                 <View style = {[styles.card, styles.cardElevated]}>
                   <Image style= {styles.cardfavorites} source={require('../assets/maineIcons/file.png')} />
-                  <Text style = {styles.name}>File to Braille</Text>
+                  <Text style = {styles.name}>File</Text>
                 </View>
 
                 <View style = {[styles.card, styles.cardElevated]}>
                   <Image style={styles.cardfavorites} source={require('../assets/maineIcons/video.png')} />
-                  <Text style = {styles.name}>Video to Braille</Text>
+                  <Text style = {styles.name}>Video</Text>
                 </View>
 
                 <View style = {[styles.card, styles.cardElevated]}>
                   <Image style={styles.cardfavorites} source={require('../assets/maineIcons/video.png')} />
-                  <Text style = {styles.name}>Video to Braille</Text>
+                  <Text style = {styles.name}>Video</Text>
                 </View>
    
             </ScrollView>
@@ -324,7 +324,7 @@ cardShowcase: {
   /***************** FAVORITES cardddddddddddddddddd ************************/
 
   name: {
-    fontSize: "10@s",
+    fontSize: "8@s",
     fontWeight: 'bold', 
     paddingHorizontal: "10@s",
     color: 'white'
@@ -393,7 +393,7 @@ cardShowcase: {
 
   latestSubheader:{
     color: 'white',
-    fontSize: '12@s',
+    fontSize: '10@s',
     padding: '5@s',
 
     
