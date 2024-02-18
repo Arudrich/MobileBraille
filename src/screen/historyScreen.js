@@ -1,8 +1,15 @@
 import { View, Text, ScrollView, StyleSheet, Image, TextInput} from 'react-native'
 import { TouchableOpacity } from 'react-native';
 import { Searchbar } from 'react-native-paper';
+import { FlatList } from 'react-native'; 
 
-import React from 'react'
+import HistoryCard from '../assets/Cards/HistoryCard';
+
+import React, { useEffect, useContext, useState } from 'react'
+
+//Firebase call
+import { getDocs, collection, query, orderBy } from 'firebase/firestore';
+import { database } from '../../FirebaseConfig'; 
 
 
 // navigation to another screen
@@ -20,9 +27,48 @@ import { ScaledSheet } from 'react-native-size-matters';
 
 
 
-const historyScreen = () => { 
-    
+const historyScreen = () => {
+  const [refreshing, setRefreshing] = useState(false);
+  const [filteredData, setFilteredData] = useState([]);
+  const [historyData, setHistoryData] = useState([]);
+  const [searchQuery, setSearchQuery] = React.useState('');
 
+  const fetchHistoryData = async () => {
+    try {
+      const q = query(collection(database, 'posts'), orderBy('postTime', 'desc'));
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+      setHistoryData(data);
+      setFilteredData(data);
+    } catch (error) {
+      console.error('Error fetching history data:', error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchHistoryData();
+  }, []);
+
+  const onRefresh = async () => {
+    setRefreshing(true); // Set refreshing state to true
+    try {
+      await getUser(); // Refresh user data or perform any other refresh action
+      await fetchHistoryData();
+    } catch (error) {
+      console.error('Error refreshing data:', error);
+      // Handle error
+    } finally {
+      setRefreshing(false); // Set refreshing state back to false after refreshing
+    }
+  };
+
+  const handleSearch = query => {
+    setSearchQuery(query);
+    const filtered = historyData.filter(item => 
+      item.title && item.title.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredData(filtered);
+  };
   return (
 
     <View style = {styles.mainContainer}>
@@ -31,7 +77,11 @@ const historyScreen = () => {
 
         <Text style = {styles.header}>Recent Transcription</Text>
 
-          <Searchbar style = {styles.search} placeholder="Search Transcription Here"/>
+          <Searchbar 
+            style = {styles.search} 
+            placeholder="Search Transcription Here" 
+            onChangeText={handleSearch}
+            value={searchQuery}/>
 
       </View>
 
@@ -41,9 +91,15 @@ const historyScreen = () => {
 
 
   <View style = {styles.latestContainer}>
-        <View style = {styles.historyVertical}>
-
-      <ScrollView>       
+      <View style = {styles.historyVertical}>
+        <FlatList
+          data={filteredData}
+          showsVerticalScrollIndicator={false}
+          // style={{ flex: 1}}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => <HistoryCard item={item} />} // Using HistoryCard component
+        />
+        {/* <ScrollView>       
           <TouchableOpacity style = {styles.historyColorButon}>
 
 
@@ -149,9 +205,9 @@ const historyScreen = () => {
 
         
       
-         </ScrollView>        
-        </View>
+        </ScrollView>         */}
       </View>
+  </View>
   </View>
 
 
