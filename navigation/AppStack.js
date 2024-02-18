@@ -217,7 +217,7 @@ const AppStack = () => {
     <BotTab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colors.secondary,
+        tabBarActiveTintColor: colors.blue,
         tabBarInactiveTintColor: colors.secondary,
         tabBarStyle: { backgroundColor: colors.primary },
         tabBarAllowFontScaling: 10 ,
