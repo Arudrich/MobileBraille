@@ -30,6 +30,7 @@ import { Feather } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import historyScreen from '../src/screen/historyScreen';
 
+//testing ng bot nav quoh-dibid 
 import { BottomNavigation } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -81,7 +82,6 @@ const HomeStack = ({ navigation }) => (
     />
   </Stack.Navigator>
 );
-// nav drawer
 
 const HomeDrawerStack = ({}) => (
   <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
@@ -152,6 +152,17 @@ const MainStack = ({ navigation }) => (
   </Stack.Navigator>
 );
 
+//////////////////////////////////////////////////////////////drawer sa gedli ng meralco/////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////bulutong nav /////////////////////////////////////////////////////////////////////
 const AppStack = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
@@ -161,13 +172,23 @@ const AppStack = () => {
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
-    home: Home,
+    home: HomeStack,
     main: Main,
     about: About,
   });
-  const renderIcon = ({ route, color }) => {
+  const renderIcon = ({ route, color, focused }) => {
+
     const CustomIcon = route.customIcon;
-    return <CustomIcon name={route.icon} size={25} color={color} />;
+    const iconSize = focused ? 30 : 25; // Adjust the sizes based on your preference
+    const iconColor = focused ? '#003153' : color; // Highlight color when pressed
+    return (
+      <CustomIcon
+        name={route.icon}
+        size={iconSize}
+        color={iconColor}
+        style={{ transform: [{ scale: focused ? 1 : 1 }] }} // Apply scale effect
+      />
+    );
   };
 
   return (
@@ -178,9 +199,12 @@ const AppStack = () => {
       onIndexChange={setIndex}
       renderScene={renderScene}
       barStyle={styles.bottomBar}
-      activeColor="#FFFFFF"
-      inactiveColor="#FFFFFF"
+      inactiveColor='white'
+      activeColor='white'
       renderIcon={renderIcon}
+      shifting={true}
+      labelStyle={{ color: 'white' }} // Set label text color to white
+      
     />
     </View>
     </SafeAreaProvider>
@@ -188,7 +212,7 @@ const AppStack = () => {
 };
 export default AppStack;
 
-
+//////////////////////////////////////////////////////////////LUMANG BOT NAV/////////////////////////////////////////////////////////////////////
 // const AppStack = () => {
 //   return (
 //     <BotTab.Navigator
@@ -239,9 +263,14 @@ const styles = StyleSheet.create({
   },
   bottomBar: {
     backgroundColor: '#003153', // Set your desired background color
-    borderTopLeftRadius: 20, // Set the border radius for the left corner
-    borderTopRightRadius: 20, // Set the border radius for the right corner
+    borderTopLeftRadius: 50, // Set the border radius for the left corner
+    borderTopRightRadius: 50, // Set the border radius for the right corner
+    borderBottomRightRadius: 50,
+    borderBottomLeftRadius: 50,
+    position: 'absolute',
+    bottom: 15,
     overflow: 'hidden', // Ensure that the content inside the rounded corners is not visible outside
-  
+    width: '90%',
+    left: '5%',
   },
 });
