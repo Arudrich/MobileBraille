@@ -183,7 +183,7 @@ const AppStack = () => {
         name={route.icon}
         size={iconSize}
         color={iconColor}
-        style={{ transform: [{ scale: focused ? 1 : 1 }] }} // Apply scale effect
+        style={{ transform: [{ scale: focused ? 1.2 : 0.8 }] }} // Apply scale effect
       />
     );
   };
