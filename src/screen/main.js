@@ -160,7 +160,7 @@ const main = ({navigation}) => {
 
       <Text style = {styles.bodyHeader}>Choose Input</Text>
 
-      <Text style = {styles.bodySubHeader}>Choose, transcribe and convert.</Text>
+      <Text style = {styles.bodySubHeader}>Transcribe and convert</Text>
 
 
     </View>
@@ -176,7 +176,7 @@ const main = ({navigation}) => {
           <TouchableOpacity style = {styles.box}>
             <View style = {styles.inner}>
             <Image style={{ height: 25 , width: 25 , tintColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
-              <Text style = {styles.text}>TEXT TO BRAILLE</Text>
+              <Text style = {styles.text}>Text to Braille</Text>
               <Text style = {styles.subText}>Text Input</Text>
             </View>
           </TouchableOpacity>
@@ -185,7 +185,7 @@ const main = ({navigation}) => {
           <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('audio')}>
             <View style = {styles.inner}>
             <Image style={{ height: 25, width: 25 ,tintColor: 'white'   }} source={require('../assets/maineIcons/audio.png')} />
-              <Text style = {styles.text}>AUDIO TO BRAILLE</Text>
+              <Text style = {styles.text}>Audio to Braille</Text>
               <Text style = {styles.subText}>MP3 File</Text>
             </View>
           </TouchableOpacity>
@@ -194,7 +194,7 @@ const main = ({navigation}) => {
           <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('image')}>
             <View style = {styles.inner}>
             <Image style={{ height: 25, width: 25 , tintColor: 'white' }} source={require('../assets/maineIcons/picture.png')} />
-              <Text style = {styles.text}>IMAGE TO BRAILLE</Text>
+              <Text style = {styles.text}>Image to Braille</Text>
               <Text style = {styles.subText}>PNG / JPG File</Text>
             </View>
           </TouchableOpacity>
@@ -203,7 +203,7 @@ const main = ({navigation}) => {
           <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('video')}>
             <View style = {styles.inner}>
             <Image style={{ height: 25, width: 25 , tintColor: 'white'   }} source={require('../assets/maineIcons/video.png')} />
-              <Text style = {styles.text}>VIDEO TO BRAILLE</Text>
+              <Text style = {styles.text}>Video to Braille</Text>
               <Text style = {styles.subText}>MP4 File</Text>
 
             </View>
@@ -213,7 +213,7 @@ const main = ({navigation}) => {
           <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('document')}>
             <View style = {styles.inner}>
             <Image style={{ height: 25, width: 25 , tintColor: 'white'}} source={require('../assets/maineIcons/file.png')} />
-              <Text style = {styles.text}>DOCUMENT TO BRAILLE</Text>
+              <Text style = {styles.text}>File to Braile</Text>
               <Text style = {styles.subText}>Docs / PDF File</Text>
             </View>
           </TouchableOpacity>
