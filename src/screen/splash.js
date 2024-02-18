@@ -23,7 +23,7 @@ const Splash = () => {
         />
         <Text style={styles.title}>
           <Text style={styles.blackText}>M.</Text>
-          <Text style={styles.blueText}>Braille</Text>
+          <Text style={styles.blueText}>BRAILLE</Text>
         </Text>
         <Text style={styles.subtitle}>Empowering Access. Transforming Documents.</Text>
       </View>
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 186, // Adjust the width as needed
     height: 180, // Adjust the height as needed
+    tintColor: '#003153'
   },
   title: {
     fontSize: 40,
@@ -63,7 +64,9 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   blueText: {
-    color: '#062CD4',
+    color: '#003153',
+    fontWeight: 'bold'
+
   },
   subtitle: {
     fontSize: 15,

@@ -1,90 +1,59 @@
-import { View, Text, StyleSheet, TextInput, Image } from 'react-native'
-import React, { useState } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import React from 'react'
+import LottieView from 'lottie-react-native';
+import { Searchbar } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native';
 
-// lottie 
+// DIMENSION COMPATIBILITY
+import { ScaledSheet } from 'react-native-size-matters';
 
-import LottieView from 'lottie-react-native';
-import { ScrollView } from 'react-native';
-
-
-const Faq = ({navigation}) => {
-
-
+const faq = () => {
   return (
+    
+    <ScrollView style = {styles.mainContainer}>
 
-    <SafeAreaView style = {{backgroundColor: 'white', flex: 1 }}>
-      <ScrollView>
-      <LottieView style = {{ alignSelf: 'center', height: 160, alignItems: 'center', alignContent: 'center' }} source={require('../assets/lottie/faq.json')} autoPlay loop />
+        <View style = {styles.lottie}>
 
-      <View style = {styles.header}>
-
-          <Text style = {{ textAlignVertical: 'center', letterSpacing: 2, textAlign: 'justify', fontSize: 25,}}>We're trying to help you with anything and everything on Mobile Braille</Text>
-
-          <Text style = {{paddingTop: 5, fontWeight: '500',color: '#818589', textAlign: 'justify', fontSize: 14, }}>We're trying to help you with anything and everything on Mobile Braille, we are here to help you. We have got
-          you covered share your concern or check our frequently asked question listed below. </Text>
-
-      </View>
-
-      <View style = {styles.search}>
-
-      <View style={{
-                    backgroundColor: "#EBF0F5" ,
-                    paddingVertical: 10,
-                    paddingHorizontal:20,
-                    marginHorizontal:20,
-                    borderRadius: 8,
-                    flexDirection: "row",
-                    alignItems: "center"
-                }}>
-                    <TextInput
-                          placeholder="Search Frequently Asked Question"
-                          placeholderTextColor= 'grey'
-                          style={{
-                              fontSize:12,
-                              width:260
-                          }}
-                    />
-                    <Image
-                      source={require('../iconPNG/search.png')}
-                      
-                      style={{ height:20, width:20, left: 20}}
-                    />
-                </View>
+            <LottieView style = {{ height: 225, alignSelf: 'center', alignItems: 'center', alignContent: 'center', }} source={require('../assets/lottie/faq.json')} autoPlay loop />
 
 
-      </View>
+        </View>
+
+        <View>
+
+            <Searchbar style = {styles.search} placeholder="Search Frequently Asked Question"/>
 
 
-      <View style = {styles.faqContainer}>
+        </View>
 
-          <Text style = {{fontWeight: 'bold'}}>Frequently Asked Question: </Text>
+        <View style = {styles.faqContainer}>
+
+          <Text style = {styles.faqHeader}>Top Frequently Asked Question: </Text>
 
 
           
-          <TouchableOpacity style = {{ borderRadius: 8, borderWidth: 1, borderColor: '#062CD4', padding: 15 }}>
+          <TouchableOpacity style = {styles.faqList}>
 
-              <Text> What is Mobile Braille? </Text>
-
-          </TouchableOpacity>
-
-          <TouchableOpacity style = {{ borderRadius: 8, borderWidth: 1 , borderColor: '#062CD4', padding: 15 }}>
-
-              <Text> What services does Mobile Braille Offer? </Text>
+              <Text style = {styles.question} > What is Mobile Braille? </Text>
 
           </TouchableOpacity>
 
-          <TouchableOpacity style = {{ borderRadius: 8, borderWidth: 1 , borderColor: '#062CD4', padding: 15 }}>
+          <TouchableOpacity style = {styles.faqList}>
 
-              <Text> What services does Mobile Braille Offer? </Text>
+              <Text style = {styles.question} > What services does Mobile Braille Offer? </Text>
+
+          </TouchableOpacity>
+
+          <TouchableOpacity style = {styles.faqList}>
+
+              <Text style = {styles.question} > What services does Mobile Braille Offer? </Text>
 
           </TouchableOpacity>
 
 
-          <TouchableOpacity style = {{ borderRadius: 8, borderWidth: 1 , borderColor: '#062CD4', padding: 15, backgroundColor: '#062CD4' }}>
+          <TouchableOpacity style = {styles.faqListSeemore}>
 
-              <Text style = {{ color: 'white',fontWeight: 'bold'}}> See More </Text>
+              <Text style = {styles.seeMoreText}> See More </Text>
 
           </TouchableOpacity>
 
@@ -94,48 +63,86 @@ const Faq = ({navigation}) => {
 
       </View>
 
-
-
-
-
-      </ScrollView>                       
-    </SafeAreaView>
+    </ScrollView>
     
+
   )
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
 
-header: {
-    padding: 18
+//MAIN CONTAINER ****************************
+
+
+mainContainer: {
+    padding: '18@s',
+    backgroundColor: 'white',
+    flex: 1
 },
 
-// search
+// SEARCH *********************************
 
 search: {
-    padding: 18,
-    top: -20,
+    backgroundColor: "#EBF0F5",
+    height: '52@s',
+    borderRadius: 8,
+  },
 
+  // FAQ Header **********************
 
-},
+  faqHeader: {
+    fontSize: '22@s',
+    fontWeight: 'bold',
+    color: '#003153',
+    marginTop: '10@s',
+    marginBottom: '10@s',
 
-// faqContainer dropdown hehe
+  },
 
-faqContainer: {
-    padding: 12,
-    marginTop:-30,
-    gap: 15,
+  // FAQ LIST ************************
 
-
-}
-
-
+  faqList: {
+    borderRadius: 8,
+    borderWidth: 1 ,
+    borderColor: '#003153',
+    padding: '15@s',
+    backgroundColor: 'white',
+    margin: '8@s'
+  },
 
   
+  faqListSeemore :{
+    borderRadius: 8,
+    borderWidth: 1 ,
+    borderColor: '#003153',
+    padding: '15@s',
+    backgroundColor: '#003153',
+    margin: '8@s'
+  },
+
+  // question and see more
+
+  question: {
+    color: '#003153',
 
 
+  },
 
+  seeMoreText: {
+    color: 'white'
+
+
+  }
+
+  
+    
+    
+    
+      
+    
+    
+    
 })
-  
+      
 
-export default Faq
+export default faq

@@ -12,7 +12,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
-import { Video } from 'expo-av';
+import { Video, Audio } from 'expo-av';
 import { useNavigation } from '@react-navigation/native';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -466,18 +466,26 @@ const AddPostScreen = ({ route }) => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.inputWrapper}>
       {fileType === 'video' && image != null ? (
-            <Video
-              source={{ uri: image }}
-              style={styles.video}
-              useNativeControls
-              resizeMode="contain"
-            />
-          ) : null}
+        <Video
+          source={{ uri: image }}
+          style={styles.video}
+          useNativeControls
+          resizeMode="contain"
+        />
+      ) : null}
       {fileType === 'image' && image != null ? (
         <Image source={{ uri: image }} style={styles.addImage} resizeMode='contain' />
       ) : (
         <Text style={styles.fileName}>{image != null ? fileName : null}</Text>
       )}
+      {fileType === 'audio' && image != null ? (
+        <Audio
+          source={{ uri: image }}
+          style={styles.audio}
+          shouldPlay={false}
+          useNativeControls
+        />
+      ) : null}
 
         <TextInput
           style={styles.inputField}
@@ -564,5 +572,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 250,
     marginBottom: 15,
+  },
+  audio: {
+    width: 300,
+    height: 40,
   },
 });
