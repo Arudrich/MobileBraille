@@ -248,6 +248,7 @@ const styles = ScaledSheet.create({
     width: 110, // Adjust the width as needed
     height: 180, // Adjust the height as needed
     tintColor: 'white'
+
   
   },
 
@@ -258,7 +259,7 @@ const styles = ScaledSheet.create({
     backgroundColor: '#003153',
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8, 
-    height: '25%',
+    height: '28%',
     padding: '12@s',
     alignItems: 'center'
  

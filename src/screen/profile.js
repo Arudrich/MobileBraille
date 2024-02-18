@@ -387,7 +387,7 @@ const Profile = ({ navigation }) => {
                 <FontAwesome5 name="key" size={25} color='#003153' />
               </View>
               <PaperTextInput
-                label="       Enter New Password"
+                label="           Enter New Password"
                 value={""}
                 onChangeText={(value) => {
                   setuserCredentials({ ...userCredentials, password: value });
@@ -415,7 +415,7 @@ const Profile = ({ navigation }) => {
                 <FontAwesome5 name="key" size={25} color='#003153' />
               </View>
               <PaperTextInput
-                label="       Re-enter New Password"
+                label="           Re-enter New Password"
                 value={""}
                 onChangeText={(value) => {
                   setuserCredentials({ ...userCredentials, password: value });
