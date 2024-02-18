@@ -40,13 +40,13 @@ const Drawer = createDrawerNavigator();
 
 // for drawer design -Aru
 
-const homedrawerIcon = ({ focused, color, size }) => <AntDesign name="home" size={30} color="black" />
-const maindrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="transcribe" size={30} color="black" />
-const profiledrawerIcon = ({ focused, color, size }) => <Feather name="user" size={30} color="black" />
-const faqdrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="comment-question-outline" size={30} color="black" />
-const aboutdrawerIcon = ({ focused, color, size }) => <Ionicons name="people-outline" size={30} color="black" />
-const settingdrawerIcon = ({ focused, color, size }) => <Feather name="settings" size={24} color="black" />
-const logoutdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="logout" size={24} color="black" />
+const homedrawerIcon = ({ focused, color, size }) => <AntDesign name="home" size={25} color="black" />
+const maindrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="transcribe" size={25} color="black" />
+const profiledrawerIcon = ({ focused, color, size }) => <Feather name="user" size={25} color="black" />
+const faqdrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="comment-question-outline" size={25} color="black" />
+const aboutdrawerIcon = ({ focused, color, size }) => <Ionicons name="people-outline" size={25} color="black" />
+const settingdrawerIcon = ({ focused, color, size }) => <Feather name="settings" size={25} color="black" />
+const logoutdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="logout" size={25} color="black" />
 
 
 
