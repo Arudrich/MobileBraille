@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 50,
     borderBottomLeftRadius: 50,
     position: 'absolute',
-    bottom: 15,
+    bottom: 10,
     overflow: 'hidden', // Ensure that the content inside the rounded corners is not visible outside
     width: '90%',
     left: '5%',
