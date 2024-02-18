@@ -35,7 +35,6 @@ import { BottomNavigation } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 
-
 const Stack = createNativeStackNavigator();
 const BotTab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -170,14 +169,12 @@ const AppStack = () => {
     { key: 'main', title: 'Main', icon: 'transcribe', customIcon: MaterialCommunityIcons },
     { key: 'about', title: 'About', icon: 'people-outline', customIcon: Ionicons },
   ]);
-
   const renderScene = BottomNavigation.SceneMap({
     home: HomeStack,
     main: Main,
     about: About,
   });
   const renderIcon = ({ route, color, focused }) => {
-
     const CustomIcon = route.customIcon;
     const iconSize = focused ? 30 : 25; // Adjust the sizes based on your preference
     const iconColor = focused ? '#003153' : color; // Highlight color when pressed
@@ -190,8 +187,8 @@ const AppStack = () => {
       />
     );
   };
-
   return (
+
     <SafeAreaProvider>
        <View style={styles.container}>
     <BottomNavigation
@@ -208,8 +205,10 @@ const AppStack = () => {
     />
     </View>
     </SafeAreaProvider>
+
   );
 };
+
 export default AppStack;
 
 //////////////////////////////////////////////////////////////LUMANG BOT NAV/////////////////////////////////////////////////////////////////////
@@ -261,16 +260,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end', // Place the bottom navigator at the bottom of the screen
   },
+  // bottomBar: {
+  //   backgroundColor: '#003153', // Set your desired background color
+  //   borderTopLeftRadius: 50, // Set the border radius for the left corner
+  //   borderTopRightRadius: 50, // Set the border radius for the right corner
+  //   borderBottomRightRadius: 50,
+  //   borderBottomLeftRadius: 50,
+  //   position: 'absolute',
+  //   bottom: 15,
+  //   overflow: 'hidden', // Ensure that the content inside the rounded corners is not visible outside
+  //   width: '90%',
+  //   left: '5%',
+  // },
   bottomBar: {
-    backgroundColor: '#003153', // Set your desired background color
-    borderTopLeftRadius: 50, // Set the border radius for the left corner
-    borderTopRightRadius: 50, // Set the border radius for the right corner
-    borderBottomRightRadius: 50,
-    borderBottomLeftRadius: 50,
-    position: 'absolute',
-    bottom: 15,
-    overflow: 'hidden', // Ensure that the content inside the rounded corners is not visible outside
-    width: '90%',
-    left: '5%',
+    backgroundColor: '#003153',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    overflow: 'hidden',
   },
 });
