@@ -13,11 +13,6 @@ import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { ActivityIndicator } from 'react-native';
 import { reauthenticateWithCredential, updatePassword, EmailAuthProvider } from 'firebase/auth';
 
-// DIMENSION COMPATIBILITY
-
-import { ScaledSheet } from 'react-native-size-matters';
-
-
 const Profile = ({ navigation }) => {
   const { user, logout } = useContext(AuthContext);
   const [image, setImage] = useState(null);
@@ -248,12 +243,13 @@ const Profile = ({ navigation }) => {
 
   return (
 
-    <View style = {styles.mainContainer}>
-
-
-      <View style = {styles.profileContainer}>
-
-      <TouchableOpacity onPress={() => setModalVisible(true)}>
+    <SafeAreaView style={{ backgroundColor: "#EBF0F5", flex: 1 }}>
+      <ScrollView style={styles.container}>
+        <Text style={{ fontSize: 20, fontWeight: "bold", alignSelf: "center" }}>EDIT PROFILE</Text>
+        
+        {/* Profile Picture */}
+        <View style={styles.profile}>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
             <View style={styles.profileAvatarWrapper}>
               <Image
                 source={{
@@ -267,30 +263,27 @@ const Profile = ({ navigation }) => {
               />
               <TouchableOpacity onPress={() => setModalVisible(true)}>
                 <View style={styles.profileAction}>
-                  <FeatherIcon color= '#003153' name="edit-3" size={20} />
+                  <FeatherIcon color="white" name="edit-3" size={15} />
                 </View>
               </TouchableOpacity>
               
               <Modal
-                animationType= 'fade'
+                animationType="slide"
                 transparent={true}
                 visible={modalVisible}
-       
-           
-                
                 onRequestClose={() => setModalVisible(!modalVisible)}>
                 <View style={styles.modalContainerProfile}>
                   <View style={styles.modalContentProfile}>
                     <TouchableOpacity style={styles.iconContainer} onPress={pickImageFromGallery}>
-                      <Feather name="folder" size={20} color="white" />
+                      <Feather name="folder" size={24} color="grey" />
                       <Text style={styles.iconText}>Gallery</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.iconContainer} onPress={takeImageFromCamera}>
-                      <Feather name="camera" size={20} color= "white" />
+                      <Feather name="camera" size={24} color="grey" />
                       <Text style={styles.iconText}>Camera</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.iconContainer} onPress={() => setModalVisible(false)}>
-                      <Feather name="x" size={20} color= "white" />
+                      <Feather name="x" size={24} color="grey" />
                       <Text style={styles.iconText}>Cancel</Text>
                     </TouchableOpacity>
                   </View>
@@ -298,115 +291,270 @@ const Profile = ({ navigation }) => {
               </Modal>
             </View>
           </TouchableOpacity>
-       
+        </View>
 
-              
+        {/* Change Display Name */}
+        <View style={styles.changeInfo}>
+          <Text style={styles.infoHeader}>Change Display Name</Text>
+          <View style={styles.inputWrapper}>
+            <AntDesign name="user" size={19} color="blue" style={styles.iconStyle} />
+            {isEditing ? (
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => setName(text)}
+                value={name}
+              />
+            ) : (
+              <Text style={styles.inputText}>{name}</Text>
+            )}
+            <TouchableOpacity onPress={isEditing ? handleSave : handleEditPress}>
+            {isSaving ? (
+              <ActivityIndicator color="black" size="small" />
+            ) : (
+              <AntDesign name={isEditing ? "save" : "edit"} size={20} color="black" />
+            )}
+          </TouchableOpacity>
+          </View>
+        </View>
 
-          
+        {/* Change Password */}
+        {passwordChangeUI}
 
+        
+      
 
-
-      </View>
-
-
-
-     
-
-    </View>
-
-    
-
-  
+        {/* Logout Button */}
+        <View style={{ flex: 1, paddingBottom: 100, paddingHorizontal: 50 }}>
+          <TouchableOpacity
+            onPress={handleLogout}
+            style={{
+              flexDirection: "row",
+              backgroundColor: '#062CD4',
+              marginTop: 15,
+              height: 50,
+              borderRadius: 8,
+              alignItems: "center",
+              justifyContent: "center",
+            }}>
+            <Text
+              style={{
+                fontSize: 19,
+                color: 'white',
+                fontWeight: "500",
+              }}>
+              Log Out
+            </Text>
+          </TouchableOpacity>
+          <Modal
+            animationType="fade"
+            transparent={true}
+            visible={showLogoutModal}
+            onRequestClose={() => setShowLogoutModal(false)}>
+            <View style={styles.modalContainer}>
+              <View style={styles.modalContent}>
+                <Text style={styles.modalText}>Are you sure you want to log out?</Text>
+                <View style={styles.modalButtons}>
+                  <TouchableOpacity
+                    style={[styles.modalButton, styles.cancelButton]}
+                    onPress={cancelLogout}>
+                    <Text style={styles.modalButtonText}>Cancel</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.modalButton, styles.confirmButton]}
+                    onPress={confirmLogout}>
+                    <Text style={styles.modalButtonText}>Confirm</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </Modal>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
-const styles = ScaledSheet.create({ 
-
-  mainContainer: {
-    height: "25%",
-    backgroundColor: '#003153',
-    borderBottomLeftRadius: 8, 
-    borderBottomRightRadius: 8,
-    
-
+const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 25,
+    backgroundColor: 'white'
   },
-
-  // PROFILEEE **************
-
-  profileContainer: {
-    padding: '30@s',
+  profile: {
+    padding: 30,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
   },
   profileAvatar: {
-    width: '100@s',
-    height: '100@s' ,
-    borderRadius: 8,
+    width: 150,
+    height: 150,
+    borderRadius: 50,
     borderWidth: 2,
-    borderColor: 'white'
+    borderColor: '#062CD4'
   },
   profileAvatarWrapper: {
     position: "relative",
   },
-
   profileAction: {
     position: "absolute",
-    right: '-4@s',
-    bottom: '-5@s',
+    right: -4,
+    bottom: -10,
     alignItems: "center",
     justifyContent: "center",
-    width: '28@s',
-    height: '28@s',
-    borderRadius: 25,
-    backgroundColor: "white",
+    width: 28,
+    height: 28,
+    borderRadius: 8,
+    backgroundColor: "#062CD4",
   },
-
-  // modal change PROFILE
-
+  changeInfo: {
+    flex: 1,
+    alignItems: "center"
+  },
+  infoHeader: {
+    fontSize: 12,
+    fontWeight: "500",
+    color: "grey",
+    marginTop: 15,
+    color: "black",
+    paddingRight: 215,
+    fontWeight: "bold"
+  },
+  inputWrapper: {
+    borderColor: "grey",
+    height: 45,
+    width: 350,
+    margin: 2,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 12,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  input: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+    fontSize: 13,
+    color: 'grey',
+    fontWeight: 'normal'
+  },
+  inputText: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+    fontSize: 13,
+    color: 'grey',
+    fontWeight: 'normal'
+  },
+  iconStyle: {
+    paddingRight: 12
+  },
+  section: {
+    paddingHorizontal: 24,
+  },
+  sectionHeader: {
+    paddingVertical: 12,
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#000000',
+    textTransform: 'uppercase',
+    letterSpacing: 5, 
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    height: 50,
+    backgroundColor: 'white',
+    borderRadius: 8,
+    marginBottom: 12,
+    paddingLeft: 12,
+    paddingRight: 12,
+  },
+  rowIcon: {
+    width: 50,
+    height: 32,
+    borderRadius: 8,
+    marginRight: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  rowLabel: {
+    fontSize: 15,
+    fontWeight: '400',
+    color: 'black',
+    fontWeight: "bold",
+    paddingHorizontal: 190,
+    paddingLeft: .5
+  },
+  rowSpacer: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+  },
+  // for Logout modal
   modalContainer: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
-
-  modalContentProfile: {
-    backgroundColor: '#003153',
-    padding: '12@s',
+  modalContent: {
+    backgroundColor: "white",
+    padding: 20,
     borderRadius: 8,
-    flexDirection: 'row',
-    gap: '30@s'
+    alignItems: "center",
   },
-
+  modalText: {
+    fontSize: 17,
+    marginBottom: 25,
+  },
+  modalButtons: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  modalButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginHorizontal: 10,
+    borderRadius: 8,
+  },
+  cancelButton: {
+    backgroundColor: "#062CD4",
+  },
+  confirmButton: {
+    backgroundColor: "#062CD4",
+  },
+  modalButtonText: {
+    fontSize: 14,
+    color: "white",
+  },
   modalContainerProfile: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-
+  modalContentProfile: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    flexDirection: 'row',
+    gap: 10
+  },
   iconContainer: {
-    borderColor: 'white',
+    borderColor: 'grey',
     borderWidth: 1,
     borderRadius: 25,
-    padding: '10@s',
+    padding: 10,
     flexDirection: 'column',
     alignItems: 'center',
-    marginVertical: '5@s',
+    marginVertical: 10,
   },
-
   iconText: {
-    color: 'white',
-    fontSize: '12@s',
-    fontWeight: '500'
-    
+    color: 'grey'
   },
-
-
-
-
-
-  
-})
- 
+});
 
 export default Profile;
