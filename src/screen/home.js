@@ -311,7 +311,7 @@ cardShowcase: {
    /***************** moslty Useeed Transciption ************************/
 
   mostlyUsedContainer: {
-    paddingTop: '8@s',
+    paddingTop: '1@s',
     
   },
 
