@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, StyleSheet, Image, TextInput} from 'react-native'
+import { View, Text, ScrollView, StyleSheet, Image, TextInput, RefreshControl} from 'react-native'
 import { TouchableOpacity } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import { FlatList } from 'react-native'; 
@@ -52,7 +52,6 @@ const historyScreen = () => {
   const onRefresh = async () => {
     setRefreshing(true); // Set refreshing state to true
     try {
-      await getUser(); // Refresh user data or perform any other refresh action
       await fetchHistoryData();
     } catch (error) {
       console.error('Error refreshing data:', error);
@@ -98,6 +97,9 @@ const historyScreen = () => {
           // style={{ flex: 1}}
           keyExtractor={item => item.id}
           renderItem={({ item }) => <HistoryCard item={item} />} // Using HistoryCard component
+          refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
         />
         {/* <ScrollView>       
           <TouchableOpacity style = {styles.historyColorButon}>
