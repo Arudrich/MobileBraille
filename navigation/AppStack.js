@@ -221,9 +221,9 @@ const AppStack = () => {
     <BotTab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colors.blue,
+        tabBarActiveTintColor: colors.secondary,
         tabBarInactiveTintColor: colors.secondary,
-        tabBarStyle: { backgroundColor: colors.primary },
+        tabBarStyle: { backgroundColor: colors.primary, width: '90%' ,alignSelf: 'center', marginBottom:20, borderTopLeftRadius: 25, borderTopRightRadius: 25, borderBottomLeftRadius: 25, borderBottomRightRadius:25},
         tabBarAllowFontScaling: 10 ,
       }}
     >
