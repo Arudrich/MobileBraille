@@ -473,11 +473,11 @@ const styles = ScaledSheet.create({
     justifyContent: "center",
   },
   profileAvatar: {
-    width: "100@s",
-    height: "100@s",
-    borderRadius: 8,
-    borderWidth: 2,
-    borderColor: "white",
+    width: "100@s" ,
+    height: "100@s" ,
+    borderRadius: 8 ,
+    borderWidth: 2 ,
+    borderColor: "white" ,
   },
   profileAvatarWrapper: {
     position: "relative",
