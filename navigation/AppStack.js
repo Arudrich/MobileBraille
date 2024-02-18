@@ -176,14 +176,14 @@ const AppStack = () => {
   });
   const renderIcon = ({ route, color, focused }) => {
     const CustomIcon = route.customIcon;
-    const iconSize = focused ? 30 : 25; // Adjust the sizes based on your preference
+    const iconSize = focused ? 25 : 30; // Adjust the sizes based on your preference
     const iconColor = focused ? '#003153' : color; // Highlight color when pressed
     return (
       <CustomIcon
         name={route.icon}
         size={iconSize}
         color={iconColor}
-        style={{ transform: [{ scale: focused ? 1 : 1 }] }} // Apply scale effect
+        
       />
     );
   };
