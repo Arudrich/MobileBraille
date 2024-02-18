@@ -245,6 +245,7 @@ logo: {
     paddingHorizontal: '8@s',
     marginTop: '6@s',
   },
+  
   sectionHeader: {
     // paddingVertical: 5,
     fontSize: "12@s",
