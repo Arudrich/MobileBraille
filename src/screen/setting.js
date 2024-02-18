@@ -231,17 +231,19 @@ logoContainer: {
   alignItems: 'center',
   borderBottomLeftRadius: 22,
   borderBottomRightRadius: 22,
+  backgroundColor: '#003153'
   
 },
 logo: {
   width: 110, // Adjust the width as needed
   height: 180, // Adjust the height as needed
-  tintColor: '#003153',
+  tintColor: 'white',
 },
 
 // section
   section: {
     paddingHorizontal: '8@s',
+    marginTop: '6@s',
   },
   sectionHeader: {
     // paddingVertical: 5,
