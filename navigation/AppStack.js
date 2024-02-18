@@ -162,120 +162,101 @@ const MainStack = ({ navigation }) => (
 
 
 //////////////////////////////////////////////////////////////bulutong nav /////////////////////////////////////////////////////////////////////
-const AppStack = () => {
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: 'home', title: 'Home', icon: 'home', customIcon: AntDesign },
-    { key: 'main', title: 'Main', icon: 'transcribe', customIcon: MaterialCommunityIcons },
-    { key: 'about', title: 'About', icon: 'people-outline', customIcon: Ionicons },
-  ]);
-  const renderScene = BottomNavigation.SceneMap({
-    home: HomeStack,
-    main: Main,
-    about: About,
-  });
-  const renderIcon = ({ route, color, focused }) => {
-    const CustomIcon = route.customIcon;
-    const iconSize = focused ? 25 : 30; // Adjust the sizes based on your preference
-    const iconColor = focused ? '#003153' : color; // Highlight color when pressed
-    return (
-      <CustomIcon
-        name={route.icon}
-        size={iconSize}
-        color={iconColor}
-        
-      />
-    );
-  };
-  return (
-
-    <SafeAreaProvider>
-       <View style={styles.container}>
-    <BottomNavigation
-      navigationState={{ index, routes }}
-      onIndexChange={setIndex}
-      renderScene={renderScene}
-      barStyle={styles.bottomBar}
-      inactiveColor='white'
-      activeColor='white'
-      renderIcon={renderIcon}
-      shifting={true}
-      labelStyle={{ color: 'white' }} // Set label text color to white
-      
-    />
-    </View>
-    </SafeAreaProvider>
-
-  );
-};
-
-export default AppStack;
-
-//////////////////////////////////////////////////////////////LUMANG BOT NAV/////////////////////////////////////////////////////////////////////
 // const AppStack = () => {
+//   const [index, setIndex] = React.useState(0);
+//   const [routes] = React.useState([
+//     { key: 'home', title: 'Home', icon: 'home', customIcon: AntDesign },
+//     { key: 'main', title: 'Main', icon: 'transcribe', customIcon: MaterialCommunityIcons },
+//     { key: 'about', title: 'About', icon: 'people-outline', customIcon: Ionicons },
+//   ]);
+//   const renderScene = BottomNavigation.SceneMap({
+//     home: HomeStack,
+//     main: Main,
+//     about: About,
+//   });
+//   const renderIcon = ({ route, color, focused }) => {
+//     const CustomIcon = route.customIcon;
+//     const iconSize = focused ? 25 : 30; // Adjust the sizes based on your preference
+//     const iconColor = focused ? '#003153' : color; // Highlight color when pressed
+//     return (
+//       <CustomIcon
+//         name={route.icon}
+//         size={iconSize}
+//         color={iconColor}
+        
+//       />
+//     );
+//   };
 //   return (
-//     <BotTab.Navigator
-//       screenOptions={{
-//         headerShown: false,
-//         tabBarActiveTintColor: colors.primary,
-//         tabBarAllowFontScaling: 10 ,
-//       }}
-//     >
-//       <BotTab.Screen
-//         name="Home"
-//         component={HomeStack}
-//         options={{
-//           tabBarIcon: ({ color }) => (
-//             <AntDesign name="home" size={30} color={color}/>
-//           ),
-//         }}
-//       />
-//       <BotTab.Screen
-//         name="Main"
-//         component={MainStack}
-//         options={{
-//           tabBarIcon: ({ color }) => (
-//             <MaterialCommunityIcons name="transcribe" size={30} color={color} />
-//           ),
-//         }}
-//       />
-//       <BotTab.Screen
-//         name="About"
-//         component={About}
-//         options={{
-//           tabBarIcon: ({ color }) => (
-//             <Ionicons name="people-outline" size={30} color={color} />
-//           ),
-//         }}
-//       />
-//     </BotTab.Navigator>
+
+//     <SafeAreaProvider>
+//        <View style={styles.container}>
+//     <BottomNavigation
+//       navigationState={{ index, routes }}
+//       onIndexChange={setIndex}
+//       renderScene={renderScene}
+//       barStyle={styles.bottomBar}
+//       inactiveColor='white'
+//       activeColor='white'
+//       renderIcon={renderIcon}
+//       shifting={true}
+//       labelStyle={{ color: 'white' }} // Set label text color to white
+      
+//     />
+//     </View>
+//     </SafeAreaProvider>
+
 //   );
-// }
+// };
+
 // export default AppStack;
+
+////////////////////////////////////////////////////////////LUMANG BOT NAV/////////////////////////////////////////////////////////////////////
+const AppStack = () => {
+  return (
+    <BotTab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: colors.secondary,
+        tabBarInactiveTintColor: colors.secondary,
+        tabBarStyle: { backgroundColor: colors.primary },
+        tabBarAllowFontScaling: 10 ,
+      }}
+    >
+      <BotTab.Screen
+        name="Home"
+        component={HomeStack}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="home" size={30} color={color}/>
+          ),
+        }}
+      />
+      <BotTab.Screen
+        name="Main"
+        component={MainStack}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="transcribe" size={30} color={color} />
+          ),
+        }}
+      />
+      <BotTab.Screen
+        name="About"
+        component={About}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="people-outline" size={30} color={color} />
+          ),
+        }}
+      />
+    </BotTab.Navigator>
+  );
+}
+export default AppStack;
 
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-end', // Place the bottom navigator at the bottom of the screen
-  },
-  bottomBar: {
-    backgroundColor: '#003153', // Set your desired background color
-    borderTopLeftRadius: 50, // Set the border radius for the left corner
-    borderTopRightRadius: 50, // Set the border radius for the right corner
-    borderBottomRightRadius: 50,
-    borderBottomLeftRadius: 50,
-    position: 'absolute',
-    bottom: 10,
-    overflow: 'hidden', // Ensure that the content inside the rounded corners is not visible outside
-    width: '90%',
-    left: '5%',
-  }
-  // bottomBar: {
-  //   backgroundColor: '#003153',
-  //   borderTopLeftRadius: 20,
-  //   borderTopRightRadius: 20,
-  //   overflow: 'hidden',
-  // },
+  
 });
