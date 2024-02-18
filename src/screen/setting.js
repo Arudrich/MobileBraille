@@ -13,6 +13,9 @@ import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { ActivityIndicator } from 'react-native';
 import { reauthenticateWithCredential, updatePassword, EmailAuthProvider } from 'firebase/auth';
 
+// DIMENSION COMPATIBILITY
+import { ScaledSheet } from 'react-native-size-matters';
+
 const SECTIONS = [
   {
     header: 'Preferences',
@@ -156,12 +159,12 @@ const Profile = ({ navigation }) => {
                 <TouchableOpacity key={label} onPress={() => { /* handle onPress */ }}>
                   <View style={styles.row}>
                     <View style={[styles.rowIcon, { backgroundColor: '#003153' }]}>
-                      <FeatherIcon color="white" name={icon} size={15} />
+                      <FeatherIcon color="white" name={icon} size={14 } />
                     </View>
                     <Text style={styles.rowLabel}>{label}</Text>
                     <View style={styles.rowSpacer} />
                     {type === 'boolean' && <Switch value={value} />}
-                    {type === 'link' && <FeatherIcon color="#0c0c0c" name="chevron-right" size={22} />}
+                    {type === 'link' && <FeatherIcon color="#0c0c0c" name="chevron-right" size={20} />}
                   </View>
                 </TouchableOpacity>
               ))}
@@ -170,7 +173,7 @@ const Profile = ({ navigation }) => {
         </View>
 
         {/* Logout Button */}
-        <View style={{ flex: 1, paddingBottom: 100, paddingHorizontal: 50 }}>
+        <View style={{ flex: 1, paddingBottom: '100@s', paddingHorizontal: 50 }}>
           <TouchableOpacity
             onPress={handleLogout}
             style={{
@@ -220,7 +223,7 @@ const Profile = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
 
 
 // logo
@@ -238,11 +241,11 @@ logo: {
 
 // section
   section: {
-    paddingHorizontal: 8,
+    paddingHorizontal: '8@s',
   },
   sectionHeader: {
     // paddingVertical: 5,
-    fontSize: 12,
+    fontSize: "12@s",
     fontWeight: '500',
     color: 'black',
   },
@@ -250,24 +253,24 @@ logo: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    height: 50,
+    height: "50@s",
     backgroundColor: 'white',
     borderRadius: 5,
-    marginBottom: 5,
-    paddingLeft: 10,
-    paddingRight: 10,
+    marginBottom: '5@s',
+    paddingLeft: '10@s',
+    paddingRight: '10@s',
   },
   rowIcon: {
-    width: 50,
-    height: 32,
+    width: '50@s',
+    height: '32@s',
     borderRadius: 8,
-    marginRight: 12,
+    marginRight: '12@s',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
   rowLabel: {
-    fontSize: 15,
+    fontSize: '15@s',
     fontWeight: '500',
     color: 'black',
     paddingHorizontal: 190,
@@ -290,22 +293,22 @@ logo: {
   },
   modalContent: {
     backgroundColor: "white",
-    padding: 20,
+    padding: '20@s',
     borderRadius: 8,
     alignItems: "center",
   },
   modalText: {
-    fontSize: 17,
-    marginBottom: 25,
+    fontSize: '17@s',
+    marginBottom: '25@s',
   },
   modalButtons: {
     flexDirection: "row",
     justifyContent: "center",
   },
   modalButton: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    marginHorizontal: 10,
+    paddingVertical: '10@s',
+    paddingHorizontal: '20@s',
+    marginHorizontal: '10@s',
     borderRadius: 8,
   },
   cancelButton: {
@@ -315,7 +318,7 @@ logo: {
     backgroundColor: "#003153",
   },
   modalButtonText: {
-    fontSize: 14,
+    fontSize: '14@s',
     color: "white",
   },
   modalContainerProfile: {
@@ -326,8 +329,8 @@ logo: {
   },
   modalContentProfile: {
     backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 10,
+    padding: '20@s',
+    borderRadius: '10@s',
     flexDirection: 'row',
     gap: 10
   },
@@ -335,10 +338,10 @@ logo: {
     borderColor: 'grey',
     borderWidth: 1,
     borderRadius: 25,
-    padding: 10,
+    padding: '10@s',
     flexDirection: 'column',
     alignItems: 'center',
-    marginVertical: 10,
+    marginVertical: '10@s',
   },
   iconText: {
     color: 'grey'
