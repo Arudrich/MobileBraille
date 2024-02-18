@@ -1,21 +1,31 @@
 import { ScrollView, TextInput, Switch, Alert } from "react-native";
-import { SafeAreaView, View, Text, StyleSheet, Image, TouchableOpacity, Modal } from "react-native";
+import {SafeAreaView,View,Text,StyleSheet,Image,TouchableOpacity, Modal, } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from "expo-image-picker";
 import FeatherIcon from "react-native-vector-icons/Feather";
-import { Feather } from '@expo/vector-icons';
+import { Feather } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons";
 import { AuthContext } from "../../navigation/AuthProvider";
 import { database, storage, authentication } from "../../FirebaseConfig";
-import { getDoc, doc, updateDoc } from 'firebase/firestore';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { ActivityIndicator } from 'react-native';
-import { reauthenticateWithCredential, updatePassword, EmailAuthProvider } from 'firebase/auth';
+import { getDoc, doc, updateDoc } from "firebase/firestore";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { ActivityIndicator } from "react-native";
+import {
+  reauthenticateWithCredential,
+  updatePassword,
+  EmailAuthProvider,
+} from "firebase/auth";
+
+// react paper ******
+
+import { TextInput as PaperTextInput, Button} from 'react-native-paper';
 
 // DIMENSION COMPATIBILITY
 
-import { ScaledSheet } from 'react-native-size-matters';
+import { ScaledSheet } from "react-native-size-matters";
+
+
 
 
 const Profile = ({ navigation }) => {
@@ -28,10 +38,10 @@ const Profile = ({ navigation }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [uploading, setUploading] = useState(false);
-  
+
   //for password changing
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [isChangingPassword, setIsChangingPassword] = useState(false);
 
   const handleEditPress = () => {
@@ -42,13 +52,13 @@ const Profile = ({ navigation }) => {
     // Perform save action to firebase
     setIsSaving(true); // Set isSaving to true before saving
     try {
-      await updateDoc(doc(database, 'users', user.uid), {
-        fullname: name // Assuming 'fullname' is the field in Firestore where you store the user's display name
+      await updateDoc(doc(database, "users", user.uid), {
+        fullname: name, // Assuming 'fullname' is the field in Firestore where you store the user's display name
       });
-      console.log('User data updated successfully');
+      console.log("User data updated successfully");
       setIsEditing(false); // Update the editing state
     } catch (error) {
-      console.error('Error updating user data:', error);
+      console.error("Error updating user data:", error);
       // Handle error
     } finally {
       setIsSaving(false); // Set isSaving back to false after saving
@@ -69,14 +79,14 @@ const Profile = ({ navigation }) => {
 
   const getUser = async () => {
     try {
-      const userDoc = await getDoc(doc(database, 'users', user.uid));
+      const userDoc = await getDoc(doc(database, "users", user.uid));
       if (userDoc.exists()) {
         setUserData(userDoc.data());
       } else {
-        console.log('User does not exist');
+        console.log("User does not exist");
       }
     } catch (error) {
-      console.error('Error getting user', error);
+      console.error("Error getting user", error);
     }
   };
 
@@ -97,28 +107,39 @@ const Profile = ({ navigation }) => {
     try {
       // Perform password change using Firebase Authentication
       const user = authentication.currentUser;
-      const credential = EmailAuthProvider.credential(user.email, currentPassword);
+      const credential = EmailAuthProvider.credential(
+        user.email,
+        currentPassword
+      );
       await reauthenticateWithCredential(user, credential);
       await updatePassword(user, newPassword);
 
-      Alert.alert('Password changed successfully');
-      console.log('Password changed successfully');
-      setCurrentPassword(''); // Clear current password input
-      setNewPassword(''); // Clear new password input
+      Alert.alert("Password changed successfully");
+      console.log("Password changed successfully");
+      setCurrentPassword(""); // Clear current password input
+      setNewPassword(""); // Clear new password input
     } catch (error) {
-      console.error('Error changing password:', error.message);
+      console.error("Error changing password:", error.message);
       // Handle error
     } finally {
       setIsChangingPassword(false); // Set loading state back to false
     }
   };
 
+
+  
+
   // UI components for password change
   const passwordChangeUI = (
     <View style={styles.changeInfo}>
       <Text style={styles.infoHeader}>Change Password</Text>
       <View style={styles.inputWrapper}>
-        <FontAwesome5 name="key" size={18} color="blue" style={styles.iconStyle} />
+        <FontAwesome5
+          name="key"
+          size={18}
+          color="blue"
+          style={styles.iconStyle}
+        />
         <TextInput
           style={styles.input}
           placeholder="Current Password"
@@ -128,7 +149,12 @@ const Profile = ({ navigation }) => {
         />
       </View>
       <View style={styles.inputWrapper}>
-        <FontAwesome5 name="key" size={18} color="blue" style={styles.iconStyle} />
+        <FontAwesome5
+          name="key"
+          size={18}
+          color="blue"
+          style={styles.iconStyle}
+        />
         <TextInput
           style={styles.input}
           placeholder="New Password"
@@ -151,13 +177,13 @@ const Profile = ({ navigation }) => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [1 , 1],
+      aspect: [1, 1],
       quality: 1,
     });
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
-      console.log(result.assets[0].uri)
+      console.log(result.assets[0].uri);
       setModalVisible(false);
       // updateUserImg();
     }
@@ -172,7 +198,7 @@ const Profile = ({ navigation }) => {
 
     if (!result.cancelled) {
       setImage(result.assets[0].uri);
-      console.log(result.assets[0].uri)
+      console.log(result.assets[0].uri);
       setModalVisible(false);
       // updateUserImg();
     }
@@ -187,19 +213,19 @@ const Profile = ({ navigation }) => {
 
   const uploadImage = async (uri) => {
     setUploading(true);
-    let filename = uri.substring(uri.lastIndexOf('/') + 1);
+    let filename = uri.substring(uri.lastIndexOf("/") + 1);
     const response = await fetch(uri);
     const blob = await response.blob();
     const storageRef = ref(storage, `profileImages/${filename}`);
-    
+
     const task = uploadBytesResumable(storageRef, blob);
-  
+
     // Set transferred state
-    task.on('state_changed', (taskSnapshot) => {
+    task.on("state_changed", (taskSnapshot) => {
       console.log(
-        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
+        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`
       );
-  
+
       // setTransferred(
       //   Math.round((taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100),
       // );
@@ -214,17 +240,16 @@ const Profile = ({ navigation }) => {
       setUploading(false); // Reset uploading state
       return null;
     }
-    
-    try { 
+
+    try {
       const url = await getDownloadURL(storageRef);
       // console.log(url)
       // Update user data with image URL
       return url;
-     } catch (e){
+    } catch (e) {
       console.log(e);
-      return null
+      return null;
     }
-    
   };
 
   const updateUserImg = async () => {
@@ -234,117 +259,220 @@ const Profile = ({ navigation }) => {
     }
 
     const fileUrl = await uploadImage(image);
-    await updateDoc(doc(database, 'users', user.uid), { userImg: fileUrl })
-        .then(() => {
-          console.log('Profile Picture Added!');
-          Alert.alert('Picture Uploaded!', 'Your profile picture has been changed Successfully!');
-          // setPost(null);
-        })
-        .catch((error) => {
-          console.log('Something went wrong with added post to firestore.', error);
-        });
-      setUploading(false);
-  }
+    await updateDoc(doc(database, "users", user.uid), { userImg: fileUrl })
+      .then(() => {
+        console.log("Profile Picture Added!");
+        Alert.alert(
+          "Picture Uploaded!",
+          "Your profile picture has been changed Successfully!"
+        );
+        // setPost(null);
+      })
+      .catch((error) => {
+        console.log(
+          "Something went wrong with added post to firestore.",
+          error
+        );
+      });
+    setUploading(false);
+  };
+
+  const [isVisible, setisVisible] =
+    useState(true); /* gamit for toggle ng eye yung sa password */
 
   return (
 
-    <View style = {styles.mainContainer}>
+    <View style={styles.mainContainer}>
 
+      {/* PROFILEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE */}
 
-      <View style = {styles.profileContainer}>
+      <View style={styles.profileContainer}>
+        <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <View style={styles.profileAvatarWrapper}>
+            <Image
+              source={{
+                uri: image
+                  ? image
+                  : userData
+                  ? userData.userImg ||
+                    "https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc"
+                  : "https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc",
+              }}
+              style={styles.profileAvatar}
+              resizeMode="contain"
+            />
+            <TouchableOpacity onPress={() => setModalVisible(true)}>
+              <View style={styles.profileAction}>
+                <FeatherIcon color="#003153" name="edit-3" size={20} />
+              </View>
+            </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => setModalVisible(true)}>
-            <View style={styles.profileAvatarWrapper}>
-              <Image
-                source={{
-                  uri: image ? image 
-                    : userData ? userData.userImg ||
-                      'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc'
-                    : 'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc',
-                }}
-                style={styles.profileAvatar}
-                resizeMode='contain'
-              />
-              <TouchableOpacity onPress={() => setModalVisible(true)}>
-                <View style={styles.profileAction}>
-                  <FeatherIcon color= '#003153' name="edit-3" size={20} />
+            
+            <Modal
+              animationType="fade"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={() => setModalVisible(!modalVisible)}
+            >
+              <View style={styles.modalContainerProfile}>
+                <View style={styles.modalContentProfile}>
+                  <TouchableOpacity
+                    style={styles.iconContainer}
+                    onPress={pickImageFromGallery}
+                  >
+                    <Feather name="folder" size={20} color="white" />
+                    <Text style={styles.iconText}>Gallery</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.iconContainer}
+                    onPress={takeImageFromCamera}
+                  >
+                    <Feather name="camera" size={20} color="white" />
+                    <Text style={styles.iconText}>Camera</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.iconContainer}
+                    onPress={() => setModalVisible(false)}
+                  >
+                    <Feather name="x" size={20} color="white" />
+                    <Text style={styles.iconText}>Cancel</Text>
+                  </TouchableOpacity>
                 </View>
-              </TouchableOpacity>
-              
-              <Modal
-                animationType= 'fade'
-                transparent={true}
-                visible={modalVisible}
-       
-           
-                
-                onRequestClose={() => setModalVisible(!modalVisible)}>
-                <View style={styles.modalContainerProfile}>
-                  <View style={styles.modalContentProfile}>
-                    <TouchableOpacity style={styles.iconContainer} onPress={pickImageFromGallery}>
-                      <Feather name="folder" size={20} color="white" />
-                      <Text style={styles.iconText}>Gallery</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.iconContainer} onPress={takeImageFromCamera}>
-                      <Feather name="camera" size={20} color= "white" />
-                      <Text style={styles.iconText}>Camera</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.iconContainer} onPress={() => setModalVisible(false)}>
-                      <Feather name="x" size={20} color= "white" />
-                      <Text style={styles.iconText}>Cancel</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </Modal>
+              </View>
+            </Modal>
+          </View>
+        </TouchableOpacity>
+      </View>
+    
+
+
+
+    {/* CHANGE PROFILE NAME AND PASSSSSSSSSSSSSWORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRD */}
+
+      <View style = {styles.changeInfo}>
+
+        <Text style = {styles.headerChangeInfo}>Change Profile Name</Text>
+
+
+        {/* NAMEEEEEEEEEEEE CHANGEEEEEEEEEEEEEEEEEEEEEEEEEEEEE */}
+
+          <Text style={styles.placeholderLabel}>Enter Full Name</Text>
+            <View>
+              <View style={{ position: 'absolute',top: 24, left: 15,  zIndex: 10 }}>
+              <AntDesign name="user" size={25} color='#003153'/>
+              </View>
+                <PaperTextInput
+                  label="       Enter Name"
+                  value={name}
+                  onChangeText={(value) => 
+                    setuserCredentials({...userCredentials, name: value})
+                    }
+                  keyboardType="name-phone-pad"
+                  mode="outlined"
+                  activeOutlineColor="#003153"
+                  style={styles.textInput}
+                  left={<AntDesign name="user" />}
+                />
             </View>
+
+
+            <Text style={styles.placeholderLabel}>Enter New Password</Text>
+            <View>
+              <View style={{position: 'absolute',top: 24, left: 15,  zIndex: 10  }}>
+                <FontAwesome5 name="key" size={25} color='#003153' />
+              </View>
+              <PaperTextInput
+                label="       Enter New Password"
+                value={""}
+                onChangeText={(value) => {
+                  setuserCredentials({ ...userCredentials, password: value });
+                }}
+                secureTextEntry={isVisible}
+                maxLength={20}
+                keyboardType="ascii-capable"
+                mode="outlined"
+                activeOutlineColor="#003153"
+                style={styles.textInput}
+                left={<FontAwesome5 name="key" />}
+                right={
+                  <PaperTextInput.Icon
+                    icon={isVisible ? 'eye' : 'eye-off'}
+                    onPress={() => setisVisible(!isVisible)}
+                    color="black"
+                  />
+                }
+              />
+            </View>
+
+            <Text style={styles.placeholderLabel}>Re-enter New Password</Text>
+            <View>
+              <View style={{ position: 'absolute',top: 24, left: 15,  zIndex: 10 }}>
+                <FontAwesome5 name="key" size={25} color='#003153' />
+              </View>
+              <PaperTextInput
+                label="       Re-enter New Password"
+                value={""}
+                onChangeText={(value) => {
+                  setuserCredentials({ ...userCredentials, password: value });
+                }}
+                secureTextEntry={isVisible}
+                maxLength={20}
+                keyboardType="ascii-capable"
+                mode="outlined"
+                activeOutlineColor="#003153"
+                style={styles.textInput}
+                left={<FontAwesome5 name="key" />}
+                right={
+                  <PaperTextInput.Icon
+                    icon={isVisible ? 'eye' : 'eye-off'}
+                    onPress={() => setisVisible(!isVisible)}
+                    color="black"
+                  />
+                }
+              />
+            </View>
+
+
+          <TouchableOpacity onPress={() => signup(email, password, name)} style={styles.buttonContainer} >
+              <Text style={styles.buttonText}>Sign up</Text>
           </TouchableOpacity>
-       
+            
 
-              
-
-          
-
+            
 
 
       </View>
 
-
-
-     
-
-    </View>
-
     
 
-  
+
+
+    </View>
   );
 };
 
-const styles = ScaledSheet.create({ 
-
+const styles = ScaledSheet.create({
   mainContainer: {
-    height: "25%",
-    backgroundColor: '#003153',
-    borderBottomLeftRadius: 8, 
+    height: "28%",
+    backgroundColor: "#003153",
+    borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
-    
-
   },
 
   // PROFILEEE **************
 
   profileContainer: {
-    padding: '30@s',
+    padding: "30@s",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
   },
   profileAvatar: {
-    width: '100@s',
-    height: '100@s' ,
+    width: "100@s",
+    height: "100@s",
     borderRadius: 8,
     borderWidth: 2,
-    borderColor: 'white'
+    borderColor: "white",
   },
   profileAvatarWrapper: {
     position: "relative",
@@ -352,61 +480,108 @@ const styles = ScaledSheet.create({
 
   profileAction: {
     position: "absolute",
-    right: '-4@s',
-    bottom: '-5@s',
+    right: "-4@s",
+    bottom: "-5@s",
     alignItems: "center",
     justifyContent: "center",
-    width: '28@s',
-    height: '28@s',
+    width: "28@s",
+    height: "28@s",
     borderRadius: 25,
     backgroundColor: "white",
   },
 
   // modal change PROFILE
 
-  modalContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-
   modalContentProfile: {
-    backgroundColor: '#003153',
-    padding: '12@s',
+    backgroundColor: "#003153",
+    padding: "12@s",
     borderRadius: 8,
-    flexDirection: 'row',
-    gap: '30@s'
+    flexDirection: "row",
+    gap: "30@s",
   },
 
   modalContainerProfile: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   iconContainer: {
-    borderColor: 'white',
+    borderColor: "white",
     borderWidth: 1,
     borderRadius: 25,
-    padding: '10@s',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginVertical: '5@s',
+    padding: "10@s",
+    flexDirection: "column",
+    alignItems: "center",
+    marginVertical: "5@s",
   },
 
   iconText: {
+    color: "white",
+    fontSize: "12@s",
+    fontWeight: "500",
+  },
+
+
+  // CHANGE NAME *******************
+
+  changeInfo: {
+    padding: '18@s',
+
+  },
+
+  headerChangeInfo: {
+    fontSize: '16@s',
+    fontWeight: "bold"
+
+  },
+
+  placeholderLabel: {
+    fontSize: '14@s',
+    fontWeight: '500',
+    color: '#003153',
+    marginTop: '15@s',
+    paddingLeft: '15@s',
+  },
+
+  
+  //iconContainer: { // may cause hereeeeeeeeeeeeeeeeeeeeeeeeee
+    //position: 'absolute',
+    //top: '20@s', // Adjust as needed
+    //left: '20@s', // Adjust as needed
+    //zIndex: '1@s',
+  //},
+
+
+  textInput: {
+    marginTop: '5@s',
+    backgroundColor: 'white',
+    width: '305@s',
+    margin: '10@s',
+  },
+
+
+  // Button ***********
+
+
+   buttonContainer: {
+    backgroundColor: '#003153',
+    borderRadius: '30@s',
+    height: '50@s',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '15@s',
+    width: '320@s', // Set an appropriate width
+  },
+  buttonText:{
     color: 'white',
-    fontSize: '12@s',
-    fontWeight: '500'
-    
+    fontSize: '16@s',
+    fontWeight: 'bold',
+     
   },
 
 
 
-
-
-  
-})
- 
+});
 
 export default Profile;
