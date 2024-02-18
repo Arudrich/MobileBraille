@@ -213,7 +213,7 @@ const home = ({ navigation }) => {
               <TouchableOpacity 
                 onPress={() => navigation.navigate('History')}
                 style = {{ backgroundColor: '#003153', borderRadius: 8,}}>
-                <Text style = {styles.latestSubheader}>See More</Text>
+                <Text style = {styles.latestSubheader}>View All</Text>
               </TouchableOpacity>
 
             </View>
@@ -393,7 +393,7 @@ cardShowcase: {
 
   latestSubheader:{
     color: 'white',
-    fontSize: '10@s',
+    fontSize: '12@s',
     padding: '5@s',
 
     

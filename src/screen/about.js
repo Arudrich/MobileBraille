@@ -9,8 +9,7 @@ import LottieView from 'lottie-react-native';
 import { ScaledSheet } from 'react-native-size-matters';
 
 
-// TEXT REACTNATIVE PAPER
-import { TextInput } from 'react-native-paper';
+
 
 
 
@@ -85,36 +84,7 @@ const about = () => {
            </View>
 
 
-           <View style = {styles.quickContact}>
-           <Text style = {styles.quickContactHeader}>Contact us</Text>
-           </View>
-
-
-           <View style = {styles.form}>
-
-            <TextInput style = {styles.input} autoCapitalize = "none" value = {""} onChange={""} placeholder='Email@example.com' keyboardType='email-address'> 
-    
-            </TextInput>
-
-            <TextInput style = {[styles.inputMessage, styles.MultilineText]} autoCapitalize = "none" value = {""} onChange={""} placeholder="Message here" multiline keyboardType='email-address'> 
-    
-            </TextInput>
-            
-            <TouchableOpacity>
-
-              <Text style = {{ fontWeight: 'bold', fontSize: 20, color: '#003153'}}>
-                Send
-              </Text>
-
-            </TouchableOpacity>
-
-           
-     
-
-
-
-           </View>
-
+          
            
         
 

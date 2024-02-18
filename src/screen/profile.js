@@ -301,11 +301,13 @@ const Profile = ({ navigation }) => {
               style={styles.profileAvatar}
               resizeMode="contain"
             />
+            
             <TouchableOpacity onPress={() => setModalVisible(true)}>
               <View style={styles.profileAction}>
                 <FeatherIcon color="#003153" name="edit-3" size={20} />
               </View>
             </TouchableOpacity>
+            
 
             
             <Modal
@@ -342,7 +344,10 @@ const Profile = ({ navigation }) => {
             </Modal>
           </View>
         </TouchableOpacity>
+        <Text style = {{ paddingTop: 8, fontSize: 17 , color:'white', fontWeight: "500" }}>{userData ? userData.fullname : "Loading..."}</Text>
       </View>
+
+      
     
 
 
@@ -351,7 +356,7 @@ const Profile = ({ navigation }) => {
 
       <View style = {styles.changeInfo}>
 
-        <Text style = {styles.headerChangeInfo}>Change Profile Name</Text>
+        <Text style = {styles.headerChangeInfo}>Change Profile Name and Password </Text>
 
 
         {/* NAMEEEEEEEEEEEE CHANGEEEEEEEEEEEEEEEEEEEEEEEEEEEEE */}
@@ -434,7 +439,7 @@ const Profile = ({ navigation }) => {
 
 
           <TouchableOpacity onPress={() => signup(email, password, name)} style={styles.buttonContainer} >
-              <Text style={styles.buttonText}>Sign up</Text>
+              <Text style={styles.buttonText}>CONFIRM</Text>
           </TouchableOpacity>
             
 
@@ -554,10 +559,9 @@ const styles = ScaledSheet.create({
 
 
   textInput: {
-    marginTop: '5@s',
+    marginTop: '1@s',
     backgroundColor: 'white',
-    width: '305@s',
-    margin: '10@s',
+   
   },
 
 
@@ -567,11 +571,11 @@ const styles = ScaledSheet.create({
    buttonContainer: {
     backgroundColor: '#003153',
     borderRadius: '30@s',
-    height: '50@s',
+    height: '40@s',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '15@s',
-    width: '320@s', // Set an appropriate width
+    marginTop: '8@s',
+    // Set an appropriate width
   },
   buttonText:{
     color: 'white',

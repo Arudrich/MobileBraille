@@ -30,6 +30,9 @@ const faq = () => {
 
           <Text style = {styles.faqHeader}>Top Frequently Asked Question: </Text>
 
+          <Text style = {styles.faqSubHeader}>We're trying to help you with anything and everything on Mobile Braille, we are here to help you. We have got
+          you covered share your concern or check our frequently asked question listed below.</Text>
+
 
           
           <TouchableOpacity style = {styles.faqList}>
@@ -46,20 +49,11 @@ const faq = () => {
 
           <TouchableOpacity style = {styles.faqList}>
 
-              <Text style = {styles.question} > What services does Mobile Braille Offer? </Text>
+              <Text style = {styles.question} > See More!</Text>
 
           </TouchableOpacity>
 
-
-          <TouchableOpacity style = {styles.faqListSeemore}>
-
-              <Text style = {styles.seeMoreText}> See More </Text>
-
-          </TouchableOpacity>
-
-
-
-
+    
 
       </View>
 
@@ -95,7 +89,15 @@ search: {
     fontWeight: 'bold',
     color: '#003153',
     marginTop: '10@s',
-    marginBottom: '10@s',
+    marginBottom: '1@s',
+
+  },
+
+  faqSubHeader: {
+    fontWeight: '500',
+    color: '#818589',
+    textAlign: 'justify',
+    fontSize: 12
 
   },
 
@@ -128,12 +130,7 @@ search: {
 
   },
 
-  seeMoreText: {
-    color: 'white'
-
-
-  }
-
+ 
   
     
     
