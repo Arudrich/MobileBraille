@@ -30,7 +30,8 @@ import { Feather } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import historyScreen from '../src/screen/historyScreen';
 
-
+import { BottomNavigation } from 'react-native-paper';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 
 
@@ -49,8 +50,6 @@ const settingdrawerIcon = ({ focused, color, size }) => <Feather name="settings"
 const logoutdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="logout" size={25} color="black" />
 
 
-
-
 const HomeStack = ({ navigation }) => (
   <Stack.Navigator>
     <Stack.Screen
@@ -61,8 +60,6 @@ const HomeStack = ({ navigation }) => (
 
       }}
     />
-
- 
     <Stack.Screen
       name="Profile"
       component={Profile}
@@ -75,7 +72,6 @@ const HomeStack = ({ navigation }) => (
         },
       }}
     />
-
     <Stack.Screen 
       name= "History"
       component={historyScreen}
@@ -85,12 +81,9 @@ const HomeStack = ({ navigation }) => (
     />
   </Stack.Navigator>
 );
-
 // nav drawer
 
 const HomeDrawerStack = ({}) => (
-
-
   <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
 
     <Drawer.Screen name="Home" component={Home} options={{drawerIcon:homedrawerIcon}}  />
@@ -106,15 +99,9 @@ const HomeDrawerStack = ({}) => (
     <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
 
     <Drawer.Screen name="Logout" component={Profile} options={{headerShown: true, drawerIcon:logoutdrawerIcon}}  />
-
-    
-
-
-
     {/* Add other screens you want in the drawer navigator */}
 
   </Drawer.Navigator>
-
 );
 
 const MainStack = ({ navigation }) => (
@@ -166,57 +153,95 @@ const MainStack = ({ navigation }) => (
 );
 
 const AppStack = () => {
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'home', title: 'Home', icon: 'home', customIcon: AntDesign },
+    { key: 'main', title: 'Main', icon: 'transcribe', customIcon: MaterialCommunityIcons },
+    { key: 'about', title: 'About', icon: 'people-outline', customIcon: Ionicons },
+  ]);
+
+  const renderScene = BottomNavigation.SceneMap({
+    home: Home,
+    main: Main,
+    about: About,
+  });
+  const renderIcon = ({ route, color }) => {
+    const CustomIcon = route.customIcon;
+    return <CustomIcon name={route.icon} size={25} color={color} />;
+  };
+
   return (
-    <BotTab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: colors.primary,
-        tabBarAllowFontScaling: 10 ,
-        
-      }}
-    >
-      <BotTab.Screen
-        name="Home"
-        component={HomeStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <AntDesign name="home" size={30} color={color}/>
-          ),
-        }}
-      />
-      <BotTab.Screen
-        name="Main"
-        component={MainStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="transcribe" size={30} color={color} />
-          ),
-        }}
-      />
-      <BotTab.Screen
-        name="About"
-        component={About}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="people-outline" size={30} color={color} />
-          ),
-        }}
-      />
-    </BotTab.Navigator>
-
-
-
-
-
-
-
-
-
+    <SafeAreaProvider>
+       <View style={styles.container}>
+    <BottomNavigation
+      navigationState={{ index, routes }}
+      onIndexChange={setIndex}
+      renderScene={renderScene}
+      barStyle={styles.bottomBar}
+      activeColor="#FFFFFF"
+      inactiveColor="#FFFFFF"
+      renderIcon={renderIcon}
+    />
+    </View>
+    </SafeAreaProvider>
   );
-}
-
+};
 export default AppStack;
 
 
+// const AppStack = () => {
+//   return (
+//     <BotTab.Navigator
+//       screenOptions={{
+//         headerShown: false,
+//         tabBarActiveTintColor: colors.primary,
+//         tabBarAllowFontScaling: 10 ,
+//       }}
+//     >
+//       <BotTab.Screen
+//         name="Home"
+//         component={HomeStack}
+//         options={{
+//           tabBarIcon: ({ color }) => (
+//             <AntDesign name="home" size={30} color={color}/>
+//           ),
+//         }}
+//       />
+//       <BotTab.Screen
+//         name="Main"
+//         component={MainStack}
+//         options={{
+//           tabBarIcon: ({ color }) => (
+//             <MaterialCommunityIcons name="transcribe" size={30} color={color} />
+//           ),
+//         }}
+//       />
+//       <BotTab.Screen
+//         name="About"
+//         component={About}
+//         options={{
+//           tabBarIcon: ({ color }) => (
+//             <Ionicons name="people-outline" size={30} color={color} />
+//           ),
+//         }}
+//       />
+//     </BotTab.Navigator>
+//   );
+// }
+// export default AppStack;
 
-const styles = StyleSheet.create({});
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'flex-end', // Place the bottom navigator at the bottom of the screen
+  },
+  bottomBar: {
+    backgroundColor: '#003153', // Set your desired background color
+    borderTopLeftRadius: 20, // Set the border radius for the left corner
+    borderTopRightRadius: 20, // Set the border radius for the right corner
+    overflow: 'hidden', // Ensure that the content inside the rounded corners is not visible outside
+  
+  },
+});
