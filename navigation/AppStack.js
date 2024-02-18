@@ -1,6 +1,6 @@
 
 // Dito yung mga bottom tab nav
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Modal } from 'react-native'
 import React from 'react'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -81,8 +81,12 @@ const HomeStack = ({ navigation }) => (
     />
   </Stack.Navigator>
 );
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const HomeDrawerStack = ({}) => (
+  
   <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
 
     <Drawer.Screen name="Home" component={Home} options={{drawerIcon:homedrawerIcon}}  />
@@ -97,7 +101,7 @@ const HomeDrawerStack = ({}) => (
 
     <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
 
-    <Drawer.Screen name="Logout" component={Profile} options={{headerShown: true, drawerIcon:logoutdrawerIcon}}  />
+    <Drawer.Screen name="Logout" component={setting} options={{headerShown: true, drawerIcon:logoutdrawerIcon}}  />
     {/* Add other screens you want in the drawer navigator */}
 
   </Drawer.Navigator>
