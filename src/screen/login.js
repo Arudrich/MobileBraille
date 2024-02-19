@@ -9,6 +9,7 @@ import { AuthContext } from "../../navigation/AuthProvider";
 import { TextInput as PaperTextInput, Button } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 // dimension fix
 import { ScaledSheet } from 'react-native-size-matters';
 
@@ -97,7 +98,10 @@ const Login = () => {
       onPress={() => login(email, password)}
       style={styles.buttonContainer}
     >
+      <View style={styles.buttonContent}>
+      <Icon name="login" size={20} color="white" style={styles.icon} />
       <Text style={styles.buttonText}>Log In</Text>
+      </View>
     </TouchableOpacity>
 
           <View style={styles.lineContainer}>
@@ -194,13 +198,19 @@ const styles = ScaledSheet.create({
   },
   buttonText:{
     color: 'white',
-    fontSize: 16,
+    fontSize: '12@s',
     fontWeight: 'bold',
      
   },
-
-  
-
+  icon: {
+    marginRight: '5@s',
+     // Adjust the margin as needed
+  },
+  buttonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 export default Login;
