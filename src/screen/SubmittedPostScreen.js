@@ -25,16 +25,16 @@ const SubmittedPostScreen = ({ route }) => {
         </ScrollView>
 
         <View style={styles.buttonContainer}>
-          <Button icon="download" mode="elevated" onPress={() => console.log('Pressed')} style={{ width: 125 }} textColor="#003153">
-            Transcript
-          </Button>
-          <Button icon="download" mode="elevated" onPress={() => console.log('Pressed')} style={{ width: 100 }} textColor="#003153">
-            BRF
-          </Button>
-          <Button icon="download" mode="elevated" onPress={() => console.log('Pressed')} style={{ width: 100 }} textColor="#003153">
-            PEF
-          </Button>
-        </View>
+      <Button icon="download" mode="elevated" onPress={() => console.log('Pressed')} style={[styles.button, { width: 125 }]} textColor="#003153">
+        Transcript
+      </Button>
+      <Button icon="download" mode="elevated" onPress={() => console.log('Pressed')} style={[styles.button, { width: 100 }]} textColor="#003153">
+        BRF
+      </Button>
+      <Button icon="download" mode="elevated" onPress={() => console.log('Pressed')} style={[styles.button, { width: 100 }]} textColor="#003153">
+        PEF
+      </Button>
+    </View>
       </View>
     </ScrollView>
   );
@@ -46,8 +46,11 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: '7@s', 
-    paddingHorizontal: '30@s', 
+    marginVertical: '15@s', 
+    paddingHorizontal: 10, 
+  },
+  button: {
+    marginRight: '10@s', // Adjust the margin as needed
   },
   resultBox: {
     borderWidth: 3,
@@ -55,7 +58,7 @@ const styles = ScaledSheet.create({
     padding: 10,
     borderRadius: 8,
     width: '90%', // Adjust the width as needed
-    alignItems: 'left',
+    alignItems: 'flex-start',
   },
   textStyle:{
     fontSize: '14@s',
