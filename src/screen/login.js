@@ -36,7 +36,7 @@ const Login = () => {
   };
   return (
       <ScrollView style = {{backgroundColor: 'white', flex: 1}}>
-        <View style={{ paddingHorizontal: 20 }}>
+        <View style={{ paddingHorizontal: 15 }}>
         <Text style={styles.screenHeading}> Hey there! </Text>
           <Text style={styles.screenTexts}>
             Welcome, please enter your credentials.
@@ -184,7 +184,7 @@ const styles = ScaledSheet.create({
     fontWeight: 'bold', 
     fontSize: '40@s', 
     color: '#003153',
-    paddingTop: '100@s',
+    paddingTop: '85@s',
     alignSelf: "center"
   },
   buttonContainer: {
@@ -194,7 +194,7 @@ const styles = ScaledSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: '15@s',
-    width: '320@s', // Set an appropriate width
+    width: '100%', // Set an appropriate width
   },
   buttonText:{
     color: 'white',

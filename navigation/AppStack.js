@@ -91,7 +91,7 @@ const HomeDrawerStack = ({}) => (
 
     <Drawer.Screen name="Home" component={Home} options={{drawerIcon:homedrawerIcon}}  />
 
-    <Drawer.Screen name="Main" component={MainStack} options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
+    <Drawer.Screen name="Transcribe" component={MainStack} options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
     
     <Drawer.Screen name="Profile" component={Profile} options={{headerShown: true, drawerIcon:profiledrawerIcon}} />
 
@@ -220,10 +220,19 @@ const AppStack = () => {
   return (
     <BotTab.Navigator
       screenOptions={{
+        tabBarHideOnKeyboard: true,
         headerShown: false,
-        tabBarActiveTintColor: colors.secondary,
+        tabBarActiveTintColor: colors.accent,
         tabBarInactiveTintColor: colors.secondary,
-        tabBarStyle: { backgroundColor: colors.primary, width: '90%' ,alignSelf: 'center', marginBottom:20, borderTopLeftRadius: 25, borderTopRightRadius: 25, borderBottomLeftRadius: 25, borderBottomRightRadius:25},
+        tabBarStyle: { position: 'center',
+        backgroundColor: colors.primary, 
+        width: '90%', 
+        alignSelf: 'center', 
+        marginBottom: 5,
+        borderTopLeftRadius: 25, 
+        borderTopRightRadius: 25, 
+        borderBottomLeftRadius: 25, 
+        borderBottomRightRadius: 25,},
         tabBarAllowFontScaling: 10 ,
       }}
     >
@@ -237,7 +246,7 @@ const AppStack = () => {
         }}
       />
       <BotTab.Screen
-        name="Main"
+        name="Transcribe"
         component={MainStack}
         options={{
           tabBarIcon: ({ color }) => (

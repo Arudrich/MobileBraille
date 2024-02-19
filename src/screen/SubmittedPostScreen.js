@@ -66,8 +66,6 @@ const styles = ScaledSheet.create({
   },
   textStyleOne:{
     fontSize: '12@s',
-    fontStyle: 'italic',
-    fontWeight: 'bold',
   },
   videoContainer:{
     width: '300@s',

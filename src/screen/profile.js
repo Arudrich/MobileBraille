@@ -440,7 +440,7 @@ const Profile = ({ navigation }) => {
 
 
           <TouchableOpacity onPress={() => signup(email, password, name)} style={styles.buttonContainer} >
-              <Text style={styles.buttonText}>CONFIRM</Text>
+              <Text style={styles.buttonText}>Confirm</Text>
           </TouchableOpacity>
             
 
@@ -576,12 +576,12 @@ const styles = ScaledSheet.create({
     height: '40@s',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '8@s',
+    marginTop: '10@s',
     // Set an appropriate width
   },
   buttonText:{
     color: 'white',
-    fontSize: '16@s',
+    fontSize: '12@s',
     fontWeight: 'bold',
      
   },
