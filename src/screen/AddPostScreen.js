@@ -29,43 +29,103 @@ import * as DocumentPicker from 'expo-document-picker';
 
 import { Button } from 'react-native-paper';
 // Add your transcribeFile function here
-const transcribeFile = async (file, fileType, fileName) => {
+// const transcribeFile = async (file, fileType, fileName) => {
 
-  console.log(file);  
+//   console.log(file);  
 
-  const formData = new FormData();
-  const apiEndpoint = `http://34.142.200.21:8000/transcribe/${fileType}`;
+//   const formData = new FormData();
+//   const apiEndpoint = `http://34.142.200.21:8000/transcribe/${fileType}`;
 
-  formData.append('file', {
-    uri: file,
-    type: fileType === 'image' ? 'image/jpeg' : (fileType === 'video' ? 'video/mp4' : 'audio/mp3'),
-    name: fileType === 'image' ? 'image.jpg' : (fileType === 'video' ? 'video.mp4' : 'audio.mp3'),
-    // name: fileName,
-  });
+//   formData.append('file', {
+//     uri: file,
+//     type: fileType === 'image' ? 'image/jpeg' : (fileType === 'video' ? 'video/mp4' : 'audio/mp3'),
+//     name: fileType === 'image' ? 'image.jpg' : (fileType === 'video' ? 'video.mp4' : 'audio.mp3'),
+//     // name: fileName,
+//   });
 
-  try {
-    const response = await fetch(apiEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      body: formData,
-    });
+//   try {
+//     const response = await fetch(apiEndpoint, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'multipart/form-data',
+//       },
+//       body: formData,
+//     });
 
-    // Assuming that the server returns JSON, you can parse the response
-    const responseData = await response.json();
+//     // Assuming that the server returns JSON, you can parse the response
+//     const responseData = await response.json();
 
-    // console.log(`Response for ${fileType}:`, responseData);
-    console.log("Transcription: ", responseData.Transcription);
-    console.log("Braille: ", responseData.Braille)
+//     // console.log(`Response for ${fileType}:`, responseData);
+//     console.log("Transcription: ", responseData.Transcription);
+//     console.log("Braille: ", responseData.Braille)
 
     
-    return responseData;
-  } catch (error) {
-    console.error(error);
-    return null;
+//     return responseData;
+//   } catch (error) {
+//     console.error(error);
+//     return null;
+//   }
+// };
+const transcribeFile = async (file, fileType, fileName) => {
+  console.log(file);
+
+  const apiEndpoint = `http://34.142.200.21:8000/transcribe/${fileType}`;
+
+  if (fileType === 'text') {
+    // Directly send the provided text as a parameter to the API
+    const formData = new FormData();
+    formData.append('text', file);
+
+    try {
+      const response = await fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        body: formData,
+      });
+
+      const responseData = await response.json();
+
+      console.log("Transcription: ", responseData.Transcription);
+      console.log("Braille: ", responseData.Braille);
+
+      return responseData;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  } else {
+    // For other file types, handle as usual
+    const formData = new FormData();
+    formData.append('file', {
+      uri: file,
+      type: fileType === 'image' ? 'image/jpeg' : (fileType === 'video' ? 'video/mp4' : 'audio/mp3'),
+      name: fileType === 'image' ? 'image.jpg' : (fileType === 'video' ? 'video.mp4' : 'audio.mp3'),
+    });
+
+    try {
+      const response = await fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        body: formData,
+      });
+
+      const responseData = await response.json();
+
+      console.log("Transcription: ", responseData.Transcription);
+      console.log("Braille: ", responseData.Braille);
+
+      return responseData;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
   }
 };
+
 
 const AddPostScreen = ({ route }) => {
   const navigation = useNavigation();
@@ -276,84 +336,39 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
     }
   };
 
-  const submitPost = async () => {
-    const fileUrl = await uploadFile(image, fileType);
-
-    if (!fileUrl) {
-      // Handle case where file upload fails
-      console.error('Failed to upload file');
-      setUploading(false)
-      return;
-    }
-    
-    console.log('File Url: ', fileUrl);
-    console.log('Post: ', post);
-
-    // transcribeFile function goes here
-    setTranscribing(true);
-    const transcriptionData = await transcribeFile(image, fileType, fileName);
-    setTranscribing(false);
-
-    // const db = getFirestore();
-    addDoc(collection(database, 'posts'), {
-      userId: user.uid,
-      title: post,
-      fileName: fileName,
-      postUrl: fileUrl,
-      postTime: Timestamp.fromDate(new Date()),
-      transcriptionType: fileType,
-      Transcription: transcriptionData ? transcriptionData.Transcription : '',
-      Braille: transcriptionData ? transcriptionData.Braille : '',
-      // download_links: '',
-    })
-    .then(() => {
-      console.log('Post Added!');
-      Alert.alert('Transcription published!', 'Your post has been transcripted successfully!', [
-        {
-          text: 'OK',
-          onPress: () => navigation.navigate('SubmittedPost', {
-            title: post,
-            imageUrl: fileUrl,
-            transcription: transcriptionData ? transcriptionData.Transcription : '',
-            braille: transcriptionData ? transcriptionData.Braille : '',
-            transcriptionType: fileType,
-          }),
-        },
-      ]);
-      setPost(null);
-      setImage(null);
-      setFilename(null);
-    })
-      .catch((error) => {
-        console.log('Something went wrong with added post to firestore.', error);
-      });
-  };
-
   // const submitPost = async () => {
-  //   try {
-  //     const fileUrl = await uploadFile(image, fileType);
-  //     if (!fileUrl) {
-  //       throw new Error("Failed to upload file. File URL is null.");
-  //     }
-  //     console.log('File Url: ', fileUrl);
-  //     console.log('Post: ', post);
-  
-  //     setTranscribing(true);
-  //     const transcriptionData = await transcribeFile(image, fileType, fileName);
-  //     setTranscribing(false);
-  
-  //     await addDoc(collection(database, 'posts'), {
-  //       userId: user.uid,
-  //       title: post,
-  //       postUrl: fileUrl,
-  //       postTime: Timestamp.fromDate(new Date()),
-  //       transcriptionType: fileType,
-  //       Transcription: transcriptionData ? transcriptionData.Transcription : '',
-  //       Braille: transcriptionData ? transcriptionData.Braille : '',
-  //     });
-  
+  //   const fileUrl = await uploadFile(image, fileType);
+
+  //   if (!fileUrl) {
+  //     // Handle case where file upload fails
+  //     console.error('Failed to upload file');
+  //     setUploading(false)
+  //     return;
+  //   }
+    
+  //   console.log('File Url: ', fileUrl);
+  //   console.log('Post: ', post);
+
+  //   // transcribeFile function goes here
+  //   setTranscribing(true);
+  //   const transcriptionData = await transcribeFile(image, fileType, fileName);
+  //   setTranscribing(false);
+
+  //   // const db = getFirestore();
+  //   addDoc(collection(database, 'posts'), {
+  //     userId: user.uid,
+  //     title: post,
+  //     fileName: fileName,
+  //     postUrl: fileUrl,
+  //     postTime: Timestamp.fromDate(new Date()),
+  //     transcriptionType: fileType,
+  //     Transcription: transcriptionData ? transcriptionData.Transcription : '',
+  //     Braille: transcriptionData ? transcriptionData.Braille : '',
+  //     // download_links: '',
+  //   })
+  //   .then(() => {
   //     console.log('Post Added!');
-  //     Alert.alert('Post published!', 'Your post has been published Successfully!', [
+  //     Alert.alert('Transcription published!', 'Your post has been transcripted successfully!', [
   //       {
   //         text: 'OK',
   //         onPress: () => navigation.navigate('SubmittedPost', {
@@ -365,12 +380,80 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
   //         }),
   //       },
   //     ]);
-  //   } catch (error) {
-  //     console.log('Error submitting post:', error);
-  //     // Handle error, e.g., show an alert to the user
-  //     Alert.alert('Error', 'Failed to publish post. Please try again later.');
-  //   }
+  //     setPost(null);
+  //     setImage(null);
+  //     setFilename(null);
+  //   })
+  //     .catch((error) => {
+  //       console.log('Something went wrong with added post to firestore.', error);
+  //     });
   // };
+
+  const submitPost = async () => {
+    let transcriptionData;
+    if (fileType === 'text') {
+      // For text, directly set transcription data
+      setTranscribing(true); // Set transcribing to true when transcribing text
+      transcriptionData = await transcribeFile(post, fileType);
+      setTranscribing(false); // Set transcribing to false after transcription is done
+    } else {
+      const fileUrl = await uploadFile(image, fileType);
+  
+      if (!fileUrl) {
+        console.error('Failed to upload file');
+        setUploading(false);
+        return;
+      }
+      
+      console.log('File Url: ', fileUrl);
+      console.log('Post: ', post);
+  
+      // For other file types, transcribe the file
+      setTranscribing(true);
+      transcriptionData = await transcribeFile(image, fileType, fileName);
+      setTranscribing(false);
+    }
+  
+    if (!transcriptionData) {
+      console.error('Failed to transcribe file');
+      return;
+    }
+  
+    addDoc(collection(database, 'posts'), {
+      userId: user.uid,
+      title: post,
+      fileName: fileName,
+      postUrl: fileType === 'text' ? null : fileUrl,
+      postTime: Timestamp.fromDate(new Date()),
+      transcriptionType: fileType,
+      Transcription: transcriptionData.Transcription || '',
+      Braille: transcriptionData.Braille || '',
+    })
+    .then(() => {
+      console.log('Post Added!');
+      Alert.alert('Transcription published!', 'Your post has been transcripted successfully!', [
+        {
+          text: 'OK',
+          onPress: () => {
+            navigation.navigate('SubmittedPost', {
+              title: post,
+              imageUrl: fileType === 'text' ? null : fileUrl,
+              transcription: transcriptionData.Transcription || '',
+              braille: transcriptionData.Braille || '',
+              transcriptionType: fileType,
+            });
+            setPost('');
+            setImage(null);
+            setFilename(null);
+          },
+        },
+      ]);
+    })
+    .catch((error) => {
+      console.log('Something went wrong with added post to firestore.', error);
+    });
+  };
+  
   
 
 
