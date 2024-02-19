@@ -248,6 +248,7 @@ const Profile = ({ navigation }) => {
       return url;
     } catch (e) {
       console.log(e);
+      setUploading(false);
       return null;
     }
   };

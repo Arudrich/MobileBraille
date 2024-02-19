@@ -7,7 +7,7 @@ import { TouchableOpacity } from 'react-native';
 // DIMENSION COMPATIBILITY
 import { ScaledSheet } from 'react-native-size-matters';
 
-const faq = () => {
+const Faq = () => {
   return (
     
     <ScrollView style = {styles.mainContainer}>
@@ -142,4 +142,4 @@ search: {
 })
       
 
-export default faq
+export default Faq

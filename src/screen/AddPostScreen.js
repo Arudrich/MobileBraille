@@ -279,6 +279,12 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
   const submitPost = async () => {
     const fileUrl = await uploadFile(image, fileType);
 
+    if (!fileUrl) {
+      // Handle case where file upload fails
+      console.error('Failed to upload file');
+      setUploading(false)
+      return;
+    }
     
     console.log('File Url: ', fileUrl);
     console.log('Post: ', post);
@@ -298,10 +304,11 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
       transcriptionType: fileType,
       Transcription: transcriptionData ? transcriptionData.Transcription : '',
       Braille: transcriptionData ? transcriptionData.Braille : '',
+      // download_links: '',
     })
     .then(() => {
       console.log('Post Added!');
-      Alert.alert('Post published!', 'Your post has been published Successfully!', [
+      Alert.alert('Transcription published!', 'Your post has been transcripted successfully!', [
         {
           text: 'OK',
           onPress: () => navigation.navigate('SubmittedPost', {
@@ -473,8 +480,8 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
       const url = await getDownloadURL(storageRef);
   
       setUploading(false);
-      setImage(null);
-      setPost(null);
+      // setImage(null);
+      // setPost(null);
   
       return url;
     } catch (e) {
@@ -512,12 +519,13 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
 
         <TextInput
           style={styles.inputField}
-          placeholder="Click here to set Transcription title.."
+          placeholder={fileType === 'text' ? "Input text to transcribe.." : "Click here to set Transcription title.."}
           multiline
           numberOfLines={4}
           value={post}
           onChangeText={(content) => setPost(content)}
         />
+
         
         {uploading || transcribing ? (
           <View style={styles.statusWrapper}>
@@ -526,9 +534,9 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
           </View>
         ) : (
 
-<Button icon="refresh" mode="elevated" onPress={submitPost} style={styles.button} textColor="#003153">
-        Transcribe
-            </Button>
+          <Button icon="refresh" mode="elevated" onPress={submitPost} style={styles.button} textColor="#003153">
+              Transcribe
+          </Button>
           // <TouchableOpacity style={styles.submitBtn} onPress={submitPost}>
           //   <Text style={styles.submitBtnText}>Transcribe</Text>
           // </TouchableOpacity>
