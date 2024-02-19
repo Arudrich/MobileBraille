@@ -521,7 +521,7 @@ export default AddPostScreen;
 
 const styles = StyleSheet.create({
   button: {
-    width: '90%',
+    width: '70%',
   },
 
   container: {
@@ -541,7 +541,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     fontSize: 14,
     textAlign: 'center',
-    width: '90%',
+    width: '60%',
     marginBottom: 5,
   },
   addImage: {
