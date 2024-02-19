@@ -228,7 +228,7 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
     if (fileType === 'audio') {
       return (
         <ActionButton buttonColor="#003153" useNativeDriver={true}>
-          <ActionButton.Item buttonColor="#3498db" title="Select Audio" onPress={selectFile}>
+          <ActionButton.Item buttonColor="#8DABD6" title="Select Audio" onPress={selectFile}>
             <Icon name="md-mic-outline" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
@@ -236,7 +236,7 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
     } else if (fileType === 'video') {
       return (
         <ActionButton buttonColor="#003153" useNativeDriver={true}>
-          <ActionButton.Item buttonColor="#3498db" title="Select Video" onPress={selectFile}>
+          <ActionButton.Item buttonColor="#8DABD6" title="Select Video" onPress={selectFile}>
             <Icon name="md-videocam-outline" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
@@ -244,7 +244,7 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
     } else if (fileType === 'document') {
       return (
         <ActionButton buttonColor="#003153" useNativeDriver={true}>
-          <ActionButton.Item buttonColor="#3498db" title="Select Document" onPress={selectFile}>
+          <ActionButton.Item buttonColor="#8DABD6" title="Select Document" onPress={selectFile}>
             <Icon name="md-document-outline" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
@@ -252,10 +252,10 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
     } else if (fileType === 'image') {
       return (
         <ActionButton buttonColor="#003153" useNativeDriver={true}>
-          <ActionButton.Item buttonColor="#3498db" title="Take Photo" onPress={takePhotoFromCamera}>
+          <ActionButton.Item buttonColor="#8DABD6" title="Take Photo" onPress={takePhotoFromCamera}>
             <Icon name="md-camera-outline" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor="#3498db" title="Select Photo" onPress={choosePhotoFromLibrary}>
+          <ActionButton.Item buttonColor="#8DABD6" title="Select Photo" onPress={choosePhotoFromLibrary}>
             <Icon name="md-images-outline" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
@@ -265,10 +265,10 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
       // Default action button when no file type is selected
       return (
         <ActionButton buttonColor="#3498db" useNativeDriver={true}>
-          <ActionButton.Item buttonColor="#9b59b6" title="Take Photo" onPress={takePhotoFromCamera}>
+          <ActionButton.Item buttonColor="#8DABD6" title="Take Photo" onPress={takePhotoFromCamera}>
             <Icon name="md-camera-outline" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor="#3498db" title="Select Photo" onPress={choosePhotoFromLibrary}>
+          <ActionButton.Item buttonColor="#8DABD6" title="Select Photo" onPress={choosePhotoFromLibrary}>
             <Icon name="md-images-outline" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
