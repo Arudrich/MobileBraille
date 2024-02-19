@@ -15,7 +15,7 @@ import { TextInput as PaperTextInput, Button} from 'react-native-paper';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
 
@@ -146,11 +146,14 @@ const Register = () => {
          
 
          <TouchableOpacity
-         onPress={() => signup(email, password, name)}
-        style={styles.buttonContainer}
+      onPress={() => signup(email, password, name)}
+      style={styles.buttonContainer}
     >
+      <View style={styles.buttonContent}>
+      <Icon name="person" size={20} color="white" style={styles.icon} />
       <Text style={styles.buttonText}>Sign up</Text>
-      </TouchableOpacity>
+      </View>
+    </TouchableOpacity>
            {/* <Button
             mode="contained"
             onPress={() => signup(email, password, name)}
@@ -219,7 +222,7 @@ const styles = ScaledSheet.create({
     fontSize: '14@s',
     fontWeight: '500',
     color: '#003153',
-    marginTop: '15@s',
+    marginTop: '10@s',
     paddingLeft: '15@s',
   },
   textInput: {
@@ -252,9 +255,18 @@ const styles = ScaledSheet.create({
   },
   buttonText:{
     color: 'white',
-    fontSize: 16,
+    fontSize: '12@s',
     fontWeight: 'bold',
      
+  },
+  icon: {
+    marginRight: '5@s',
+     // Adjust the margin as needed
+  },
+  buttonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
 });
