@@ -165,14 +165,14 @@ const home = ({ navigation }) => {
            </View>
 
            {/***************** favorites ************************/}
-
+{/* 
            <View style = {styles.mostlyUsedContainer}>
 
-            <Text style = {styles.mostlyUsedHeader}>Mostly Used Transcription</Text>
+            <Text style = {styles.mostlyUsedHeader}>Mostly Used Transcription</Text> */}
 
             {/***************** SCROLLVIEW HORIZONTAL CARD FOR FAVORITES ************************/}
 
-            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} >
+            {/* <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} >
 
 
                 <View style = {[styles.card, styles.cardElevated]}>
@@ -202,7 +202,7 @@ const home = ({ navigation }) => {
    
             </ScrollView>
            </View>
-
+ */}
 
            {/********************** LATEST TRANSCRIPTION ***************************/ }
 
