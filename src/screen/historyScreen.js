@@ -93,7 +93,7 @@ const historyScreen = () => {
       <View style = {styles.historyVertical}>
         <FlatList
           data={filteredData}
-          showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator={true}
           // style={{ flex: 1}}
           keyExtractor={item => item.id}
           renderItem={({ item }) => <HistoryCard item={item} />} // Using HistoryCard component
@@ -123,87 +123,6 @@ const historyScreen = () => {
             
 
             </TouchableOpacity>
-
-            <TouchableOpacity style = {styles.historyColorButon}>
-
-
-              <Image style={styles.historyPics} source={require('../assets/maineIcons/video.png')} ></Image>   
-              <Text style = {styles.historyTextTitle}>Video to Braille</Text>
-
-              <Text style = {styles.historydateTitle}> 01 / 11 / 2024 </Text>
-              
-
-            </TouchableOpacity>
-
-            <TouchableOpacity style = {styles.historyColorButon}>
-
-
-              <Image style={styles.historyPics} source={require('../assets/maineIcons/video.png')} ></Image>   
-              <Text style = {styles.historyTextTitle}>Video to Braille</Text>
-
-              <Text style = {styles.historydateTitle}> 01 / 11 / 2024 </Text>
-            
-
-            </TouchableOpacity>
-
-            <TouchableOpacity style = {styles.historyColorButon}>
-
-
-              <Image style={styles.historyPics} source={require('../assets/maineIcons/video.png')} ></Image>   
-              <Text style = {styles.historyTextTitle}>Video to Braille</Text>
-
-              <Text style = {styles.historydateTitle}> 01 / 11 / 2024 </Text>
-              
-
-          </TouchableOpacity>
-
-           <TouchableOpacity style = {styles.historyColorButon}>
-
-
-              <Image style={styles.historyPics} source={require('../assets/maineIcons/video.png')} ></Image>   
-              <Text style = {styles.historyTextTitle}>Video to Braille</Text>
-
-              <Text style = {styles.historydateTitle}> 01 / 11 / 2024 </Text>
-              
-
-          </TouchableOpacity>
-
-           <TouchableOpacity style = {styles.historyColorButon}>
-
-
-              <Image style={styles.historyPics} source={require('../assets/maineIcons/video.png')} ></Image>   
-              <Text style = {styles.historyTextTitle}>Video to Braille</Text>
-
-              <Text style = {styles.historydateTitle}> 01 / 11 / 2024 </Text>
-              
-
-          </TouchableOpacity>
-
-          <TouchableOpacity style = {styles.historyColorButon}>
-
-
-              <Image style={styles.historyPics} source={require('../assets/maineIcons/video.png')} ></Image>   
-              <Text style = {styles.historyTextTitle}>Video to Braille</Text>
-
-              <Text style = {styles.historydateTitle}> 01 / 11 / 2024 </Text>
-              
-
-          </TouchableOpacity>
-
-          <TouchableOpacity style = {styles.historyColorButon}>
-
-
-              <Image style={styles.historyPics} source={require('../assets/maineIcons/video.png')} ></Image>   
-              <Text style = {styles.historyTextTitle}>Video to Braille</Text>
-
-              <Text style = {styles.historydateTitle}> 01 / 11 / 2024 </Text>
-              
-
-          </TouchableOpacity>
-
-          
-          
-          
 
         
       

@@ -173,7 +173,7 @@ const main = ({navigation}) => {
      
 
   
-          <TouchableOpacity style = {styles.box}>
+          <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('text')}>
             <View style = {styles.inner}>
             <Image style={{ height: 25 , width: 25 , tintColor: 'white' }} source={require('../assets/maineIcons/text.png')} />
               <Text style = {styles.text}>Text to Braille</Text>
@@ -184,7 +184,7 @@ const main = ({navigation}) => {
 
           <TouchableOpacity style = {styles.box} onPress={() => navigateToAddPost('audio')}>
             <View style = {styles.inner}>
-            <Image style={{ height: 25, width: 25 ,tintColor: 'white'   }} source={require('../assets/maineIcons/audio.png')} />
+            <Image style={{ height: 25, width: 25 , tintColor: 'white' }} source={require('../assets/maineIcons/audio.png')} />
               <Text style = {styles.text}>Audio to Braille</Text>
               <Text style = {styles.subText}>MP3 File</Text>
             </View>

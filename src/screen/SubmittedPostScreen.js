@@ -15,9 +15,9 @@ const SubmittedPostScreen = ({ route }) => {
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
         <Text style={styles.textStyle}>Title: {title}</Text>
 
-        {transcriptionType === 'video' && <Video source={{ uri: imageUrl }} style={{ width: 300, height: 200 }} useNativeControls />}
-        {transcriptionType === 'image' && <Image source={{ uri: imageUrl }} style={{ width: 200, height: 200, marginVertical: 20 }} resizeMode='contain' />}
-        {transcriptionType === 'audio' && <Audio source={{ uri: imageUrl }} />}
+        {transcriptionType === 'video' && <Video source={{ uri: imageUrl }} style={styles.videoContainer} useNativeControls />}
+        {transcriptionType === 'image' && <Image source={{ uri: imageUrl }} style={styles.imageContainer} resizeMode='contain' />}
+        {/* {transcriptionType === 'audio' && <Audio source={{ uri: imageUrl }} />} */}
 
         <ScrollView contentContainerStyle={styles.resultBox}>
           <Text style={styles.textStyleOne}>Transcription:{'\n'}{'\n'} {transcription}</Text>
@@ -68,7 +68,16 @@ const styles = ScaledSheet.create({
     fontSize: '12@s',
     fontStyle: 'italic',
     fontWeight: 'bold',
-  }
+  },
+  videoContainer:{
+    width: '300@s',
+    height: '200@s',
+  },
+  imageContainer:{
+    width: '200@s',
+    height: '200@s',
+    marginVertical: '20@s'
+  },
 });
 
 export default SubmittedPostScreen;
