@@ -19,6 +19,8 @@ const HistoryCard = ({ item }) => {
         return require('../maineIcons/file.png'); // Using the file icon for documents
       case 'video':
         return require('../maineIcons/video.png')
+      case 'text':
+        return require('../maineIcons/text.png')
       default:
         return null;
     }
@@ -49,6 +51,7 @@ const HistoryCard = ({ item }) => {
     //   </View>
     //   {/* <Text style={{ paddingHorizontal: 10, color: '#062CD4', paddingTop: 3 }}>{item.fileName}</Text> //comment ko muna wala pang logic to eh*/} 
     // </TouchableOpacity>
+    
     <TouchableOpacity style = {styles.historyColorButon}>
 
       <Image style={styles.historyPics} source={icon} ></Image>   
