@@ -13,15 +13,15 @@ const SubmittedPostScreen = ({ route }) => {
    return (
     <ScrollView style={{ flex: 1 }}>
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Title: {title}</Text>
+        <Text style={styles.textStyle}>Title: {title}</Text>
 
         {transcriptionType === 'video' && <Video source={{ uri: imageUrl }} style={{ width: 300, height: 200 }} useNativeControls />}
         {transcriptionType === 'image' && <Image source={{ uri: imageUrl }} style={{ width: 200, height: 200, marginVertical: 20 }} resizeMode='contain' />}
         {transcriptionType === 'audio' && <Audio source={{ uri: imageUrl }} />}
 
         <ScrollView contentContainerStyle={styles.resultBox}>
-          <Text>Transcription:{'\n'}{'\n'} {transcription}</Text>
-          <Text>Braille:{'\n'}{'\n'} {braille}</Text>
+          <Text style={styles.textStyleOne}>Transcription:{'\n'}{'\n'} {transcription}</Text>
+          <Text style={styles.textStyleOne}>Braille:{'\n'}{'\n'} {braille}</Text>
         </ScrollView>
 
         <View style={styles.buttonContainer}>
@@ -57,6 +57,15 @@ const styles = ScaledSheet.create({
     width: '90%', // Adjust the width as needed
     alignItems: 'left',
   },
+  textStyle:{
+    fontSize: '14@s',
+    fontWeight: 'bold',
+  },
+  textStyleOne:{
+    fontSize: '12@s',
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+  }
 });
 
 export default SubmittedPostScreen;
