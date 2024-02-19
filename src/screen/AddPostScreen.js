@@ -26,7 +26,7 @@ import { database, storage } from '../../FirebaseConfig';
 import { AuthContext } from '../../navigation/AuthProvider';
 import * as DocumentPicker from 'expo-document-picker';
 
-
+import { Button } from 'react-native-paper';
 // Add your transcribeFile function here
 const transcribeFile = async (file, fileType, fileName) => {
 
@@ -204,32 +204,32 @@ const AddPostScreen = ({ route }) => {
   const renderActionButtons = () => {
     if (fileType === 'audio') {
       return (
-        <ActionButton buttonColor="#3498db" useNativeDriver={true}>
-          <ActionButton.Item buttonColor="#9b59b6" title="Select Audio" onPress={selectFile}>
+        <ActionButton buttonColor="#003153" useNativeDriver={true}>
+          <ActionButton.Item buttonColor="#3498db" title="Select Audio" onPress={selectFile}>
             <Icon name="md-mic-outline" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
       );
     } else if (fileType === 'video') {
       return (
-        <ActionButton buttonColor="#3498db" useNativeDriver={true}>
-          <ActionButton.Item buttonColor="#9b59b6" title="Select Video" onPress={selectFile}>
+        <ActionButton buttonColor="#003153" useNativeDriver={true}>
+          <ActionButton.Item buttonColor="#3498db" title="Select Video" onPress={selectFile}>
             <Icon name="md-videocam-outline" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
       );
     } else if (fileType === 'document') {
       return (
-        <ActionButton buttonColor="#3498db" useNativeDriver={true}>
-          <ActionButton.Item buttonColor="#9b59b6" title="Select Document" onPress={selectFile}>
+        <ActionButton buttonColor="#003153" useNativeDriver={true}>
+          <ActionButton.Item buttonColor="#3498db" title="Select Document" onPress={selectFile}>
             <Icon name="md-document-outline" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
       );
     } else if (fileType === 'image') {
       return (
-        <ActionButton buttonColor="#3498db" useNativeDriver={true}>
-          <ActionButton.Item buttonColor="#9b59b6" title="Take Photo" onPress={takePhotoFromCamera}>
+        <ActionButton buttonColor="#003153" useNativeDriver={true}>
+          <ActionButton.Item buttonColor="#3498db" title="Take Photo" onPress={takePhotoFromCamera}>
             <Icon name="md-camera-outline" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor="#3498db" title="Select Photo" onPress={choosePhotoFromLibrary}>
@@ -489,7 +489,7 @@ const AddPostScreen = ({ route }) => {
 
         <TextInput
           style={styles.inputField}
-          placeholder="Input Transcription title here"
+          placeholder="Click here to set Transcription title.."
           multiline
           numberOfLines={4}
           value={post}
@@ -502,9 +502,13 @@ const AddPostScreen = ({ route }) => {
             <ActivityIndicator size="large" color="#0000ff" />
           </View>
         ) : (
-          <TouchableOpacity style={styles.submitBtn} onPress={submitPost}>
-            <Text style={styles.submitBtnText}>Transcribe</Text>
-          </TouchableOpacity>
+
+<Button icon="refresh" mode="elevated" onPress={submitPost} style={styles.button} textColor="#003153">
+        Transcribe
+            </Button>
+          // <TouchableOpacity style={styles.submitBtn} onPress={submitPost}>
+          //   <Text style={styles.submitBtnText}>Transcribe</Text>
+          // </TouchableOpacity>
         )}
       </View>
       </TouchableWithoutFeedback>
@@ -516,6 +520,10 @@ const AddPostScreen = ({ route }) => {
 export default AddPostScreen;
 
 const styles = StyleSheet.create({
+  button: {
+    width: '90%',
+  },
+
   container: {
     flex: 1,
     alignItems: 'center',
@@ -531,10 +539,10 @@ const styles = StyleSheet.create({
   inputField: {
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize: 24,
+    fontSize: 14,
     textAlign: 'center',
     width: '90%',
-    marginBottom: 15,
+    marginBottom: 5,
   },
   addImage: {
     width: '100%',
