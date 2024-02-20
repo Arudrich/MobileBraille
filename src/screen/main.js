@@ -257,8 +257,8 @@ const styles = ScaledSheet.create({
 
   headerContainer: {
     backgroundColor: '#003153',
-    borderBottomLeftRadius: 8,
-    borderBottomRightRadius: 8, 
+    // borderBottomLeftRadius: 8,
+    // borderBottomRightRadius: 8, 
     height: '28%',
     padding: '12@s',
     alignItems: 'center'

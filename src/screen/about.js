@@ -127,10 +127,8 @@ const styles = ScaledSheet.create({
 
   headerContainer: {
     backgroundColor: '#003153',
-    borderBottomLeftRadius: 8,
-    borderBottomRightRadius: 8, 
     height: '35%',
-    padding: '12@s',
+    // padding: '1@s',
     alignItems: 'center'
  
   },
@@ -148,7 +146,7 @@ const styles = ScaledSheet.create({
 
   subheaderAboutUs: {
     fontSize: '10@s',
-    bottom: '60@s',
+    bottom: '65@s',
     color: 'white',
     alignItems: 'center',
     alignSelf: 'center'
@@ -169,17 +167,16 @@ const styles = ScaledSheet.create({
   },
 
   imagesCard: {
-    height: '55@s',
-    width: '55@s' , 
+    height: '40@s',
+    width: '40@s' , 
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#003153',
   },
 
   box: {
-  
     width: '50%',
-    height: '50%',
+    height: '55%',
     padding: '5@s',
     borderRadius: 8, 
   
