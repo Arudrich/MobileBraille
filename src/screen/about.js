@@ -11,6 +11,8 @@ const about = () => {
     <View style = {styles.mainContainer}>
 
 
+
+        {/* HEADER SECTION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
       
         <View style = {styles.headerContainer}>
         <View style={styles.logoContainer}>
@@ -24,6 +26,9 @@ const about = () => {
             <Text style = {styles.subheaderAboutUs}>MEET THE DEVELOPERS OF MOBILE BRAILLE</Text>
         </View>
       </View>
+
+
+      {/* CARDDDDDDDD DEVELOPERSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS */}
 
       <View style = {styles.developers}>
 
