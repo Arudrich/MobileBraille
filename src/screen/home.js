@@ -156,13 +156,14 @@ const home = ({ navigation }) => {
             {/***************** carddddddddddddddddd ************************/}
 
 
-               <View style = {styles.cardShowcase}>
+            <View style = {styles.cardShowcase}>
 
               <Card>
                 <Card.Cover source={ require('../assets/background/aboutbg.png')}/>
                </Card>
 
-           </View>
+
+            </View>
 
            {/***************** favorites ************************/}
 {/* 
