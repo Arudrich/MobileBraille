@@ -132,7 +132,7 @@ const home = ({ navigation }) => {
 
 
                         }}>Welcome ,  </Text>
-                        <Text style = {{ fontSize: 17, color:'#003153', fontWeight: "500" }}>{userData ? userData.fullname : "Loading..."}</Text>
+                        <Text style = {{ fontSize: 17, color:'#003153', fontWeight: 'bold' }}>{userData ? userData.fullname : "Loading..."}</Text>
                    </View>
 
                    <View style={{ alignItems:"flex-end", }}>
