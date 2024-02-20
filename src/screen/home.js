@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import { RefreshControl } from 'react-native';
 import { DrawerActions } from '@react-navigation/native';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ScrollView, FlatList } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AuthContext } from '../../navigation/AuthProvider';
@@ -11,7 +11,7 @@ import { getDocs, collection, query, orderBy } from 'firebase/firestore';
 import { database } from '../../FirebaseConfig';
 import FilterModal from './FilterModal';
 import HistoryCard from '../assets/Cards/HistoryCard';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { Card } from 'react-native-paper';
 
 // DIMENSION COMPATIBILITY
@@ -22,6 +22,38 @@ import { ScaledSheet } from 'react-native-size-matters';
 // **********************************************************
 
 const home = ({ navigation }) => {
+
+  const images = [
+    require('../assets/Cards/Images/1.png'),
+    require('../assets/Cards/Images/2.png'),
+    require('../assets/Cards/Images/3.png'),
+    require('../assets/Cards/Images/4.png'),
+    require('../assets/Cards/Images/5.png'),
+    require('../assets/Cards/Images/6.png')
+    // Add more image sources as needed
+  ];
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+
+  const handleTap = (direction) => {
+    if (direction === 'prev') {
+      const prevIndex = (currentCardIndex - 1 + images.length) % images.length;
+      setCurrentCardIndex(prevIndex);
+    } else {
+      const nextIndex = (currentCardIndex + 1) % images.length;
+      setCurrentCardIndex(nextIndex);
+    }
+  };
+  // const navigateToNextCard = () => {
+  //   const nextIndex = (currentCardIndex + 1) % images.length;
+  //   setCurrentCardIndex(nextIndex);
+  // };
+
+  // const navigateToPrevCard = () => {
+  //   const prevIndex = (currentCardIndex - 1 + images.length) % images.length;
+  //   setCurrentCardIndex(prevIndex);
+  // };
+
+
   const { user } = useContext(AuthContext);
   const [userData, setUserData] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -144,7 +176,7 @@ const home = ({ navigation }) => {
                                 : 'https://firebasestorage.googleapis.com/v0/b/mbraille-54f34.appspot.com/o/profileImage%2FProfilePlaceholder.png?alt=media&token=3c29faf9-dd75-4f3e-b62a-0615db9e7ebc',
                             }}
 
-                            style={{height: 80 ,width:80, borderRadius: 8, borderWidth: 3, borderColor: '#003153'}}
+                            style={{height: 75 ,width:75, borderRadius: 8, borderWidth: 3, borderColor: '#003153', marginBottom:15}}
                             resizeMode='contain' 
 
                         />  
@@ -156,13 +188,21 @@ const home = ({ navigation }) => {
             {/***************** carddddddddddddddddd ************************/}
 
 
-               <View style = {styles.cardShowcase}>
+            <View style={styles.container}>
+      <View style={styles.cardContainer}>
+        <Card>
+          <TouchableOpacity onPress={() => handleTap('prev')} style={styles.leftArrow}>
+            <Icon name="arrow-left" size={30} style={styles.arrow} />
+          </TouchableOpacity>
 
-              <Card>
-                <Card.Cover source={ require('../assets/background/aboutbg.png')}/>
-               </Card>
+          <Card.Cover source={images[currentCardIndex]} />
 
-           </View>
+          <TouchableOpacity onPress={() => handleTap('next')} style={styles.rightArrow}>
+            <Icon name="arrow-right" size={30} style={styles.arrow} />
+          </TouchableOpacity>
+        </Card>
+      </View>
+    </View>
 
            {/***************** favorites ************************/}
 {/* 
@@ -291,7 +331,48 @@ const home = ({ navigation }) => {
 
 
 const styles = ScaledSheet.create({ 
-
+  container: {
+    // flex: 1,
+    padding: 5,
+  },
+  cardContainer: {
+    // flex: 1,
+    position: 'relative',
+  },
+  arrow: {
+    color: '#8DABD6', // Set your desired color
+  },
+  leftArrow: {
+    position: 'absolute',
+    top: '50%',
+    left: 10,
+    zIndex: 1,
+  },
+  rightArrow: {
+    position: 'absolute',
+    top: '50%',
+    right: 10,
+    zIndex: 1,
+  },
+  //////////
+  // arrowContainer: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   paddingHorizontal: 10,
+  // },
+  // arrow: {
+  //   color: '#003153', // Set your desired color
+  // },
+  // containerCRD: {
+  //   flex: 1,
+  //   padding: 10,
+  // },
+  // cardContainerCRD: {
+  //   marginRight: 10,
+  //   width: 300,
+  //   height: 200,
+  // },
+  /////////////////
   /***************** HEADER ************************/
 
 headerContainer: {
@@ -302,24 +383,24 @@ headerContainer: {
   // borderWidth: 1,
 },
    /***************** CARD SHOWCASE ************************/
-cardShowcase: {
-  padding: '10@s',
-  shadowColor: '#003153',
-  shadowOffset: 100,
+// cardShowcase: {
+//   padding: '10@s',
+//   shadowColor: '#003153',
+//   shadowOffset: 100,
   
-},
+// },
    /***************** moslty Useeed Transciption ************************/
 
-  mostlyUsedContainer: {
-    paddingTop: '1@s',
+  // mostlyUsedContainer: {
+  //   paddingTop: '1@s',
     
-  },
+  // },
 
-  mostlyUsedHeader: {
-    fontWeight: 'bold',
-    fontSize: '17@s'
+  // mostlyUsedHeader: {
+  //   fontWeight: 'bold',
+  //   fontSize: '17@s'
 
-  },
+  // },
 
   /***************** FAVORITES cardddddddddddddddddd ************************/
 
@@ -372,29 +453,27 @@ cardShowcase: {
   containerforHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop: '12@s',
-    
-
+    paddingTop: '5@s',
   },
 
   latestContainer: {
     flex: 1,
-    paddingTop: '8@s',
+    paddingTop: '5@s',
     // borderColor: 'red',
     // borderWidth: 1,
   },
 
   latestHeader: {
     fontWeight: 'bold',
-    fontSize: '17@s',
-    top: '4@s',
+    fontSize: '14@s',
+    top: '5@s',
   
   },
 
   latestSubheader:{
     color: 'white',
     fontSize: '12@s',
-    padding: '5@s',
+    padding: '6@s',
 
     
 
@@ -406,8 +485,8 @@ cardShowcase: {
 
   historyVertical: {
     overflow: 'scroll',
-    paddingTop: '12@s',
-    marginBottom: '5@s',
+    paddingTop: '2@s',
+    marginBottom: '2@s',
     // borderColor: 'red',
     // borderWidth: 1,
 
@@ -436,14 +515,14 @@ cardShowcase: {
   historydateTitle: {
     fontSize: '12@s',
     fontStyle: 'italic',
-    paddingTop: '4@s',
+    paddingTop: '5@s',
     marginLeft: 'auto'
 
   },
 
   historyPics: {
-    height: '30@s',
-    width: '30@s',
+    height: '20@s',
+    width: '20@s',
     tintColor: '#003153', 
 
   }
