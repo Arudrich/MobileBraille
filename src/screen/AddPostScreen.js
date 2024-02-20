@@ -19,8 +19,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 // import ImagePicker from 'react-native-image-crop-picker';
 import * as ImagePicker from 'expo-image-picker';
 
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { getFirestore, collection, addDoc, Timestamp } from 'firebase/firestore';
+import { ref, uploadBytesResumable, uploadString, getDownloadURL } from 'firebase/storage';
+import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { database, storage } from '../../FirebaseConfig';
 
 import { AuthContext } from '../../navigation/AuthProvider';
@@ -149,25 +149,25 @@ const AddPostScreen = ({ route }) => {
 
 
   //Downloading file to storage [I should pass a map of the links here]
-const downloadFileToStorage = async (downloadUrl, fileType) => {
-  try {
-    // Download the file from the provided URL
-    const response = await fetch(downloadUrl);
-    const blob = await response.blob();
+  const downloadFileToStorage = async (downloadUrl, fileType) => {
+    try {
+      // Download the file from the provided URL
+      const response = await fetch(downloadUrl);
+      const blob = await response.blob();
 
-    // Upload the file to Firebase Storage
-    const storageRef = ref(storage, `files/${fileType}/${filename}`);
-    await uploadBytesResumable(storageRef, blob);
+      // Upload the file to Firebase Storage
+      const storageRef = ref(storage, `files/${fileType}/${filename}`);
+      await uploadBytesResumable(storageRef, blob);
 
-    // Get the download URL of the uploaded file
-    const fileDownloadUrl = await getDownloadURL(storageRef);
+      // Get the download URL of the uploaded file
+      const fileDownloadUrl = await getDownloadURL(storageRef);
 
-    return fileDownloadUrl;
-  } catch (error) {
-    console.error('Error downloading file and uploading to Firebase Storage:', error);
-    return null;
-  }
-};
+      return fileDownloadUrl;
+    } catch (error) {
+      console.error('Error downloading file and uploading to Firebase Storage:', error);
+      return null;
+    }
+  };
 
   const takePhotoFromCamera = async() => {
     let result = await ImagePicker.launchCameraAsync({
@@ -391,13 +391,15 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
 
   const submitPost = async () => {
     let transcriptionData;
+    let fileUrl;
+
     if (fileType === 'text') {
       // For text, directly set transcription data
       setTranscribing(true); // Set transcribing to true when transcribing text
       transcriptionData = await transcribeFile(post, fileType);
       setTranscribing(false); // Set transcribing to false after transcription is done
     } else {
-      const fileUrl = await uploadFile(image, fileType);
+      fileUrl = await uploadFile(image, fileType);
   
       if (!fileUrl) {
         console.error('Failed to upload file');
@@ -418,7 +420,41 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
       console.error('Failed to transcribe file');
       return;
     }
-  
+    
+    // Upload download links to Firebase storage
+    const downloadLinks = transcriptionData.download_links;
+    const uploadedLinks = await Promise.all(
+      Object.entries(downloadLinks).map(async ([extension, url]) => {
+        // Fetch the file data using the provided URL
+        const response = await fetch(url);
+        const blob = await response.blob();
+        
+        // Construct a reference to the storage location
+        const storageRef = ref(storage, `download_links/${fileName}.${extension}`);
+        console.log(fileName);
+        try {
+          // Upload the blob to Firebase Storage and wait for completion
+          const uploadTaskSnapshot = await uploadBytesResumable(storageRef, blob);
+    
+          // Get the download URL for the uploaded file and return it
+          const downloadURL = await getDownloadURL(storageRef);
+          console.log(`got file to firebase at ${downloadURL}`)
+          return { [extension]: downloadURL };
+        } catch (error) {
+          // Handle upload errors
+          console.error('Error occurred during upload:', error);
+          return { [extension]: 'Upload failed' };
+        }
+      })
+    );
+    
+    
+    
+    
+
+    // Transform the uploaded links into a single object
+    const uploadedLinksObject = uploadedLinks.reduce((acc, curr) => ({ ...acc, ...curr }), {});
+    
     addDoc(collection(database, 'posts'), {
       userId: user.uid,
       title: post,
@@ -428,6 +464,7 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
       transcriptionType: fileType,
       Transcription: transcriptionData.Transcription || '',
       Braille: transcriptionData.Braille || '',
+      downloadLinks: uploadedLinksObject,
     })
     .then(() => {
       console.log('Post Added!');
@@ -441,10 +478,11 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
               transcription: transcriptionData.Transcription || '',
               braille: transcriptionData.Braille || '',
               transcriptionType: fileType,
+              downloadLinks: uploadedLinksObject,
             });
             setPost('');
             setImage(null);
-            setFilename(null);
+            // setFilename(null); 
           },
         },
       ]);
@@ -518,6 +556,7 @@ const downloadFileToStorage = async (downloadUrl, fileType) => {
     const name = filename.split('.').slice(0, -1).join('.');
     filename = name + Date.now() + '.' + extension;
     setFilename(filename);
+    console.log("Filename in uploading: ", fileName)
   
     setUploading(true);
     setTransferred(0);
