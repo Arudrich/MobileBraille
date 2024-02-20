@@ -1,277 +1,214 @@
-import { View, Text, ScrollView, StyleSheet, Image, Button } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
-import { TouchableOpacity } from 'react-native';
+import { ScrollView } from 'react-native';
 
-// lottie
-import LottieView from 'lottie-react-native';
-
-// DIMENSION COMPATIBILITY
+// dimension fix
 import { ScaledSheet } from 'react-native-size-matters';
 
-
-
-
-
-
-
-
 const about = () => {
-
-
-  const [text, setText] = React.useState("");
-
-
-
   return (
 
+    <View style = {styles.mainContainer}>
 
-    <ScrollView style = {styles.main} showsVerticalScrollIndicator={false} >
 
-      <View style = {styles.lottie}>
-
-      <LottieView style = {{ paddingTop: 35, height: '30@s', alignSelf: 'center', alignItems: 'center', alignContent: 'center' }} source={require('../assets/lottie/about.json')} autoPlay loop />
-
+      
+        <View style = {styles.headerContainer}>
+        <View style={styles.logoContainer}>
+            
+            <Image
+              source={require('../assets/MBraillelogo.png')}
+              style={styles.logo}
+              resizeMode="contain"
+            />
+            <Text style = {styles.headerAboutUs}>About Us</Text>
+            <Text style = {styles.subheaderAboutUs}>MEET THE DEVELOPERS OF MOBILE BRAILLE</Text>
+        </View>
       </View>
 
-
-      <View style = {styles.headerDeveloper}>
-
-        <Text style = {styles.headerTitleDeveloper}>DEVELOPERS</Text>
-
-         <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} >
+      <View style = {styles.developers}>
 
 
-                <View style = {[styles.card, styles.cardElevated]}>
-                  <Image style= {styles.cardfavorites} source={require('../assets/DEVELOPERS/AGUINALDO.jpg')} />
-                  <Text style = {styles.name}>David Aguinaldo</Text>
-                  <Text style = {styles.electives}>Railway Engineering</Text>
-                </View>
-
-                <View style = {[styles.card, styles.cardElevated]}>
-                  <Image style= {styles.cardfavorites} source={require('../assets/DEVELOPERS/PASCUA.jpg')} />
-                  <Text style = {styles.name}>Mark Pascua</Text>
-                  <Text style = {styles.electives}>System Administration</Text>
-                </View>
-
-                <View style = {[styles.card, styles.cardElevated]}>
-                  <Image style= {styles.cardfavorites} source={require('../assets/DEVELOPERS/GOMEZ.jpg')} />
-                  <Text style = {styles.name}>Rafael Gomez</Text>
+  
+              <View style = {styles.box}>
+                <View style = {styles.inner}>
+                <Image style={styles.imagesCard} source={require('../assets/DEVELOPERS/GOMEZ.jpg')} />
+                  <Text style = {styles.text}>Rafael Gomez</Text>
                   <Text style = {styles.electives}>Data Science</Text>
                 </View>
+              </View>
 
-                <View style = {[styles.card, styles.cardElevated]}>
-                  <Image style={styles.cardfavorites} source={require('../assets/DEVELOPERS/MACADANGDANG.jpg')} />
-                  <Text style = {styles.name}>Aldrich Macadangdang</Text>
+
+              <View style = {styles.box}>
+                <View style = {styles.inner}>
+                <Image style={styles.imagesCard} source={require('../assets/DEVELOPERS/MACADANGDANG.jpg')} />
+                  <Text style = {styles.text}>Aldrich Macadangdang</Text>
                   <Text style = {styles.electives}>Railway Engineering</Text>
                 </View>
+              </View>
 
-            </ScrollView>
+
+              <View style = {styles.box}>
+                <View style = {styles.inner}>
+                <Image style={styles.imagesCard} source={require('../assets/DEVELOPERS/AGUINALDO.jpg')} />
+                <Text style = {styles.text}>David Aguinaldo</Text>
+                <Text style = {styles.electives}>Railway Engineering</Text>
+                  
+                </View>
+                </View>
 
 
-          </View>
+              <View style = {styles.box}>
+                <View style = {styles.inner}>
+                <Image style={styles.imagesCard} source={require('../assets/DEVELOPERS/PASCUA.jpg')} />
+                  <Text style = {styles.text}>Mark Pascua</Text>
+                  <Text style = {styles.electives}>System Administration</Text>
+
+                </View>
+              </View>
+
 
             
-
-
-           <View>
-
-              <Text style = {styles.mobileBraille}>Mobile Braille is an mobile application where we empower users to convert multiple modes of input
-              into Braille seamlessly. Our mission is to enhance accessibility for individuals
-              with visual impairments by providing a user-friendly and efficient transcription tool.</Text>
-
-
-
-           </View>
-
-
-          
-           
-        
+        </View>
 
 
 
 
 
       
-      
-      
-    </ScrollView>
 
 
+       
 
-    
+    </View>
+
   )
 }
 
+
 const styles = ScaledSheet.create({
 
-
-// MAIN CONTAINER
-
-
-main: {
-  padding: '8@s' ,
-  backgroundColor: 'white'
-
-},
+  // MAIN*****************************************
 
 
+  mainContainer: {
+   
+  },
 
+  // headerrrrrrrrrrrrrr COntainer ***********
 
-// DEVELOPERS ****************************************
+  headerContainer: {
+    padding: 12,
+    alignContent: 'center',
+    alignItems: 'center'
 
-headerDeveloper: {
-  paddingTop: '5@s',
-  alignContent: 'center',
-  alignItems:'center',
-
-  
-},
-
-headerTitleDeveloper: { // HEADER TITLEEEEEEEEEEEE
-  fontSize: '24@s',
-  fontWeight: 'bold',
-  color: '#003153',
-  paddingBottom: '15@s',
-  paddingTop: '15@s'
-
-
-},
-
-name: {
-  fontSize: "10@s",
-  fontWeight: 'bold', 
-  color: 'white',
-
-
-},
-
-
-electives: {
-  fontSize: "9@s",
-  fontStyle: 'italic',
-  color: 'white',
-  top: '-5@s'
-
-},
-
-cardfavorites: {
-  height: '40@s',
-  width: '40@s',
-  borderRadius: 8,
-
-
-},
-
-card: {
-  flex: 1,
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '80@s',
-  height: '95@s',
-  borderRadius: 8, 
-  margin: "2@s",
-  gap: '3@s',
-  
-
-},
-
-cardElevated: {
-  backgroundColor:  '#003153', // bg color of card hehe
-  elevation: 5,
-  shadowOffset: {
-  width: '10@s',
-  height: '10@s',
 
   },
 
-  shadowColor: 'black',
-  shadowOpacity: 10 ,
-  shadowRadius: 50,
+  //Logo *******************************************
 
-},
-
-// what is mobile braille
-
-mobileBraille: {
-  textAlign: 'justify',
-  fontSize: '15@s',
-  marginTop: '10@s',
-  color: '#003153'
-},
-
-// QUICK CONTACT
-
-quickContact: {
-  paddingTop: '0@s',
-  alignContent: 'center',
-  alignItems:'center',
-
-},
-
-quickContactHeader: {
-
-  fontSize: '24@s',
-  fontWeight: 'bold',
-  color: '#003153',
-  paddingBottom: '12@s',
-  paddingTop: '10@s'
-  
-},
-
-// form and input ******************
-
-form: {
-  padding: '8@s' ,
-
-},
-
-input: {
-  backgroundColor: "#EBF0F5" ,
-
-  height: 35,
-
-},
-
-inputMessage: {
-
-  borderColor: '#003153',
-  backgroundColor: "#EBF0F5" ,
-
-
-},
-
-MultilineText: {
-  minHeight: 100,
-  textAlignVertical: "top",
-
-},
-
-//line 
-lineContainer: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  marginVertical: '10@s',
-},
-orContactUsText: {
-  marginHorizontal: "10@s",
-  fontSize: '12@s',
-},
-line: {
-  flex: 1,
-  height: 1,
-  backgroundColor: 'black',
-},
-
-
-
-
-
-
-
-
-  
-})
+  logo: {
+    bottom: '20@s',
+    width: '80@s', // Adjust the width as needed
+    height: '180@s', // Adjust the height as needed
+    tintColor: 'white',
+    alignSelf: 'center',
     
+
+  
+  },
+
+  // HEADER*****************************************
+
+
+  headerContainer: {
+    backgroundColor: '#003153',
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8, 
+    height: '35%',
+    padding: '12@s',
+    alignItems: 'center'
+ 
+  },
+
+  headerAboutUs: {
+    fontSize: '30@s',
+    fontWeight: 'bold',
+    bottom: '60@s',
+    color: 'white',
+    alignItems: 'center',
+    alignSelf: 'center'
+
+
+  },
+
+  subheaderAboutUs: {
+    fontSize: '10@s',
+    bottom: '60@s',
+    color: 'white',
+    alignItems: 'center',
+    alignSelf: 'center'
+
+
+  },
+
+  // developers ***********************************
+
+  developers: {
+    width: '100%',
+    height: '45%',
+    padding: '20@s',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignSelf: 'center',
+    paddingTop: '15@s'
+  },
+
+  imagesCard: {
+    height: '55@s',
+    width: '55@s' , 
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#003153',
+  },
+
+  box: {
+  
+    width: '50%',
+    height: '50%',
+    padding: '5@s',
+    borderRadius: 8, 
+  
+  },
+  
+  inner: {
+    flex: 1,
+    backgroundColor: "#EBF0F5",
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: '#003153'
+
+  },
+  
+  text: {
+  
+    color: '#003153',
+    fontWeight: 'bold',
+    fontSize: '12@s',
+  
+  },
+
+  electives: {
+    fontStyle: 'italic', 
+    color: '#003153',
+    fontSize: '12@s'
+  },
+
+
+})
+
+
+
 
 export default about

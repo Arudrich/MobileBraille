@@ -142,7 +142,7 @@ const main = ({navigation}) => {
        {/********************** HEADER  ***************************/ }
 
     <View style = {styles.headerContainer}>
-    <View style={styles.logoContainer}>
+      <View style={styles.logoContainer}>
           
           <Image
             source={require('../assets/MBraillelogo.png')}
