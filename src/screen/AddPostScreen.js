@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+
 import { Video, Audio } from 'expo-av';
 import { useNavigation } from '@react-navigation/native';
 import ActionButton from 'react-native-action-button';
@@ -98,10 +99,44 @@ const transcribeFile = async (file, fileType, fileName) => {
   } else {
     // For other file types, handle as usual
     const formData = new FormData();
+    let mimeType, extension;
+
+    switch(fileType) {
+      case 'image':
+        mimeType = 'image/jpeg';
+        extension = 'jpg';
+        break;
+      case 'video':
+        mimeType = 'video/mp4';
+        extension = 'mp4';
+        break;
+      case 'audio':
+        mimeType = 'audio/mp3';
+        extension = 'mp3';
+        break;
+      case 'document':
+        // Assuming PDF, DOC, TXT for documents
+        if (file.endsWith('.pdf')) {
+          mimeType = 'application/pdf';
+          extension = 'pdf';
+        } else if (file.endsWith('.doc') || file.endsWith('.docx')) {
+          mimeType = 'application/msword';
+          extension = 'doc';
+        } else if (file.endsWith('.txt')) {
+          mimeType = 'text/plain';
+          extension = 'txt';
+        } else {
+          throw new Error('Unsupported document type');
+        }
+        break;
+      default:
+        throw new Error('Invalid fileType');
+    }
+
     formData.append('file', {
       uri: file,
-      type: fileType === 'image' ? 'image/jpeg' : (fileType === 'video' ? 'video/mp4' : 'audio/mp3'),
-      name: fileType === 'image' ? 'image.jpg' : (fileType === 'video' ? 'video.mp4' : 'audio.mp3'),
+      type: mimeType,
+      name: `file.${extension}`
     });
 
     try {
@@ -189,7 +224,6 @@ const AddPostScreen = ({ route }) => {
     let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
-        // aspect: [4, 3],
         quality: 1,
       });
   
@@ -336,59 +370,7 @@ const AddPostScreen = ({ route }) => {
     }
   };
 
-  // const submitPost = async () => {
-  //   const fileUrl = await uploadFile(image, fileType);
-
-  //   if (!fileUrl) {
-  //     // Handle case where file upload fails
-  //     console.error('Failed to upload file');
-  //     setUploading(false)
-  //     return;
-  //   }
-    
-  //   console.log('File Url: ', fileUrl);
-  //   console.log('Post: ', post);
-
-  //   // transcribeFile function goes here
-  //   setTranscribing(true);
-  //   const transcriptionData = await transcribeFile(image, fileType, fileName);
-  //   setTranscribing(false);
-
-  //   // const db = getFirestore();
-  //   addDoc(collection(database, 'posts'), {
-  //     userId: user.uid,
-  //     title: post,
-  //     fileName: fileName,
-  //     postUrl: fileUrl,
-  //     postTime: Timestamp.fromDate(new Date()),
-  //     transcriptionType: fileType,
-  //     Transcription: transcriptionData ? transcriptionData.Transcription : '',
-  //     Braille: transcriptionData ? transcriptionData.Braille : '',
-  //     // download_links: '',
-  //   })
-  //   .then(() => {
-  //     console.log('Post Added!');
-  //     Alert.alert('Transcription published!', 'Your post has been transcripted successfully!', [
-  //       {
-  //         text: 'OK',
-  //         onPress: () => navigation.navigate('SubmittedPost', {
-  //           title: post,
-  //           imageUrl: fileUrl,
-  //           transcription: transcriptionData ? transcriptionData.Transcription : '',
-  //           braille: transcriptionData ? transcriptionData.Braille : '',
-  //           transcriptionType: fileType,
-  //         }),
-  //       },
-  //     ]);
-  //     setPost(null);
-  //     setImage(null);
-  //     setFilename(null);
-  //   })
-  //     .catch((error) => {
-  //       console.log('Something went wrong with added post to firestore.', error);
-  //     });
-  // };
-
+ 
   const submitPost = async () => {
     let transcriptionData;
     let fileUrl;
