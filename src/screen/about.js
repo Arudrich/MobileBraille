@@ -23,7 +23,7 @@ const about = () => {
               resizeMode="contain"
             />
             <Text style = {styles.headerAboutUs}>About Us</Text>
-            <Text style = {styles.subheaderAboutUs}>MEET THE DEVELOPERS OF MOBILE BRAILLE</Text>
+            <Text style = {styles.subheaderAboutUs}>Meet the developers of M.Braille</Text>
         </View>
       </View>
 
@@ -136,7 +136,7 @@ const styles = ScaledSheet.create({
   headerAboutUs: {
     fontSize: '30@s',
     fontWeight: 'bold',
-    bottom: '60@s',
+    bottom: '70@s',
     color: 'white',
     alignItems: 'center',
     alignSelf: 'center'
@@ -146,7 +146,7 @@ const styles = ScaledSheet.create({
 
   subheaderAboutUs: {
     fontSize: '10@s',
-    bottom: '65@s',
+    bottom: '75@s',
     color: 'white',
     alignItems: 'center',
     alignSelf: 'center'
