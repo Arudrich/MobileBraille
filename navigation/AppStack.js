@@ -129,17 +129,18 @@ const MainStack = ({ navigation }) => (
       }}
     />
     <Stack.Screen
-      name="AddPost"
-      component={AddPostScreen}
-      options={{
-        headerShown: true,
-        headerStyle: {
-          backgroundColor: '#fff',
-          shadowColor: '#fff',
-          elevation: 0,
-        },
-      }}
-    />
+  name="AddPost"
+  component={AddPostScreen}
+  options={{
+    headerShown: true,
+    headerStyle: {
+      backgroundColor: '#fff',
+      shadowColor: '#fff',
+      elevation: 0,
+    },
+    title: 'Transcription', // Add this line to set the screen label
+  }}
+/>
     <Stack.Screen
       name="SubmittedPost"
       component={SubmittedPostScreen}
@@ -150,6 +151,7 @@ const MainStack = ({ navigation }) => (
           shadowColor: '#fff',
           elevation: 0,
         },
+        title: 'Transcribed',
       }}
     />
   </Stack.Navigator>
