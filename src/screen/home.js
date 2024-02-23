@@ -188,20 +188,20 @@ const home = ({ navigation }) => {
             {/***************** carddddddddddddddddd ************************/}
 
 
-            <View style={styles.container}>
-      <View style={styles.cardContainer}>
-        <Card>
-          <TouchableOpacity onPress={() => handleTap('prev')} style={styles.leftArrow}>
-            <Icon name="arrow-left" size={30} style={styles.arrow} />
-          </TouchableOpacity>
+      <View style={styles.container}>
+        <View style={styles.cardContainer}>
+          <Card>
+            <TouchableOpacity onPress={() => handleTap('prev')} style={styles.leftArrow}>
+              <Icon name="arrow-left" size={30} style={styles.arrow} />
+            </TouchableOpacity>
 
-          <Card.Cover source={images[currentCardIndex]} />
+            <Card.Cover source={images[currentCardIndex]} />
 
-          <TouchableOpacity onPress={() => handleTap('next')} style={styles.rightArrow}>
-            <Icon name="arrow-right" size={30} style={styles.arrow} />
-          </TouchableOpacity>
-        </Card>
-      </View>
+            <TouchableOpacity onPress={() => handleTap('next')} style={styles.rightArrow}>
+              <Icon name="arrow-right" size={30} style={styles.arrow} />
+            </TouchableOpacity>
+          </Card>
+        </View>
     </View>
 
            {/***************** favorites ************************/}
