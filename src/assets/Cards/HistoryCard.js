@@ -1,11 +1,20 @@
 import React from 'react';
 import { TouchableOpacity, Image, Text, View } from 'react-native';
+
 import { ScaledSheet } from 'react-native-size-matters';
+
+// Custom Fonts ********************
+
+import { useFonts } from 'expo-font'
+
+
 
 const formatDate = (timestamp) => {
   const date = new Date(timestamp.seconds * 1000); // Convert seconds to milliseconds
   return date.toLocaleDateString(); // Format date as desired
 };
+
+
 
 const HistoryCard = ({ item }) => {
   // Function to select the icon based on transcription type
@@ -26,7 +35,26 @@ const HistoryCard = ({ item }) => {
     }
   };
 
+  
+
   const icon = selectIcon(item.transcriptionType);
+
+
+  // fonts*******************************************************
+
+  const [ fontsLoaded ] = useFonts({
+    'PTSans-Bold' : require ('../fonts/PTSans-Bold.ttf'),
+    'PTSans-BoldItalic' : require ('../fonts/PTSans-BoldItalic.ttf'),
+    'PTSans-Italic' : require ('../fonts/PTSans-Italic.ttf'),
+    'PTSans-Regular' : require ('../fonts/PTSans-Regular.ttf'),
+   
+
+
+  })
+
+  if (!fontsLoaded){
+    return undefined ;
+  }
 
   return (
     // <TouchableOpacity 
@@ -77,7 +105,7 @@ const styles = ScaledSheet.create({
 
   historyTextTitle: {
     fontSize: '12@s',
-    fontWeight: 'bold',
+    fontFamily: "PTSans-Bold",
     paddingLeft: '30@s',
     paddingTop: '5@s',
     
@@ -91,7 +119,7 @@ const styles = ScaledSheet.create({
   },
   historydateTitle: {
     fontSize: '12@s',
-    fontStyle: 'italic',
+    fontFamily: "PTSans-Italic",
     paddingTop: '4@s',
     marginLeft: 'auto'
 

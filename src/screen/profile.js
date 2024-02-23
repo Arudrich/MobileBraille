@@ -283,7 +283,7 @@ const Profile = ({ navigation }) => {
   };
 
   const [isVisible, setisVisible] =
-    useState(true); /* gamit for toggle ng eye yung sa password */
+    useState(true);  /* gamit for toggle ng eye yung sa password */
 
   // fonts ************************************
 
