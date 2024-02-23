@@ -1,6 +1,6 @@
 
 // Dito yung mga bottom tab nav
-import { StyleSheet, Text, View, Modal } from 'react-native'
+import { StyleSheet, Text, View, Modal, } from 'react-native'
 import React from 'react'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -25,6 +25,13 @@ import setting from '../src/screen/setting';
 import AddPostScreen from '../src/screen/AddPostScreen';
 import SubmittedPostScreen from '../src/screen/SubmittedPostScreen';
 
+// dimension fix
+import { ScaledSheet } from 'react-native-size-matters';
+
+// Custom Fonts ********************
+
+import { useFonts } from 'expo-font'
+
 
 // icons for drawer hihi
 
@@ -46,13 +53,13 @@ const Drawer = createDrawerNavigator();
 
 // for drawer design -Aru
 
-const homedrawerIcon = ({ focused, color, size }) => <AntDesign name="home" size={25} color="black" />
-const maindrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="transcribe" size={25} color="black" />
-const profiledrawerIcon = ({ focused, color, size }) => <Feather name="user" size={25} color="black" />
-const faqdrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="comment-question-outline" size={25} color="black" />
-const aboutdrawerIcon = ({ focused, color, size }) => <Ionicons name="people-outline" size={25} color="black" />
-const settingdrawerIcon = ({ focused, color, size }) => <Feather name="settings" size={25} color="black" />
-const logoutdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="logout" size={25} color="black" />
+const homedrawerIcon = ({ focused, color, size, }) => <AntDesign name="home" size={25} color="white" backgroundColor = '#003153'  />
+const maindrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="transcribe" size={25} color="white" backgroundColor = '#003153'/>
+const profiledrawerIcon = ({ focused, color, size }) => <Feather name="user" size={25} color="white" backgroundColor = '#003153'/>
+const faqdrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="comment-question-outline" size={25} color="white" backgroundColor = '#003153' />
+const aboutdrawerIcon = ({ focused, color, size }) => <Ionicons name="people-outline" size={25} color="white" backgroundColor = '#003153'/>
+const settingdrawerIcon = ({ focused, color, size }) => <Feather name="settings" size={25} color="white" backgroundColor = '#003153'/>
+const logoutdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="logout" size={25} color="white" backgroundColor = '#003153'/>
 
 
 
@@ -95,10 +102,25 @@ const HomeStack = ({ navigation }) => (
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const CustomDrawerContent = (props) => {
   const { user, logout } = useContext(AuthContext);
+
+  // fonts*******************************************************
+
+  const [ fontsLoaded ] = useFonts({
+    'PTSans-Bold' : require ('../src/assets/fonts/PTSans-Bold.ttf'),
+    'PTSans-BoldItalic' : require ('../src/assets/fonts/PTSans-BoldItalic.ttf'),
+    'PTSans-Italic' : require ('../src/assets/fonts/PTSans-Italic.ttf'),
+    'PTSans-Regular' : require ('../src/assets/fonts/PTSans-Regular.ttf'),
+    
+
+  })
+
+  if (!fontsLoaded){
+    return undefined ;
+  }
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
-      <View style={{ marginTop: 20, paddingHorizontal: 10 }}>
+      <View style={styles.logoutButton}>
         <Button title="Logout" onPress={() => logout()} />
       </View>
     </DrawerContentScrollView>
@@ -107,7 +129,7 @@ const CustomDrawerContent = (props) => {
 
 const HomeDrawerStack = ({}) => (
   
-  <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}
+  <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false }}
      drawerContent={(props) => <CustomDrawerContent {...props} />}>
 
     <Drawer.Screen name="Home" component={Home} options={{drawerIcon:homedrawerIcon}}  />
@@ -122,7 +144,7 @@ const HomeDrawerStack = ({}) => (
 
     <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
 
-    <Drawer.Screen name="Logout" component={setting} options={{headerShown: true, drawerIcon:logoutdrawerIcon}}  />
+   
     {/* Add other screens you want in the drawer navigator */}
 
   </Drawer.Navigator>
@@ -146,6 +168,7 @@ const MainStack = ({ navigation }) => (
           backgroundColor: '#fff',
           shadowColor: '#fff',
           elevation: 0,
+          
         },
       }}
     />
@@ -294,5 +317,13 @@ export default AppStack;
 
 
 const styles = StyleSheet.create({
+
+  logoutButton: {
+    marginTop: 20,
+    paddingHorizontal: 100, 
+    
+  },
+
+ 
   
 });
