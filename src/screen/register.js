@@ -17,7 +17,9 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+// Custom Fonts ********************
 
+import { useFonts } from 'expo-font'
 
 
 // dimension fix
@@ -34,6 +36,22 @@ const Register = () => {
     email: "",
     password: "",
   });
+
+
+  // fonts ********************
+
+  const [ fontsLoaded ] = useFonts({
+    'PTSans-Bold' : require ('../assets/fonts/PTSans-Bold.ttf'),
+    'PTSans-BoldItalic' : require ('../assets/fonts/PTSans-BoldItalic.ttf'),
+    'PTSans-Italic' : require ('../assets/fonts/PTSans-Italic.ttf'),
+    'PTSans-Regular' : require ('../assets/fonts/PTSans-Regular.ttf'),
+
+  })
+
+  if (!fontsLoaded){
+    return undefined ;
+  }
+
 
   const { email, password, name } = userCredentials;
 
@@ -191,9 +209,11 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     fontSize: '14@s', 
     color: '#003153', 
+    
   },
   subtext:{
     fontSize: '14@s',
+    fontFamily: "PTSans-Regular",
     fontWeight: "400",
     color: "black",
     marginTop: 15,
@@ -216,7 +236,8 @@ const styles = ScaledSheet.create({
   },
   leftscreenTexts:{
     fontSize: '14@s', 
-    color: 'black' 
+    color: 'black' ,
+    fontFamily: "PTSans-Regular"
   },
   placeholderLabel: {
     fontSize: '14@s',
@@ -230,15 +251,17 @@ const styles = ScaledSheet.create({
     backgroundColor: 'white',
     width: '305@s',
     margin: '10@s',
+    
   },
   textClickable:{
     fontSize: '14@s', 
     color: '#003153', 
-    fontWeight: '500' 
+    fontWeight: '500' ,
+    fontFamily: "PTSans-Bold"
   },
   subscreenHeading:{
     textAlign:'left',
-    fontWeight: 'bold',
+    fontFamily: "PTSans-Bold",
     fontSize: '28@s', 
     color: '#003153', 
     paddingTop: '80@s' 
@@ -256,7 +279,7 @@ const styles = ScaledSheet.create({
   buttonText:{
     color: 'white',
     fontSize: '12@s',
-    fontWeight: 'bold',
+    fontFamily: "PTSans-Bold"
      
   },
   icon: {

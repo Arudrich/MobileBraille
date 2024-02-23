@@ -1,10 +1,29 @@
 import React from 'react';
 import { Modal, TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 
+// Custom Fonts ********************
+
+import { useFonts } from 'expo-font'
+
 const FilterModal = ({ visible, onClose, filters, selectedFilters, onSelectFilter, applyFilters }) => {
   const handleChipPress = (filter) => {
     onSelectFilter(filter);
   };
+
+  // fonts*******************************************************
+
+  const [ fontsLoaded ] = useFonts({
+    'PTSans-Bold' : require ('../assets/fonts/PTSans-Bold.ttf'),
+    'PTSans-BoldItalic' : require ('../assets/fonts/PTSans-BoldItalic.ttf'),
+    'PTSans-Italic' : require ('../assets/fonts/PTSans-Italic.ttf'),
+    'PTSans-Regular' : require ('../assets/fonts/PTSans-Regular.ttf'),
+
+
+  })
+
+  if (!fontsLoaded){
+    return undefined ;
+  }
 
   return (
     <Modal
@@ -71,7 +90,7 @@ const styles = StyleSheet.create({
   },
   modalButtonText: {
     color: 'grey',
-    fontWeight: 'bold',
+    fontFamily: "PTSans-Bold",
     fontSize: 16,
     textAlign: 'center',
   },
@@ -89,7 +108,7 @@ const styles = StyleSheet.create({
   },
   applyButtonText: {
     color: 'white',
-    fontWeight: 'bold',
+    fontFamily: "PTSans-Bold",
     fontSize: 16,
     textAlign: 'center',
   },

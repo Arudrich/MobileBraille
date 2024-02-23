@@ -11,6 +11,10 @@ import { Alert } from 'react-native';
 // dimension fix
 import { ScaledSheet } from 'react-native-size-matters';
 
+// Custom Fonts ********************
+
+import { useFonts } from 'expo-font'
+
 
 //************************************************
 
@@ -135,6 +139,24 @@ const main = ({navigation}) => {
     }
   };
 
+  // fonts
+
+  const [ fontsLoaded ] = useFonts({
+    'PTSans-Bold' : require ('../assets/fonts/PTSans-Bold.ttf'),
+    'PTSans-BoldItalic' : require ('../assets/fonts/PTSans-BoldItalic.ttf'),
+    'PTSans-Italic' : require ('../assets/fonts/PTSans-Italic.ttf'),
+    'PTSans-Regular' : require ('../assets/fonts/PTSans-Regular.ttf'),
+
+
+  })
+
+  if (!fontsLoaded){
+    return undefined ;
+  }
+
+
+
+
   return (
 
     <View style = {styles.mainContainer}>
@@ -257,8 +279,6 @@ const styles = ScaledSheet.create({
 
   headerContainer: {
     backgroundColor: '#003153',
-    // borderBottomLeftRadius: 8,
-    // borderBottomRightRadius: 8, 
     height: '28%',
     padding: '12@s',
     alignItems: 'center'
@@ -268,12 +288,13 @@ const styles = ScaledSheet.create({
   headerText: {
     color: 'white',
     fontSize: '30@s',
-    fontWeight: '300', 
+    fontFamily: "PTSans-Bold",
     paddingTop: '70@s',
 
   },
   subHeaderText: {
     color: 'white',
+    fontFamily: "PTSans-Regular",
     fontSize: '15@s',
     paddingBottom: '15@s',
   },
@@ -288,13 +309,14 @@ const styles = ScaledSheet.create({
     bodyHeader: {
       color: '#003153',
       fontSize: '20@s',
-      fontWeight: 'bold'
+      fontFamily: "PTSans-Bold"
     },
 
     bodySubHeader: {
       color: '#003153',
       fontSize: '12@s',
-      fontWeight: 'bold'
+      fontFamily: "PTSans-Regular"
+      
 
 
     },
@@ -334,7 +356,7 @@ const styles = ScaledSheet.create({
 
     text: {
       color: "white",
-      fontWeight: 'bold',
+      fontFamily: "PTSans-Bold",
       paddingTop: '5@s',
     
     
@@ -343,7 +365,7 @@ const styles = ScaledSheet.create({
     subText: {
       color: "white",
       fontSize: '10@s',
-      fontStyle: 'italic'
+      fontFamily: "PTSans-Italic"
 
     }
 
