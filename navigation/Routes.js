@@ -18,10 +18,22 @@ const Routes = () => {
     if (initializing) setInitializing(false);
   };
 
+  // useEffect(() => {
+  //   const subscriber = onAuthStateChanged(authentication, onAuthStateChange);
+  //   return subscriber; // unsubscribe on unmount
+  // }, []);
+
+  
   useEffect(() => {
-    const subscriber = onAuthStateChanged(authentication, onAuthStateChange);
-    return subscriber; // unsubscribe on unmount
-  }, []);
+    const unsubscribe = onAuthStateChanged(authentication, (user) => {
+      setUser(user);
+      if (initializing) {
+        setInitializing(false);
+      }
+    });
+
+    return unsubscribe; // Cleanup function to unsubscribe from the listener when component unmounts
+  }, [setUser, initializing]);
 
   if (initializing) return null;
   

@@ -7,6 +7,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { colors } from '../src/utils/colors';
+import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+
+import { AuthContext } from './AuthProvider'; 
 
 // Icons for botnav
 import { Ionicons } from '@expo/vector-icons';
@@ -34,6 +37,8 @@ import historyScreen from '../src/screen/historyScreen';
 import { BottomNavigation } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { useContext } from 'react'
+import { Button } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const BotTab = createBottomTabNavigator();
@@ -48,6 +53,9 @@ const faqdrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name
 const aboutdrawerIcon = ({ focused, color, size }) => <Ionicons name="people-outline" size={25} color="black" />
 const settingdrawerIcon = ({ focused, color, size }) => <Feather name="settings" size={25} color="black" />
 const logoutdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="logout" size={25} color="black" />
+
+
+
 
 
 const HomeStack = ({ navigation }) => (
@@ -85,9 +93,22 @@ const HomeStack = ({ navigation }) => (
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const CustomDrawerContent = (props) => {
+  const { user, logout } = useContext(AuthContext);
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <View style={{ marginTop: 20, paddingHorizontal: 10 }}>
+        <Button title="Logout" onPress={() => logout()} />
+      </View>
+    </DrawerContentScrollView>
+  );
+};
+
 const HomeDrawerStack = ({}) => (
   
-  <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+  <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}
+     drawerContent={(props) => <CustomDrawerContent {...props} />}>
 
     <Drawer.Screen name="Home" component={Home} options={{drawerIcon:homedrawerIcon}}  />
 
