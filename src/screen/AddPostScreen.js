@@ -68,31 +68,33 @@ import { Button } from 'react-native-paper';
 //   }
 // };
 const transcribeFile = async (file, fileType, fileName) => {
-  console.log(file);
+  console.log("String to transcribe: ", file);
 
   const apiEndpoint = `http://34.142.200.21:8000/transcribe/${fileType}`;
 
   if (fileType === 'text') {
-    // Directly send the provided text as a parameter to the API
+    if (!file) {
+        console.error('Error: file is undefined or null');
+        return; // Exit the function or handle the error appropriately
+    }
+    
     const formData = new FormData();
-    formData.append('text', file);
+    formData.append('input_string', file); // Assuming file is the string you want to send
 
     try {
-      const response = await fetch(apiEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        body: formData,
-      });
+        const response = await fetch(apiEndpoint + '/transcribe/text', {
+            method: 'POST',
+            body: formData
+        });
 
-      const responseData = await response.json();
+        const responseData = await response.json();
 
-      console.log("Transcription: ", responseData.Transcription);
-      console.log("Braille: ", responseData.Braille);
+        console.log("Transcription: ", responseData.transcription);
+        console.log("Braille: ", responseData.braille);
 
-      return responseData;
-    } catch (error) {
+        return responseData;
+    }
+      catch (error) {
       console.error(error);
       return null;
     }
@@ -180,7 +182,7 @@ const AddPostScreen = ({ route }) => {
   const [uploading, setUploading] = useState(false);
   const [transcribing, setTranscribing] = useState(false);
   const [transferred, setTransferred] = useState(0);
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState('');
 
 
 
@@ -339,14 +341,15 @@ const AddPostScreen = ({ route }) => {
     } else {
       // Default action button when no file type is selected
       return (
-        <ActionButton buttonColor="#3498db" useNativeDriver={true}>
-          <ActionButton.Item buttonColor="#8DABD6" title="Take Photo" onPress={takePhotoFromCamera}>
-            <Icon name="md-camera-outline" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-          <ActionButton.Item buttonColor="#8DABD6" title="Select Photo" onPress={choosePhotoFromLibrary}>
-            <Icon name="md-images-outline" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
-        </ActionButton>
+        // <ActionButton buttonColor="#3498db" useNativeDriver={true}>
+        //   <ActionButton.Item buttonColor="#8DABD6" title="Take Photo" onPress={takePhotoFromCamera}>
+        //     <Icon name="md-camera-outline" style={styles.actionButtonIcon} />
+        //   </ActionButton.Item>
+        //   <ActionButton.Item buttonColor="#8DABD6" title="Select Photo" onPress={choosePhotoFromLibrary}>
+        //     <Icon name="md-images-outline" style={styles.actionButtonIcon} />
+        //   </ActionButton.Item>
+        // </ActionButton> 
+        null
       );
     }
   };
