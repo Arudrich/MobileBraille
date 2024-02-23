@@ -16,6 +16,10 @@ import { reauthenticateWithCredential, updatePassword, EmailAuthProvider } from 
 // DIMENSION COMPATIBILITY
 import { ScaledSheet } from 'react-native-size-matters';
 
+// Custom Fonts ********************
+
+import { useFonts } from 'expo-font'
+
 const SECTIONS = [
   {
     header: 'Preferences',
@@ -134,6 +138,23 @@ const Profile = ({ navigation }) => {
     }
   };
 
+  // fonts*******************************************************
+
+  const [ fontsLoaded ] = useFonts({
+    'PTSans-Bold' : require ('../assets/fonts/PTSans-Bold.ttf'),
+    'PTSans-BoldItalic' : require ('../assets/fonts/PTSans-BoldItalic.ttf'),
+    'PTSans-Italic' : require ('../assets/fonts/PTSans-Italic.ttf'),
+    'PTSans-Regular' : require ('../assets/fonts/PTSans-Regular.ttf'),
+
+
+  })
+
+  if (!fontsLoaded){
+    return undefined ;
+  }
+
+
+
 
   return (
     
@@ -249,7 +270,7 @@ logo: {
   sectionHeader: {
     // paddingVertical: 5,
     fontSize: "12@s",
-    fontWeight: '500',
+    fontFamily: "PTSans-Bold",
     color: 'black',
   },
   row: {
@@ -303,6 +324,8 @@ logo: {
   modalText: {
     fontSize: '17@s',
     marginBottom: '25@s',
+    fontFamily: "PTSans-Bold",
+
   },
   modalButtons: {
     flexDirection: "row",
@@ -323,6 +346,7 @@ logo: {
   modalButtonText: {
     fontSize: '14@s',
     color: "white",
+    fontFamily: "PTSans-Regular"
   },
   modalContainerProfile: {
     flex: 1,
@@ -347,7 +371,9 @@ logo: {
     marginVertical: '10@s',
   },
   iconText: {
-    color: 'grey'
+    color: 'grey',
+    fontFamily: "PTSans-Regular"
+
   },
 
 

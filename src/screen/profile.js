@@ -25,6 +25,10 @@ import { TextInput as PaperTextInput, Button} from 'react-native-paper';
 
 import { ScaledSheet } from "react-native-size-matters";
 
+// Custom Fonts ********************
+
+import { useFonts } from 'expo-font'
+
 
 
 
@@ -281,6 +285,22 @@ const Profile = ({ navigation }) => {
   const [isVisible, setisVisible] =
     useState(true); /* gamit for toggle ng eye yung sa password */
 
+  // fonts ************************************
+
+  const [ fontsLoaded ] = useFonts({
+    'PTSans-Bold' : require ('../assets/fonts/PTSans-Bold.ttf'),
+    'PTSans-BoldItalic' : require ('../assets/fonts/PTSans-BoldItalic.ttf'),
+    'PTSans-Italic' : require ('../assets/fonts/PTSans-Italic.ttf'),
+    'PTSans-Regular' : require ('../assets/fonts/PTSans-Regular.ttf'),
+
+
+  })
+
+  if (!fontsLoaded){
+    return undefined ;
+  }
+
+
   return (
 
     <View style={styles.mainContainer}>
@@ -345,7 +365,7 @@ const Profile = ({ navigation }) => {
             </Modal>
           </View>
         </TouchableOpacity>
-        <Text style = {{ paddingTop: 8, fontSize: 17 , color:'white', fontWeight: "500" }}>{userData ? userData.fullname : "Loading..."}</Text>
+        <Text style = {{ paddingTop: 8, fontSize: 17 , color:'white', fontFamily: "PTSans-Bold" }}>{userData ? userData.fullname : "Loading..."}</Text>
       </View>
 
       
@@ -526,7 +546,7 @@ const styles = ScaledSheet.create({
   iconText: {
     color: "white",
     fontSize: "12@s",
-    fontWeight: "500",
+    fontFamily: "PTSans-Bold"
   },
 
 
@@ -545,7 +565,7 @@ const styles = ScaledSheet.create({
 
   placeholderLabel: {
     fontSize: '14@s',
-    fontWeight: '500',
+    fontFamily: "PTSans-Bold",
     color: '#003153',
     marginTop: '15@s',
     paddingLeft: '15@s',
@@ -582,9 +602,15 @@ const styles = ScaledSheet.create({
   buttonText:{
     color: 'white',
     fontSize: '12@s',
-    fontWeight: 'bold',
+    fontFamily: "PTSans-Bold"
      
   },
+
+  headerChangeInfo: {
+    color: '#003153',
+    fontFamily: "PTSans-Bold"
+    
+  }
 
 
 

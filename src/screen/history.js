@@ -4,7 +4,27 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { ScrollView } from 'react-native-web'
 
+// Custom Fonts ********************
+
+import { useFonts } from 'expo-font'
+
 const history = () => {
+
+    
+// fonts*******************************************************
+
+  const [ fontsLoaded ] = useFonts({
+    'PTSans-Bold' : require ('../assets/fonts/PTSans-Bold.ttf'),
+    'PTSans-BoldItalic' : require ('../assets/fonts/PTSans-BoldItalic.ttf'),
+    'PTSans-Italic' : require ('../assets/fonts/PTSans-Italic.ttf'),
+    'PTSans-Regular' : require ('../assets/fonts/PTSans-Regular.ttf'),
+
+
+  })
+
+  if (!fontsLoaded){
+    return undefined ;
+  }
   return (
 
     <ScrollView 
@@ -34,10 +54,10 @@ const history = () => {
 
                         }}>
                             <Text style={{
-                                fontWeight:"bold"
+                                fontFamily: "PTSans-Bold"
                             }}>Audio to Braille</Text>
                             <Text style={{
-                                fontWeight:"bold",
+                                fontFamily: "PTSans-Bold",
                                 color:'#062CD4',
                                 paddingLeft:20,
                                 fontStyle: 'italic'

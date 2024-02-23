@@ -5,13 +5,24 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { authentication } from "../../FirebaseConfig";
 import { AuthContext } from "../../navigation/AuthProvider";
 
-//mats -david
+// MATS
 import { TextInput as PaperTextInput, Button } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
 // dimension fix
 import { ScaledSheet } from 'react-native-size-matters';
+
+// Custom Fonts ********************
+
+import { useFonts } from 'expo-font'
+
+
+
+
+
+
 
 
 
@@ -24,6 +35,23 @@ const Login = () => {
   });
   const [isVisible, setisVisible] = useState(true);
   const { email, password } = loginCredentials;
+
+  // fonts
+
+  const [ fontsLoaded ] = useFonts({
+    'PTSans-Bold' : require ('../assets/fonts/PTSans-Bold.ttf'),
+    'PTSans-BoldItalic' : require ('../assets/fonts/PTSans-BoldItalic.ttf'),
+    'PTSans-Italic' : require ('../assets/fonts/PTSans-Italic.ttf'),
+    'PTSans-Regular' : require ('../assets/fonts/PTSans-Regular.ttf'),
+
+
+
+
+  })
+
+  if (!fontsLoaded){
+    return undefined ;
+  }
 
   const loginUser = () => {
     signInWithEmailAndPassword(authentication, email, password)
@@ -136,10 +164,11 @@ const styles = ScaledSheet.create({
     textAlign: 'center',
     fontSize: '14@s', 
     color: '#003153', 
+    fontFamily: "PTSans-Regular"
   },
   placeholderLabel: {
     fontSize: '14@s',
-    fontWeight: '500',
+    fontFamily: "PTSans-Bold",
     color: '#003153',
     marginTop: '15@s',
     paddingLeft: '15@s',
@@ -152,6 +181,7 @@ const styles = ScaledSheet.create({
   orText: {
     marginHorizontal: "10@s",
     fontSize: '16@s',
+    fontFamily: "PTSans-Regular"
   },
   line: {
     flex: 1,
@@ -164,28 +194,30 @@ const styles = ScaledSheet.create({
     backgroundColor: 'white',
     width: '305@s',
     margin: '10@s',
+    
   },
 
   textForgot:{
     fontSize: '14@s', 
     color: '#003153', 
     fontWeight: '500', 
-    textAlign: 'right'
+    textAlign: 'right',
+    fontFamily: "PTSans-Regular"
   },
 
   textClickable:{
     fontSize: '14@s', 
     color: '#003153', 
-    fontWeight: '500' 
+    fontFamily: "PTSans-Bold"
   },
   
   screenHeading:{
     textAlign:'center',
-    fontWeight: 'bold', 
     fontSize: '40@s', 
     color: '#003153',
     paddingTop: '85@s',
-    alignSelf: "center"
+    alignSelf: "center",
+    fontFamily: "PTSans-Bold"
   },
   buttonContainer: {
     backgroundColor: '#003153',
@@ -199,7 +231,7 @@ const styles = ScaledSheet.create({
   buttonText:{
     color: 'white',
     fontSize: '12@s',
-    fontWeight: 'bold',
+    fontFamily: "PTSans-Bold"
      
   },
   icon: {

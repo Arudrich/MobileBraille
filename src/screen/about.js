@@ -5,7 +5,27 @@ import { ScrollView } from 'react-native';
 // dimension fix
 import { ScaledSheet } from 'react-native-size-matters';
 
+// Custom Fonts ********************
+
+import { useFonts } from 'expo-font'
+
 const about = () => {
+
+  // fonts **************************
+
+  const [ fontsLoaded ] = useFonts({
+    'PTSans-Bold' : require ('../assets/fonts/PTSans-Bold.ttf'),
+    'PTSans-BoldItalic' : require ('../assets/fonts/PTSans-BoldItalic.ttf'),
+    'PTSans-Italic' : require ('../assets/fonts/PTSans-Italic.ttf'),
+    'PTSans-Regular' : require ('../assets/fonts/PTSans-Regular.ttf'),
+
+
+  })
+
+  if (!fontsLoaded){
+    return undefined ;
+  }
+
   return (
 
     <View style = {styles.mainContainer}>
@@ -75,7 +95,7 @@ const about = () => {
             
         </View>
 
-        
+
 
 
 
@@ -137,7 +157,7 @@ const styles = ScaledSheet.create({
 
   headerAboutUs: {
     fontSize: '30@s',
-    fontWeight: 'bold',
+    fontFamily: "PTSans-Bold",
     bottom: '70@s',
     color: 'white',
     alignItems: 'center',
@@ -151,7 +171,8 @@ const styles = ScaledSheet.create({
     bottom: '75@s',
     color: 'white',
     alignItems: 'center',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontFamily: "PTSans-Regular"
 
 
   },
@@ -198,13 +219,13 @@ const styles = ScaledSheet.create({
   text: {
   
     color: '#003153',
-    fontWeight: 'bold',
+    fontFamily: "PTSans-Bold",
     fontSize: '12@s',
   
   },
 
   electives: {
-    fontStyle: 'italic', 
+    fontFamily: "PTSans-Italic",
     color: '#003153',
     fontSize: '12@s'
   },

@@ -20,6 +20,10 @@ import { AuthContext } from '../../navigation/AuthProvider';
 
 import { ScaledSheet } from 'react-native-size-matters';
 
+// Custom Fonts ********************
+
+import { useFonts } from 'expo-font'
+
 
 
 
@@ -68,6 +72,22 @@ const historyScreen = () => {
     );
     setFilteredData(filtered);
   };
+
+  // fonts*******************************************************
+
+  const [ fontsLoaded ] = useFonts({
+    'PTSans-Bold' : require ('../assets/fonts/PTSans-Bold.ttf'),
+    'PTSans-BoldItalic' : require ('../assets/fonts/PTSans-BoldItalic.ttf'),
+    'PTSans-Italic' : require ('../assets/fonts/PTSans-Italic.ttf'),
+    'PTSans-Regular' : require ('../assets/fonts/PTSans-Regular.ttf'),
+
+
+  })
+
+  if (!fontsLoaded){
+    return undefined ;
+  }
+
   return (
 
     <View style = {styles.mainContainer}>
@@ -150,13 +170,14 @@ const styles = ScaledSheet.create({
     backgroundColor: "#EBF0F5",
     height: '52@s',
     borderRadius: 8,
+    
   },
 
   // HEADER *****************
  header: {
   fontSize: '20@s',
   marginBottom: '8@s',
-  fontWeight: 'bold'
+  fontFamily: "PTSans-Bold"
  },
 
  // HISTORY **********************
@@ -177,7 +198,7 @@ latestContainer: {
 },
 
 latestHeader: {
-  fontWeight: 'bold',
+  fontFamily: "PTSans-Bold",
   fontSize: '17@s',
   top: '4@s',
 
@@ -187,7 +208,7 @@ latestSubheader:{
   color: 'white',
   fontSize: '12@s',
   padding: '5@s',
-
+  fontFamily: "PTSans-Regular"
   
 
 
@@ -218,16 +239,16 @@ historyColorButon: {
 
 historyTextTitle: {
   fontSize: '12@s',
-  fontWeight: 'bold',
   paddingLeft: '30@s',
   paddingTop: '5@s',
+  fontFamily: "PTSans-Regular"
   
 
 },
 
 historydateTitle: {
   fontSize: '12@s',
-  fontStyle: 'italic',
+  fontFamily: "PTSans-Italic",
   paddingTop: '4@s',
   marginLeft: 'auto'
 

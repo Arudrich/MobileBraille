@@ -18,6 +18,10 @@ import { Card } from 'react-native-paper';
 
 import { ScaledSheet } from 'react-native-size-matters';
 
+// Custom Fonts ********************
+
+import { useFonts } from 'expo-font'
+
 
 // **********************************************************
 
@@ -52,6 +56,8 @@ const home = ({ navigation }) => {
   //   const prevIndex = (currentCardIndex - 1 + images.length) % images.length;
   //   setCurrentCardIndex(prevIndex);
   // };
+
+  
 
 
   const { user } = useContext(AuthContext);
@@ -123,6 +129,20 @@ const home = ({ navigation }) => {
     }
   };
 
+  // fonts *********************************
+  const [ fontsLoaded ] = useFonts({
+    'PTSans-Bold' : require ('../assets/fonts/PTSans-Bold.ttf'),
+    'PTSans-BoldItalic' : require ('../assets/fonts/PTSans-BoldItalic.ttf'),
+    'PTSans-Italic' : require ('../assets/fonts/PTSans-Italic.ttf'),
+    'PTSans-Regular' : require ('../assets/fonts/PTSans-Regular.ttf'),
+
+  })
+
+  if (!fontsLoaded){
+    return undefined ;
+  }
+
+
 
 
   // **********************************************************
@@ -160,11 +180,11 @@ const home = ({ navigation }) => {
                         <Text style={{
                             fontSize: 18,
                             color:"#003153",
-                            fontWeight:"300"
+                            fontFamily: "PTSans-Regular"
 
 
                         }}>Welcome ,  </Text>
-                        <Text style = {{ fontSize: 17, color:'#003153', fontWeight: 'bold' }}>{userData ? userData.fullname : "Loading..."}</Text>
+                        <Text style = {{ fontSize: 17, color:'#003153', fontFamily: "PTSans-Bold" }}>{userData ? userData.fullname : "Loading..."}</Text>
                    </View>
 
                    <View style={{ alignItems:"flex-end", }}>
@@ -406,7 +426,7 @@ headerContainer: {
 
   name: {
     fontSize: "8@s",
-    fontWeight: 'bold', 
+    fontFamily: "PTSans-Bold",
     paddingHorizontal: "10@s",
     color: 'white'
   
@@ -464,7 +484,7 @@ headerContainer: {
   },
 
   latestHeader: {
-    fontWeight: 'bold',
+    fontFamily: "PTSans-Bold",
     fontSize: '14@s',
     top: '5@s',
   
@@ -474,10 +494,9 @@ headerContainer: {
     color: 'white',
     fontSize: '12@s',
     padding: '6@s',
+    fontFamily: "PTSans-Regular"
 
-    
-
-
+  
   },
   
 
@@ -505,7 +524,7 @@ headerContainer: {
 
   historyTextTitle: {
     fontSize: '12@s',
-    fontWeight: 'bold',
+    fontFamily: "PTSans-Bold",
     paddingLeft: '30@s',
     paddingTop: '5@s',
     
@@ -514,7 +533,7 @@ headerContainer: {
 
   historydateTitle: {
     fontSize: '12@s',
-    fontStyle: 'italic',
+    fontFamily: "PTSans-Italic",
     paddingTop: '5@s',
     marginLeft: 'auto'
 

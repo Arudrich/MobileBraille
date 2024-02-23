@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 import { View, Text, Image, StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+// Custom Fonts ********************
+
+import { useFonts } from 'expo-font'
+
 const Splash = () => {
   const nav = useNavigation();
 
@@ -10,6 +14,22 @@ const Splash = () => {
       nav.replace('login');
     }, 5000);
   }, []);
+
+  // fonts*******************************************************
+
+  const [ fontsLoaded ] = useFonts({
+    'PTSans-Bold' : require ('../assets/fonts/PTSans-Bold.ttf'),
+    'PTSans-BoldItalic' : require ('../assets/fonts/PTSans-BoldItalic.ttf'),
+    'PTSans-Italic' : require ('../assets/fonts/PTSans-Italic.ttf'),
+    'PTSans-Regular' : require ('../assets/fonts/PTSans-Regular.ttf'),
+
+
+  })
+
+  if (!fontsLoaded){
+    return undefined ;
+  }
+
 
   return (
     
@@ -45,8 +65,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    flex: 1
   },
+
   logoContainer: {
     alignItems: 'center',
   },
@@ -57,19 +77,21 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 40,
-    fontWeight: 'bold',
+    fontFamily: "PTSans-Bold",
     marginTop: 10,
   },
   blackText: {
     color: 'black',
+    fontFamily: "PTSans-Regular"
   },
   blueText: {
     color: '#003153',
-    fontWeight: 'bold'
+    fontFamily: "PTSans-Bold"
 
   },
   subtitle: {
     fontSize: 15,
+    fontFamily: "PTSans-Regular",
     textAlign: 'center',
     marginTop: 5,
     color: 'black',

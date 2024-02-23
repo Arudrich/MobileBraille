@@ -7,7 +7,31 @@ import { TouchableOpacity } from 'react-native';
 // DIMENSION COMPATIBILITY
 import { ScaledSheet } from 'react-native-size-matters';
 
+// Custom Fonts ********************
+
+import { useFonts } from 'expo-font'
+
+
 const Faq = () => {
+
+  
+// fonts*******************************************************
+
+const [ fontsLoaded ] = useFonts({
+  'PTSans-Bold' : require ('../assets/fonts/PTSans-Bold.ttf'),
+  'PTSans-BoldItalic' : require ('../assets/fonts/PTSans-BoldItalic.ttf'),
+  'PTSans-Italic' : require ('../assets/fonts/PTSans-Italic.ttf'),
+  'PTSans-Regular' : require ('../assets/fonts/PTSans-Regular.ttf'),
+
+
+})
+
+if (!fontsLoaded){
+  return undefined ;
+}
+
+
+
   return (
     
     <ScrollView style = {styles.mainContainer}>
@@ -80,13 +104,14 @@ search: {
     backgroundColor: "#EBF0F5",
     height: '52@s',
     borderRadius: 8,
+    
   },
 
   // FAQ Header **********************
 
   faqHeader: {
     fontSize: '22@s',
-    fontWeight: 'bold',
+    fontFamily: "PTSans-Bold",
     color: '#003153',
     marginTop: '10@s',
     marginBottom: '1@s',
@@ -94,10 +119,10 @@ search: {
   },
 
   faqSubHeader: {
-    fontWeight: '500',
+    fontFamily: "PTSans-Regular",
     color: '#818589',
     textAlign: 'justify',
-    fontSize: 12
+    fontSize: '12@s'
 
   },
 
@@ -126,6 +151,7 @@ search: {
 
   question: {
     color: '#003153',
+    fontFamily: "PTSans-Bold"
 
 
   },
