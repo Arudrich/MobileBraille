@@ -183,26 +183,7 @@ const AddPostScreen = ({ route }) => {
   const [post, setPost] = useState(null);
 
 
-  //Downloading file to storage [I should pass a map of the links here]
-  const downloadFileToStorage = async (downloadUrl, fileType) => {
-    try {
-      // Download the file from the provided URL
-      const response = await fetch(downloadUrl);
-      const blob = await response.blob();
 
-      // Upload the file to Firebase Storage
-      const storageRef = ref(storage, `files/${fileType}/${filename}`);
-      await uploadBytesResumable(storageRef, blob);
-
-      // Get the download URL of the uploaded file
-      const fileDownloadUrl = await getDownloadURL(storageRef);
-
-      return fileDownloadUrl;
-    } catch (error) {
-      console.error('Error downloading file and uploading to Firebase Storage:', error);
-      return null;
-    }
-  };
 
   const takePhotoFromCamera = async() => {
     let result = await ImagePicker.launchCameraAsync({
