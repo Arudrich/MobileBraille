@@ -78,21 +78,24 @@ const transcribeFile = async (file, fileType, fileName) => {
         return; // Exit the function or handle the error appropriately
     }
     
-    const formData = new FormData();
-    formData.append('input_string', file); // Assuming file is the string you want to send
+    // const formData = new FormData();
+    // formData.append('input_string', file); // Assuming file is the string you want to send
 
     try {
-        const response = await fetch(apiEndpoint + '/transcribe/text', {
-            method: 'POST',
-            body: formData
-        });
+      const response = await fetch(apiEndpoint, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json' // Specify content type as JSON
+          },
+          body: JSON.stringify({ input_string: file }) // Stringify the data object
+      });
 
-        const responseData = await response.json();
+      const responseData = await response.json();
 
-        console.log("Transcription: ", responseData.transcription);
-        console.log("Braille: ", responseData.braille);
+      console.log("Transcription: ", responseData.transcription);
+      console.log("Braille: ", responseData.braille);
 
-        return responseData;
+      return responseData;
     }
       catch (error) {
       console.error(error);
@@ -361,8 +364,10 @@ const AddPostScreen = ({ route }) => {
 
     if (fileType === 'text') {
       // For text, directly set transcription data
+      const filename = 'Text_transcription_' + Date.now()
+      setFilename(filename);
       setTranscribing(true); // Set transcribing to true when transcribing text
-      transcriptionData = await transcribeFile(post, fileType);
+      transcriptionData = await transcribeFile(post, fileType)
       setTranscribing(false); // Set transcribing to false after transcription is done
     } else {
       fileUrl = await uploadFile(image, fileType);
