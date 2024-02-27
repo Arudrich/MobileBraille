@@ -462,6 +462,7 @@ const AddPostScreen = ({ route }) => {
     })
     .catch((error) => {
       console.log('Something went wrong with added post to firestore.', error);
+      Alert.alert('Something went wrong with added post to firestore.', error);
     });
   };
   
