@@ -92,8 +92,8 @@ const transcribeFile = async (file, fileType, fileName) => {
 
       const responseData = await response.json();
 
-      console.log("Transcription: ", responseData.transcription);
-      console.log("Braille: ", responseData.braille);
+      console.log("Transcription: ", responseData.Transcription);
+      console.log("Braille: ", responseData.Braille);
 
       return responseData;
     }
@@ -181,7 +181,7 @@ const AddPostScreen = ({ route }) => {
   }, [route.params]);
 
   const [image, setImage] = useState(null);
-  const [fileName, setFilename] = useState(null)
+  const [fileName, setFilename] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [transcribing, setTranscribing] = useState(false);
   const [transferred, setTransferred] = useState(0);
@@ -364,10 +364,12 @@ const AddPostScreen = ({ route }) => {
 
     if (fileType === 'text') {
       // For text, directly set transcription data
-      const filename = 'Text_transcription_' + Date.now()
+      const filename = 'Text_transcription_' + Date.now();
       setFilename(filename);
+      console.log("Check filename: ", fileName)
+
       setTranscribing(true); // Set transcribing to true when transcribing text
-      transcriptionData = await transcribeFile(post, fileType)
+      transcriptionData = await transcribeFile(post, fileType);
       setTranscribing(false); // Set transcribing to false after transcription is done
     } else {
       fileUrl = await uploadFile(image, fileType);
