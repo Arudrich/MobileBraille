@@ -22,6 +22,7 @@ import About from '../src/screen/about';
 import Profile from '../src/screen/profile';
 import Faq from '../src/screen/faq';
 import setting from '../src/screen/setting';
+import ViewPostScreen from '../src/screen/ViewPostScreen';
 import AddPostScreen from '../src/screen/AddPostScreen';
 import SubmittedPostScreen from '../src/screen/SubmittedPostScreen';
 
@@ -62,7 +63,35 @@ const settingdrawerIcon = ({ focused, color, size }) => <Feather name="settings"
 const logoutdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="logout" size={25} color="white" backgroundColor = '#003153'/>
 
 
-
+const HistoryStack = ({ navigation }) => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="History"
+      component={historyScreen}
+      options={{
+        headerShown: false,
+        headerStyle: {
+          backgroundColor: '#fff',
+          shadowColor: '#fff',
+          elevation: 0,
+        },
+      }}
+    />
+    <Stack.Screen 
+      name="ViewPostScreen"
+      component={ViewPostScreen}
+      options={{
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: '#fff',
+          shadowColor: '#fff',
+          elevation: 0,
+        },
+        title: 'View Post',
+      }}
+    />
+  </Stack.Navigator>
+);
 
 
 const HomeStack = ({ navigation }) => (
@@ -89,9 +118,22 @@ const HomeStack = ({ navigation }) => (
     />
     <Stack.Screen 
       name= "History"
-      component={historyScreen}
+      component={HistoryStack}
       options={{
         headerShown: true,
+      }}
+    />
+    <Stack.Screen 
+      name="ViewPostScreen"
+      component={ViewPostScreen}
+      options={{
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: '#fff',
+          shadowColor: '#fff',
+          elevation: 0,
+        },
+        title: 'View Post',
       }}
     />
   </Stack.Navigator>

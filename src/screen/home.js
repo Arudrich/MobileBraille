@@ -324,7 +324,23 @@ const home = ({ navigation }) => {
                     showsVerticalScrollIndicator={false}
                     // style={{ flex: 1}}
                     keyExtractor={item => item.id}
-                    renderItem={({ item }) => <HistoryCard item={item} />} // Using HistoryCard component
+                    renderItem={({item}) => <TouchableOpacity onPress={() => {
+                                    try {
+                                      navigation.navigate('ViewPostScreen', {
+                                        title: item.title,
+                                        imageUrl: item.imageUrl,
+                                        transcription: item.Transcription,
+                                        braille: item.Braille,
+                                        transcriptionType: item.transcriptionType,
+                                        downloadLinks: item.downloadLinks
+                                      });
+                                    } catch (error) {
+                                      console.error('Error navigating to ViewPostScreen:', error);
+                                    }
+                                  }}>
+                                    <HistoryCard item={item} />
+                                  </TouchableOpacity> }
+                    // renderItem={({ item }) => <HistoryCard item={item} />} // Using HistoryCard component
                   />
                   
 

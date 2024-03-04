@@ -80,7 +80,7 @@ const HistoryCard = ({ item }) => {
     //   {/* <Text style={{ paddingHorizontal: 10, color: '#062CD4', paddingTop: 3 }}>{item.fileName}</Text> //comment ko muna wala pang logic to eh*/} 
     // </TouchableOpacity>
     
-    <TouchableOpacity style = {styles.historyColorButon}>
+    <View style = {styles.historyColorButon}>
 
       <Image style={styles.historyPics} source={icon} ></Image>   
       <Text style = {styles.historyTextTitle}>{item.title}</Text>
@@ -88,7 +88,7 @@ const HistoryCard = ({ item }) => {
       <Text style = {styles.historydateTitle}>{formatDate(item.postTime)}</Text>
       
 
-    </TouchableOpacity>
+    </View>
   );
 };
 

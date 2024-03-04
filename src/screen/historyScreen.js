@@ -1,7 +1,7 @@
 import { View, Text, ScrollView, StyleSheet, Image, TextInput, RefreshControl} from 'react-native'
 import { TouchableOpacity } from 'react-native';
 import { Searchbar } from 'react-native-paper';
-import { FlatList } from 'react-native'; 
+import { FlatList } from 'react-native';
 
 import HistoryCard from '../assets/Cards/HistoryCard';
 
@@ -36,6 +36,7 @@ const historyScreen = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [historyData, setHistoryData] = useState([]);
   const [searchQuery, setSearchQuery] = React.useState('');
+  const navigation = useNavigation();
 
   const fetchHistoryData = async () => {
     try {
@@ -72,6 +73,24 @@ const historyScreen = () => {
     );
     setFilteredData(filtered);
   };
+
+  const navigateToViewPost = (item) => {
+    try {
+      // Navigate to view post screen, passing necessary parameters received by ViewPostScreen
+      // navigation.navigate('ViewPostScreen')
+      navigation.navigate('ViewPostScreen', {
+        title: item.title,
+        imageUrl: item.imageUrl,
+        transcription: item.Transcription,
+        braille: item.Braille,
+        transcriptionType: item.transcriptionType,
+        downloadLinks: item.downloadLinks
+        // Add other necessary parameters if needed
+      });
+    } catch (error) {
+      console.error('Error navigating to ViewPostScreen:', error);
+    }
+  }
 
   // fonts*******************************************************
 
@@ -116,7 +135,12 @@ const historyScreen = () => {
           showsVerticalScrollIndicator={true}
           // style={{ flex: 1}}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <HistoryCard item={item} />} // Using HistoryCard component
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => navigateToViewPost(item)}>
+            {/* // <TouchableOpacity onPress={() => console.log("pressed")}> */}
+              <HistoryCard item={item} />
+            </TouchableOpacity>
+          )} // Using HistoryCard component
           refreshControl={
               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }
