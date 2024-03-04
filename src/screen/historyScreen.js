@@ -80,7 +80,7 @@ const historyScreen = () => {
       // navigation.navigate('ViewPostScreen')
       navigation.navigate('ViewPostScreen', {
         title: item.title,
-        imageUrl: item.imageUrl,
+        imageUrl: item.postUrl,
         transcription: item.Transcription,
         braille: item.Braille,
         transcriptionType: item.transcriptionType,

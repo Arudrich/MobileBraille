@@ -328,7 +328,7 @@ const home = ({ navigation }) => {
                                     try {
                                       navigation.navigate('ViewPostScreen', {
                                         title: item.title,
-                                        imageUrl: item.imageUrl,
+                                        imageUrl: item.postUrl,
                                         transcription: item.Transcription,
                                         braille: item.Braille,
                                         transcriptionType: item.transcriptionType,
