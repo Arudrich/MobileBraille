@@ -115,7 +115,7 @@ import { Button } from 'react-native-paper';
 import { useFonts } from 'expo-font'
 
 const SubmittedPostScreen = ({ route }) => {
-  const { title, imageUrl, transcription, braille, transcriptionType, downloadLinks } = route.params;
+  const { title, imageUrl, transcription, braille, transcriptionType, downloadLinks, date} = route.params;
 
   // fonts*******************************************************
 
@@ -131,6 +131,11 @@ const [ fontsLoaded ] = useFonts({
   if (!fontsLoaded){
     return undefined ;
   }
+
+  const formattedDate = new Date(date.seconds * 1000 + date.nanoseconds / 1000000); // Convert nanoseconds to milliseconds
+
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDateString = formattedDate.toLocaleDateString(undefined, options);
 
 
   return (

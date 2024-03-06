@@ -452,6 +452,7 @@ const AddPostScreen = ({ route }) => {
               braille: transcriptionData.Braille || '',
               transcriptionType: fileType,
               downloadLinks: uploadedLinksObject,
+              date: Timestamp.fromDate(new Date())
             });
             setPost('');
             setImage(null);
