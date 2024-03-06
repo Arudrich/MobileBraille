@@ -145,9 +145,8 @@ const [ fontsLoaded ] = useFonts({
         <Text style = {styles.header}>Transcription Results</Text>
 
 
-        <Text style={styles.textStyle}>Title: {title}</Text>
-        <Text style={styles.textStyle}>Date: March 10, 2024 </Text>
-        <Text style={styles.textStyle}>Type of Transcription: Mark Pascua to David Aguinaldo  </Text> 
+        <Text style={styles.textStyle}>Title: <Text style = {styles.Title}>{title}</Text></Text>
+        
 
         {transcriptionType === 'video' && <Video source={{ uri: imageUrl }} style={styles.videoContainer} useNativeControls />}
         {transcriptionType === 'image' && <Image source={{ uri: imageUrl }} style={styles.imageContainer} resizeMode='contain' />}
@@ -219,58 +218,114 @@ const styles = ScaledSheet.create({
 
    // style to sa text liek title and dates pati pala type of transciropotion hehe
 
-   textStyle: {
-      fontSize: '14@s',
-      fontFamily: "PTSans-Regular",
-      alignSelf: 'flex-start',
-      padding: 8
+   containerhehe: {
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+    paddingLeft: '25@s',
+    marginTop: '12@s'
+
   },
+
+
+  textStyleDate: {
+    fontSize: '14@s',
+    fontFamily: "PTSans-BoldItalic",
+    paddingLeft: '18@s',
+    bottom: '9@s',
+  },
+
+  textStyleType: {
+    fontSize: '14@s',
+    fontFamily: "PTSans-Bold",
+    bottom: '9@s'
+  },
+  
+
   textStyleOne: {
     fontSize: '11@s',
-    fontFamily: "PTSans-Regular",
+    fontFamily: "PTSans-Bold",
     textAlign: 'justify'
 
   },
 
   textStyleTwo: {
     fontSize: '12@s',
-    fontFamily: "PTSans-Bold",
-    textAlign: 'justify',
-    color: 'white'
+      fontFamily: "PTSans-Bold",
+      textAlign: 'justify',
+      color: 'white'
 
   },
   videoContainer: {
-      width: '300@s',
-      height: '200@s',
-      marginVertical: '20@s',
-      alignSelf: 'center',
-      borderWidth: 3,
-      borderColor: '#003153',
-      borderRadius: 8,   
+    width: '300@s',
+    height: '250@s',
+    alignSelf: 'center',
+    borderWidth: 3,
+    borderColor: '#003153',
+    borderRadius: 8,   
     
   },
 
   imageContainer: {
-      width: '300@s',
-      height: '250@s',
-      borderWidth: 3,
-      borderColor: '#003153',
-      borderRadius: 8, 
+    width: '300@s',
+    height: '250@s',  
+    borderWidth: 3,
+    borderColor: '#003153',
+    borderRadius: 8, 
   },
 
+  // HEADER *******
+
   header: {
-      fontSize: '25@s',
-      fontFamily: "PTSans-Bold",
-      alignSelf: 'flex-start', 
-      padding: 8
+    fontSize: '25@s',
+    fontFamily: "PTSans-Bold",
+    alignSelf: 'flex-start', 
+    padding: 20
   },
 
   fontDownload: {
-      fontSize: '12@s',
-      fontFamily: "PTSans-Bold",
+    fontSize: '12@s',
+    fontFamily: "PTSans-Bold",
 
-  }
+  },
 
+ textStyle: {
+
+  fontSize: '14@s',
+  fontFamily: "PTSans-Bold",
+  bottom: '12@s',
+  paddingTop: '12@s',
+  paddingLeft: '25@s',
+  alignSelf: 'flex-start',
+  color: '#003153',
+
+
+ },
+
+ dateType: {
+  color: 'red',
+  textTransform: 'uppercase',
+  fontFamily: "PTSans-Italic"
+  
+ },
+
+ transcriptionType: {
+  color: 'red',
+  textTransform: 'uppercase',
+  fontFamily: "PTSans-Bold"
+
+
+ },
+ Title: {
+  textTransform: 'uppercase',
+  fontSize: '16@s',
+  color: 'red',
+
+ }
+
+
+
+
+  
 
 });
 
