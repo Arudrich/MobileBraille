@@ -117,6 +117,9 @@ import { useFonts } from 'expo-font'
 const SubmittedPostScreen = ({ route }) => {
   const { title, imageUrl, transcription, braille, transcriptionType, downloadLinks, date} = route.params;
 
+  // Check if title exceeds 20 characters
+  let formattedTitle = title.length > 20 ? title.slice(0, 20) + '...' : title;
+
   // fonts*******************************************************
 
 const [ fontsLoaded ] = useFonts({
@@ -145,7 +148,7 @@ const [ fontsLoaded ] = useFonts({
         <Text style = {styles.header}>Transcription Results</Text>
 
 
-        <Text style={styles.textStyle}>Title: <Text style = {styles.Title}>{title}</Text></Text>
+        <Text style={styles.textStyle}>Title: <Text style = {styles.Title}>{formattedTitle}</Text></Text>
         
 
         {transcriptionType === 'video' && <Video source={{ uri: imageUrl }} style={styles.videoContainer} resizeMode='contain' useNativeControls />}
