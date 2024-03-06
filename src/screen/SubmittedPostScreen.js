@@ -242,6 +242,7 @@ const styles = ScaledSheet.create({
   videoContainer: {
       width: '300@s',
       height: '200@s',
+      marginVertical: '20@s',
       alignSelf: 'center',
       borderWidth: 3,
       borderColor: '#003153',
@@ -252,7 +253,6 @@ const styles = ScaledSheet.create({
   imageContainer: {
       width: '300@s',
       height: '250@s',
-      marginVertical: '20@s',
       borderWidth: 3,
       borderColor: '#003153',
       borderRadius: 8, 

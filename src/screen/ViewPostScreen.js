@@ -41,12 +41,19 @@ const ViewPostScreen = ({ route }) => {
         <Text style = {styles.header}>Latest Transcription</Text>
 
 
-        <Text style={styles.textStyle}>Title: {title} </Text>
-        <Text style={styles.textStyle}>Date: {formattedDateString} </Text>
-        <Text style={styles.textStyle}>Type of Transcription: {transcriptionType}  </Text> 
+        <Text style={styles.textStyle}>Title: <Text style = {styles.Title}>{title}</Text></Text>
+        
 
         {transcriptionType === 'video' && <Video source={{ uri: imageUrl }} style={styles.videoContainer} resizeMode= 'contain' useNativeControls />}
         {transcriptionType === 'image' && <Image source={{ uri: imageUrl }} style={styles.imageContainer} resizeMode= 'contain' />}
+
+        <View style = {styles.containerhehe}>
+
+        <Text style={styles.textStyleType}>Type of Transcription: <Text style = {styles.transcriptionType}>{transcriptionType}</Text></Text> 
+        <Text style={styles.textStyleDate}>Date: <Text style = {styles.dateType}>{formattedDateString}</Text></Text>
+
+        </View>
+       
 
         <ScrollView contentContainerStyle={styles.resultBoxInput}>
           <Text style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
@@ -115,18 +122,34 @@ const styles = ScaledSheet.create({
 
 
     // style to sa text liek title and dates pati pala type of transciropotion hehe
-    textStyle: {
-      fontSize: '14@s',
-      fontFamily: "PTSans-Regular",
+
+    containerhehe: {
+      flexDirection: 'row',
       alignSelf: 'flex-start',
-      padding: 8
+      paddingLeft: '25@s',
+      marginTop: '12@s'
+
+    },
+
+
+    textStyleDate: {
+      fontSize: '14@s',
+      fontFamily: "PTSans-BoldItalic",
+      paddingLeft: '18@s',
+      bottom: '9@s',
+    },
+
+    textStyleType: {
+      fontSize: '14@s',
+      fontFamily: "PTSans-Bold",
+      bottom: '9@s'
     },
     
 
 
     textStyleOne: {
       fontSize: '11@s',
-      fontFamily: "PTSans-Regular",
+      fontFamily: "PTSans-Bold",
       textAlign: 'justify'
 
     },
@@ -139,11 +162,9 @@ const styles = ScaledSheet.create({
 
     },
   
-
-    
     videoContainer: {
       width: '300@s',
-      height: '200@s',
+      height: '250@s',
       alignSelf: 'center',
       borderWidth: 3,
       borderColor: '#003153',
@@ -152,8 +173,7 @@ const styles = ScaledSheet.create({
     },
     imageContainer: {
       width: '300@s',
-      height: '250@s',
-      marginVertical: '20@s',
+      height: '250@s',  
       borderWidth: 3,
       borderColor: '#003153',
       borderRadius: 8, 
@@ -165,14 +185,48 @@ const styles = ScaledSheet.create({
       fontSize: '25@s',
       fontFamily: "PTSans-Bold",
       alignSelf: 'flex-start', 
-      padding: 8
+      padding: 20
     },
 
     fontDownload: {
       fontSize: '12@s',
       fontFamily: "PTSans-Bold",
 
-    }
+    },
+
+   textStyle: {
+
+    fontSize: '14@s',
+    fontFamily: "PTSans-Bold",
+    bottom: '12@s',
+    paddingTop: '12@s',
+    paddingLeft: '25@s',
+    alignSelf: 'flex-start',
+    color: '#003153',
+  
+
+   },
+
+   dateType: {
+    color: 'red',
+    textTransform: 'uppercase',
+    fontFamily: "PTSans-Italic"
+    
+   },
+
+   transcriptionType: {
+    color: 'red',
+    textTransform: 'uppercase',
+    fontFamily: "PTSans-Bold"
+
+
+   },
+   Title: {
+    textTransform: 'uppercase',
+    fontSize: '16@s',
+    color: 'red',
+
+   }
 
 
 
