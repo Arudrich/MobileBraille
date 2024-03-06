@@ -102,10 +102,13 @@
 
 // export default SubmittedPostScreen;
 
-import React from 'react';
-import { View, Text, Image, Linking } from 'react-native';
-import { ScrollView } from 'react-native';
-import { Audio, Video } from 'expo-av';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Image, Linking, ScrollView, ActivityIndicator} from 'react-native';
+
+import { Video, Audio } from 'expo-av';
+import AudioPlayerView from '../assets/Cards/AudioPlayerView';
+
+
 //Scaledshitts
 import { ScaledSheet } from 'react-native-size-matters';
 import { Button } from 'react-native-paper';
@@ -116,6 +119,71 @@ import { useFonts } from 'expo-font'
 
 const SubmittedPostScreen = ({ route }) => {
   const { title, imageUrl, transcription, braille, transcriptionType, downloadLinks, date} = route.params;
+
+  const [sound, setSound] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [duration, setDuration] = useState(0);
+  const [position, setPosition] = useState(0);
+
+  // Function to play the audio
+  const playAudio = async () => {
+    try {
+      if (sound) {
+        await sound.playAsync();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.log('Error playing audio:', error);
+    }
+  };
+
+  // Function to pause the audio
+  const pauseAudio = async () => {
+    try {
+      if (sound) {
+        await sound.pauseAsync();
+        setIsPlaying(false);
+      }
+    } catch (error) {
+      console.log('Error pausing audio:', error);
+    }
+  };
+
+  // Function to handle seeking audio
+  const seekAudio = async (value) => {
+    try {
+      if (sound) {
+        await sound.setPositionAsync(value);
+        setPosition(value);
+      }
+    } catch (error) {
+      console.log('Error seeking audio:', error);
+    }
+  };
+
+  // Load audio file
+  const loadAudio = async () => {
+    try {
+      setIsLoading(true);
+      const { sound } = await Audio.Sound.createAsync({ uri: imageUrl });
+      setSound(sound);
+      setIsLoading(false);
+      // Get total duration of audio
+      const status = await sound.getStatusAsync();
+      setDuration(status.durationMillis);
+    } catch (error) {
+      console.log('Error loading audio:', error);
+    }
+  };
+
+  // Load audio when component mounts
+  useEffect(() => {
+    loadAudio();
+    return sound ? () => {
+      sound.unloadAsync();
+    } : undefined;
+  }, []);
 
   // Check if title exceeds 20 characters
   let formattedTitle = title.length > 20 ? title.slice(0, 20) + '...' : title;
@@ -153,6 +221,19 @@ const [ fontsLoaded ] = useFonts({
 
         {transcriptionType === 'video' && <Video source={{ uri: imageUrl }} style={styles.videoContainer} resizeMode='contain' useNativeControls />}
         {transcriptionType === 'image' && <Image source={{ uri: imageUrl }} style={styles.imageContainer} resizeMode='contain' />}
+        {transcriptionType === 'audio' && (
+          <AudioPlayerView
+            active={!isLoading}
+            playable={!isLoading}
+            loading={isLoading}
+            isPlaying={isPlaying}
+            playAudio={playAudio}
+            pauseAudio={pauseAudio}
+            totalDuration={duration}
+            seekAudio={seekAudio}
+            duration={position}
+          />
+        )}
 
          <View style = {styles.containerhehe}>
 
