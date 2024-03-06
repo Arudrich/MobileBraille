@@ -10,7 +10,7 @@ import { ScaledSheet } from 'react-native-size-matters';
 import { useFonts } from 'expo-font'
 
 const ViewPostScreen = ({ route }) => {
-  const { title, imageUrl, transcription, braille, transcriptionType, downloadLinks } = route.params;
+  const { title, imageUrl, transcription, braille, transcriptionType, downloadLinks, date } = route.params;
 
   // fonts*******************************************************
 
@@ -27,6 +27,11 @@ const ViewPostScreen = ({ route }) => {
     return undefined ;
   }
 
+  const formattedDate = new Date(date.seconds * 1000 + date.nanoseconds / 1000000); // Convert nanoseconds to milliseconds
+
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDateString = formattedDate.toLocaleDateString(undefined, options);
+
 
   return (
 
@@ -37,8 +42,8 @@ const ViewPostScreen = ({ route }) => {
 
 
         <Text style={styles.textStyle}>Title: {title} </Text>
-        <Text style={styles.textStyle}>Date: March 10, 2024 </Text>
-        <Text style={styles.textStyle}>Type of Transcription: Mark Pascua to David Aguinaldo  </Text> 
+        <Text style={styles.textStyle}>Date: {formattedDateString} </Text>
+        <Text style={styles.textStyle}>Type of Transcription: {transcriptionType}  </Text> 
 
         {transcriptionType === 'video' && <Video source={{ uri: imageUrl }} style={styles.videoContainer} resizeMode= 'contain' useNativeControls />}
         {transcriptionType === 'image' && <Image source={{ uri: imageUrl }} style={styles.imageContainer} resizeMode= 'contain' />}

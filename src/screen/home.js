@@ -332,7 +332,8 @@ const home = ({ navigation }) => {
                                         transcription: item.Transcription,
                                         braille: item.Braille,
                                         transcriptionType: item.transcriptionType,
-                                        downloadLinks: item.downloadLinks
+                                        downloadLinks: item.downloadLinks,
+                                        date: item.postTime
                                       });
                                     } catch (error) {
                                       console.error('Error navigating to ViewPostScreen:', error);

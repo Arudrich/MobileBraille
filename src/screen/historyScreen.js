@@ -84,7 +84,8 @@ const historyScreen = () => {
         transcription: item.Transcription,
         braille: item.Braille,
         transcriptionType: item.transcriptionType,
-        downloadLinks: item.downloadLinks
+        downloadLinks: item.downloadLinks,
+        date: item.postTime
         // Add other necessary parameters if needed
       });
     } catch (error) {
