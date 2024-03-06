@@ -147,13 +147,13 @@ const [ fontsLoaded ] = useFonts({
         {transcriptionType === 'video' && <Video source={{ uri: imageUrl }} style={styles.videoContainer} useNativeControls />}
         {transcriptionType === 'image' && <Image source={{ uri: imageUrl }} style={styles.imageContainer} resizeMode='contain' />}
 
-        <ScrollView contentContainerStyle={styles.resultBox}>
+        <ScrollView contentContainerStyle={styles.resultBoxInput}>
           <Text style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
         </ScrollView>
 
-        <ScrollView contentContainerStyle={styles.resultBox}>
+        <ScrollView contentContainerStyle={styles.resultBoxOutput}>
          
-          <Text style={styles.textStyleOne}>Braille Output:{'\n'}{'\n'} {braille}</Text>
+          <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {braille}</Text>
         </ScrollView>
 
         <View style={styles.buttonContainer}>
@@ -184,16 +184,33 @@ const styles = ScaledSheet.create({
   button: {
     marginRight: '8@s', // Adjust the margin as needed
   },
-  resultBox: {
-      borderWidth: 3.5,
-      borderColor: '#003153',
-      padding: '12@s',
-      borderRadius: 8,
-      width: '80%', // Adjust the width as needed
-      alignItems: 'flex-start',
-      top: '12@s',
-      margin: '15@s',
+   // for input
+   resultBoxInput: {
+    borderWidth: 3.5,
+    borderColor: '#003153',
+    padding: '12@s',
+    borderRadius: 8,
+    width: '80%', // Adjust the width as needed
+    alignItems: 'flex-start',
+    top: '12@s',
+    margin: '15@s',
   },
+
+      // for output
+
+
+  resultBoxOutput: {
+    borderWidth: 3.5,
+    backgroundColor: '#003153',
+    borderColor: '#003153',
+    padding: '12@s',
+    borderRadius: 8,
+    width: '80%', // Adjust the width as needed
+    alignItems: 'flex-start',
+    top: '12@s',
+    margin: '15@s',
+  },
+
 
    // style to sa text liek title and dates pati pala type of transciropotion hehe
 
@@ -203,12 +220,20 @@ const styles = ScaledSheet.create({
       alignSelf: 'flex-start',
       padding: 8
   },
-      textStyleOne: {
-      fontSize: '11@s',
-      fontFamily: "PTSans-Regular",
-      textAlign: 'justify'
+  textStyleOne: {
+    fontSize: '11@s',
+    fontFamily: "PTSans-Regular",
+    textAlign: 'justify'
 
-      },
+  },
+
+  textStyleTwo: {
+    fontSize: '12@s',
+    fontFamily: "PTSans-Bold",
+    textAlign: 'justify',
+    color: 'white'
+
+  },
   videoContainer: {
       width: '300@s',
       height: '200@s',
