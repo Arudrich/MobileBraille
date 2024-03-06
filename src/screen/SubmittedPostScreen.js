@@ -148,8 +148,15 @@ const [ fontsLoaded ] = useFonts({
         <Text style={styles.textStyle}>Title: <Text style = {styles.Title}>{title}</Text></Text>
         
 
-        {transcriptionType === 'video' && <Video source={{ uri: imageUrl }} style={styles.videoContainer} useNativeControls />}
+        {transcriptionType === 'video' && <Video source={{ uri: imageUrl }} style={styles.videoContainer} resizeMode='contain' useNativeControls />}
         {transcriptionType === 'image' && <Image source={{ uri: imageUrl }} style={styles.imageContainer} resizeMode='contain' />}
+
+         <View style = {styles.containerhehe}>
+
+          <Text style={styles.textStyleType}>Type of Transcription: <Text style = {styles.transcriptionType}>{transcriptionType}</Text></Text> 
+          <Text style={styles.textStyleDate}>Date: <Text style = {styles.dateType}>{formattedDateString}</Text></Text>
+
+        </View>
 
         <ScrollView contentContainerStyle={styles.resultBoxInput}>
           <Text style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
@@ -200,7 +207,7 @@ const styles = ScaledSheet.create({
     margin: '15@s',
   },
 
-      // for output
+    // for output
 
 
   resultBoxOutput: {
