@@ -63,7 +63,9 @@ const ViewPostScreen = ({ route }) => {
       const { sound } = await Audio.Sound.createAsync({ uri: imageUrl });
       setSound(sound);
       setIsLoading(false);
+      
       // Get total duration of audio
+
       const status = await sound.getStatusAsync();
       setDuration(status.durationMillis);
     } catch (error) {
@@ -72,6 +74,7 @@ const ViewPostScreen = ({ route }) => {
   };
 
   // Load audio when component mounts
+
   useEffect(() => {
     loadAudio();
     return sound ? () => {
@@ -202,7 +205,7 @@ const styles = ScaledSheet.create({
 
 
 
-    // style to sa text liek title and dates pati pala type of transciropotion hehe
+    // style to sa text like sa title and dates pati pala type of transciropotion hehe
 
     containerhehe: {
       flexDirection: 'row',
@@ -260,7 +263,7 @@ const styles = ScaledSheet.create({
       borderRadius: 8, 
     },
 
-    //header ************
+    //header *************************************
     
     header: {
       fontSize: '25@s',
