@@ -393,6 +393,7 @@ const styles = ScaledSheet.create({
  },
 
  dateType: {
+  fontSize: '12@s',
   color: 'red',
   textTransform: 'uppercase',
   fontFamily: "PTSans-Italic"
@@ -400,6 +401,7 @@ const styles = ScaledSheet.create({
  },
 
  transcriptionType: {
+  fontSize: '12@s',
   color: 'red',
   textTransform: 'uppercase',
   fontFamily: "PTSans-Bold"
