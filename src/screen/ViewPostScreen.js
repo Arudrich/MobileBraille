@@ -210,21 +210,21 @@ const styles = ScaledSheet.create({
     containerhehe: {
       flexDirection: 'row',
       alignSelf: 'flex-start',
-      paddingLeft: '25@s',
+      marginLeft: '25@s',
       marginTop: '12@s'
 
     },
 
 
     textStyleDate: {
-      fontSize: '14@s',
+      fontSize: '12@s',
       fontFamily: "PTSans-BoldItalic",
       paddingLeft: '18@s',
       bottom: '9@s',
     },
 
     textStyleType: {
-      fontSize: '14@s',
+      fontSize: '12@s',
       fontFamily: "PTSans-Bold",
       bottom: '9@s'
     },
@@ -292,6 +292,7 @@ const styles = ScaledSheet.create({
    },
 
    dateType: {
+    fontSize: '12@s',
     color: 'red',
     textTransform: 'uppercase',
     fontFamily: "PTSans-Italic"
@@ -299,6 +300,7 @@ const styles = ScaledSheet.create({
    },
 
    transcriptionType: {
+    fontSize: '12@s',
     color: 'red',
     textTransform: 'uppercase',
     fontFamily: "PTSans-Bold"
