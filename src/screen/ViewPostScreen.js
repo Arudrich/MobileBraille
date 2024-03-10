@@ -118,7 +118,7 @@ const ViewPostScreen = ({ route }) => {
         {transcriptionType === 'video' && <Video source={{ uri: imageUrl }} style={styles.videoContainer} resizeMode= 'contain' useNativeControls />}
         {transcriptionType === 'image' && <Image source={{ uri: imageUrl }} style={styles.imageContainer} resizeMode= 'contain' />}
         {transcriptionType === 'audio' && (
-          <AudioPlayerView
+          <AudioPlayerView 
             active={!isLoading}
             playable={!isLoading}
             loading={isLoading}
@@ -262,6 +262,8 @@ const styles = ScaledSheet.create({
       borderColor: '#003153',
       borderRadius: 8, 
     },
+
+ 
 
     //header *************************************
     
