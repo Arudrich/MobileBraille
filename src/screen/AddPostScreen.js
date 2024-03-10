@@ -70,7 +70,7 @@ import { Button } from 'react-native-paper';
 const transcribeFile = async (file, fileType, fileName) => {
   console.log("String to transcribe: ", file);
 
-  const apiEndpoint = `http://34.142.200.21:8000/transcribe/${fileType}`;
+  const apiEndpoint = `http://13.54.103.174:8000/transcribe/${fileType}`;
 
   if (fileType === 'text') {
     if (!file) {
