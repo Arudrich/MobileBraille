@@ -75,12 +75,10 @@ const transcribeFile = async (file, fileType, fileName) => {
   if (fileType === 'text') {
     if (!file) {
         console.error('Error: file is undefined or null');
+        Alert.alert('Error: file is undefined or null');
         return; // Exit the function or handle the error appropriately
     }
     
-    // const formData = new FormData();
-    // formData.append('input_string', file); // Assuming file is the string you want to send
-
     try {
       const response = await fetch(apiEndpoint, {
           method: 'POST',
@@ -452,6 +450,7 @@ const AddPostScreen = ({ route }) => {
               braille: transcriptionData.Braille || '',
               transcriptionType: fileType,
               downloadLinks: uploadedLinksObject,
+              date: Timestamp.fromDate(new Date())
             });
             setPost('');
             setImage(null);
