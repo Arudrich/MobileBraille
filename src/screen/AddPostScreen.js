@@ -240,7 +240,7 @@ const AddPostScreen = ({ route }) => {
 
       if (!video.canceled) {
         console.log('Selected video:', video.assets[0]);
-        setImage(video.assets[0].uri)
+        setImage(video.assets[0].uri);
         const videoUri = video.assets[0].uri;
         const fileName = videoUri.substring(videoUri.lastIndexOf('/') + 1);
         setFilename(fileName);
@@ -289,7 +289,7 @@ const AddPostScreen = ({ route }) => {
           console.log('Selected document:', document);
           // Handle the selected document
           setFilename(fileName);
-          setImage(document.assets[0].uri)
+          setImage(document.assets[0].uri);
         } else {
           console.log("Selected file format is not allowed");
         }
@@ -364,7 +364,7 @@ const AddPostScreen = ({ route }) => {
       // For text, directly set transcription data
       const filename = 'Text_transcription_' + Date.now();
       setFilename(filename);
-      console.log("Check filename: ", fileName)
+      console.log("Check filename: ", fileName);
 
       setTranscribing(true); // Set transcribing to true when transcribing text
       transcriptionData = await transcribeFile(post, fileType);
@@ -529,7 +529,7 @@ const AddPostScreen = ({ route }) => {
     const name = filename.split('.').slice(0, -1).join('.');
     filename = name + Date.now() + '.' + extension;
     setFilename(filename);
-    console.log("Filename in uploading: ", fileName)
+    console.log("Filename in uploading: ", fileName);
   
     setUploading(true);
     setTransferred(0);
