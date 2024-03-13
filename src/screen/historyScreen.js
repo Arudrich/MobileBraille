@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, StyleSheet, Image, TextInput, RefreshControl} from 'react-native'
+import { View, Text, ScrollView, StyleSheet, Image, TextInput, Alert, RefreshControl} from 'react-native'
 import { TouchableOpacity } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import { FlatList } from 'react-native';
@@ -8,7 +8,7 @@ import HistoryCard from '../assets/Cards/HistoryCard';
 import React, { useEffect, useContext, useState } from 'react'
 
 //Firebase call
-import { getDocs, collection, query, orderBy } from 'firebase/firestore';
+import { getDocs, collection, query, orderBy, deleteDoc } from 'firebase/firestore';
 import { database } from '../../FirebaseConfig'; 
 
 
@@ -36,6 +36,7 @@ const historyScreen = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [historyData, setHistoryData] = useState([]);
   const [searchQuery, setSearchQuery] = React.useState('');
+  const [selectedItem, setSelectedItem] = useState(null);
   const navigation = useNavigation();
 
   const fetchHistoryData = async () => {
@@ -92,7 +93,42 @@ const historyScreen = () => {
     } catch (error) {
       console.error('Error navigating to ViewPostScreen:', error);
     }
-  }
+  };
+
+  const handleLongPress = item => {
+    setSelectedItem(item);
+    // setShowDeleteConfirmation(true);
+    Alert.alert(
+      'Confirm Deletion',
+      'Are you sure you want to delete this item?',
+      [
+        {
+          text: 'Cancel',
+          // onPress: () => setShowDeleteConfirmation(false),
+          style: 'cancel',
+        },
+        { text: 'Delete', onPress: handleDelete },
+      ],
+      { cancelable: false }
+    );
+  };  
+
+  const handleDelete = async () => {
+    if (selectedItem) {
+      try {
+        // Perform deletion from the database
+        await deleteDoc(collection(database, 'posts', selectedItem.id));
+        // Remove the item from the state
+        const updatedData = historyData.filter(item => item.id !== selectedItem.id);
+        setHistoryData(updatedData);
+        setFilteredData(updatedData);
+      } catch (error) {
+        console.error('Error deleting item:', error);
+      }
+    }
+    setSelectedItem(null);
+    // setShowDeleteConfirmation(false);
+  };  
 
   // fonts*******************************************************
 
@@ -138,7 +174,9 @@ const historyScreen = () => {
           // style={{ flex: 1}}
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => navigateToViewPost(item)}>
+            <TouchableOpacity onPress={() => navigateToViewPost(item)}
+              onLongPress={ () => handleLongPress(item) }
+              >
             {/* // <TouchableOpacity onPress={() => console.log("pressed")}> */}
               <HistoryCard item={item} />
             </TouchableOpacity>

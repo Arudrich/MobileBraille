@@ -57,7 +57,7 @@ const HistoryCard = ({ item }) => {
   }
 
   // Format title to add ellipses if it's longer than 20 characters
-  let formattedTitle = item.title;
+  let formattedTitle = item.title ? item.title : '';
   if (formattedTitle.length > 20) {
     formattedTitle = formattedTitle.substring(0, 30) + '...';
   }
