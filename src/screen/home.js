@@ -342,6 +342,9 @@ const home = ({ navigation }) => {
                                   }}>
                                     <HistoryCard item={item} />
                                   </TouchableOpacity> }
+                    refreshControl={
+                        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                      }
                     // renderItem={({ item }) => <HistoryCard item={item} />} // Using HistoryCard component
                   />
                   
