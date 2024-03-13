@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, Linking, ScrollView, ActivityIndicator} from 'react-native';
+import { View, Text, Image, Linking, ScrollView, ActivityIndicator, TouchableOpacity} from 'react-native';
 import { Button } from 'react-native-paper';
 import { Video, Audio } from 'expo-av';
 import AudioPlayerView from '../assets/Cards/AudioPlayerView';
@@ -19,6 +19,19 @@ const ViewPostScreen = ({ route }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [duration, setDuration] = useState(0);
   const [position, setPosition] = useState(0);
+  const [brailleMode, setBrailleMode] = useState('G1'); // Initial mode is Grade 1 Braille
+
+  // Function to toggle between G1 and G2 Braille
+  const toggleBrailleMode = () => {
+    setBrailleMode(brailleMode === 'G1' ? 'G2' : 'G1');
+  };
+
+  // Text for the button based on the current Braille mode
+  const buttonText = brailleMode === 'G1' ? 'Set to G2' : 'Set to G1';
+
+  // Braille output text based on the current Braille mode
+  const brailleOutputText = brailleMode === 'G1' ? braille : braille_g2;
+
 
   // Function to play the audio
   const playAudio = async () => {
@@ -107,6 +120,9 @@ const ViewPostScreen = ({ route }) => {
   return (
 
     <ScrollView style={{ flex: 1 }}>
+      <TouchableOpacity style={styles.brailleButtonContainer} onPress={toggleBrailleMode}>
+        <Text style={styles.brailleButtonText}>{buttonText}</Text>
+      </TouchableOpacity>
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
 
         <Text style = {styles.header}>Latest Transcription</Text>
@@ -145,8 +161,8 @@ const ViewPostScreen = ({ route }) => {
 
         <ScrollView contentContainerStyle={styles.resultBoxOutput}>
          
-          <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {braille}</Text>
-
+          {/* <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {braille}</Text> */}
+          <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {brailleMode === 'G1' ? braille : braille_g2}</Text>
         </ScrollView>
 
         <View style={styles.buttonContainer}>
@@ -314,7 +330,23 @@ const styles = ScaledSheet.create({
     fontSize: '16@s',
     color: 'red',
 
-   }
+   },
+   // Braille Button
+
+   brailleButtonContainer: {
+    position: 'absolute',
+    top: '20@s',
+    right: '20@s',
+    backgroundColor: '#003153',
+    padding: '8@s',
+    borderRadius: '50@s',
+    zIndex: 999,
+  },
+  brailleButtonText: {
+    color: 'white',
+    fontFamily: "PTSans-Bold",
+    fontSize: '14@s',
+  },
 
 
 
