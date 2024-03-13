@@ -68,7 +68,7 @@ import { Button } from 'react-native-paper';
 //   }
 // };
 const transcribeFile = async (file, fileType, fileName) => {
-  console.log("String to transcribe: ", file);
+  // console.log("String to transcribe: ", file);
 
   const apiEndpoint = `http://34.126.91.78:8000/transcribe/${fileType}`;
 
@@ -529,7 +529,7 @@ const AddPostScreen = ({ route }) => {
     const name = filename.split('.').slice(0, -1).join('.');
     filename = name + Date.now() + '.' + extension;
     setFilename(filename);
-    console.log("Filename in uploading: ", fileName)
+    console.log("Filename in uploading: ", fileName);
   
     setUploading(true);
     setTransferred(0);
