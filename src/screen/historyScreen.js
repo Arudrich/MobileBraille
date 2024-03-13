@@ -304,4 +304,4 @@ historyPics: {
   
   
 
-export default historyScreen
+export default historyScreen;
