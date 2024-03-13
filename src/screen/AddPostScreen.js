@@ -446,7 +446,7 @@ const AddPostScreen = ({ route }) => {
       postTime: Timestamp.fromDate(new Date()),
       transcriptionType: fileType,
       Transcription: transcriptionData.Transcription || '',
-      Braille_G1: transcriptionData.Braille || '',
+      Braille: transcriptionData.Braille || '',
       Braille_G2: transcriptionData.Braille_G2 || '',
       downloadLinks: uploadedLinksObject,
     })

@@ -56,6 +56,12 @@ const HistoryCard = ({ item }) => {
     return undefined ;
   }
 
+  // Format title to add ellipses if it's longer than 20 characters
+  let formattedTitle = item.title;
+  if (formattedTitle.length > 20) {
+    formattedTitle = formattedTitle.substring(0, 30) + '...';
+  }
+
   return (
     // <TouchableOpacity 
     //   style={{
@@ -83,7 +89,7 @@ const HistoryCard = ({ item }) => {
     <View style = {styles.historyColorButon}>
 
       <Image style={styles.historyPics} source={icon} ></Image>   
-      <Text style = {styles.historyTextTitle}>{item.title}</Text>
+      <Text style = {styles.historyTextTitle}>{formattedTitle}</Text>
 
       <Text style = {styles.historydateTitle}>{formatDate(item.postTime)}</Text>
       
