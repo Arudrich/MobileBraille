@@ -91,7 +91,8 @@ const transcribeFile = async (file, fileType, fileName) => {
       const responseData = await response.json();
 
       console.log("Transcription: ", responseData.Transcription);
-      console.log("Braille: ", responseData.Braille);
+      console.log("BrailleG1: ", responseData.Braille);
+      console.log("BrailleG2: ", responseData.Braille_G2);
 
       return responseData;
     }
@@ -154,7 +155,8 @@ const transcribeFile = async (file, fileType, fileName) => {
       const responseData = await response.json();
 
       console.log("Transcription: ", responseData.Transcription);
-      console.log("Braille: ", responseData.Braille);
+      console.log("BrailleG1: ", responseData.Braille);
+      console.log("BrailleG2: ", responseData.Braille_G2);
 
       return responseData;
     } catch (error) {
@@ -395,26 +397,36 @@ const AddPostScreen = ({ route }) => {
     // Upload download links to Firebase storage
     const downloadLinks = transcriptionData.download_links;
     const uploadedLinks = await Promise.all(
-      Object.entries(downloadLinks).map(async ([extension, url]) => {
+      Object.entries(downloadLinks).map(async ([extensionKey, url]) => {
         // Fetch the file data using the provided URL
+        // Extract filename from the URL
+        // const fileNameWithExtension = url.substring(url.lastIndexOf('/') + 1);
+        // const fileName = fileNameWithExtension.split('.').slice(0, -1).join('.'); // Remove the extension from the filename
+
+        // Parse extension from the URL (assuming extension follows conventional format)
+        const extension = url.split('.').pop();        
+
         const response = await fetch(url);
         const blob = await response.blob();
-        
+
+         // Add _g2 to the filename if extensionKey contains 'g2'
+        const modifiedFileName = extensionKey.includes('g2') ? `${fileName}_g2` : fileName;
+
         // Construct a reference to the storage location
-        const storageRef = ref(storage, `download_links/${fileName}.${extension}`);
-        console.log(fileName);
+        const storageRef = ref(storage, `download_links/${modifiedFileName}.${extension}`);
+        console.log(modifiedFileName);
         try {
           // Upload the blob to Firebase Storage and wait for completion
           const uploadTaskSnapshot = await uploadBytesResumable(storageRef, blob);
     
           // Get the download URL for the uploaded file and return it
           const downloadURL = await getDownloadURL(storageRef);
-          console.log(`got file to firebase at ${downloadURL}`)
-          return { [extension]: downloadURL };
+          console.log(`got file ${extensionKey} to firebase at ${downloadURL}`)
+          return { [extensionKey]: downloadURL };
         } catch (error) {
           // Handle upload errors
           console.error('Error occurred during upload:', error);
-          return { [extension]: 'Upload failed' };
+          return { [extensionKey]: 'Upload failed' };
         }
       })
     );
@@ -434,7 +446,8 @@ const AddPostScreen = ({ route }) => {
       postTime: Timestamp.fromDate(new Date()),
       transcriptionType: fileType,
       Transcription: transcriptionData.Transcription || '',
-      Braille: transcriptionData.Braille || '',
+      Braille_G1: transcriptionData.Braille || '',
+      Braille_G2: transcriptionData.Braille_G2 || '',
       downloadLinks: uploadedLinksObject,
     })
     .then(() => {
@@ -448,6 +461,7 @@ const AddPostScreen = ({ route }) => {
               imageUrl: fileType === 'text' ? null : fileUrl,
               transcription: transcriptionData.Transcription || '',
               braille: transcriptionData.Braille || '',
+              braille_g2: transcriptionData.Braille_G2 || '',
               transcriptionType: fileType,
               downloadLinks: uploadedLinksObject,
               date: Timestamp.fromDate(new Date())

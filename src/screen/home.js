@@ -329,8 +329,9 @@ const home = ({ navigation }) => {
                                       navigation.navigate('ViewPostScreen', {
                                         title: item.title,
                                         imageUrl: item.postUrl,
-                                        transcription: item.Transcription,
-                                        braille: item.Braille,
+                                        transcription: item.Transcription || '',
+                                        braille: item.Braille || '',
+                                        braille_g2: item.Braille_G2 || '',
                                         transcriptionType: item.transcriptionType,
                                         downloadLinks: item.downloadLinks,
                                         date: item.postTime

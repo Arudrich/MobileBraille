@@ -11,7 +11,7 @@ import { ScaledSheet } from 'react-native-size-matters';
 import { useFonts } from 'expo-font'
 
 const ViewPostScreen = ({ route }) => {
-  const { title, imageUrl, transcription, braille, transcriptionType, downloadLinks, date } = route.params;
+  const { title, imageUrl, transcription, braille, braille_g2, transcriptionType, downloadLinks, date } = route.params;
 
   // Define states to handle audio playback
   const [sound, setSound] = useState(null);
@@ -75,12 +75,12 @@ const ViewPostScreen = ({ route }) => {
 
   // Load audio when component mounts
 
-  useEffect(() => {
+  {transcriptionType === 'audio' ? useEffect(() => {
     loadAudio();
     return sound ? () => {
       sound.unloadAsync();
     } : undefined;
-  }, []);
+  }, []) : null }
 
   // Check if title exceeds 20 characters
   let formattedTitle = title.length > 20 ? title.slice(0, 20) + '...' : title;

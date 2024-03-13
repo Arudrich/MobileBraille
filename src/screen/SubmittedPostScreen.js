@@ -118,7 +118,7 @@ import { Button } from 'react-native-paper';
 import { useFonts } from 'expo-font'
 
 const SubmittedPostScreen = ({ route }) => {
-  const { title, imageUrl, transcription, braille, transcriptionType, downloadLinks, date} = route.params;
+  const { title, imageUrl, transcription, braille, braille_g2, transcriptionType, downloadLinks, date} = route.params;
 
   const [sound, setSound] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
