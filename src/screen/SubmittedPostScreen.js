@@ -125,6 +125,20 @@ const SubmittedPostScreen = ({ route }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [duration, setDuration] = useState(0);
   const [position, setPosition] = useState(0);
+  const [brailleMode, setBrailleMode] = useState('G1'); // Initial mode is Grade 1 Braille
+
+  // Function to toggle between G1 and G2 Braille
+  const toggleBrailleMode = () => {
+    setBrailleMode(brailleMode === 'G1' ? 'G2' : 'G1');
+  };
+
+  // Text for the button based on the current Braille mode
+  const buttonText = brailleMode === 'G1' ? 'Set to G2' : 'Set to G1';
+
+  // Braille output text based on the current Braille mode
+  const brailleOutputText = brailleMode === 'G1' ? braille : braille_g2;
+
+
 
   // Function to play the audio
   const playAudio = async () => {
@@ -211,6 +225,9 @@ const [ fontsLoaded ] = useFonts({
 
   return (
     <ScrollView style={{ flex: 1 }}>
+      <TouchableOpacity style={styles.brailleButtonContainer} onPress={toggleBrailleMode}>
+        <Text style={styles.brailleButtonText}>{buttonText}</Text>
+      </TouchableOpacity>
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
 
         <Text style = {styles.header}>Transcription Results</Text>
@@ -248,7 +265,7 @@ const [ fontsLoaded ] = useFonts({
 
         <ScrollView contentContainerStyle={styles.resultBoxOutput}>
          
-          <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {braille}</Text>
+          <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {brailleOutputText}</Text>
         </ScrollView>
 
         <View style={styles.buttonContainer}>
