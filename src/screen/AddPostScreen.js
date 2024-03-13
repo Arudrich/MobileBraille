@@ -617,14 +617,6 @@ const AddPostScreen = ({ route }) => {
       ) : (
         <Text style={styles.fileName}>{image != null ? fileName : null}</Text>
       )}
-      {/* {fileType === 'audio' && image != null ? (
-        <Audio
-          source={{ uri: image }}
-          style={styles.audio}
-          shouldPlay={false}
-          useNativeControls
-        />
-      ) : null} */}
 
         <TextInput
           style={styles.inputField}
