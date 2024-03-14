@@ -270,13 +270,22 @@ const [ fontsLoaded ] = useFonts({
 
         <View style={styles.buttonContainer}>
           <Button icon="download" mode="elevated" onPress={() => Linking.openURL(downloadLinks.doc)} style={[styles.button, { width: 125 }]} textColor="#003153">
-          <Text style = {styles.fontDownload}>Transcript</Text>
+            <Text style = {styles.fontDownload}>Transcript</Text>
           </Button>
-          <Button icon="download" mode="elevated" onPress={() => Linking.openURL(downloadLinks.brf)} style={[styles.button, { width: 100 }]} textColor="#003153">
-          <Text style = {styles.fontDownload}>BRF</Text>
+          <Button icon="download" mode="elevated" onPress={() => {
+              const downloadLink = brailleMode === 'G1' ? downloadLinks.brf_g1 || downloadLinks.brf : downloadLinks.brf_g2;
+              Linking.openURL(downloadLink);
+              }}  
+              style={[styles.button, { width: 100 }]} textColor="#003153"
+              disabled={brailleMode === 'G1' ? !(downloadLinks.brf_g1 || downloadLinks.brf) : !(downloadLinks.brf_g2)} >
+            <Text style = {styles.fontDownload}>BRF</Text>
           </Button>
-          <Button icon="download" mode="elevated" onPress={() => Linking.openURL(downloadLinks.pef)} style={[styles.button, { width: 100 }]} textColor="#003153">
-          <Text style = {styles.fontDownload}>PEF</Text>
+          <Button icon="download" mode="elevated" onPress={() => {
+              const downloadLink = brailleMode === 'G1' ? downloadLinks.pef_g1 || downloadLinks.pef : downloadLinks.pef_g2;
+              Linking.openURL(downloadLink); }}
+              style={[styles.button, { width: 100 }]} textColor="#003153"
+              disabled={brailleMode === 'G1' ? !(downloadLinks.pef_g1 || downloadLinks.pef) : !(downloadLinks.pef_g2)}>
+            <Text style = {styles.fontDownload}>PEF</Text>
           </Button>
         </View>
       </View>
