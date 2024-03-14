@@ -103,7 +103,7 @@
 // export default SubmittedPostScreen;
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, Linking, ScrollView, ActivityIndicator} from 'react-native';
+import { View, Text, Image, Linking, ScrollView, ActivityIndicator, TouchableOpacity, } from 'react-native';
 
 import { Video, Audio } from 'expo-av';
 import AudioPlayerView from '../assets/Cards/AudioPlayerView';
