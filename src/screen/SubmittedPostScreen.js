@@ -440,7 +440,16 @@ const styles = ScaledSheet.create({
   fontSize: '16@s',
   color: 'black',
 
- }
+ },
+ brailleButtonContainer: {
+  position: 'absolute',
+  top: '20@s',
+  right: '20@s',
+  backgroundColor: '#003153',
+  padding: '8@s',
+  borderRadius: '50@s',
+  zIndex: 999,
+},
 
 
 
