@@ -450,6 +450,12 @@ const styles = ScaledSheet.create({
   borderRadius: '50@s',
   zIndex: 999,
 },
+brailleButtonText: {
+  color: 'white',
+  fontFamily: "PTSans-Bold",
+  fontSize: '14@s',
+},
+
 
 
 
