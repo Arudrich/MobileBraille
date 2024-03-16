@@ -97,6 +97,7 @@ const historyScreen = () => {
 
   const handleLongPress = item => {
     setSelectedItem(item);
+    console.log(item);
     // setShowDeleteConfirmation(true);
     Alert.alert(
       'Confirm Deletion',
@@ -120,6 +121,7 @@ const historyScreen = () => {
         await deleteDoc(collection(database, 'posts', selectedItem.id));
         // Remove the item from the state
         const updatedData = historyData.filter(item => item.id !== selectedItem.id);
+        console.log("Successfully deleted");
         setHistoryData(updatedData);
         setFilteredData(updatedData);
       } catch (error) {

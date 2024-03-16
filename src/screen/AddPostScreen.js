@@ -268,7 +268,7 @@ const AddPostScreen = ({ route }) => {
         // Handle the selected audio
         setImage(audio.assets[0].uri);
         // Set the filename here
-        // setFilename(audio.assets[0].name);
+        setFilename(audio.assets[0].name);
       } else {
         console.log("User Cancelled the upload");
       }
@@ -414,7 +414,7 @@ const AddPostScreen = ({ route }) => {
 
         // Construct a reference to the storage location
         const storageRef = ref(storage, `download_links/${modifiedFileName}.${extension}`);
-        console.log(modifiedFileName);
+        console.log("In storage name: ", modifiedFileName);
         try {
           // Upload the blob to Firebase Storage and wait for completion
           const uploadTaskSnapshot = await uploadBytesResumable(storageRef, blob);
@@ -468,7 +468,7 @@ const AddPostScreen = ({ route }) => {
             });
             setPost('');
             setImage(null);
-            // setFilename(null); 
+            setFilename(null); 
           },
         },
       ]);
@@ -542,7 +542,8 @@ const AddPostScreen = ({ route }) => {
     const extension = filename.split('.').pop();
     const name = filename.split('.').slice(0, -1).join('.');
     filename = name + Date.now() + '.' + extension;
-    setFilename(filename);
+    setFilename(filename)
+
     console.log("Filename in uploading: ", fileName);
   
     setUploading(true);
@@ -615,7 +616,7 @@ const AddPostScreen = ({ route }) => {
       {fileType === 'image' && image != null ? (
         <Image source={{ uri: image }} style={styles.addImage} resizeMode='contain' />
       ) : (
-        <Text style={styles.fileName}>{image != null ? fileName : null}</Text>
+        <Text style={styles.fileName}>{fileName}</Text>
       )}
 
         <TextInput
