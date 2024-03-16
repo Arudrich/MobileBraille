@@ -320,7 +320,7 @@ const styles = ScaledSheet.create({
 
    dateType: {
     fontSize: '12@s',
-    color: 'red',
+    color: 'black',
     textTransform: 'uppercase',
     fontFamily: "PTSans-Italic"
     
@@ -328,7 +328,7 @@ const styles = ScaledSheet.create({
 
    transcriptionType: {
     fontSize: '12@s',
-    color: 'red',
+    color: 'black',
     textTransform: 'uppercase',
     fontFamily: "PTSans-Bold"
 
@@ -337,9 +337,10 @@ const styles = ScaledSheet.create({
    Title: {
     textTransform: 'uppercase',
     fontSize: '16@s',
-    color: 'red',
+    color: 'black',
 
    },
+
    // Braille Button
 
    brailleButtonContainer: {
