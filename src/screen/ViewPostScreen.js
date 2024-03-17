@@ -166,7 +166,7 @@ const ViewPostScreen = ({ route }) => {
         </ScrollView>
 
         <View style={styles.buttonContainer}>
-          <Button icon="download" mode="elevated" onPress={() => Linking.openURL(downloadLinks.doc)} style={[styles.button, { width: 125 }]} textColor="#003153">
+          <Button icon="download" mode="elevated" onPress={() => Linking.openURL(downloadLinks.docx)} style={[styles.button, { width: 125 }]} textColor="#003153">
             <Text style = {styles.fontDownload}>Transcript</Text>
           </Button>
           <Button icon="download" mode="elevated" onPress={() => {
