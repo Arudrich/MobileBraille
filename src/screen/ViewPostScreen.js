@@ -10,6 +10,9 @@ import { ScaledSheet } from 'react-native-size-matters';
 
 import { useFonts } from 'expo-font'
 
+// zoommm
+import { ReactNativeZoomableView } from '@openspacelabs/react-native-zoomable-view';
+
 const ViewPostScreen = ({ route }) => {
   const { title, imageUrl, transcription, braille, braille_g2, transcriptionType, downloadLinks, date } = route.params;
 
@@ -125,7 +128,7 @@ const ViewPostScreen = ({ route }) => {
       </TouchableOpacity>
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
 
-        <Text style = {styles.header}>Latest Transcription</Text>
+        <Text style = {styles.header}>Latest Transcriptions</Text>
 
 
         <Text style={styles.textStyle}>Title: <Text style = {styles.Title}>{formattedTitle}</Text></Text>
@@ -154,15 +157,43 @@ const ViewPostScreen = ({ route }) => {
 
         </View>
        
+          
+              <ScrollView contentContainerStyle={styles.resultBoxInput}>
+                <ReactNativeZoomableView
+                   maxZoom={1.5}
+                   minZoom={0.5}
+                   zoomStep={0.5}
+                   initialZoom={1}
+                   doubleTapZoomToCenter
+                   bindToBorders={true}
+                   onZoomAfter={this.logOutZoomState}
+                   style={{
+                      padding: 10,
+                   }}
+                  >
+                  <Text style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
+                </ReactNativeZoomableView>
+              </ScrollView>
 
-        <ScrollView contentContainerStyle={styles.resultBoxInput}>
-          <Text style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
-        </ScrollView>
+         
 
         <ScrollView contentContainerStyle={styles.resultBoxOutput}>
+          <ReactNativeZoomableView
+                    maxZoom={1.5}
+                    minZoom={0.5}
+                    zoomStep={0.5}
+                    initialZoom={1}
+                    doubleTapZoomToCenter
+                    bindToBorders={true}
+                    onZoomAfter={this.logOutZoomState}
+                    style={{
+                        padding: 10,
+                    }}
+                    >
          
           {/* <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {braille}</Text> */}
-          <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {brailleMode === 'G1' ? braille : braille_g2}</Text>
+            <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {brailleMode === 'G1' ? braille : braille_g2}</Text>
+          </ReactNativeZoomableView>
         </ScrollView>
 
         <View style={styles.buttonContainer}>
