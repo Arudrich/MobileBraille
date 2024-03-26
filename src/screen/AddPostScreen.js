@@ -201,6 +201,10 @@ const AddPostScreen = ({ route }) => {
   
       if (!result.canceled) {
         setImage(result.assets[0].uri);
+        const photoUri = result.assets[0].uri;
+        const fileName = photoUri.substring(photoUri.lastIndexOf('/') + 1);
+        setFilename(fileName);
+        console.log(fileName);
       } else {
         console.log("User Cancelled the upload");
       }
@@ -217,6 +221,10 @@ const AddPostScreen = ({ route }) => {
   
       if (!result.canceled) {
         setImage(result.assets[0].uri);
+        const photoUri = result.assets[0].uri;
+        const fileName = photoUri.substring(videoUri.lastIndexOf('/') + 1);
+        setFilename(fileName);
+        console.log(fileName);
       } else {
         console.log("User Cancelled the upload");
       }
