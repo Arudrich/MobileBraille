@@ -5,6 +5,7 @@ import { Video, Audio } from 'expo-av';
 import AudioPlayerView from '../assets/Cards/AudioPlayerView';
 
 import { ScaledSheet } from 'react-native-size-matters';
+import SwitchToggle from 'react-native-switch-toggle';
 
 // Custom Fonts ********************
 
@@ -20,6 +21,20 @@ const ViewPostScreen = ({ route }) => {
   const [duration, setDuration] = useState(0);
   const [position, setPosition] = useState(0);
   const [brailleMode, setBrailleMode] = useState('G1'); // Initial mode is Grade 1 Braille
+
+  //////////////////////////////////////////////
+  const [expandedInput, setExpandedInput] = useState(false);
+  const [expandedOutput, setExpandedOutput] = useState(false);
+
+  const toggleInput = () => {
+    setExpandedInput(!expandedInput);
+  };
+
+  const toggleOutput = () => {
+    setExpandedOutput(!expandedOutput);
+  };
+  ////////////////////////////////////////////////
+
 
   // Function to toggle between G1 and G2 Braille
   const toggleBrailleMode = () => {
@@ -119,15 +134,13 @@ const ViewPostScreen = ({ route }) => {
 
   return (
 
-    <ScrollView style={{ flex: 1 }}>
-      <TouchableOpacity style={styles.brailleButtonContainer} onPress={toggleBrailleMode}>
+    <ScrollView style={{ flexGrow: 1 }}>
+      {/* <TouchableOpacity style={styles.brailleButtonContainer} onPress={toggleBrailleMode}>
         <Text style={styles.brailleButtonText}>{buttonText}</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
 
         <Text style = {styles.header}>Latest Transcription</Text>
-
-
         <Text style={styles.textStyle}>Title: <Text style = {styles.Title}>{formattedTitle}</Text></Text>
         
 
@@ -153,17 +166,53 @@ const ViewPostScreen = ({ route }) => {
           <Text style={styles.textStyleDate}>Date: <Text style = {styles.dateType}>{formattedDateString}</Text></Text>
 
         </View>
-       
 
-        <ScrollView contentContainerStyle={styles.resultBoxInput}>
+
+{/* THIS IS TRIAL 3 for enlargable container -- david  */}
+        {/* <ScrollView style={{ flex: 1 }}> */}
+      <TouchableOpacity onPress={toggleInput}>
+        <View style={[styles.resultBoxInput, expandedInput && styles.expandedBox]}>
+          <Text style={styles.textStyleTitle}>Transcription</Text>
+          <Text style={styles.textStyleOne}>{transcription}</Text>
+        </View>
+      </TouchableOpacity>
+
+
+      <TouchableOpacity onPress={toggleOutput}>
+        <View style={[styles.resultBoxOutput, expandedOutput && styles.expandedBox]}>
+          <Text style={styles.textStyleTitleTwo}>Braille Output</Text>
+          <Text style={styles.textStyleTwo}>{braille}</Text>
+        </View>
+      </TouchableOpacity>
+
+      
+      <View style={styles.container}>
+      <Text style={styles.label}>Braille Mode:</Text>
+      <View style={styles.switchLabelContainer}>
+        <Text style={styles.switchLabelText}>{brailleMode === 'G2' ? 'G2' : 'G1'}</Text>
+        <SwitchToggle
+          containerStyle={styles.switchContainer}
+          circleStyle={styles.switchCircle}
+          switchOn={brailleMode === 'G2'}
+          onPress={toggleBrailleMode}
+        />
+      </View>
+    </View>
+
+    
+    {/* </ScrollView> */}
+{/* THIS IS TRIAL 3 for enlargable container -- david  */}
+
+
+
+        {/* <ScrollView contentContainerStyle={styles.resultBoxInput}>
           <Text style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
         </ScrollView>
 
-        <ScrollView contentContainerStyle={styles.resultBoxOutput}>
-         
+        <ScrollView contentContainerStyle={styles.resultBoxOutput}> */}
           {/* <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {braille}</Text> */}
-          <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {brailleMode === 'G1' ? braille : braille_g2}</Text>
-        </ScrollView>
+          {/* <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {brailleMode === 'G1' ? braille : braille_g2}</Text>
+        </ScrollView> */}
 
         <View style={styles.buttonContainer}>
           <Button icon="download" mode="elevated" onPress={() => Linking.openURL(downloadLinks.docx)} style={[styles.button, { width: 125 }]} textColor="#003153">
@@ -191,7 +240,52 @@ const ViewPostScreen = ({ route }) => {
 };
 
 const styles = ScaledSheet.create({
-    buttonContainer: {
+  ///////////////////////////////////// switch /////////////////
+  container: {
+    flexDirection: 'row',
+    paddingLeft: '145@s',
+    alignItems: 'center',
+  },
+  label: {
+    fontSize: 16,
+    marginRight: 10,
+  },
+  switchLabelContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  switchLabelText: {
+    marginRight: '10@s',
+  },
+  switchContainer: {
+    width: 60,
+    height: 30,
+    borderRadius: 15,
+    padding: 5,
+    backgroundColor: '#ccc',
+  },
+  switchCircle: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#003153', // Color when the switch is off
+  },
+  //////////////////////////////////////////////
+  resultBox: {
+    borderWidth: 1,
+    borderColor: 'black',
+    padding: '10@s',
+    margin: '10@s',
+    borderRadius: '5@s',
+  },
+  expandedBox: {
+    height: '205@s', // Adjust the height as needed
+  },
+  textStyle: {
+    fontSize: '14@s',
+  },
+
+buttonContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
@@ -205,12 +299,13 @@ const styles = ScaledSheet.create({
     resultBoxInput: {
       borderWidth: 3.5,
       borderColor: '#003153',
-      padding: '12@s',
+      padding: '10@s',
       borderRadius: 8,
-      width: '80%', // Adjust the width as needed
-      alignItems: 'flex-start',
+      width: '90%', // Adjust the width as needed
+      alignItems: 'center',
       top: '12@s',
       margin: '15@s',
+      overflow: 'hidden', // Hide overflowed content
     },
 
         // for output
@@ -220,18 +315,18 @@ const styles = ScaledSheet.create({
       borderWidth: 3.5,
       backgroundColor: '#003153',
       borderColor: '#003153',
-      padding: '12@s',
+      padding: '10@s',
       borderRadius: 8,
-      width: '80%', // Adjust the width as needed
-      alignItems: 'flex-start',
+      width: '90%', // Adjust the width as needed
+      alignItems: 'center',
       top: '12@s',
       margin: '15@s',
+      overflow: 'hidden', // Hide overflowed content
     },
 
 
 
     // style to sa text like sa title and dates pati pala type of transciropotion hehe
-
     containerhehe: {
       flexDirection: 'row',
       alignSelf: 'flex-start',
@@ -257,14 +352,36 @@ const styles = ScaledSheet.create({
 
 
     textStyleOne: {
-      fontSize: '11@s',
+      fontSize: '13@s',
       fontFamily: "PTSans-Bold",
       textAlign: 'justify'
 
     },
 
+    textStyleTitle: {
+      fontSize: '13@s',
+      fontFamily: "PTSans-Bold",
+      color: 'white',
+      textAlign: 'justify',
+      backgroundColor : '#003153',
+      padding: '5@s',
+      borderRadius: '10@s',
+      bottom: '5@s'
+    },
+
+    textStyleTitleTwo: {
+      fontSize: '13@s',
+      fontFamily: "PTSans-Bold",
+      color: '#003153',
+      textAlign: 'justify',
+      backgroundColor : 'white',
+      padding: '5@s',
+      borderRadius: '10@s',
+      bottom: '5@s'
+    },
+
     textStyleTwo: {
-      fontSize: '12@s',
+      fontSize: '13@s',
       fontFamily: "PTSans-Bold",
       textAlign: 'justify',
       color: 'white'
@@ -296,7 +413,7 @@ const styles = ScaledSheet.create({
       fontSize: '25@s',
       fontFamily: "PTSans-Bold",
       alignSelf: 'flex-start', 
-      padding: 20
+      padding: 15
     },
 
     fontDownload: {
@@ -306,7 +423,6 @@ const styles = ScaledSheet.create({
     },
 
    textStyle: {
-
     fontSize: '14@s',
     fontFamily: "PTSans-Bold",
     bottom: '12@s',
@@ -314,14 +430,11 @@ const styles = ScaledSheet.create({
     paddingLeft: '25@s',
     alignSelf: 'flex-start',
     color: '#003153',
-  
-
    },
 
    dateType: {
     fontSize: '12@s',
     color: 'black',
-    textTransform: 'uppercase',
     fontFamily: "PTSans-Italic"
     
    },
@@ -329,13 +442,10 @@ const styles = ScaledSheet.create({
    transcriptionType: {
     fontSize: '12@s',
     color: 'black',
-    textTransform: 'uppercase',
     fontFamily: "PTSans-Bold"
-
-
+    
    },
    Title: {
-    textTransform: 'uppercase',
     fontSize: '16@s',
     color: 'black',
 
@@ -344,13 +454,11 @@ const styles = ScaledSheet.create({
    // Braille Button
 
    brailleButtonContainer: {
-    position: 'absolute',
-    top: '20@s',
-    right: '20@s',
     backgroundColor: '#003153',
-    padding: '8@s',
-    borderRadius: '50@s',
+    padding: '6@s',
+    borderRadius: '10@s',
     zIndex: 999,
+    top: 25
   },
   brailleButtonText: {
     color: 'white',
