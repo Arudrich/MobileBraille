@@ -11,8 +11,6 @@ import SwitchToggle from 'react-native-switch-toggle';
 
 import { useFonts } from 'expo-font'
 
-// zoommm
-import { ReactNativeZoomableView } from '@openspacelabs/react-native-zoomable-view';
 
 const ViewPostScreen = ({ route }) => {
   const { title, imageUrl, transcription, braille, braille_g2, transcriptionType, downloadLinks, date } = route.params;
