@@ -11,6 +11,9 @@ import SwitchToggle from 'react-native-switch-toggle';
 
 import { useFonts } from 'expo-font'
 
+// zoommm
+import { ReactNativeZoomableView } from '@openspacelabs/react-native-zoomable-view';
+
 const ViewPostScreen = ({ route }) => {
   const { title, imageUrl, transcription, braille, braille_g2, transcriptionType, downloadLinks, date } = route.params;
 
@@ -141,6 +144,8 @@ const ViewPostScreen = ({ route }) => {
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
 
         <Text style = {styles.header}>Latest Transcription</Text>
+
+
         <Text style={styles.textStyle}>Title: <Text style = {styles.Title}>{formattedTitle}</Text></Text>
         
 
@@ -166,53 +171,17 @@ const ViewPostScreen = ({ route }) => {
           <Text style={styles.textStyleDate}>Date: <Text style = {styles.dateType}>{formattedDateString}</Text></Text>
 
         </View>
+       
 
-
-{/* THIS IS TRIAL 3 for enlargable container -- david  */}
-        {/* <ScrollView style={{ flex: 1 }}> */}
-      <TouchableOpacity onPress={toggleInput}>
-        <View style={[styles.resultBoxInput, expandedInput && styles.expandedBox]}>
-          <Text style={styles.textStyleTitle}>Transcription</Text>
-          <Text style={styles.textStyleOne}>{transcription}</Text>
-        </View>
-      </TouchableOpacity>
-
-
-      <TouchableOpacity onPress={toggleOutput}>
-        <View style={[styles.resultBoxOutput, expandedOutput && styles.expandedBox]}>
-          <Text style={styles.textStyleTitleTwo}>Braille Output</Text>
-          <Text style={styles.textStyleTwo}>{braille}</Text>
-        </View>
-      </TouchableOpacity>
-
-      
-      <View style={styles.container}>
-      <Text style={styles.label}>Braille Mode:</Text>
-      <View style={styles.switchLabelContainer}>
-        <Text style={styles.switchLabelText}>{brailleMode === 'G2' ? 'G2' : 'G1'}</Text>
-        <SwitchToggle
-          containerStyle={styles.switchContainer}
-          circleStyle={styles.switchCircle}
-          switchOn={brailleMode === 'G2'}
-          onPress={toggleBrailleMode}
-        />
-      </View>
-    </View>
-
-    
-    {/* </ScrollView> */}
-{/* THIS IS TRIAL 3 for enlargable container -- david  */}
-
-
-
-        {/* <ScrollView contentContainerStyle={styles.resultBoxInput}>
+        <ScrollView contentContainerStyle={styles.resultBoxInput}>
           <Text style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
         </ScrollView>
 
-        <ScrollView contentContainerStyle={styles.resultBoxOutput}> */}
+        <ScrollView contentContainerStyle={styles.resultBoxOutput}>
+         
           {/* <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {braille}</Text> */}
-          {/* <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {brailleMode === 'G1' ? braille : braille_g2}</Text>
-        </ScrollView> */}
+          <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {brailleMode === 'G1' ? braille : braille_g2}</Text>
+        </ScrollView>
 
         <View style={styles.buttonContainer}>
           <Button icon="download" mode="elevated" onPress={() => Linking.openURL(downloadLinks.docx)} style={[styles.button, { width: 125 }]} textColor="#003153">

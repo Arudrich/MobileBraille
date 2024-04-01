@@ -70,7 +70,7 @@ import { Button } from 'react-native-paper';
 const transcribeFile = async (file, fileType, fileName) => {
   // console.log("String to transcribe: ", file);
 
-  const apiEndpoint = `http://34.126.91.78:8000/transcribe/${fileType}`;
+  const apiEndpoint = `http://35.240.190.113:8000/transcribe/${fileType}`;
 
   if (fileType === 'text') {
     if (!file) {
@@ -201,6 +201,10 @@ const AddPostScreen = ({ route }) => {
   
       if (!result.canceled) {
         setImage(result.assets[0].uri);
+        const photoUri = result.assets[0].uri;
+        const fileName = photoUri.substring(photoUri.lastIndexOf('/') + 1);
+        setFilename(fileName);
+        console.log(fileName);
       } else {
         console.log("User Cancelled the upload");
       }
@@ -217,6 +221,10 @@ const AddPostScreen = ({ route }) => {
   
       if (!result.canceled) {
         setImage(result.assets[0].uri);
+        const photoUri = result.assets[0].uri;
+        const fileName = photoUri.substring(videoUri.lastIndexOf('/') + 1);
+        setFilename(fileName);
+        console.log(fileName);
       } else {
         console.log("User Cancelled the upload");
       }

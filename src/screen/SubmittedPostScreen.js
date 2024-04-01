@@ -116,6 +116,7 @@ import { Button } from 'react-native-paper';
 // Custom Fonts ********************
 
 import { useFonts } from 'expo-font'
+import { ReactNativeZoomableView } from '@openspacelabs/react-native-zoomable-view';
 
 const SubmittedPostScreen = ({ route }) => {
   const { title, imageUrl, transcription, braille, braille_g2, transcriptionType, downloadLinks, date} = route.params;
@@ -260,12 +261,40 @@ const [ fontsLoaded ] = useFonts({
         </View>
 
         <ScrollView contentContainerStyle={styles.resultBoxInput}>
-          <Text style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
+          <ReactNativeZoomableView
+                      maxZoom={1.5}
+                      minZoom={0.5}
+                      zoomStep={0.5}
+                      initialZoom={1}
+                      doubleTapZoomToCenter
+                      bindToBorders={true}
+                      onZoomAfter={this.logOutZoomState}
+                      style={{
+                          padding: 10,
+                      }}
+                      >
+            <Text style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
+          </ReactNativeZoomableView>          
         </ScrollView>
 
         <ScrollView contentContainerStyle={styles.resultBoxOutput}>
+          <ReactNativeZoomableView
+                        maxZoom={1.5}
+                        minZoom={0.5}
+                        zoomStep={0.5}
+                        initialZoom={1}
+                        doubleTapZoomToCenter
+                        bindToBorders={true}
+                        onZoomAfter={this.logOutZoomState}
+                        style={{
+                            padding: 10,
+                        }}
+                        >
          
-          <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {brailleOutputText}</Text>
+            <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {brailleOutputText}</Text>
+          </ReactNativeZoomableView>
+
+
         </ScrollView>
 
         <View style={styles.buttonContainer}>

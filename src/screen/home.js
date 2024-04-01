@@ -6,7 +6,7 @@ import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, FlatList } 
 import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AuthContext } from '../../navigation/AuthProvider';
-import { getDoc, doc } from 'firebase/firestore';
+import { getDoc, doc, where } from 'firebase/firestore';
 import { getDocs, collection, query, orderBy } from 'firebase/firestore';
 import { database } from '../../FirebaseConfig';
 import FilterModal from './FilterModal';
@@ -70,7 +70,12 @@ const home = ({ navigation }) => {
 
   const fetchHistoryData = async () => {
     try {
-      const q = query(collection(database, 'posts'), orderBy('postTime', 'desc'));
+      // const q = query(collection(database, 'posts'), orderBy('postTime', 'desc'));
+      const q = query(
+        collection(database, 'posts'),
+        where('userId', '==', user.uid), // Filter by userId
+        orderBy('postTime', 'desc')
+      );
       const querySnapshot = await getDocs(q);
       const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
       setHistoryData(data);

@@ -8,7 +8,7 @@ import HistoryCard from '../assets/Cards/HistoryCard';
 import React, { useEffect, useContext, useState } from 'react'
 
 //Firebase call
-import { getDocs, collection, query, orderBy, deleteDoc } from 'firebase/firestore';
+import { getDocs, collection, query, orderBy, deleteDoc, where } from 'firebase/firestore';
 import { database } from '../../FirebaseConfig'; 
 
 
@@ -32,6 +32,7 @@ import { useFonts } from 'expo-font'
 
 
 const historyScreen = () => {
+  const { user } = useContext(AuthContext);
   const [refreshing, setRefreshing] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
   const [historyData, setHistoryData] = useState([]);
@@ -41,7 +42,12 @@ const historyScreen = () => {
 
   const fetchHistoryData = async () => {
     try {
-      const q = query(collection(database, 'posts'), orderBy('postTime', 'desc'));
+      // const q = query(collection(database, 'posts'), orderBy('postTime', 'desc'));
+      const q = query(
+        collection(database, 'posts'),
+        where('userId', '==', user.uid), // Filter by userId matching current user's uid
+        orderBy('postTime', 'desc')
+      );
       const querySnapshot = await getDocs(q);
       const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
       setHistoryData(data);
