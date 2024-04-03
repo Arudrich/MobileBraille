@@ -202,7 +202,7 @@ const CustomDrawerContent = (props) => {
 
 const HomeDrawerStack = ({}) => (
   
-  <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: false }}
+  <Drawer.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}
      drawerContent={(props) => <CustomDrawerContent {...props} />}>
 
     <Drawer.Screen name="Home" component={Home} options={{drawerIcon:homedrawerIcon}}  />
@@ -213,7 +213,7 @@ const HomeDrawerStack = ({}) => (
 
     <Drawer.Screen name="F.A.Q" component={Faq} options={{headerShown: true, drawerIcon:faqdrawerIcon }} />
 
-    <Drawer.Screen name="About" component={About} options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
+    <Drawer.Screen name="About" component={AboutStack} options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
 
     <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
 
@@ -234,7 +234,7 @@ const MainStack = ({ navigation }) => (
     />
     <Stack.Screen
       name="Faq"
-      component={Faq}
+      component={ Faq }  
       options={{
         headerShown: false,
         headerStyle: {
@@ -344,14 +344,14 @@ const AppStack = () => {
         tabBarActiveTintColor: colors.accent,
         tabBarInactiveTintColor: colors.secondary,
         tabBarStyle: { position: 'center',
-        backgroundColor: colors.primary, 
-        width: '90%', 
-        alignSelf: 'center', 
-        marginBottom: 5,
-        borderTopLeftRadius: 25, 
-        borderTopRightRadius: 25, 
-        borderBottomLeftRadius: 25, 
-        borderBottomRightRadius: 25,},
+          backgroundColor: colors.primary, 
+          width: '90%', 
+          alignSelf: 'center', 
+          marginBottom: 5,
+          borderTopLeftRadius: 25, 
+          borderTopRightRadius: 25, 
+          borderBottomLeftRadius: 25, 
+          borderBottomRightRadius: 25,},
         tabBarAllowFontScaling: 10 ,
       }}
     >
@@ -375,7 +375,7 @@ const AppStack = () => {
       />
       <BotTab.Screen
         name="About"
-        component={AboutStack}
+        component={ AboutStack }
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons name="people-outline" size={30} color={color} />
