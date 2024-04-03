@@ -47,6 +47,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { useContext } from 'react'
 import { Button } from 'react-native';
+import Terms from '../src/screen/Terms';
 
 const Stack = createNativeStackNavigator();
 const BotTab = createBottomTabNavigator();
@@ -92,6 +93,36 @@ const HistoryStack = ({ navigation }) => (
     />
   </Stack.Navigator>
 );
+
+const AboutStack = ({ navigation }) => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="About"
+      component={About}
+      options={{
+        headerShown: false,
+        headerStyle: {
+          backgroundColor: '#fff',
+          shadowColor: '#fff',
+          elevation: 0,
+        },
+      }}
+    />
+    <Stack.Screen
+      name="Terms"
+      component={Terms}
+      options={{
+        headerShown: false,
+        headerStyle: {
+          backgroundColor: '#fff',
+          shadowColor: '#fff',
+          elevation: 0,
+        },
+      }}
+    />
+    
+  </Stack.Navigator>
+)
 
 
 const HomeStack = ({ navigation }) => (
@@ -344,7 +375,7 @@ const AppStack = () => {
       />
       <BotTab.Screen
         name="About"
-        component={About}
+        component={AboutStack}
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons name="people-outline" size={30} color={color} />
