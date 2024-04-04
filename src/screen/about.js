@@ -96,6 +96,18 @@ const about = () => {
         </View>
 
 
+         {/* Crorrrrrrrrrrrrrr */}
+
+         <View style = {styles.content}>
+
+            <Text style = {styles.contentbg}> The Mobile Braille is multi-transcription application that translate text into Braille. The developers
+            are students from Technological Institute of the Philippines, Quezon City. </Text>
+
+
+         </View>
+
+
+
 
 
 
@@ -229,6 +241,26 @@ const styles = ScaledSheet.create({
     color: '#003153',
     fontSize: '12@s'
   },
+
+  // CONTENTTTTTTTTTTT
+
+
+  content: {
+    marginTop: '12@s',
+    padding: '8@s',
+   
+
+  },
+
+  contentbg: {
+    backgroundColor: '#003153',
+    padding: '8@s',
+    borderRadius: 8,
+    color: 'white',
+    textAlign: 'justify'
+
+
+  }
 
 
 })

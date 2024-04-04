@@ -17,6 +17,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import Terms from "./Terms"
+
 // Custom Fonts ********************
 
 import { useFonts } from 'expo-font'
@@ -157,9 +159,13 @@ const Register = () => {
           </View>
 
          <View>
+         <TouchableOpacity onPress={() => {
+                nav.navigate("Terms");
+              }}>
             <Text numberOfLines={2}
-            style={styles.subtext}>By continuing, you agree to our<Text style={styles.textClickable}> Terms of Service<Text style={styles.subtext}> and<Text style={styles.textClickable}> Privacy Policy</Text>
+            style={styles.subtext}>By continuing, you agree to our <Text style={styles.textClickable}> Terms of Service<Text style={styles.subtext}> and<Text style={styles.textClickable}> Privacy Policy</Text>
             </Text></Text></Text>
+          </TouchableOpacity>
          </View>
          
 
