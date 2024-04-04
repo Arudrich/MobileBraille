@@ -7,6 +7,10 @@ import AudioPlayerView from '../assets/Cards/AudioPlayerView';
 import { ScaledSheet } from 'react-native-size-matters';
 import SwitchToggle from 'react-native-switch-toggle';
 
+// zoom 
+
+import { ReactNativeZoomableView } from '@openspacelabs/react-native-zoomable-view';
+
 // Custom Fonts ********************
 
 import { useFonts } from 'expo-font'
@@ -170,20 +174,46 @@ const ViewPostScreen = ({ route }) => {
 
 {/* THIS IS TRIAL 3 for enlargable container -- david  */}
         {/* <ScrollView style={{ flex: 1 }}> */}
+        <ReactNativeZoomableView
+                      maxZoom={1.5}
+                      minZoom={0.5}
+                      zoomStep={0.5}
+                      initialZoom={1}
+                      doubleTapZoomToCenter
+                      bindToBorders={true}
+                      onZoomAfter={this.logOutZoomState}
+                      style={{
+                          padding: 10,
+                      }}
+                      >
       <TouchableOpacity onPress={toggleInput}>
+        
         <View style={[styles.resultBoxInput, expandedInput && styles.expandedBox]}>
           <Text style={styles.textStyleTitle}>Transcription</Text>
           <Text style={styles.textStyleOne}>{transcription}</Text>
         </View>
       </TouchableOpacity>
+      </ReactNativeZoomableView>
 
-
+      <ReactNativeZoomableView
+                      maxZoom={1.5}
+                      minZoom={0.5}
+                      zoomStep={0.5}
+                      initialZoom={1}
+                      doubleTapZoomToCenter
+                      bindToBorders={true}
+                      onZoomAfter={this.logOutZoomState}
+                      style={{
+                          padding: 10,
+                      }}
+                      >        
       <TouchableOpacity onPress={toggleOutput}>
         <View style={[styles.resultBoxOutput, expandedOutput && styles.expandedBox]}>
           <Text style={styles.textStyleTitleTwo}>Braille Output</Text>
           <Text style={styles.textStyleTwo}>{braille}</Text>
         </View>
       </TouchableOpacity>
+      </ReactNativeZoomableView>     
 
       
       <View style={styles.container}>
