@@ -226,7 +226,7 @@ const HomeDrawerStack = ({}) => (
 
     <Drawer.Screen name="About" component={AboutStack} options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
 
-    <Drawer.Screen name="   Terms" component={Terms} options={{headerShown: true, drawerIcon:termsdrawerIcon }} />
+    <Drawer.Screen name="  Terms" component={Terms} options={{headerShown: true, drawerIcon:termsdrawerIcon }} />
 
     <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
 
@@ -381,6 +381,7 @@ const AppStack = () => {
         name="Transcribe"
         component={MainStack}
         options={{
+          headerShown: true,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="transcribe" size={30} color={color} />
           ),
@@ -390,6 +391,7 @@ const AppStack = () => {
         name="About"
         component={ AboutStack }
         options={{
+          headerShown: true,
           tabBarIcon: ({ color }) => (
             <Ionicons name="people-outline" size={30} color={color} />
           ),

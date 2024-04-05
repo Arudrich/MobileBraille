@@ -269,7 +269,8 @@ const styles = ScaledSheet.create({
   logo: {
     width: 110, // Adjust the width as needed
     height: 180, // Adjust the height as needed
-    tintColor: 'white'
+    tintColor: 'white',
+ 
 
   
   },
