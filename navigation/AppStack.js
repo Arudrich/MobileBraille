@@ -216,7 +216,7 @@ const HomeDrawerStack = ({}) => (
 
     <Drawer.Screen name="About" component={AboutStack} options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
 
-    <Drawer.Screen name="Terms" component={setting} options={{headerShown: true, drawerIcon:termsdrawerIcon }} />
+    <Drawer.Screen name="Terms" component={Terms} options={{headerShown: true, drawerIcon:termsdrawerIcon }} />
 
     <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
 
