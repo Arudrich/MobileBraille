@@ -109,6 +109,7 @@ import { Video, Audio } from 'expo-av';
 import AudioPlayerView from '../assets/Cards/AudioPlayerView';
 
 
+import SwitchToggle from 'react-native-switch-toggle';
 //Scaledshitts
 import { ScaledSheet } from 'react-native-size-matters';
 import { Button } from 'react-native-paper';
@@ -226,9 +227,9 @@ const [ fontsLoaded ] = useFonts({
 
   return (
     <ScrollView style={{ flex: 1 }}>
-      <TouchableOpacity style={styles.brailleButtonContainer} onPress={toggleBrailleMode}>
+      {/* <TouchableOpacity style={styles.brailleButtonContainer} onPress={toggleBrailleMode}>
         <Text style={styles.brailleButtonText}>{buttonText}</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
 
         <Text style = {styles.header}>Transcription Results</Text>
@@ -263,7 +264,7 @@ const [ fontsLoaded ] = useFonts({
         <ScrollView contentContainerStyle={styles.resultBoxInput}>
           <ReactNativeZoomableView
                       maxZoom={1.5}
-                      minZoom={0.5}
+                      minZoom={1}
                       zoomStep={0.5}
                       initialZoom={1}
                       doubleTapZoomToCenter
@@ -280,7 +281,7 @@ const [ fontsLoaded ] = useFonts({
         <ScrollView contentContainerStyle={styles.resultBoxOutput}>
           <ReactNativeZoomableView
                         maxZoom={1.5}
-                        minZoom={0.5}
+                        minZoom={1}
                         zoomStep={0.5}
                         initialZoom={1}
                         doubleTapZoomToCenter
@@ -293,9 +294,21 @@ const [ fontsLoaded ] = useFonts({
          
             <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {brailleOutputText}</Text>
           </ReactNativeZoomableView>
-
-
         </ScrollView>
+
+        <View style={styles.container}>
+      <Text style={styles.label}>Braille Mode:</Text>
+      <View style={styles.switchLabelContainer}>
+        <Text style={styles.switchLabelText}>{brailleMode === 'G2' ? 'G2' : 'G1'}</Text>
+        <SwitchToggle
+          containerStyle={styles.switchContainer}
+          circleStyle={styles.switchCircle}
+          switchOn={brailleMode === 'G2'}
+          onPress={toggleBrailleMode}
+        />
+      </View>
+    </View>
+
 
         <View style={styles.buttonContainer}>
           <Button icon="download" mode="elevated" onPress={() => Linking.openURL(downloadLinks.docx)} style={[styles.button, { width: 125 }]} textColor="#003153">
@@ -325,6 +338,38 @@ const [ fontsLoaded ] = useFonts({
 // Button Styles
 
 const styles = ScaledSheet.create({
+  ///////////////////////////swutch////////////////
+
+  container: {
+    flexDirection: 'row',
+    paddingLeft: '145@s',
+    alignItems: 'center',
+  },
+  label: {
+    fontSize: 16,
+    marginRight: 10,
+  },
+  switchLabelContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  switchLabelText: {
+    marginRight: '10@s',
+  },
+  switchContainer: {
+    width: 60,
+    height: 30,
+    borderRadius: 15,
+    padding: 5,
+    backgroundColor: '#ccc',
+  },
+  switchCircle: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#003153', // Color when the switch is off
+  },
+  /////////////////////////////////////////////////
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -26,18 +26,6 @@ const ViewPostScreen = ({ route }) => {
   const [position, setPosition] = useState(0);
   const [brailleMode, setBrailleMode] = useState('G1'); // Initial mode is Grade 1 Braille
 
-  //////////////////////////////////////////////
-  const [expandedInput, setExpandedInput] = useState(false);
-  const [expandedOutput, setExpandedOutput] = useState(false);
-
-  const toggleInput = () => {
-    setExpandedInput(!expandedInput);
-  };
-
-  const toggleOutput = () => {
-    setExpandedOutput(!expandedOutput);
-  };
-  ////////////////////////////////////////////////
 
 
   // Function to toggle between G1 and G2 Braille
@@ -174,9 +162,9 @@ const ViewPostScreen = ({ route }) => {
 
 {/* THIS IS TRIAL 3 for enlargable container -- david  */}
         {/* <ScrollView style={{ flex: 1 }}> */}
-        <ReactNativeZoomableView
+        {/* <ReactNativeZoomableView
                       maxZoom={1.5}
-                      minZoom={0.5}
+                      minZoom={1}
                       zoomStep={0.5}
                       initialZoom={1}
                       doubleTapZoomToCenter
@@ -186,18 +174,35 @@ const ViewPostScreen = ({ route }) => {
                           padding: 10,
                       }}
                       >
+
+
       <TouchableOpacity onPress={toggleInput}>
-        
         <View style={[styles.resultBoxInput, expandedInput && styles.expandedBox]}>
           <Text style={styles.textStyleTitle}>Transcription</Text>
           <Text style={styles.textStyleOne}>{transcription}</Text>
         </View>
       </TouchableOpacity>
-      </ReactNativeZoomableView>
+      </ReactNativeZoomableView> */}
+          {/* <ReactNativeZoomableView 
+                      maxZoom={1.5}
+                      minZoom={1}
+                      zoomStep={0.5}
+                      initialZoom={1}
+                      doubleTapZoomToCenter
+                      bindToBorders={true}
+                      onZoomAfter={this.logOutZoomState}
+                      style={{
+
+                          padding: 10,
+                      }}
+                      >
+            <Text style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
+          </ReactNativeZoomableView>          
+       
 
       <ReactNativeZoomableView
                       maxZoom={1.5}
-                      minZoom={0.5}
+                      minZoom={1}
                       zoomStep={0.5}
                       initialZoom={1}
                       doubleTapZoomToCenter
@@ -213,7 +218,44 @@ const ViewPostScreen = ({ route }) => {
           <Text style={styles.textStyleTwo}>{braille}</Text>
         </View>
       </TouchableOpacity>
-      </ReactNativeZoomableView>     
+      </ReactNativeZoomableView>      */}
+        <ScrollView contentContainerStyle={styles.resultBoxInput}>
+          <ReactNativeZoomableView
+                      maxZoom={1.5}
+                      minZoom={1}
+                      zoomStep={0.5}
+                      initialZoom={1}
+                      doubleTapZoomToCenter
+                      bindToBorders={true}
+                      onZoomAfter={this.logOutZoomState}
+                      style={{
+                          padding: 10,
+                      }}
+                      >
+            <Text 
+            style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
+          </ReactNativeZoomableView>          
+        </ScrollView>
+
+        <ScrollView contentContainerStyle={styles.resultBoxOutput}>
+          <ReactNativeZoomableView
+                        maxZoom={1.5}
+                        minZoom={1}
+                        zoomStep={0.5}
+                        initialZoom={1}
+                        doubleTapZoomToCenter
+                        bindToBorders={true}
+                        onZoomAfter={this.logOutZoomState}
+                        style={{
+                            padding: 10,
+                        }}
+                        >
+         
+            <Text style={styles.textStyleTwo}>Braille Output:{'\n'}{'\n'} {brailleOutputText}</Text>
+          </ReactNativeZoomableView>
+
+
+        </ScrollView>
 
       
       <View style={styles.container}>
