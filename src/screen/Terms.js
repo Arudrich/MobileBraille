@@ -2,14 +2,35 @@ import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { ScrollView } from 'react-native'
 
+// DIMENSION COMPATIBILITY
+
+import { ScaledSheet } from 'react-native-size-matters';
+
+// Custom Fonts ********************
+
+import { useFonts } from 'expo-font'
+
 
 
 
 const Terms = () => {
+
+  const [ fontsLoaded ] = useFonts({
+    'PTSans-Bold' : require ('../assets/fonts/PTSans-Bold.ttf'),
+    'PTSans-BoldItalic' : require ('../assets/fonts/PTSans-BoldItalic.ttf'),
+    'PTSans-Italic' : require ('../assets/fonts/PTSans-Italic.ttf'),
+    'PTSans-Regular' : require ('../assets/fonts/PTSans-Regular.ttf'),
+
+  })
+
+  if (!fontsLoaded){
+    return undefined ;
+  }
+
   return (
     <SafeAreaView>
 
-      <ScrollView  showsVerticalScrollIndicator={false} >
+      <ScrollView showsVerticalScrollIndicator={false} >
       
               <Text style = {styles.Header}>Terms and Condition</Text>
 
@@ -59,29 +80,33 @@ const Terms = () => {
 
 export default Terms
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: '20@s',
   },
+
   text: {
     textAlign: 'justify',
+    fontFamily: "PTSans-Regular",
     fontSize: 14,
-    marginLeft: 15,
-    marginRight: 20
-  },
-
-  Title: {
-
+    marginLeft: '15@s',
+    marginRight: '20@s',
+    backgroundColor: '#003153',
+    color: 'white',
+    padding: '8@s',
+    borderRadius: 8,
+    marginBottom: '15@s'
   },
 
   Header: {
-    fontSize: 16,
+    fontSize: '16@s',
     fontWeight: 'bold',
-    marginBottom: 10,
-    marginLeft: 5,
+    marginBottom: '10@s',
+    marginLeft: '5@s',
+    fontFamily: "PTSans-Bold"
 
   },
 
