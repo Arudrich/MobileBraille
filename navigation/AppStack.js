@@ -55,14 +55,14 @@ const Drawer = createDrawerNavigator();
 
 // for drawer design -Aru
 
-const homedrawerIcon = ({ focused, color, size, }) => <AntDesign name="home" size={25} color="white" backgroundColor = '#003153'  />
-const maindrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="transcribe" size={25} color="white" backgroundColor = '#003153'/>
-const profiledrawerIcon = ({ focused, color, size }) => <Feather name="user" size={25} color="white" backgroundColor = '#003153'/>
-const faqdrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="comment-question-outline" size={25} color="white" backgroundColor = '#003153' />
-const aboutdrawerIcon = ({ focused, color, size }) => <Ionicons name="people-outline" size={25} color="white" backgroundColor = '#003153'/>
-const settingdrawerIcon = ({ focused, color, size }) => <Feather name="settings" size={25} color="white" backgroundColor = '#003153'/>
-const termsdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="setting" size={25} color="white" backgroundColor = '#003153'/>
-const logoutdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="logout" size={25} color="white" backgroundColor = '#003153'/>
+const homedrawerIcon = ({ focused, color, size, }) => <AntDesign name="home" size={25} color="#003153" />
+const maindrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="transcribe" size={25} color="#003153" />
+const profiledrawerIcon = ({ focused, color, size }) => <Feather name="user" size={25} color="#003153" />
+const faqdrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="comment-question-outline" size={25} color="#003153"  />
+const aboutdrawerIcon = ({ focused, color, size }) => <Ionicons name="people-outline" size={25} color="#003153" />
+const settingdrawerIcon = ({ focused, color, size }) => <Feather name="settings" size={25} color="#003153" />
+const termsdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="setting" size={25} color="#003153" />
+const logoutdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="logout" size={25} color="#003153"/>
 
 
 const HistoryStack = ({ navigation }) => (
