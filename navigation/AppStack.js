@@ -61,7 +61,7 @@ const profiledrawerIcon = ({ focused, color, size }) => <Feather name="user" siz
 const faqdrawerIcon = ({ focused, color, size }) => <MaterialCommunityIcons name="comment-question-outline" size={25} color="#003153"  />
 const aboutdrawerIcon = ({ focused, color, size }) => <Ionicons name="people-outline" size={25} color="#003153" />
 const settingdrawerIcon = ({ focused, color, size }) => <Feather name="settings" size={25} color="#003153" />
-const termsdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="setting" size={25} color="#003153" />
+const termsdrawerIcon = ({ focused, color, size }) => <AntDesign name="checksquare" size={25} color="#003153"/>
 const logoutdrawerIcon = ({ focused, color, size }) => <SimpleLineIcons name="logout" size={25} color="#003153"/>
 
 
@@ -226,7 +226,7 @@ const HomeDrawerStack = ({}) => (
 
     <Drawer.Screen name="About" component={AboutStack} options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
 
-    <Drawer.Screen name="   Terms" component={Terms} options={{headerShown: true, drawerIcon:termsdrawerIcon }} />
+    <Drawer.Screen name="Terms and Conditions" component={Terms} options={{headerShown: true, drawerIcon:termsdrawerIcon }} />
 
     <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
 
