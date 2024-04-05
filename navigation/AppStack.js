@@ -1,6 +1,6 @@
 
 // Dito yung mga bottom tab nav
-import { StyleSheet, Text, View, Modal, } from 'react-native'
+import { StyleSheet, Text, View, Modal, Image} from 'react-native'
 import React from 'react'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -35,7 +35,7 @@ import { useFonts } from 'expo-font'
 
 
 // icons for drawer hihi
-
+import navHeaderImage from '../assets/navheader.png';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons'; 
 import { SimpleLineIcons } from '@expo/vector-icons';
@@ -174,6 +174,14 @@ const HomeStack = ({ navigation }) => (
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const CustomDrawerHeader = () => {
+  return (
+    <View style={styles.header}>
+    <Image source={navHeaderImage} style={styles.logo} />
+    </View>
+  );
+};
+
 const CustomDrawerContent = (props) => {
   const { user, logout } = useContext(AuthContext);
 
@@ -192,10 +200,12 @@ const CustomDrawerContent = (props) => {
     return undefined ;
   }
   return (
+
     <DrawerContentScrollView {...props}>
+      <CustomDrawerHeader />
       <DrawerItemList {...props} />
       <View style={styles.logoutButton}>
-        <Button title="Logout" onPress={() => logout()} />
+        <Button color='#003153'  title="Logout" onPress={() => logout()} />
       </View>
     </DrawerContentScrollView>
   );
@@ -216,7 +226,7 @@ const HomeDrawerStack = ({}) => (
 
     <Drawer.Screen name="About" component={AboutStack} options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
 
-    <Drawer.Screen name="Terms" component={Terms} options={{headerShown: true, drawerIcon:termsdrawerIcon }} />
+    <Drawer.Screen name="   Terms" component={Terms} options={{headerShown: true, drawerIcon:termsdrawerIcon }} />
 
     <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
 
@@ -393,11 +403,23 @@ export default AppStack;
 
 
 const styles = StyleSheet.create({
-
   logoutButton: {
-    marginTop: 20,
-    paddingHorizontal: 100, 
+    marginTop: 10,
+    paddingHorizontal: 15, 
     
+  },
+  header: {
+    backgroundColor: 'white',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'white',
+    alignItems: 'center',
+  },
+
+  logo: {
+    width: 300, // Adjust the width and height as needed
+    height: 150,
   },
 
  
