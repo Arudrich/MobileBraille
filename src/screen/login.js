@@ -16,7 +16,7 @@ import { ScaledSheet } from 'react-native-size-matters';
 
 // Custom Fonts ********************
 
-import { useFonts } from 'expo-font'
+import { useFonts } from 'expo-font';
 
 
 
@@ -55,20 +55,11 @@ const Login = () => {
   }
 
   const handleLogin = async () => {
-    console.log("Before login:", loading);
+    // console.log("Before login:", loading);
     await login(email, password);
-    console.log("After login:", loading);
+    // console.log("After login:", loading);
   };
 
-  const loginUser = () => {
-    signInWithEmailAndPassword(authentication, email, password)
-      .then((value) => {
-        nav.replace('home')
-      })
-      .catch((err) => {
-        Alert.alert(err.message);
-      });
-  };
   
   return (
       <ScrollView style = {{backgroundColor: 'white', flex: 1}}>
