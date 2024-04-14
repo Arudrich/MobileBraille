@@ -1,4 +1,4 @@
-import {View, Text, ScrollView, TouchableOpacity, Alert} from "react-native";
+import {View, Text, ScrollView, TouchableOpacity, Alert, ActivityIndicator} from "react-native";
 import React, { useContext, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -27,13 +27,14 @@ import { useFonts } from 'expo-font'
 
 
 const Login = () => {
-  const {login} = useContext(AuthContext);
+  const {login, loading} = useContext(AuthContext);
   const nav = useNavigation();
   const [loginCredentials, setloginCredentials] = useState({
     email: "",
     password: "",
   });
   const [isVisible, setisVisible] = useState(true);
+  // const [loading, setLoading] = useState(false); // Loading state
   const { email, password } = loginCredentials;
 
   // fonts
@@ -53,6 +54,12 @@ const Login = () => {
     return undefined ;
   }
 
+  const handleLogin = async () => {
+    console.log("Before login:", loading);
+    await login(email, password);
+    console.log("After login:", loading);
+  };
+
   const loginUser = () => {
     signInWithEmailAndPassword(authentication, email, password)
       .then((value) => {
@@ -62,6 +69,7 @@ const Login = () => {
         Alert.alert(err.message);
       });
   };
+  
   return (
       <ScrollView style = {{backgroundColor: 'white', flex: 1}}>
         <View style={{ paddingHorizontal: 15 }}>
@@ -123,14 +131,20 @@ const Login = () => {
            </TouchableOpacity>
 
            <TouchableOpacity
-      onPress={() => login(email, password)}
-      style={styles.buttonContainer}
-    >
-      <View style={styles.buttonContent}>
-      <Icon name="login" size={20} color="white" style={styles.icon} />
-      <Text style={styles.buttonText}>Log In</Text>
-      </View>
-    </TouchableOpacity>
+            // onPress={() => login(email, password)}
+            onPress={handleLogin}
+            style={[styles.buttonContainer, { opacity: loading ? 0.6 : 1 }]}
+            disabled={loading} // Disable the button when loading is true
+          >
+            <View style={styles.buttonContent}>
+            {loading ? (
+              <ActivityIndicator color="white" />
+            ) : (
+              <Icon name="login" size={20} color="white" style={styles.icon} />
+            )}
+            <Text style={styles.buttonText}>Log In</Text>
+            </View>
+          </TouchableOpacity>
 
           <View style={styles.lineContainer}>
             <View style={styles.line} />
