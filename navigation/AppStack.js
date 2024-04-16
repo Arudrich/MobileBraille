@@ -357,7 +357,8 @@ const MainTab = () => {
         headerShown: false,
         tabBarActiveTintColor: colors.accent,
         tabBarInactiveTintColor: colors.secondary,
-        tabBarStyle: { position: 'center',
+        tabBarStyle: { 
+          position: 'center',
           backgroundColor: colors.primary, 
           width: '90%', 
           alignSelf: 'center', 
@@ -380,7 +381,7 @@ const MainTab = () => {
       />
       <BotTab.Screen
         name="Transcribe"
-        component={TranscribeStack}
+        component={ TranscribeStack }
         options={{
           headerShown: true,
           tabBarIcon: ({ color }) => (
@@ -410,19 +411,19 @@ const AppStack = () => {
         }}
       drawerContent={(props) => <CustomDrawerContent {...props} />}>
 
-      <Drawer.Screen name="Home" component={HomeStack} options={{drawerIcon:homedrawerIcon}}  />
+      <Drawer.Screen name="Home" component={ HomeStack } options={{drawerIcon:homedrawerIcon}}  />
 
-      <Drawer.Screen name="Transcribe" component={TranscribeStack} options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
+      <Drawer.Screen name="Transcribe" component={ TranscribeStack } options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
       
-      <Drawer.Screen name="Profile" component={Profile} options={{headerShown: true, drawerIcon:profiledrawerIcon}} />
+      <Drawer.Screen name="Profile" component={ Profile } options={{headerShown: true, drawerIcon:profiledrawerIcon}} />
 
-      <Drawer.Screen name="F.A.Q" component={Faq} options={{headerShown: true, drawerIcon:faqdrawerIcon }} />
+      <Drawer.Screen name="F.A.Q" component={ Faq } options={{headerShown: true, drawerIcon:faqdrawerIcon }} />
 
-      <Drawer.Screen name="About" component={AboutStack} options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
+      <Drawer.Screen name="About" component={ AboutStack } options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
 
-      <Drawer.Screen name="   Terms" component={Terms} options={{headerShown: true, drawerIcon:termsdrawerIcon }} />
+      <Drawer.Screen name="   Terms" component={ Terms } options={{headerShown: true, drawerIcon:termsdrawerIcon }} />
 
-      <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
+      <Drawer.Screen name="Settings" component={ setting } options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
 
     
       {/* Add other screens you want in the drawer navigator */}
