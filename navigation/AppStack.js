@@ -218,7 +218,7 @@ const HomeDrawerStack = ({}) => (
 
     <Drawer.Screen name="Home" component={Home} options={{drawerIcon:homedrawerIcon}}  />
 
-    <Drawer.Screen name="Transcribe" component={MainStack} options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
+    <Drawer.Screen name="Transcribe" component={TranscribeStack} options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
     
     <Drawer.Screen name="Profile" component={Profile} options={{headerShown: true, drawerIcon:profiledrawerIcon}} />
 
@@ -236,7 +236,7 @@ const HomeDrawerStack = ({}) => (
   </Drawer.Navigator>
 );
 
-const MainStack = ({ navigation }) => (
+const TranscribeStack = ({ navigation }) => (
   <Stack.Navigator>
     <Stack.Screen
       name="main"
@@ -380,7 +380,7 @@ const MainTab = () => {
       />
       <BotTab.Screen
         name="Transcribe"
-        component={MainStack}
+        component={TranscribeStack}
         options={{
           headerShown: true,
           tabBarIcon: ({ color }) => (
@@ -412,7 +412,7 @@ const AppStack = () => {
 
       <Drawer.Screen name="Home" component={HomeStack} options={{drawerIcon:homedrawerIcon}}  />
 
-      <Drawer.Screen name="Transcribe" component={MainStack} options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
+      <Drawer.Screen name="Transcribe" component={TranscribeStack} options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
       
       <Drawer.Screen name="Profile" component={Profile} options={{headerShown: true, drawerIcon:profiledrawerIcon}} />
 
