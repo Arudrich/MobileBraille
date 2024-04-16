@@ -548,4 +548,4 @@ const styles = ScaledSheet.create({
 
   });
 
-  export default ViewPostScreen;
+export default ViewPostScreen;
