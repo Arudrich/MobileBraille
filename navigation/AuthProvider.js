@@ -11,16 +11,21 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(false); // Loading state
     
   return (
     <AuthContext.Provider 
       value={{
         user,
         setUser,
+        loading,
         login: async (email, password) => {
+          setLoading(true); // Set loading state to true when logging in
           try {
             await signInWithEmailAndPassword(authentication, email, password);
+            setLoading(false); // Set loading state to false after successful login
           } catch (error) {
+            setLoading(false); // Set loading state to false after unsuccessful login
             if (error.code === "auth/invalid-email") {
               console.log("That email address is invalid!");
               Alert.alert("Invalid email address.");

@@ -130,7 +130,7 @@ const HomeStack = ({ navigation }) => (
   <Stack.Navigator>
     <Stack.Screen
       name="Home"
-      component={HomeDrawerStack}
+      component={MainTab}
       options={{
         headerShown: false,
 
@@ -348,8 +348,9 @@ const MainStack = ({ navigation }) => (
 // export default AppStack;
 
 ////////////////////////////////////////////////////////////LUMANG BOT NAV/////////////////////////////////////////////////////////////////////
-const AppStack = () => {
-  return (
+
+const MainTab = () => {
+  return(
     <BotTab.Navigator
       screenOptions={{
         tabBarHideOnKeyboard: true,
@@ -370,7 +371,7 @@ const AppStack = () => {
     >
       <BotTab.Screen
         name="Home"
-        component={HomeStack}
+        component={Home}
         options={{
           tabBarIcon: ({ color }) => (
             <AntDesign name="home" size={30} color={color}/>
@@ -398,6 +399,35 @@ const AppStack = () => {
         }}
       />
     </BotTab.Navigator>
+  );
+}
+
+const AppStack = () => {
+  return (
+    <Drawer.Navigator initialRouteName="Home" screenOptions={{ headerShown: false,
+      drawerPosition: 'left', // Display the drawer on the left side
+      drawerType: 'slide', // Show the drawer as a sliding panel
+      }}
+     drawerContent={(props) => <CustomDrawerContent {...props} />}>
+
+    <Drawer.Screen name="Home" component={HomeStack} options={{drawerIcon:homedrawerIcon}}  />
+
+    <Drawer.Screen name="Transcribe" component={MainStack} options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
+    
+    <Drawer.Screen name="Profile" component={Profile} options={{headerShown: true, drawerIcon:profiledrawerIcon}} />
+
+    <Drawer.Screen name="F.A.Q" component={Faq} options={{headerShown: true, drawerIcon:faqdrawerIcon }} />
+
+    <Drawer.Screen name="About" component={AboutStack} options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
+
+    <Drawer.Screen name="   Terms" component={Terms} options={{headerShown: true, drawerIcon:termsdrawerIcon }} />
+
+    <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
+
+   
+    {/* Add other screens you want in the drawer navigator */}
+
+  </Drawer.Navigator>
   );
 }
 export default AppStack;
