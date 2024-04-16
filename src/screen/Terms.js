@@ -61,15 +61,6 @@ const Terms = () => {
               We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will try to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
               {'\n'}
               </Text>
-
-            <Text style = {styles.Header}>Contact Us</Text>
-
-              <Text style = {styles.text}>
-
-              If you have any questions about these Terms, please email and contact us at rbi.pdproject@gmail.com / 09454310672.
-
-              </Text>
-
      
       </ScrollView>
 

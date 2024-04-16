@@ -232,7 +232,7 @@ const [ fontsLoaded ] = useFonts({
       </TouchableOpacity> */}
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
 
-        <Text style = {styles.header}>Transcription Results</Text>
+
 
 
         <Text style={styles.textStyle}>Title: <Text style = {styles.Title}>{formattedTitle}</Text></Text>
@@ -364,9 +364,9 @@ const styles = ScaledSheet.create({
     backgroundColor: '#ccc',
   },
   switchCircle: {
-    width: 20,
+    width: 15,
     height: 20,
-    borderRadius: 10,
+    borderRadius: 8,
     backgroundColor: '#003153', // Color when the switch is off
   },
   /////////////////////////////////////////////////
@@ -385,7 +385,7 @@ const styles = ScaledSheet.create({
     borderColor: '#003153',
     padding: '12@s',
     borderRadius: 8,
-    width: '80%', // Adjust the width as needed
+    width: '100%', // Adjust the width as needed
     alignItems: 'flex-start',
     top: '12@s',
     margin: '15@s',
@@ -400,7 +400,7 @@ const styles = ScaledSheet.create({
     borderColor: '#003153',
     padding: '12@s',
     borderRadius: 8,
-    width: '80%', // Adjust the width as needed
+    width: '100%', // Adjust the width as needed
     alignItems: 'flex-start',
     top: '12@s',
     margin: '15@s',
@@ -433,14 +433,14 @@ const styles = ScaledSheet.create({
   
 
   textStyleOne: {
-    fontSize: '11@s',
+    fontSize: '16@s',
     fontFamily: "PTSans-Bold",
     textAlign: 'justify'
 
   },
 
   textStyleTwo: {
-    fontSize: '12@s',
+    fontSize: '16@s',
       fontFamily: "PTSans-Bold",
       textAlign: 'justify',
       color: 'white'
@@ -484,7 +484,7 @@ const styles = ScaledSheet.create({
   fontSize: '14@s',
   fontFamily: "PTSans-Bold",
   bottom: '12@s',
-  paddingTop: '12@s',
+  paddingTop: '25@s',
   paddingLeft: '25@s',
   alignSelf: 'flex-start',
   color: '#003153',

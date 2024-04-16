@@ -98,13 +98,14 @@ const about = () => {
 
          {/* Crorrrrrrrrrrrrrr */}
 
-         <View style = {styles.content}>
+         <Text style = {styles.Header}>Contact Us</Text>
 
-            <Text style = {styles.contentbg}> The Mobile Braille is multi-transcription application that translate text into Braille. The developers
-            are students from Technological Institute of the Philippines, Quezon City. </Text>
+              <Text style = {styles.textOne}>
 
+              If you have any questions about these Terms, please email and contact us at rbi.pdproject@gmail.com / 09454310672.
 
-         </View>
+              </Text>
+
 
 
 
@@ -163,7 +164,9 @@ const styles = ScaledSheet.create({
     backgroundColor: '#003153',
     height: '35%',
     // padding: '1@s',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8
  
   },
 
@@ -260,7 +263,28 @@ const styles = ScaledSheet.create({
     textAlign: 'justify'
 
 
-  }
+  },
+  textOne: {
+    textAlign: 'justify',
+    fontFamily: "PTSans-Regular",
+    fontSize: 14,
+    marginLeft: '15@s',
+    marginRight: '20@s',
+    backgroundColor: '#003153',
+    color: 'white',
+    padding: '8@s',
+    borderRadius: 8,
+    marginBottom: '15@s'
+  },
+
+  Header: {
+    fontSize: '16@s',
+    fontWeight: 'bold',
+    marginBottom: '10@s',
+    marginLeft: '5@s',
+    fontFamily: "PTSans-Bold"
+
+  },
 
 
 })

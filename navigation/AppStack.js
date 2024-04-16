@@ -228,7 +228,7 @@ const HomeDrawerStack = ({}) => (
 
     <Drawer.Screen name="Terms" component={Terms} options={{headerShown: true, drawerIcon:termsdrawerIcon }} />
 
-    <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
+    {/*<Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} /> */}
 
    
     {/* Add other screens you want in the drawer navigator */}
@@ -422,7 +422,7 @@ const AppStack = () => {
 
     <Drawer.Screen name="   Terms" component={Terms} options={{headerShown: true, drawerIcon:termsdrawerIcon }} />
 
-    <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
+      {/* <Drawer.Screen name="Settings" component={setting} options={{headerShown: true, drawerIcon:settingdrawerIcon }} />  */}
 
    
     {/* Add other screens you want in the drawer navigator */}

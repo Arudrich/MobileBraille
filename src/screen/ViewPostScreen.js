@@ -132,12 +132,12 @@ const ViewPostScreen = ({ route }) => {
       </TouchableOpacity> */}
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
 
-        <Text style = {styles.header}>Latest Transcription</Text>
+
         <Text style={styles.textStyle}>Title: <Text style = {styles.Title}>{formattedTitle}</Text></Text>
         
 
         {transcriptionType === 'video' && <Video source={{ uri: imageUrl }} style={styles.videoContainer} resizeMode= 'contain' useNativeControls />}
-        {transcriptionType === 'image' && <Image source={{ uri: imageUrl }} style={styles.imageContainer} resizeMode= 'contain' />}
+        {transcriptionType === 'image' && <Image source={{ uri: imageUrl }} style={styles.imageContainer} resizeMode= 'contain' />}    
         {transcriptionType === 'audio' && (
           <AudioPlayerView 
             active={!isLoading}
@@ -220,21 +220,10 @@ const ViewPostScreen = ({ route }) => {
       </TouchableOpacity>
       </ReactNativeZoomableView>      */}
         <ScrollView contentContainerStyle={styles.resultBoxInput}>
-          <ReactNativeZoomableView
-                      maxZoom={1.5}
-                      minZoom={1}
-                      zoomStep={0.5}
-                      initialZoom={1}
-                      doubleTapZoomToCenter
-                      bindToBorders={true}
-                      onZoomAfter={this.logOutZoomState}
-                      style={{
-                          padding: 10,
-                      }}
-                      >
+        
             <Text 
             style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
-          </ReactNativeZoomableView>          
+                 
         </ScrollView>
 
         <ScrollView contentContainerStyle={styles.resultBoxOutput}>
@@ -337,206 +326,172 @@ const styles = ScaledSheet.create({
     backgroundColor: '#ccc',
   },
   switchCircle: {
-    width: 20,
+    width: 15,
     height: 20,
-    borderRadius: 10,
+    borderRadius: 8,
     backgroundColor: '#003153', // Color when the switch is off
   },
-  //////////////////////////////////////////////
-  resultBox: {
-    borderWidth: 1,
-    borderColor: 'black',
-    padding: '10@s',
-    margin: '10@s',
-    borderRadius: '5@s',
+  /////////////////////////////////////////////////
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: '15@s',
   },
-  expandedBox: {
-    height: '205@s', // Adjust the height as needed
+  button: {
+    marginRight: '8@s', // Adjust the margin as needed
   },
-  textStyle: {
+   // for input
+   resultBoxInput: {
+    borderWidth: 3.5,
+    borderColor: '#003153',
+    padding: '12@s',
+    borderRadius: 8,
+    width: '100%', // Adjust the width as needed
+    alignItems: 'flex-start',
+    top: '12@s',
+    margin: '15@s',
+  },
+
+    // for output
+
+
+  resultBoxOutput: {
+    borderWidth: 3.5,
+    backgroundColor: '#003153',
+    borderColor: '#003153',
+    padding: '12@s',
+    borderRadius: 8,
+    width: '100%', // Adjust the width as needed
+    alignItems: 'flex-start',
+    top: '12@s',
+    margin: '15@s',
+  },
+
+
+   // style to sa text liek title and dates pati pala type of transciropotion hehe
+
+   containerhehe: {
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+    paddingLeft: '25@s',
+    marginTop: '12@s'
+
+  },
+
+
+  textStyleDate: {
     fontSize: '14@s',
+    fontFamily: "PTSans-BoldItalic",
+    paddingLeft: '18@s',
+    bottom: '9@s',
   },
 
-buttonContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginVertical: '15@s',
-    },
-    button: {
-      marginRight: '8@s', // Adjust the margin as needed
-    },
+  textStyleType: {
+    fontSize: '14@s',
+    fontFamily: "PTSans-Bold",
+    bottom: '9@s'
+  },
+  
 
-    // for input
-    resultBoxInput: {
-      borderWidth: 3.5,
-      borderColor: '#003153',
-      padding: '10@s',
-      borderRadius: 8,
-      width: '90%', // Adjust the width as needed
-      alignItems: 'center',
-      top: '12@s',
-      margin: '15@s',
-      overflow: 'hidden', // Hide overflowed content
-    },
+  textStyleOne: {
+    fontSize: '16@s',
+    fontFamily: "PTSans-Bold",
+    textAlign: 'justify'
 
-        // for output
+  },
 
-
-    resultBoxOutput: {
-      borderWidth: 3.5,
-      backgroundColor: '#003153',
-      borderColor: '#003153',
-      padding: '10@s',
-      borderRadius: 8,
-      width: '90%', // Adjust the width as needed
-      alignItems: 'center',
-      top: '12@s',
-      margin: '15@s',
-      overflow: 'hidden', // Hide overflowed content
-    },
-
-
-
-    // style to sa text like sa title and dates pati pala type of transciropotion hehe
-    containerhehe: {
-      flexDirection: 'row',
-      alignSelf: 'flex-start',
-      marginLeft: '25@s',
-      marginTop: '12@s'
-
-    },
-
-
-    textStyleDate: {
-      fontSize: '12@s',
-      fontFamily: "PTSans-BoldItalic",
-      paddingLeft: '18@s',
-      bottom: '9@s',
-    },
-
-    textStyleType: {
-      fontSize: '12@s',
-      fontFamily: "PTSans-Bold",
-      bottom: '9@s'
-    },
-    
-
-
-    textStyleOne: {
-      fontSize: '13@s',
-      fontFamily: "PTSans-Bold",
-      textAlign: 'justify'
-
-    },
-
-    textStyleTitle: {
-      fontSize: '13@s',
-      fontFamily: "PTSans-Bold",
-      color: 'white',
-      textAlign: 'justify',
-      backgroundColor : '#003153',
-      padding: '5@s',
-      borderRadius: '10@s',
-      bottom: '5@s'
-    },
-
-    textStyleTitleTwo: {
-      fontSize: '13@s',
-      fontFamily: "PTSans-Bold",
-      color: '#003153',
-      textAlign: 'justify',
-      backgroundColor : 'white',
-      padding: '5@s',
-      borderRadius: '10@s',
-      bottom: '5@s'
-    },
-
-    textStyleTwo: {
-      fontSize: '13@s',
+  textStyleTwo: {
+    fontSize: '16@s',
       fontFamily: "PTSans-Bold",
       textAlign: 'justify',
       color: 'white'
 
-    },
+  },
+  videoContainer: {
+    width: '300@s',
+    height: '250@s',
+    alignSelf: 'center',
+    borderWidth: 3,
+    borderColor: '#003153',
+    borderRadius: 8,   
+    
+  },
+
+  imageContainer: {
+    width: '300@s',
+    height: '250@s',  
+    borderWidth: 3,
+    borderColor: '#003153',
+    borderRadius: 8, 
+  },
+
+  // HEADER *******
+
+  header: {
+    fontSize: '25@s',
+    fontFamily: "PTSans-Bold",
+    alignSelf: 'flex-start', 
+    padding: 20
+  },
+
+  fontDownload: {
+    fontSize: '12@s',
+    fontFamily: "PTSans-Bold",
+
+  },
+
+ textStyle: {
+
+  fontSize: '14@s',
+  fontFamily: "PTSans-Bold",
+  bottom: '12@s',
+  paddingTop: '25@s',
+  paddingLeft: '25@s',
+  alignSelf: 'flex-start',
+  color: '#003153',
+
+
+ },
+
+ dateType: {
+  fontSize: '12@s',
+  color: 'black',
+  textTransform: 'uppercase',
+  fontFamily: "PTSans-Italic"
   
-    videoContainer: {
-      width: '300@s',
-      height: '250@s',
-      alignSelf: 'center',
-      borderWidth: 3,
-      borderColor: '#003153',
-      borderRadius: 8, 
-     
-    },
-    imageContainer: {
-      width: '300@s',
-      height: '250@s',  
-      borderWidth: 3,
-      borderColor: '#003153',
-      borderRadius: 8, 
-    },
+ },
 
- 
+ transcriptionType: {
+  fontSize: '12@s',
+  color: 'black',
+  textTransform: 'uppercase',
+  fontFamily: "PTSans-Bold"
 
-    //header *************************************
-    
-    header: {
-      fontSize: '25@s',
-      fontFamily: "PTSans-Bold",
-      alignSelf: 'flex-start', 
-      padding: 15
-    },
 
-    fontDownload: {
-      fontSize: '12@s',
-      fontFamily: "PTSans-Bold",
+ },
+ Title: {
+  
+  textTransform: 'uppercase',
+  fontSize: '16@s',
+  color: 'black',
 
-    },
+ },
+ brailleButtonContainer: {
+  position: 'absolute',
+  top: '20@s',
+  right: '20@s',
+  backgroundColor: '#003153',
+  padding: '8@s',
+  borderRadius: '50@s',
+  zIndex: 999,
+},
 
-   textStyle: {
-    fontSize: '14@s',
-    fontFamily: "PTSans-Bold",
-    bottom: '12@s',
-    paddingTop: '12@s',
-    paddingLeft: '25@s',
-    alignSelf: 'flex-start',
-    color: '#003153',
-   },
-
-   dateType: {
-    fontSize: '12@s',
-    color: 'black',
-    fontFamily: "PTSans-Italic"
-    
-   },
-
-   transcriptionType: {
-    fontSize: '12@s',
-    color: 'black',
-    fontFamily: "PTSans-Bold"
-    
-   },
-   Title: {
-    fontSize: '16@s',
-    color: 'black',
-
-   },
-
-   // Braille Button
-
-   brailleButtonContainer: {
-    backgroundColor: '#003153',
-    padding: '6@s',
-    borderRadius: '10@s',
-    zIndex: 999,
-    top: 25
-  },
-  brailleButtonText: {
-    color: 'white',
-    fontFamily: "PTSans-Bold",
-    fontSize: '14@s',
-  },
+brailleButtonText: {
+  color: 'white',
+  fontFamily: "PTSans-Bold",
+  fontSize: '14@s',
+},
 
 
 
@@ -544,7 +499,8 @@ buttonContainer: {
 
 
 
+  
 
-  });
+});
 
   export default ViewPostScreen;

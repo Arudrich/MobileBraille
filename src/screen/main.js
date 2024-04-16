@@ -282,7 +282,9 @@ const styles = ScaledSheet.create({
     backgroundColor: '#003153',
     height: '28%',
     padding: '12@s',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8
  
   },
 
