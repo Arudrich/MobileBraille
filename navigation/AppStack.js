@@ -218,7 +218,7 @@ const HomeDrawerStack = ({}) => (
 
     <Drawer.Screen name="Home" component={Home} options={{drawerIcon:homedrawerIcon}}  />
 
-    <Drawer.Screen name="Transcribe" component={MainStack} options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
+    <Drawer.Screen name="Transcribe" component={TranscribeStack} options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
     
     <Drawer.Screen name="Profile" component={Profile} options={{headerShown: true, drawerIcon:profiledrawerIcon}} />
 
@@ -236,7 +236,7 @@ const HomeDrawerStack = ({}) => (
   </Drawer.Navigator>
 );
 
-const MainStack = ({ navigation }) => (
+const TranscribeStack = ({ navigation }) => (
   <Stack.Navigator>
     <Stack.Screen
       name="main"
@@ -357,7 +357,8 @@ const MainTab = () => {
         headerShown: false,
         tabBarActiveTintColor: colors.accent,
         tabBarInactiveTintColor: colors.secondary,
-        tabBarStyle: { position: 'center',
+        tabBarStyle: { 
+          position: 'center',
           backgroundColor: colors.primary, 
           width: '90%', 
           alignSelf: 'center', 
@@ -380,7 +381,7 @@ const MainTab = () => {
       />
       <BotTab.Screen
         name="Transcribe"
-        component={MainStack}
+        component={ TranscribeStack }
         options={{
           headerShown: true,
           tabBarIcon: ({ color }) => (
@@ -405,15 +406,27 @@ const MainTab = () => {
 const AppStack = () => {
   return (
     <Drawer.Navigator initialRouteName="Home" screenOptions={{ headerShown: false,
-      drawerPosition: 'left', // Display the drawer on the left side
-      drawerType: 'slide', // Show the drawer as a sliding panel
-      }}
-     drawerContent={(props) => <CustomDrawerContent {...props} />}>
+        drawerPosition: 'left', // Display the drawer on the left side
+        drawerType: 'slide', // Show the drawer as a sliding panel
+        }}
+      drawerContent={(props) => <CustomDrawerContent {...props} />}>
 
-    <Drawer.Screen name="Home" component={HomeStack} options={{drawerIcon:homedrawerIcon}}  />
+      <Drawer.Screen name="Home" component={ HomeStack } options={{drawerIcon:homedrawerIcon}}  />
 
-    <Drawer.Screen name="Transcribe" component={MainStack} options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
+      <Drawer.Screen name="Transcribe" component={ TranscribeStack } options={{headerShown: true, drawerIcon:maindrawerIcon}}  />
+      
+      <Drawer.Screen name="Profile" component={ Profile } options={{headerShown: true, drawerIcon:profiledrawerIcon}} />
+
+      <Drawer.Screen name="F.A.Q" component={ Faq } options={{headerShown: true, drawerIcon:faqdrawerIcon }} />
+
+      <Drawer.Screen name="About" component={ AboutStack } options={{headerShown: true, drawerIcon:aboutdrawerIcon }}  />
+
+      <Drawer.Screen name="   Terms" component={ Terms } options={{headerShown: true, drawerIcon:termsdrawerIcon }} />
+
+      <Drawer.Screen name="Settings" component={ setting } options={{headerShown: true, drawerIcon:settingdrawerIcon }} />
+
     
+<<<<<<< HEAD
     <Drawer.Screen name="Profile" component={Profile} options={{headerShown: true, drawerIcon:profiledrawerIcon}} />
 
     <Drawer.Screen name="F.A.Q" component={Faq} options={{headerShown: true, drawerIcon:faqdrawerIcon }} />
@@ -426,6 +439,9 @@ const AppStack = () => {
 
    
     {/* Add other screens you want in the drawer navigator */}
+=======
+      {/* Add other screens you want in the drawer navigator */}
+>>>>>>> f69c1fdc836479f40ff4701c139ff9e47a87f109
 
   </Drawer.Navigator>
   );
