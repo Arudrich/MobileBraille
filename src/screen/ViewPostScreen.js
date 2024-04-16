@@ -353,148 +353,150 @@ const styles = ScaledSheet.create({
   expandedBox: {
     height: '205@s', // Adjust the height as needed
   },
+
   textStyle: {
     fontSize: '14@s',
   },
 
-buttonContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginVertical: '15@s',
-    },
-    button: {
-      marginRight: '8@s', // Adjust the margin as needed
-    },
-
-    // for input
-    resultBoxInput: {
-      borderWidth: 3.5,
-      borderColor: '#003153',
-      padding: '10@s',
-      borderRadius: 8,
-      width: '90%', // Adjust the width as needed
-      alignItems: 'center',
-      top: '12@s',
-      margin: '15@s',
-      overflow: 'hidden', // Hide overflowed content
-    },
-
-        // for output
-
-
-    resultBoxOutput: {
-      borderWidth: 3.5,
-      backgroundColor: '#003153',
-      borderColor: '#003153',
-      padding: '10@s',
-      borderRadius: 8,
-      width: '90%', // Adjust the width as needed
-      alignItems: 'center',
-      top: '12@s',
-      margin: '15@s',
-      overflow: 'hidden', // Hide overflowed content
-    },
-
-
-
-    // style to sa text like sa title and dates pati pala type of transciropotion hehe
-    containerhehe: {
-      flexDirection: 'row',
-      alignSelf: 'flex-start',
-      marginLeft: '25@s',
-      marginTop: '12@s'
-
-    },
-
-
-    textStyleDate: {
-      fontSize: '12@s',
-      fontFamily: "PTSans-BoldItalic",
-      paddingLeft: '18@s',
-      bottom: '9@s',
-    },
-
-    textStyleType: {
-      fontSize: '12@s',
-      fontFamily: "PTSans-Bold",
-      bottom: '9@s'
-    },
-    
-
-
-    textStyleOne: {
-      fontSize: '13@s',
-      fontFamily: "PTSans-Bold",
-      textAlign: 'justify'
-
-    },
-
-    textStyleTitle: {
-      fontSize: '13@s',
-      fontFamily: "PTSans-Bold",
-      color: 'white',
-      textAlign: 'justify',
-      backgroundColor : '#003153',
-      padding: '5@s',
-      borderRadius: '10@s',
-      bottom: '5@s'
-    },
-
-    textStyleTitleTwo: {
-      fontSize: '13@s',
-      fontFamily: "PTSans-Bold",
-      color: '#003153',
-      textAlign: 'justify',
-      backgroundColor : 'white',
-      padding: '5@s',
-      borderRadius: '10@s',
-      bottom: '5@s'
-    },
-
-    textStyleTwo: {
-      fontSize: '13@s',
-      fontFamily: "PTSans-Bold",
-      textAlign: 'justify',
-      color: 'white'
-
-    },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: '15@s',
+  },
   
-    videoContainer: {
-      width: '300@s',
-      height: '250@s',
-      alignSelf: 'center',
-      borderWidth: 3,
-      borderColor: '#003153',
-      borderRadius: 8, 
-     
-    },
-    imageContainer: {
-      width: '300@s',
-      height: '250@s',  
-      borderWidth: 3,
-      borderColor: '#003153',
-      borderRadius: 8, 
-    },
+  button: {
+    marginRight: '8@s', // Adjust the margin as needed
+  },
 
- 
+  // for input
+  resultBoxInput: {
+    borderWidth: 3.5,
+    borderColor: '#003153',
+    padding: '10@s',
+    borderRadius: 8,
+    width: '90%', // Adjust the width as needed
+    alignItems: 'center',
+    top: '12@s',
+    margin: '15@s',
+    overflow: 'hidden', // Hide overflowed content
+  },
 
-    //header *************************************
+  // for output
+
+
+  resultBoxOutput: {
+    borderWidth: 3.5,
+    backgroundColor: '#003153',
+    borderColor: '#003153',
+    padding: '10@s',
+    borderRadius: 8,
+    width: '90%', // Adjust the width as needed
+    alignItems: 'center',
+    top: '12@s',
+    margin: '15@s',
+    overflow: 'hidden', // Hide overflowed content
+  },
+
+
+
+  // style to sa text like sa title and dates pati pala type of transciropotion hehe
+  containerhehe: {
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+    marginLeft: '25@s',
+    marginTop: '12@s'
+
+  },
+
+
+  textStyleDate: {
+    fontSize: '12@s',
+    fontFamily: "PTSans-BoldItalic",
+    paddingLeft: '18@s',
+    bottom: '9@s',
+  },
+
+  textStyleType: {
+    fontSize: '12@s',
+    fontFamily: "PTSans-Bold",
+    bottom: '9@s'
+  },
+  
+
+
+  textStyleOne: {
+    fontSize: '13@s',
+    fontFamily: "PTSans-Bold",
+    textAlign: 'justify'
+
+  },
+
+  textStyleTitle: {
+    fontSize: '13@s',
+    fontFamily: "PTSans-Bold",
+    color: 'white',
+    textAlign: 'justify',
+    backgroundColor : '#003153',
+    padding: '5@s',
+    borderRadius: '10@s',
+    bottom: '5@s'
+  },
+
+  textStyleTitleTwo: {
+    fontSize: '13@s',
+    fontFamily: "PTSans-Bold",
+    color: '#003153',
+    textAlign: 'justify',
+    backgroundColor : 'white',
+    padding: '5@s',
+    borderRadius: '10@s',
+    bottom: '5@s'
+  },
+
+  textStyleTwo: {
+    fontSize: '13@s',
+    fontFamily: "PTSans-Bold",
+    textAlign: 'justify',
+    color: 'white'
+
+  },
+
+  videoContainer: {
+    width: '300@s',
+    height: '250@s',
+    alignSelf: 'center',
+    borderWidth: 3,
+    borderColor: '#003153',
+    borderRadius: 8, 
     
-    header: {
-      fontSize: '25@s',
-      fontFamily: "PTSans-Bold",
-      alignSelf: 'flex-start', 
-      padding: 15
-    },
+  },
+  imageContainer: {
+    width: '300@s',
+    height: '250@s',  
+    borderWidth: 3,
+    borderColor: '#003153',
+    borderRadius: 8, 
+  },
 
-    fontDownload: {
-      fontSize: '12@s',
-      fontFamily: "PTSans-Bold",
 
-    },
 
-   textStyle: {
+  //header *************************************
+  
+  header: {
+    fontSize: '25@s',
+    fontFamily: "PTSans-Bold",
+    alignSelf: 'flex-start', 
+    padding: 15
+  },
+
+  fontDownload: {
+    fontSize: '12@s',
+    fontFamily: "PTSans-Bold",
+
+  },
+
+  textStyle: {
     fontSize: '14@s',
     fontFamily: "PTSans-Bold",
     bottom: '12@s',
@@ -502,30 +504,29 @@ buttonContainer: {
     paddingLeft: '25@s',
     alignSelf: 'flex-start',
     color: '#003153',
-   },
+  },
 
-   dateType: {
+  dateType: {
     fontSize: '12@s',
     color: 'black',
-    fontFamily: "PTSans-Italic"
-    
-   },
+    fontFamily: "PTSans-Italic"  
+  },
 
-   transcriptionType: {
+  transcriptionType: {
     fontSize: '12@s',
     color: 'black',
-    fontFamily: "PTSans-Bold"
-    
-   },
-   Title: {
+    fontFamily: "PTSans-Bold"  
+  },
+
+  Title: {
     fontSize: '16@s',
     color: 'black',
 
-   },
+  },
 
-   // Braille Button
+  // Braille Button
 
-   brailleButtonContainer: {
+  brailleButtonContainer: {
     backgroundColor: '#003153',
     padding: '6@s',
     borderRadius: '10@s',
