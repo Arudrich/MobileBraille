@@ -433,14 +433,14 @@ const styles = ScaledSheet.create({
   
 
   textStyleOne: {
-    fontSize: '16@s',
+    fontSize: '13@s',
     fontFamily: "PTSans-Bold",
     textAlign: 'justify'
 
   },
 
   textStyleTwo: {
-    fontSize: '16@s',
+    fontSize: '13@s',
       fontFamily: "PTSans-Bold",
       textAlign: 'justify',
       color: 'white'
