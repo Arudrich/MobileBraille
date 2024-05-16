@@ -238,7 +238,7 @@ const ViewPostScreen = ({ route }) => {
                       }}
                       >
             <Text 
-            style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
+              style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
           </ReactNativeZoomableView>          
         </ScrollView>
 
@@ -525,9 +525,10 @@ const styles = ScaledSheet.create({
   },
 
   transcriptionType: {
-    fontSize: '12@s',
+    fontSize: '14@s',
     color: 'black',
-    fontFamily: "PTSans-Bold"  
+    fontFamily: "PTSans-Bold"
+    
   },
 
   Title: {
