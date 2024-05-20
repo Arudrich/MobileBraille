@@ -14,17 +14,6 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    // <NavigationContainer independent= { true }>
-    //   <Stack.Navigator initialRouteName= "home" screenOptions={{ headerShown: false, }}>
-        
-    //     <Stack.Screen name="splash" component={ splash } />
-    //     <Stack.Screen name="login" component={ login } />
-    //     <Stack.Screen name="register" component={ register } />
-    //     <Stack.Screen name="home" component={ home } />
-
-        
-    //   </Stack.Navigator>
-    // </NavigationContainer>
    <Providers /> //Use this when trying out Routes
   );
 } ;
