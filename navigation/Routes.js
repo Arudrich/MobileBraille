@@ -8,6 +8,7 @@ import { authentication } from '../FirebaseConfig';
 import AuthStack from './AuthStack';
 import AppStack from './AppStack';
 import { AuthContext } from './AuthProvider';
+import { NetworkProvider } from './NetworkProvider';
 
 const Routes = () => {
   const {user, setUser} = useContext(AuthContext);
@@ -38,12 +39,14 @@ const Routes = () => {
   if (initializing) return null;
   
   return (
-    <NavigationContainer>
-      {user ? <AppStack /> : <AuthStack />} 
-      {/* Logic na kung may user sa APP na siya rekta */}
-      {/* <AuthStack /> */}
-      {/* <AppStack /> */}
-    </NavigationContainer>
+    <NetworkProvider>
+      <NavigationContainer>
+        {user ? <AppStack /> : <AuthStack />} 
+        {/* Logic na kung may user sa APP na siya rekta */}
+        {/* <AuthStack /> */}
+        {/* <AppStack /> */}
+      </NavigationContainer>
+    </NetworkProvider>
   )
 }
 

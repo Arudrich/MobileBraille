@@ -226,7 +226,7 @@ const [ fontsLoaded ] = useFonts({
 
 
   return (
-    <ScrollView style={{ flex: 1 }}>
+    <ScrollView style={{ flexGrow: 1 }}>
       {/* <TouchableOpacity style={styles.brailleButtonContainer} onPress={toggleBrailleMode}>
         <Text style={styles.brailleButtonText}>{buttonText}</Text>
       </TouchableOpacity> */}
@@ -383,9 +383,9 @@ const styles = ScaledSheet.create({
    resultBoxInput: {
     borderWidth: 3.5,
     borderColor: '#003153',
-    padding: '12@s',
+    padding: '10@s',
     borderRadius: 8,
-    width: '100%', // Adjust the width as needed
+    width: '90%', // Adjust the width as needed
     alignItems: 'flex-start',
     top: '12@s',
     margin: '15@s',
@@ -398,9 +398,9 @@ const styles = ScaledSheet.create({
     borderWidth: 3.5,
     backgroundColor: '#003153',
     borderColor: '#003153',
-    padding: '12@s',
+    padding: '10@s',
     borderRadius: 8,
-    width: '100%', // Adjust the width as needed
+    width: '90%', // Adjust the width as needed
     alignItems: 'flex-start',
     top: '12@s',
     margin: '15@s',
@@ -433,14 +433,14 @@ const styles = ScaledSheet.create({
   
 
   textStyleOne: {
-    fontSize: '16@s',
+    fontSize: '13@s',
     fontFamily: "PTSans-Bold",
     textAlign: 'justify'
 
   },
 
   textStyleTwo: {
-    fontSize: '16@s',
+    fontSize: '13@s',
       fontFamily: "PTSans-Bold",
       textAlign: 'justify',
       color: 'white'

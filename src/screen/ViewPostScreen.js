@@ -132,8 +132,13 @@ const ViewPostScreen = ({ route }) => {
       </TouchableOpacity> */}
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
 
-        <Text style = {styles.header}>Latest Transcription</Text>
-        <Text style={styles.textStyle}>Title: <Text style = {styles.Title}>{formattedTitle}</Text></Text>
+
+        <View style = {{ marginTop: 8,  alignSelf: 'flex-start',}}>
+          
+          <Text style={styles.textStyle}>Title: <Text style = {styles.Title}>{formattedTitle}</Text></Text>
+        
+        </View>
+        
         
 
         {transcriptionType === 'video' && <Video source={{ uri: imageUrl }} style={styles.videoContainer} resizeMode= 'contain' useNativeControls />}
@@ -233,7 +238,7 @@ const ViewPostScreen = ({ route }) => {
                       }}
                       >
             <Text 
-            style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
+              style={styles.textStyleOne}>Transcription Input:{'\n'}{'\n'} {transcription}</Text>
           </ReactNativeZoomableView>          
         </ScrollView>
 
@@ -355,7 +360,14 @@ const styles = ScaledSheet.create({
   },
 
   textStyle: {
+
     fontSize: '14@s',
+    fontFamily: "PTSans-Bold",
+    bottom: '12@s',
+    paddingTop: '30@s',
+    paddingLeft: '25@s',
+    alignSelf: 'flex-start',
+    color: '#003153',
   },
 
   buttonContainer: {
@@ -411,14 +423,14 @@ const styles = ScaledSheet.create({
 
 
   textStyleDate: {
-    fontSize: '12@s',
+    fontSize: '14@s',
     fontFamily: "PTSans-BoldItalic",
     paddingLeft: '18@s',
     bottom: '9@s',
   },
 
   textStyleType: {
-    fontSize: '12@s',
+    fontSize: '14@s',
     fontFamily: "PTSans-Bold",
     bottom: '9@s'
   },
@@ -513,9 +525,10 @@ const styles = ScaledSheet.create({
   },
 
   transcriptionType: {
-    fontSize: '12@s',
+    fontSize: '14@s',
     color: 'black',
-    fontFamily: "PTSans-Bold"  
+    fontFamily: "PTSans-Bold"
+    
   },
 
   Title: {
