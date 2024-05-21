@@ -18,14 +18,6 @@ import { ScaledSheet } from 'react-native-size-matters';
 
 import { useFonts } from 'expo-font';
 
-
-
-
-
-
-
-
-
 const Login = () => {
   const {login, loading} = useContext(AuthContext);
   const nav = useNavigation();
@@ -44,10 +36,6 @@ const Login = () => {
     'PTSans-BoldItalic' : require ('../assets/fonts/PTSans-BoldItalic.ttf'),
     'PTSans-Italic' : require ('../assets/fonts/PTSans-Italic.ttf'),
     'PTSans-Regular' : require ('../assets/fonts/PTSans-Regular.ttf'),
-
-
-
-
   })
 
   if (!fontsLoaded){
