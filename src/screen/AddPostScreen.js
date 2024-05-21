@@ -29,44 +29,7 @@ import * as DocumentPicker from 'expo-document-picker';
 
 
 import { Button } from 'react-native-paper';
-// Add your transcribeFile function here
-// const transcribeFile = async (file, fileType, fileName) => {
 
-//   console.log(file);  
-
-//   const formData = new FormData();
-//   const apiEndpoint = `http://34.142.200.21:8000/transcribe/${fileType}`;
-
-//   formData.append('file', {
-//     uri: file,
-//     type: fileType === 'image' ? 'image/jpeg' : (fileType === 'video' ? 'video/mp4' : 'audio/mp3'),
-//     name: fileType === 'image' ? 'image.jpg' : (fileType === 'video' ? 'video.mp4' : 'audio.mp3'),
-//     // name: fileName,
-//   });
-
-//   try {
-//     const response = await fetch(apiEndpoint, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'multipart/form-data',
-//       },
-//       body: formData,
-//     });
-
-//     // Assuming that the server returns JSON, you can parse the response
-//     const responseData = await response.json();
-
-//     // console.log(`Response for ${fileType}:`, responseData);
-//     console.log("Transcription: ", responseData.Transcription);
-//     console.log("Braille: ", responseData.Braille)
-
-    
-//     return responseData;
-//   } catch (error) {
-//     console.error(error);
-//     return null;
-//   }
-// };
 const transcribeFile = async (file, fileType, fileName) => {
   // console.log("String to transcribe: ", file);
 
