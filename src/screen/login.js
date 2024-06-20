@@ -1,8 +1,7 @@
 import {View, Text, ScrollView, TouchableOpacity, Alert, ActivityIndicator} from "react-native";
 import React, { useContext, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { authentication } from "../../FirebaseConfig";
+
 import { AuthContext } from "../../navigation/AuthProvider";
 
 // MATS
@@ -55,7 +54,7 @@ const Login = () => {
         <Text style={styles.screenHeading}> Hey there! </Text>
           <Text style={styles.screenTexts}>
             Welcome, please enter your credentials.
-           </Text>
+          </Text>
 
           <Text style={styles.placeholderLabel}>Email</Text>
           <View>
@@ -127,15 +126,15 @@ const Login = () => {
 
           <View style={styles.lineContainer}>
             <View style={styles.line} />
-           <Text style={styles.orText}>or</Text>
-           <View style={styles.line} />
-           </View>
+            <Text style={styles.orText}>or</Text>
+            <View style={styles.line} />
+          </View>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 5, gap: 5 }}>
-          <Text style={styles.screenTexts}>Don't have an account yet?</Text>
-          <TouchableOpacity onPress={() => nav.navigate('register')}>
-          <Text style={styles.textClickable}>Register here</Text>
-          </TouchableOpacity>
+          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 5, gap: 5 }}>
+            <Text style={styles.screenTexts}>Don't have an account yet?</Text>
+            <TouchableOpacity onPress={() => nav.navigate('register')}>
+            <Text style={styles.textClickable}>Register here</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
